@@ -1,0 +1,23 @@
+social basato su meme, barzellette, freddure, battute ecc simil-twitter
+si puo reagire ad ogni post in una scala da 1 a 5. e le reazioni vanno ad aggiungersi alle 'stats' del profilo dell'utente (possibili 'medaglie' o 'titoli')
+i post o utenti piu divertenti vengono mostrati nella sezione 'per te' della home
+nella sezione 'seguiti' della home vengono mostrati i post degli utenti che segui (sistema di follow, non amicizia)
+possibile aggiungere hashtag o etichette ai post quindi possibile ricerca di post filtrati in base a etichette
+il social conta la streak (quanti giorni di fila) di post con reazione media positiva (3 stelle su 5 o piu), e in base a quanti giorni viene mostrato qualcosa sul profilo o sul post o qualcosa bho
+possibilità di salvare post (come instagram)
+possibilità di segnalare post offensivi, dopo tot segnalazioni al post viene cancellato. dopo tot post cancellati o tot segnalazioni da utenti diversi viene chiuso l'account
+possibilità di 'attivare la campanellina' per un account seguito: arriva la notifica quando posta
+notifiche in app per: follow (o richiesta in caso privato), reazione, account 'campanellinati', post cancellato per segnalazioni, tot segnalazioni al tuo profilo, profilo/post che avevi segnalato è stato chiuso (si? no?), raggiunta di nuovo titolo/medaglia, raggiunta di un 'grande obiettivo' nella streak
+
+- home (divisa a sua volta in seguiti e per te)
+- profilo
+- cerca
+- impostazioni (notifiche, login/out, privacy profilo simil-instagram, post salvati)
+- barra di navigazione con queste 4 cose
+- icone di notifiche e + per aggiunta post 
+
+timer per i post
+programmazione anticipata dei post
+esplora
+filtro post per categoria / hashtag
+counter segnalazioni
