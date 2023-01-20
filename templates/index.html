@@ -7,6 +7,86 @@
     <title>Memed</title>
 </head>
 <body>
-    <div>ciO</div>
+    <div class="screen-splash">
+        <div id="header">
+            <div class="logo">
+                <img src="" alt="" />
+                Memed
+            </div>
+
+            <div id="searchbar">
+                <span class="search">
+                    <input id="search" type="text" name="search" placeholder="Cerca" />
+                </span>
+                <span class="src-btn">
+                    <button id="search-button">
+                        <img src="" alt="" />
+                    </button>
+                </span>
+            </div>
+
+            <div class="user-data">
+                <div class="data">
+                    <div id="username">Username</div> <!--TODO: chiaramente sostituire Username con il PHP-->
+                    <div id="avg-reaction">
+                        <img src="" alt="" /> <!--TODO: img reaction da prendere dal DB-->
+                    </div>
+                </div>
+                <div class="photo">
+                    <img src="" alt="" /> <!--TODO: img profilo da prendere dal DB-->
+                </div>
+            </div>
+        </div>
+
+        <div class="side-content">
+            <div id="left">
+                <div class="upper-content">
+                    <div class="home">
+                        <span class="home-span">
+                            <img src="" alt="" />
+                        </span>
+                        <span class="home-span">Home</span>
+                    </div>
+                    <div class="explore">
+                        <span class="explore-span">
+                            <img src="" alt="" />
+                        </span>
+                        <span class="explore-span">Esplora</span>
+                    </div>
+                    <div class="new-post">
+                        <span class="new-post-span">
+                            <img src="" alt="" />
+                        </span>
+                        <span class="new-post-span">Nuovo Post</span>
+                    </div>
+                    <div class="profile">
+                        <span class="profile-span">
+                            <img src="" alt="" />
+                        </span>
+                        <span class="profile-span">Profilo</span>
+                    </div>
+                </div>
+                <div class="lower-content">
+                    <div class="settings">
+                        <img src="" alt="" />
+                    </div>
+                    <div class="logout">
+                        <a href="\login.html">
+                            <img src="" alt="" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="right">
+                <div class="notifications">
+                    <span class="notifications-span">Notifiche</span>
+                    <span class="notifications-span">
+                        <img src="" alt="" />
+                    </span>
+                    <!--TODO: va capito come gestire le notifiche, di HTML dovrebbe essere solo una serie di div generati dinamicamente-->
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
