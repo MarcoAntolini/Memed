@@ -42,10 +42,8 @@ CREATE TABLE `commento` (
 --
 
 CREATE TABLE `notifica` (
-  `N_C_IDuser` int(11) NOT NULL,
-  `N_C_idpost` int(11) NOT NULL,
-  `N_C_idcommento` int(11) NOT NULL,
   `messaggio` varchar(100) NOT NULL,
+  `idnotifica` int(11) NOT NULL,
   `IDuser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -70,7 +68,8 @@ CREATE TABLE `post` (
 --
 
 CREATE TABLE `reazione` (
-  `idreazione` int(11) NOT NULL
+  `idreazione` int(11) NOT NULL,
+  `nomefile` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -92,8 +91,8 @@ CREATE TABLE `reazione_pu` (
 --
 
 CREATE TABLE `salva` (
-  `idpost` int(11) NOT NULL,
-  `IDuser` int(11) NOT NULL
+  `IDuser` int(11) NOT NULL,
+  `idpost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -104,8 +103,7 @@ CREATE TABLE `salva` (
 
 CREATE TABLE `segue` (
   `Fol_IDuser` int(11) NOT NULL,
-  `IDuser` int(11) NOT NULL,
-  `messaggio` varchar(100) NOT NULL
+  `IDuser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -117,8 +115,18 @@ CREATE TABLE `segue` (
 CREATE TABLE `utente` (
   `IDuser` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `emal` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `categoria` (
+  `IDcategoria` int(11) NOT NULL,
+  `nome` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE  `categoriapost` (
+  `IDcategoria` int(11) NOT NULL,
+  `idpost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
