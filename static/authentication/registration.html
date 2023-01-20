@@ -43,6 +43,23 @@
                 <div class="confirm-password">
                     <input id="confirm-password-input" required="true" type="password" name="confirm-password" placeholder="Conferma password" />
                     <button id="show-cpw-btn" type="button" onclick="showConfirmPassword()">Mostra</button>
+                    <script>
+                        function showConfirmPassword() {
+                            const x = document.getElementById("confirm-password-input");
+                            if (x.type === "password") {
+                                x.type = "text";
+                            } else {
+                                x.type = "password";
+                            }
+                            const btn = document.getElementById("show-cpw-btn");
+                            if (btn.innerText === "Mostra") {
+                                btn.innerText = "Nascondi";
+                            } else {
+                                btn.innerText = "Mostra";
+                            }
+                        }
+                    </script>
+                    <!--TODO: showConfirmPassword è da trasferire in un file JS e ancora meglio unirlo a showPassword per evitare ripetizione di codice-->
                 </div>
                 <div class="login-redirect">
                     <p>Hai già un account?
