@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 19, 2023 alle 17:12
+-- Creato il: Gen 20, 2023 alle 11:51
 -- Versione del server: 10.4.25-MariaDB
 -- Versione PHP: 8.1.10
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_web`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `IDcategoria` int(11) NOT NULL,
+  `nome` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `categoriapost`
+--
+
+CREATE TABLE `categoriapost` (
+  `IDcategoria` int(11) NOT NULL,
+  `idpodt` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -69,7 +91,7 @@ CREATE TABLE `post` (
 
 CREATE TABLE `reazione` (
   `idreazione` int(11) NOT NULL,
-  `nomefile` varchar(100) DEFAULT NULL
+  `nomefile` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -91,8 +113,8 @@ CREATE TABLE `reazione_pu` (
 --
 
 CREATE TABLE `salva` (
-  `IDuser` int(11) NOT NULL,
-  `idpost` int(11) NOT NULL
+  `idpost` int(11) NOT NULL,
+  `IDuser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -115,23 +137,27 @@ CREATE TABLE `segue` (
 CREATE TABLE `utente` (
   `IDuser` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `email` varchar(30) NOT NULL,
+  `emal` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `categoria` (
-  `IDcategoria` int(11) NOT NULL,
-  `nome` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE  `categoriapost` (
-  `IDcategoria` int(11) NOT NULL,
-  `idpost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indici per le tabelle scaricate
 --
+
+--
+-- Indici per le tabelle `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`IDcategoria`);
+
+--
+-- Indici per le tabelle `categoriapost`
+--
+ALTER TABLE `categoriapost`
+  ADD PRIMARY KEY (`IDcategoria`,`idpodt`),
+  ADD KEY `postid` (`idpodt`),
+  ADD KEY `categoriaid` (`IDcategoria`);
 
 --
 -- Indici per le tabelle `commento`
@@ -145,9 +171,8 @@ ALTER TABLE `commento`
 -- Indici per le tabelle `notifica`
 --
 ALTER TABLE `notifica`
-  ADD PRIMARY KEY (`N_C_IDuser`,`N_C_idpost`,`N_C_idcommento`),
-  ADD UNIQUE KEY `FKnot_COM_IND` (`N_C_IDuser`,`N_C_idpost`,`N_C_idcommento`),
-  ADD KEY `FKnot_UTE_IND` (`IDuser`);
+  ADD PRIMARY KEY (`idnotifica`),
+  ADD KEY `iduser` (`IDuser`);
 
 --
 -- Indici per le tabelle `post`
@@ -201,6 +226,13 @@ ALTER TABLE `utente`
 --
 
 --
+-- Limiti per la tabella `categoriapost`
+--
+ALTER TABLE `categoriapost`
+  ADD CONSTRAINT `categoriaid` FOREIGN KEY (`IDcategoria`) REFERENCES `categoria` (`IDcategoria`),
+  ADD CONSTRAINT `postid` FOREIGN KEY (`idpodt`) REFERENCES `post` (`idpost`);
+
+--
 -- Limiti per la tabella `commento`
 --
 ALTER TABLE `commento`
@@ -211,8 +243,7 @@ ALTER TABLE `commento`
 -- Limiti per la tabella `notifica`
 --
 ALTER TABLE `notifica`
-  ADD CONSTRAINT `FKnot_COM_FK` FOREIGN KEY (`N_C_IDuser`,`N_C_idpost`,`N_C_idcommento`) REFERENCES `commento` (`IDuser`, `idpost`, `idcommento`),
-  ADD CONSTRAINT `FKnot_UTE_FK` FOREIGN KEY (`IDuser`) REFERENCES `utente` (`IDuser`);
+  ADD CONSTRAINT `iduser` FOREIGN KEY (`IDuser`) REFERENCES `utente` (`IDuser`);
 
 --
 -- Limiti per la tabella `post`
