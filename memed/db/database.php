@@ -54,7 +54,17 @@ class DatabaseHelper{
         }
     }
 
+    private function deletereazionepu($IDuser, $idpost){
+        $sql = "DELETE FROM reazione_pu WHERE IDuser = '$IDuser' AND idpost = '$idpost'";
+        if ($this->db->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function inseriscireazione_pu($IDuser, $idpost, $idreazione){
+        $this->deletereazionepu($IDuser, $idpost);
         $sql = "INSERT INTO reazione_pu (IDuser, idpost, idreazione) VALUES ('$IDuser', '$idpost', '$idreazione')";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -111,7 +121,29 @@ class DatabaseHelper{
         }
     }
 
+    public function getPostPerTe(){ //da finire
+        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM) ORDER BY data DESC";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    public function contaReazioniPost($idreazione, $idpost){
+        $sql = "SELECT COUNT(*) FROM reazione_pu WHERE idreazione = '$idreazione' AND idpost = '$idpost'";
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
     public function deletePost($idpost){
+        $this->deleteCommentoForPost($idpost);
+        $this->deleteReazione_puForPost($idpost);
+        $this->deleteSalvaForPost($idpost);
         $sql = "DELETE FROM post WHERE idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -120,7 +152,16 @@ class DatabaseHelper{
         }
     }
 
-    public function deleteCommentoForPost($idpost){
+    private function deleteSalvaForPost($idpost){
+        $sql = "DELETE FROM salva WHERE idpost = '$idpost'";
+        if ($this->db->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function deleteCommentoForPost($idpost){
         $sql = "DELETE FROM commento WHERE idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -129,7 +170,7 @@ class DatabaseHelper{
         }
     }
 
-    public function deleteNotifica($idnotifica){
+    private function deleteNotifica($idnotifica){
         $sql = "DELETE FROM notifica WHERE idnotifica = '$idnotifica'";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -138,7 +179,18 @@ class DatabaseHelper{
         }
     }
 
-    public function deleteReazione_puForPost($idpost){
+    public function getNotifica($IDuser){
+        $sql = "SELECT * FROM notifica WHERE IDuser = '$IDuser' LIMIT 1";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            $this->deleteNotifica($result->fetch_all(MYSQLI_ASSOC)[0]['idnotifica']);
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    private function deleteReazione_puForPost($idpost){
         $sql = "DELETE FROM reazione_pu WHERE idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -219,6 +271,26 @@ class DatabaseHelper{
 
     public function getUserByusername($username){
         $sql = "SELECT * FROM utente WHERE username = '$username'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    public function getReazione($idreazione){
+        $sql = "SELECT * FROM reazione WHERE idreazione = '$idreazione'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    public function countRPost($idpost, $idreazione){
+        $sql = "SELECT COUNT(*) FROM reazione_pu WHERE idpost = '$idpost' AND idreazione = '$idreazione'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
