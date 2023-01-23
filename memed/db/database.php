@@ -298,5 +298,25 @@ class DatabaseHelper{
             return false;
         }
     }
+
+    public function countSeguiti($IDuser){
+        $sql = "SELECT COUNT(*) FROM segue WHERE IDuser = '$IDuser'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    public function countFollower($Fol_IDuser){
+        $sql = "SELECT COUNT(*) FROM segue WHERE Fol_IDuser = '$Fol_IDuser'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
 }
 ?>
