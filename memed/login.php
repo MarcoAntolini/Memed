@@ -15,3 +15,5 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
 $templateParams["titolo"] = "Memed";
 $templeteParams["nome"]=""; //file da usare 
+
+?>
