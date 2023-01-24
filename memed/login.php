@@ -4,7 +4,7 @@ require_once 'bootstrap.php';
 if (isset($_POST["username"]) && isset($_POST["password"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $user = $dbh->getUser($username, $password);
+    $user = $dbh->getUserLogin($username, $password);
     if ($user) {
         registerLoggedUser($user["IDuser"]);
         header("Location: index.php");
