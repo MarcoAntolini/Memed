@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 20, 2023 alle 11:51
+-- Creato il: Gen 24, 2023 alle 22:03
 -- Versione del server: 10.4.25-MariaDB
 -- Versione PHP: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_web`
+-- Database: `memed`
 --
 
 -- --------------------------------------------------------
@@ -28,19 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categoria` (
-  `IDcategoria` int(11) NOT NULL,
-  `nome` varchar(20) NOT NULL
+  `idcategoria` char(1) NOT NULL,
+  `nome` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `categoriapost`
+-- Struttura della tabella `categoria_post`
 --
 
-CREATE TABLE `categoriapost` (
-  `IDcategoria` int(11) NOT NULL,
-  `idpodt` int(11) NOT NULL
+CREATE TABLE `categoria_post` (
+  `idpost` int(11) NOT NULL,
+  `idcategoria` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -50,8 +50,8 @@ CREATE TABLE `categoriapost` (
 --
 
 CREATE TABLE `commento` (
-  `IDuser` int(11) NOT NULL,
   `idpost` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
   `idcommento` int(11) NOT NULL,
   `testo` varchar(150) NOT NULL,
   `data` datetime NOT NULL
@@ -64,9 +64,10 @@ CREATE TABLE `commento` (
 --
 
 CREATE TABLE `notifica` (
-  `messaggio` varchar(100) NOT NULL,
+  `username` varchar(30) NOT NULL,
   `idnotifica` int(11) NOT NULL,
-  `IDuser` int(11) NOT NULL
+  `mesaggio` varchar(150) NOT NULL,
+  `data` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -80,7 +81,7 @@ CREATE TABLE `post` (
   `nomefile` varchar(100) DEFAULT NULL,
   `testo` varchar(250) DEFAULT NULL,
   `data` datetime NOT NULL,
-  `IDuser` int(11) NOT NULL
+  `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -101,9 +102,9 @@ CREATE TABLE `reazione` (
 --
 
 CREATE TABLE `reazione_pu` (
-  `IDuser` int(11) NOT NULL,
-  `idpost` int(11) NOT NULL,
-  `idreazione` int(11) NOT NULL
+  `idreazione` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `idpost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -114,7 +115,7 @@ CREATE TABLE `reazione_pu` (
 
 CREATE TABLE `salva` (
   `idpost` int(11) NOT NULL,
-  `IDuser` int(11) NOT NULL
+  `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -124,21 +125,20 @@ CREATE TABLE `salva` (
 --
 
 CREATE TABLE `segue` (
-  `Fol_IDuser` int(11) NOT NULL,
-  `IDuser` int(11) NOT NULL
+  `Fol_username` varchar(30) NOT NULL,
+  `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `utente`
+-- Struttura della tabella `utenti`
 --
 
-CREATE TABLE `utente` (
-  `IDuser` int(11) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `emal` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL
+CREATE TABLE `utenti` (
+  `username` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `paswourd` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -149,30 +149,31 @@ CREATE TABLE `utente` (
 -- Indici per le tabelle `categoria`
 --
 ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`IDcategoria`);
+  ADD PRIMARY KEY (`idcategoria`),
+  ADD UNIQUE KEY `ID_CATEGORIA_IND` (`idcategoria`);
 
 --
--- Indici per le tabelle `categoriapost`
+-- Indici per le tabelle `categoria_post`
 --
-ALTER TABLE `categoriapost`
-  ADD PRIMARY KEY (`IDcategoria`,`idpodt`),
-  ADD KEY `postid` (`idpodt`),
-  ADD KEY `categoriaid` (`IDcategoria`);
+ALTER TABLE `categoria_post`
+  ADD PRIMARY KEY (`idpost`,`idcategoria`),
+  ADD UNIQUE KEY `ID_CATEGORIA_POST_IND` (`idpost`,`idcategoria`),
+  ADD KEY `FKa_IND` (`idcategoria`);
 
 --
 -- Indici per le tabelle `commento`
 --
 ALTER TABLE `commento`
-  ADD PRIMARY KEY (`IDuser`,`idpost`,`idcommento`),
-  ADD UNIQUE KEY `ID_COMMENTO_IND` (`IDuser`,`idpost`,`idcommento`),
-  ADD KEY `FKriceve_IND` (`idpost`);
+  ADD PRIMARY KEY (`idpost`,`username`,`idcommento`),
+  ADD UNIQUE KEY `ID_COMMENTO_IND` (`idpost`,`username`,`idcommento`),
+  ADD KEY `FKfa_IND` (`username`);
 
 --
 -- Indici per le tabelle `notifica`
 --
 ALTER TABLE `notifica`
-  ADD PRIMARY KEY (`idnotifica`),
-  ADD KEY `iduser` (`IDuser`);
+  ADD PRIMARY KEY (`username`,`idnotifica`),
+  ADD UNIQUE KEY `ID_NOTIFICA_IND` (`username`,`idnotifica`);
 
 --
 -- Indici per le tabelle `post`
@@ -180,7 +181,7 @@ ALTER TABLE `notifica`
 ALTER TABLE `post`
   ADD PRIMARY KEY (`idpost`),
   ADD UNIQUE KEY `ID_POST_IND` (`idpost`),
-  ADD KEY `FKcrea_IND` (`IDuser`);
+  ADD KEY `FKcrea_IND` (`username`);
 
 --
 -- Indici per le tabelle `reazione`
@@ -193,85 +194,85 @@ ALTER TABLE `reazione`
 -- Indici per le tabelle `reazione_pu`
 --
 ALTER TABLE `reazione_pu`
-  ADD PRIMARY KEY (`IDuser`,`idpost`,`idreazione`),
-  ADD UNIQUE KEY `ID_REAZIONE_PU_IND` (`IDuser`,`idpost`,`idreazione`),
-  ADD KEY `FKvaluta_IND` (`idreazione`),
-  ADD KEY `FKrutente_IND` (`idpost`);
+  ADD PRIMARY KEY (`idreazione`,`username`,`idpost`),
+  ADD UNIQUE KEY `ID_REAZIONE_PU_IND` (`idreazione`,`username`,`idpost`),
+  ADD KEY `FKhareazione_IND` (`idpost`),
+  ADD KEY `FKreagisce_IND` (`username`);
 
 --
 -- Indici per le tabelle `salva`
 --
 ALTER TABLE `salva`
-  ADD PRIMARY KEY (`idpost`,`IDuser`),
-  ADD UNIQUE KEY `ID_salva_IND` (`idpost`,`IDuser`),
-  ADD KEY `FKsal_UTE_IND` (`IDuser`);
+  ADD PRIMARY KEY (`idpost`,`username`),
+  ADD UNIQUE KEY `ID_salva_IND` (`idpost`,`username`),
+  ADD KEY `FKsal_UTE_IND` (`username`);
 
 --
 -- Indici per le tabelle `segue`
 --
 ALTER TABLE `segue`
-  ADD PRIMARY KEY (`Fol_IDuser`,`IDuser`),
-  ADD UNIQUE KEY `ID_segue_IND` (`Fol_IDuser`,`IDuser`),
-  ADD KEY `FKsegue_1_IND` (`IDuser`);
+  ADD PRIMARY KEY (`username`,`Fol_username`),
+  ADD UNIQUE KEY `ID_segue_IND` (`username`,`Fol_username`),
+  ADD KEY `FKfollower_IND` (`Fol_username`);
 
 --
--- Indici per le tabelle `utente`
+-- Indici per le tabelle `utenti`
 --
-ALTER TABLE `utente`
-  ADD PRIMARY KEY (`IDuser`),
-  ADD UNIQUE KEY `ID_UTENTE_IND` (`IDuser`);
+ALTER TABLE `utenti`
+  ADD PRIMARY KEY (`username`),
+  ADD UNIQUE KEY `ID_UTENTI_IND` (`username`);
 
 --
 -- Limiti per le tabelle scaricate
 --
 
 --
--- Limiti per la tabella `categoriapost`
+-- Limiti per la tabella `categoria_post`
 --
-ALTER TABLE `categoriapost`
-  ADD CONSTRAINT `categoriaid` FOREIGN KEY (`IDcategoria`) REFERENCES `categoria` (`IDcategoria`),
-  ADD CONSTRAINT `postid` FOREIGN KEY (`idpodt`) REFERENCES `post` (`idpost`);
+ALTER TABLE `categoria_post`
+  ADD CONSTRAINT `FKa_FK` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`),
+  ADD CONSTRAINT `FKs` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`);
 
 --
 -- Limiti per la tabella `commento`
 --
 ALTER TABLE `commento`
-  ADD CONSTRAINT `FKfa` FOREIGN KEY (`IDuser`) REFERENCES `utente` (`IDuser`),
-  ADD CONSTRAINT `FKriceve_FK` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`);
+  ADD CONSTRAINT `FKfa_FK` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`),
+  ADD CONSTRAINT `FKriceve` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`);
 
 --
 -- Limiti per la tabella `notifica`
 --
 ALTER TABLE `notifica`
-  ADD CONSTRAINT `iduser` FOREIGN KEY (`IDuser`) REFERENCES `utente` (`IDuser`);
+  ADD CONSTRAINT `FKnortifiche` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`);
 
 --
 -- Limiti per la tabella `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `FKcrea_FK` FOREIGN KEY (`IDuser`) REFERENCES `utente` (`IDuser`);
+  ADD CONSTRAINT `FKcrea_FK` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`);
 
 --
 -- Limiti per la tabella `reazione_pu`
 --
 ALTER TABLE `reazione_pu`
-  ADD CONSTRAINT `FKrpost` FOREIGN KEY (`IDuser`) REFERENCES `utente` (`IDuser`),
-  ADD CONSTRAINT `FKrutente_FK` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`),
-  ADD CONSTRAINT `FKvaluta_FK` FOREIGN KEY (`idreazione`) REFERENCES `reazione` (`idreazione`);
+  ADD CONSTRAINT `FKhareazione_FK` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`),
+  ADD CONSTRAINT `FKreagisce_FK` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`),
+  ADD CONSTRAINT `FKtipo` FOREIGN KEY (`idreazione`) REFERENCES `reazione` (`idreazione`);
 
 --
 -- Limiti per la tabella `salva`
 --
 ALTER TABLE `salva`
   ADD CONSTRAINT `FKsal_POS` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`),
-  ADD CONSTRAINT `FKsal_UTE_FK` FOREIGN KEY (`IDuser`) REFERENCES `utente` (`IDuser`);
+  ADD CONSTRAINT `FKsal_UTE_FK` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`);
 
 --
 -- Limiti per la tabella `segue`
 --
 ALTER TABLE `segue`
-  ADD CONSTRAINT `FKfollower` FOREIGN KEY (`Fol_IDuser`) REFERENCES `utente` (`IDuser`),
-  ADD CONSTRAINT `FKsegue_1_FK` FOREIGN KEY (`IDuser`) REFERENCES `utente` (`IDuser`);
+  ADD CONSTRAINT `FKfollower_FK` FOREIGN KEY (`Fol_username`) REFERENCES `utenti` (`username`),
+  ADD CONSTRAINT `FKseg_UTE` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

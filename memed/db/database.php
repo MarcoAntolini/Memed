@@ -9,8 +9,8 @@ class DatabaseHelper{
         }        
     }
 
-    public function inserisciUtente($IDuser, $username, $email, $password){
-        $sql = "INSERT INTO utente (IDuser, username, email, password) VALUES ('$IDuser', '$username', '$email', '$password')";
+    public function inserisciUtente( $username, $email, $password){
+        $sql = "INSERT INTO utente (username, email, password) VALUES ('$username', '$email', '$password')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -18,8 +18,8 @@ class DatabaseHelper{
         }
     }
 
-    public function inserisciPost($idpost, $nomefile, $testo, $data, $IDuser){
-        $sql = "INSERT INTO post (idpost, nomefile, testo, data, IDuser) VALUES ('$idpost', '$nomefile', '$testo', '$data', '$IDuser')";
+    public function inserisciPost($idpost, $nomefile, $testo, $data, $username){
+        $sql = "INSERT INTO post (idpost, nomefile, testo, data, username) VALUES ('$idpost', '$nomefile', '$testo', '$data', '$username')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -27,8 +27,8 @@ class DatabaseHelper{
         }
     }
 
-    public function inserisciCommento($idcommento, $testo, $data, $IDuser, $idpost){
-        $sql = "INSERT INTO commento (IDuser, idpost, idcommento, testo, data) VALUES ('$IDuser', '$idpost', '$idcommento', '$testo', '$data')";
+    public function inserisciCommento($idcommento, $testo, $data, $username, $idpost){
+        $sql = "INSERT INTO commento (idpost, username, idcommento, testo, data) VALUES ('$idpost', '$username', '$idcommento', '$testo', '$data')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -37,7 +37,7 @@ class DatabaseHelper{
     }
 
     public function inseriscicategoriapost($IDcategoria, $idpost){
-        $sql = "INSERT INTO categoria_post (IDcategoria, idpost) VALUES ('$IDcategoria', '$idpost')";
+        $sql = "INSERT INTO categoria_post (idpost, IDcategoria) VALUES ('$idpost', '$IDcategoria')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -45,8 +45,8 @@ class DatabaseHelper{
         }
     }
 
-    public function inseriscinotifica($messaggio, $idnotifica, $IDuser){
-        $sql =  "INSERT INTO notifica (messaggio, idnotifica, IDuser) VALUES ('$messaggio', '$idnotifica', '$IDuser')";
+    public function inseriscicategori($nome, $idcategoria){
+        $sql = "INSERT INTO categoria (idcategoria, nome) VALUES ('$idcategoria', '$nome')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -54,8 +54,8 @@ class DatabaseHelper{
         }
     }
 
-    private function deletereazionepu($IDuser, $idpost){
-        $sql = "DELETE FROM reazione_pu WHERE IDuser = '$IDuser' AND idpost = '$idpost'";
+    public function inseriscinotifica($messaggio, $idnotifica, $username, $data){
+        $sql =  "INSERT INTO notifica (username, idnotifica, messaggio, data) VALUES ('$username', '$idnotifica', '$messaggio', '$data')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -63,9 +63,18 @@ class DatabaseHelper{
         }
     }
 
-    public function inseriscireazione_pu($IDuser, $idpost, $idreazione){
+    private function deletereazionepu($username, $idpost){
+        $sql = "DELETE FROM reazione_pu WHERE username = '$username' AND idpost = '$idpost'";
+        if ($this->db->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function inseriscireazione_pu($username, $idpost, $idreazione){
         $this->deletereazionepu($IDuser, $idpost);
-        $sql = "INSERT INTO reazione_pu (IDuser, idpost, idreazione) VALUES ('$IDuser', '$idpost', '$idreazione')";
+        $sql = "INSERT INTO reazione_pu (idreazione, username, idpost) VALUES ('$idreazione', '$username', '$idpost')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -73,8 +82,8 @@ class DatabaseHelper{
         }
     }
 
-    public function inseriscisalva($IDuser, $idpost){
-        $sql = "INSERT INTO salva (IDuser, idpost) VALUES ('$IDuser', '$idpost')";
+    public function inseriscisalva($username, $idpost){
+        $sql = "INSERT INTO salva (idpost, username) VALUES ('$idpost', '$username')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -82,8 +91,8 @@ class DatabaseHelper{
         }
     }
 
-    public function inseriscisegue($Fol_IDuser, $IDuser){
-        $sql = "INSERT INTO segue (Fol_IDuser, IDuser) VALUES ('$Fol_IDuser', '$IDuser')";
+    public function inseriscisegue($Fol_IDuser, $username){
+        $sql = "INSERT INTO segue (Fol_IDuser, username) VALUES ('$Fol_IDuser', '$username')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -91,8 +100,8 @@ class DatabaseHelper{
         }
     }
 
-    public function getPostByUser($IDuser){
-        $sql = "SELECT * FROM post WHERE IDuser = '$IDuser'";
+    public function getPostByUser($username){
+        $sql = "SELECT * FROM post WHERE username = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -101,8 +110,8 @@ class DatabaseHelper{
         }
     }
 
-    public function getPostForHome($IDuser){
-        $sql = "SELECT * FROM post WHERE IDuser IN (SELECT Fol_IDuser FROM segue WHERE IDuser = '$IDuser') ORDER BY data DESC";
+    public function getPostForHome($username){
+        $sql = "SELECT * FROM post WHERE IDuser IN (SELECT Fol_username FROM segue WHERE username = '$username') ORDER BY data DESC";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -179,8 +188,8 @@ class DatabaseHelper{
         }
     }
 
-    public function getNotifica($IDuser){
-        $sql = "SELECT * FROM notifica WHERE IDuser = '$IDuser' LIMIT 1";
+    public function getNotifica($username){
+        $sql = "SELECT * FROM notifica WHERE username = '$username' LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             $this->deleteNotifica($result->fetch_all(MYSQLI_ASSOC)[0]['idnotifica']);
@@ -199,8 +208,8 @@ class DatabaseHelper{
         }
     }
 
-    public function getseguiti($IDuser){
-        $sql = "SELECT Fol_IDuser FROM segue WHERE IDuser = '$IDuser'";
+    public function getseguiti($username){
+        $sql = "SELECT Fol_username FROM segue WHERE username = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -209,8 +218,8 @@ class DatabaseHelper{
         }
     }
 
-    public function getfollower($Fol_IDuser){
-        $sql = "SELECT IDuser FROM segue WHERE Fol_IDuser = '$Fol_IDuser'";
+    public function getfollower($Fol_username){
+        $sql = "SELECT username FROM segue WHERE Fol_username = '$Fol_username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -221,16 +230,6 @@ class DatabaseHelper{
 
     public function getlastidpost(){
         $sql = "SELECT idpost FROM post ORDER BY idpost DESC LIMIT 1";
-        $result = $this->db->query($sql);
-        if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            return false;
-        }
-    }
-
-    public function getlastiduser(){
-        $sql = "SELECT IDuser FROM user ORDER BY IDuser DESC LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -259,17 +258,7 @@ class DatabaseHelper{
         }
     }
 
-    public function getUser($IDuser){
-        $sql = "SELECT * FROM utente WHERE IDuser = '$IDuser'";
-        $result = $this->db->query($sql);
-        if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            return false;
-        }
-    }
-
-    public function getUserByusername($username){
+    public function getUser($username){
         $sql = "SELECT * FROM utente WHERE username = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
@@ -299,8 +288,8 @@ class DatabaseHelper{
         }
     }
 
-    public function countSeguiti($IDuser){
-        $sql = "SELECT COUNT(*) FROM segue WHERE IDuser = '$IDuser'";
+    public function countSeguiti($username){
+        $sql = "SELECT COUNT(*) FROM segue WHERE username = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -309,8 +298,8 @@ class DatabaseHelper{
         }
     }
 
-    public function countFollower($Fol_IDuser){
-        $sql = "SELECT COUNT(*) FROM segue WHERE Fol_IDuser = '$Fol_IDuser'";
+    public function countFollower($Fol_username){
+        $sql = "SELECT COUNT(*) FROM segue WHERE Fol_username = '$Fol_username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -319,8 +308,8 @@ class DatabaseHelper{
         }
     }
 
-    public function countNotifiche($IDuser){
-        $sql = "SELECT COUNT(*) FROM notifica WHERE IDuser = '$IDuser'";
+    public function countNotifiche($username){
+        $sql = "SELECT COUNT(*) FROM notifica WHERE username = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
