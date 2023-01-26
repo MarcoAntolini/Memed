@@ -138,7 +138,8 @@ CREATE TABLE `segue` (
 CREATE TABLE `utenti` (
   `username` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `paswourd` varchar(30) NOT NULL
+  `paswourd` char(128) NOT NULL,
+  `salt` char(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
