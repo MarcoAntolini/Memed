@@ -3,5 +3,5 @@ sec_session_start();
 define("UPLOAD_DIR", "./upload/");
 require_once("utils/functions.php");
 require_once("db/database.php");
-$dbh = new DatabaseHelper("localhost", "root", "", "blogtw", 3306);
+$mysqli = new DatabaseHelper("localhost", "root", "", "memed", 3306);
 ?>
