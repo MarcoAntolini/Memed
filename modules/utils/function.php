@@ -21,9 +21,10 @@ function login($email, $password, $mysqli) {
     if ($stmt = $mysqli->prepare("SELECT username, password, salt FROM utenti WHERE email = ? LIMIT 1")) { 
        $stmt->bind_param('s', $email); // esegue il bind del parametro '$email'.
        $stmt->execute(); // esegue la query appena creata.
-       $stmt->store_result();
-       $stmt->bind_result($username, $db_password, $salt); // recupera il risultato della query e lo memorizza nelle relative variabili.
-       $stmt->fetch();
+       $ddd=$stmt->fetch_all(MYSQLI_ASSOC);
+       $username=$ddd['username'];
+       $db_password=$ddd['password'];
+       $salt=$ddd['salt'];
        $password = hash('sha512', $password.$salt); // codifica la password usando una chiave univoca.
        if($stmt->num_rows == 1) { // se l'utente esiste
           if($db_password == $password) { // Verifica che la password memorizzata nel database corrisponda alla password fornita dall'utente.
@@ -57,8 +58,7 @@ function login($email, $password, $mysqli) {
          $stmt->store_result();
   
          if($stmt->num_rows == 1) { // se l'utente esiste
-            $stmt->bind_result($password); // recupera le variabili dal risultato ottenuto.
-            $stmt->fetch();
+            $password = $stmt->fetch_all(MYSQLI_ASSOC)['password'];
             $login_check = hash('sha512', $password.$user_browser);
             if($login_check == $login_string) {
                // Login eseguito!!!!

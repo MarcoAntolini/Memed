@@ -83,7 +83,7 @@ class DatabaseHelper
 
     public function inseriscireazione_pu($username, $idpost, $idreazione)
     {
-        $this->deletereazionepu($IDuser, $idpost);
+        $this->deletereazionepu($username, $idpost);
         $sql = "INSERT INTO reazione_pu (idreazione, username, idpost) VALUES ('$idreazione', '$username', '$idpost')";
         if ($this->db->query($sql) === TRUE) {
             return true;
