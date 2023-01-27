@@ -81,4 +81,48 @@ function login($email, $password, $mysqli) {
     }
  }
 
+ function uploadFile($path, $file){
+   $fileName = basename($file["name"]);
+   $fullPath = $path.$fileName;
+   
+   $maxKB = 5000;
+   $acceptedExtensions = array("jpg", "jpeg", "png", "gif", "mp4");
+   $result = 0;
+   $msg = "";
+
+   //Controllo dimensione dell'immagine < 5000KB
+   if ($file["size"] > $maxKB * 1024) {
+       $msg .= "File caricato pesa troppo! Dimensione massima è $maxKB KB. ";
+   }
+
+   //Controllo estensione del file
+   $fileType = strtolower(pathinfo($fullPath,PATHINFO_EXTENSION));
+   if(!in_array($fileType, $acceptedExtensions)){
+       $msg .= "Accettate solo le seguenti estensioni: ".implode(",", $acceptedExtensions);
+   }
+
+   //Controllo se esiste file con stesso nome ed eventualmente lo rinomino
+   if (file_exists($fullPath)) {
+       $i = 1;
+       do{
+           $i++;
+           $fileName = pathinfo(basename($file["name"]), PATHINFO_FILENAME)."_$i.".$fileType;
+       }
+       while(file_exists($path.$fileName));
+       $fullPath = $path.$fileName;
+   }
+
+   //Se non ci sono errori, sposto il file dalla posizione temporanea alla cartella di destinazione
+   if(strlen($msg)==0){
+       if(!move_uploaded_file($file["tmp_name"], $fullPath)){
+           $msg.= "Errore nel caricamento del file.";
+       }
+       else{
+           $result = 1;
+           $msg = $fileName;
+       }
+   }
+   return array($result, $msg);
+}
+
 ?>
