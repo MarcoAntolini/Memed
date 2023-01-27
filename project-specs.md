@@ -19,6 +19,7 @@
 - Impostazioni: login-out, privacy profilo (privato o pubblico), modifica profilo (immagine, bio, username), post salvati
 - Rimozione o modifica proprio post
 - Salvataggio post o segnalazione post (notifica ad un admin dopo N segnalazioni: da scrivere nella relazione)
+- Nel profilo si deve vedere la LISTA dei propri follower!
 
 ## OPZIONALE
 
