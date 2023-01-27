@@ -23,7 +23,7 @@
 
 ## OPZIONALE
 
-- Carosello
+- Carosello (easy con bootstrap)
 - Programmazione anticipata post
 - PW criptata o hashata
 - Cookie
