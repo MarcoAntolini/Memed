@@ -353,6 +353,16 @@ class DatabaseHelper
         }
     }
 
+    public function countPost($username){
+        $sql = "SELECT COUNT(*) FROM post WHERE username = '$username'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
     public function getUserLogin($username, $password)
     {
         $sql = "SELECT * FROM utente WHERE username = '$username' AND password = '$password'";
