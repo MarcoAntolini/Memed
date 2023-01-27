@@ -212,10 +212,10 @@ class DatabaseHelper
 
     public function getNotifica($username)
     {
-        $sql = "SELECT * FROM notifica WHERE username = '$username' LIMIT 1";
+        $sql = "SELECT * FROM notifica WHERE username = '$username' ORDER BY data DESC";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            $this->deleteNotifica($result->fetch_all(MYSQLI_ASSOC)[0]['idnotifica']);
+            $this->deleteNotifica($result->fetch_all(MYSQLI_ASSOC)['idnotifica']);
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return false;
