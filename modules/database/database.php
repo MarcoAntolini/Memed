@@ -353,7 +353,8 @@ class DatabaseHelper
         }
     }
 
-    public function countPost($username){
+    public function countPost($username)
+    {
         $sql = "SELECT COUNT(*) FROM post WHERE username = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
