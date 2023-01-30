@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"style.min.css"}
+{"version":3,"sources":["../scss/base/_background.scss","../scss/abstract/_colors.scss"],"names":[],"mappings":"AAEA,YACI,wBAAA,CAGJ,UACI,wBCDiB","file":"style.min.css"}
