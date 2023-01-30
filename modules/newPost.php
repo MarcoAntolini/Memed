@@ -2,7 +2,7 @@
 require_once 'bootstrap.php';
 
 if(login_check($mysqli) == true) {
-    $templeteParams["titilo"]="Memed - new post";
+    $templeteParams["titolo"]="Memed - new post";
     $templeteParams["nome"]=""; //file da usare 
     $templeteParams["username"]=$_SESSION["username"];
 
@@ -11,4 +11,3 @@ if(login_check($mysqli) == true) {
  }
 
 require 'template/base.php';
-?>
