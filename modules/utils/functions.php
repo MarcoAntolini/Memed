@@ -21,25 +21,23 @@ function sec_session_start()
 function login($email, $password, $mysqli)
 {
    // Usando statement sql 'prepared' non sarà possibile attuare un attacco di tipo SQL injection.
-   if ($stmt = $mysqli->prepare("SELECT username, password, salt FROM utenti WHERE email = ? LIMIT 1")) {
-      $stmt->bind_param('s', $email); // esegue il bind del parametro '$email'.
-      $stmt->execute(); // esegue la query appena creata.
-      $ddd = $stmt->fetch_all(MYSQLI_ASSOC);
-      $username = $ddd['username'];
-      $db_password = $ddd['password'];
-      $salt = $ddd['salt'];
-      $password = hash('sha512', $password . $salt); // codifica la password usando una chiave univoca.
-      if ($stmt->num_rows != 1) return false; // l'utente non esiste
-      if ($db_password != $password) return false; // Verifica che la password memorizzata nel database corrisponda alla password fornita dall'utente.
-      // Password corretta!            
-      $user_browser = $_SERVER['HTTP_USER_AGENT']; // Recupero il parametro 'user-agent' relativo all'utente corrente. 
-      $username = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $username); // ci proteggiamo da un attacco XSS
-      $_SESSION['username'] = $username;
-      $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
-      // Login eseguito con successo.
-      return true;
-   }
-   return false;
+   if (!$stmt = $mysqli->prepare("SELECT username, password, salt FROM utenti WHERE email = ? LIMIT 1")) return false;
+   $stmt->bind_param('s', $email); // esegue il bind del parametro '$email'.
+   $stmt->execute(); // esegue la query appena creata.
+   $ddd = $stmt->fetch_all(MYSQLI_ASSOC);
+   $username = $ddd['username'];
+   $db_password = $ddd['password'];
+   $salt = $ddd['salt'];
+   $password = hash('sha512', $password . $salt); // codifica la password usando una chiave univoca.
+   if ($stmt->num_rows != 1) return false; // l'utente non esiste
+   if ($db_password != $password) return false; // Verifica che la password memorizzata nel database corrisponda alla password fornita dall'utente.
+   // Password corretta!            
+   $user_browser = $_SERVER['HTTP_USER_AGENT']; // Recupero il parametro 'user-agent' relativo all'utente corrente. 
+   $username = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $username); // ci proteggiamo da un attacco XSS
+   $_SESSION['username'] = $username;
+   $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
+   // Login eseguito con successo.
+   return true;
 }
 
 function login_check($mysqli)
