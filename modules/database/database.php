@@ -41,7 +41,7 @@ class DatabaseHelper
         }
     }
 
-    public function inseriscicategoriapost($IDcategoria, $idpost)
+    public function inserisciCategoriaPost($IDcategoria, $idpost)
     {
         $sql = "INSERT INTO categoria_post (idpost, IDcategoria) VALUES ('$idpost', '$IDcategoria')";
         if ($this->db->query($sql) === TRUE) {
@@ -51,7 +51,7 @@ class DatabaseHelper
         }
     }
 
-    public function inseriscicategori($nome, $idcategoria)
+    public function inserisciCategoria($nome, $idcategoria)
     {
         $sql = "INSERT INTO categoria (idcategoria, nome) VALUES ('$idcategoria', '$nome')";
         if ($this->db->query($sql) === TRUE) {
@@ -61,7 +61,7 @@ class DatabaseHelper
         }
     }
 
-    public function inseriscinotifica($messaggio, $idnotifica, $username, $data)
+    public function inserisciNotifica($messaggio, $idnotifica, $username, $data)
     {
         $sql =  "INSERT INTO notifica (username, idnotifica, messaggio, data) VALUES ('$username', '$idnotifica', '$messaggio', '$data')";
         if ($this->db->query($sql) === TRUE) {
@@ -71,7 +71,7 @@ class DatabaseHelper
         }
     }
 
-    private function deletereazionepu($username, $idpost)
+    private function cancellaReazionePost($username, $idpost)
     {
         $sql = "DELETE FROM reazione_pu WHERE username = '$username' AND idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
@@ -81,9 +81,9 @@ class DatabaseHelper
         }
     }
 
-    public function inseriscireazione_pu($username, $idpost, $idreazione)
+    public function inserisciReazionePost($username, $idpost, $idreazione)
     {
-        $this->deletereazionepu($username, $idpost);
+        $this->cancellaReazionePost($username, $idpost);
         $sql = "INSERT INTO reazione_pu (idreazione, username, idpost) VALUES ('$idreazione', '$username', '$idpost')";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -92,7 +92,7 @@ class DatabaseHelper
         }
     }
 
-    public function inseriscisalva($username, $idpost)
+    public function inserisciSalva($username, $idpost)
     {
         $sql = "INSERT INTO salva (idpost, username) VALUES ('$idpost', '$username')";
         if ($this->db->query($sql) === TRUE) {
@@ -102,7 +102,7 @@ class DatabaseHelper
         }
     }
 
-    public function inseriscisegue($Fol_IDuser, $username)
+    public function inserisciSegue($Fol_IDuser, $username)
     {
         $sql = "INSERT INTO segue (Fol_IDuser, username) VALUES ('$Fol_IDuser', '$username')";
         if ($this->db->query($sql) === TRUE) {
@@ -112,7 +112,7 @@ class DatabaseHelper
         }
     }
 
-    public function getPostByUser($username)
+    public function ottieniPostDaUtente($username)
     {
         $sql = "SELECT * FROM post WHERE username = '$username'";
         $result = $this->db->query($sql);
@@ -123,7 +123,7 @@ class DatabaseHelper
         }
     }
 
-    public function getPostForHome($username)
+    public function ottieniPostPerHome($username)
     {
         $sql = "SELECT * FROM post WHERE IDuser IN (SELECT Fol_username FROM segue WHERE username = '$username') ORDER BY data DESC";
         $result = $this->db->query($sql);
@@ -134,7 +134,7 @@ class DatabaseHelper
         }
     }
 
-    public function getPostByCategory($IDcategoria)
+    public function ottieniPostDaCategoria($IDcategoria)
     {
         $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM categoriapost WHERE IDcategoria = '$IDcategoria') ORDER BY data DESC";
         $result = $this->db->query($sql);
@@ -145,7 +145,7 @@ class DatabaseHelper
         }
     }
 
-    public function getPostPerTe()
+    public function ottieniPostPerEsplora()
     { //da finire
         $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM) ORDER BY data DESC";
         $result = $this->db->query($sql);
@@ -167,11 +167,11 @@ class DatabaseHelper
         }
     }
 
-    public function deletePost($idpost)
+    public function cancellaPost($idpost)
     {
-        $this->deleteCommentoForPost($idpost);
-        $this->deleteReazione_puForPost($idpost);
-        $this->deleteSalvaForPost($idpost);
+        $this->cancellaCommentoDaPost($idpost);
+        $this->cancellaReazioneDaPost($idpost);
+        $this->cancellaPostSalvato($idpost);
         $sql = "DELETE FROM post WHERE idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -180,7 +180,7 @@ class DatabaseHelper
         }
     }
 
-    private function deleteSalvaForPost($idpost)
+    private function cancellaPostSalvato($idpost)
     {
         $sql = "DELETE FROM salva WHERE idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
@@ -190,7 +190,7 @@ class DatabaseHelper
         }
     }
 
-    private function deleteCommentoForPost($idpost)
+    private function cancellaCommentoDaPost($idpost)
     {
         $sql = "DELETE FROM commento WHERE idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
@@ -200,7 +200,7 @@ class DatabaseHelper
         }
     }
 
-    private function deleteNotifica($idnotifica)
+    private function cancellaNotifica($idnotifica)
     {
         $sql = "DELETE FROM notifica WHERE idnotifica = '$idnotifica'";
         if ($this->db->query($sql) === TRUE) {
@@ -210,19 +210,19 @@ class DatabaseHelper
         }
     }
 
-    public function getNotifica($username)
+    public function ottieniNotifica($username)
     {
         $sql = "SELECT * FROM notifica WHERE username = '$username' ORDER BY data DESC";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            $this->deleteNotifica($result->fetch_all(MYSQLI_ASSOC)['idnotifica']);
+            $this->cancellaNotifica($result->fetch_all(MYSQLI_ASSOC)['idnotifica']);
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return false;
         }
     }
 
-    private function deleteReazione_puForPost($idpost)
+    private function cancellaReazioneDaPost($idpost)
     {
         $sql = "DELETE FROM reazione_pu WHERE idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
@@ -232,7 +232,7 @@ class DatabaseHelper
         }
     }
 
-    public function getseguiti($username)
+    public function ottieniSeguiti($username)
     {
         $sql = "SELECT Fol_username FROM segue WHERE username = '$username'";
         $result = $this->db->query($sql);
@@ -243,7 +243,7 @@ class DatabaseHelper
         }
     }
 
-    public function getfollower($Fol_username)
+    public function ottieniFollower($Fol_username)
     {
         $sql = "SELECT username FROM segue WHERE Fol_username = '$Fol_username'";
         $result = $this->db->query($sql);
@@ -254,7 +254,7 @@ class DatabaseHelper
         }
     }
 
-    public function getlastidpost()
+    public function ottieniIdUltimoPost()
     {
         $sql = "SELECT idpost FROM post ORDER BY idpost DESC LIMIT 1";
         $result = $this->db->query($sql);
@@ -265,7 +265,7 @@ class DatabaseHelper
         }
     }
 
-    public function getlastidcommento()
+    public function ottieniIdUltimoCommento()
     {
         $sql = "SELECT idcommento FROM commento ORDER BY idcommento DESC LIMIT 1";
         $result = $this->db->query($sql);
@@ -276,7 +276,7 @@ class DatabaseHelper
         }
     }
 
-    public function getlastidnotifica()
+    public function ottieniIdUltimaNotifica()
     {
         $sql = "SELECT idnotifica FROM notifica ORDER BY idnotifica DESC LIMIT 1";
         $result = $this->db->query($sql);
@@ -287,7 +287,7 @@ class DatabaseHelper
         }
     }
 
-    public function getUser($username)
+    public function ottieniUtente($username)
     {
         $sql = "SELECT * FROM utente WHERE username = '$username'";
         $result = $this->db->query($sql);
@@ -298,7 +298,7 @@ class DatabaseHelper
         }
     }
 
-    public function getReazione($idreazione)
+    public function ottieniReazione($idreazione)
     {
         $sql = "SELECT * FROM reazione WHERE idreazione = '$idreazione'";
         $result = $this->db->query($sql);
@@ -309,7 +309,7 @@ class DatabaseHelper
         }
     }
 
-    public function countRPost($idpost, $idreazione)
+    public function contaPostConReazione($idpost, $idreazione)
     {
         $sql = "SELECT COUNT(*) FROM reazione_pu WHERE idpost = '$idpost' AND idreazione = '$idreazione'";
         $result = $this->db->query($sql);
@@ -320,7 +320,7 @@ class DatabaseHelper
         }
     }
 
-    public function countSeguiti($username)
+    public function contaSeguiti($username)
     {
         $sql = "SELECT COUNT(*) FROM segue WHERE username = '$username'";
         $result = $this->db->query($sql);
@@ -331,7 +331,7 @@ class DatabaseHelper
         }
     }
 
-    public function countFollower($Fol_username)
+    public function contaFollower($Fol_username)
     {
         $sql = "SELECT COUNT(*) FROM segue WHERE Fol_username = '$Fol_username'";
         $result = $this->db->query($sql);
@@ -342,7 +342,7 @@ class DatabaseHelper
         }
     }
 
-    public function countNotifiche($username)
+    public function contaNotifiche($username)
     {
         $sql = "SELECT COUNT(*) FROM notifica WHERE username = '$username'";
         $result = $this->db->query($sql);
@@ -353,7 +353,7 @@ class DatabaseHelper
         }
     }
 
-    public function countPost($username)
+    public function contaPost($username)
     {
         $sql = "SELECT COUNT(*) FROM post WHERE username = '$username'";
         $result = $this->db->query($sql);
