@@ -18,6 +18,6 @@ if(isset($_POST['email'], $_POST['p'])) {
  }
 
 $templateParams["titolo"] = "Memed";
-$templeteParams["nome"]="login-form.php"; //file da usare 
+$templateParams["nome"]="login-form.php"; //file da usare 
 
 ?>
