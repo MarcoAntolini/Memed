@@ -303,6 +303,17 @@ class DatabaseHelper
         }
     }
 
+    public function ottieniUtenteemail($email)
+    {
+        $sql = "SELECT * FROM utente WHERE email = '$email'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
     public function ottieniReazione($idreazione)
     {
         $sql = "SELECT * FROM reazione WHERE idreazione = '$idreazione'";
