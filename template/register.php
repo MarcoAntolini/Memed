@@ -5,11 +5,17 @@
         <form action="" class="registration-form" method="post">
             <!--TODO: action va completato con il file php che elaborerà i dati-->
             <div class="email">
-                <input id="email-input" required="true" type="text" name="email" placeholder="Email o username" />
-                <!--TODO: aggiungere il campo maxlength nell'input una volta deciso 
+                    <input id="email-input" required="true" type="text" name="email" placeholder="Email" />
+                    <!--TODO: aggiungere il campo maxlength nell'input una volta deciso 
                             il numero di caratteri max per l'username nel DB
                         -->
-            </div>
+                </div>
+                <div class="username">
+                    <input id="username-input" required="true" type="text" name="username" placeholder="Username" />
+                    <!--TODO: aggiungere il campo maxlength nell'input una volta deciso 
+                            il numero di caratteri max per l'username nel DB
+                        -->
+                </div>
             <div class="password">
                 <input id="password-input" required="true" type="password" name="password" placeholder="Password" />
                 <button id="show-pw-btn" type="button" onclick="showPassword()">Mostra</button>
