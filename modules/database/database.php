@@ -11,6 +11,11 @@ class DatabaseHelper
         }
     }
 
+    public function getMysqli()
+    {
+        return $this->db;
+    }
+
     public function inserisciUtente($username, $email, $password)
     {
         $sql = "INSERT INTO utente (username, email, password) VALUES ('$username', '$email', '$password')";
