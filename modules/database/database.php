@@ -16,9 +16,9 @@ class DatabaseHelper
         return $this->db;
     }
 
-    public function inserisciUtente($username, $email, $password)
+    public function inserisciUtente($username, $email, $password, $salt)
     {
-        $sql = "INSERT INTO utente (username, email, password) VALUES ('$username', '$email', '$password')";
+        $sql = "INSERT INTO utenti (username, email, password, salt) VALUES ('$username', '$email', '$password', '$salt')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
