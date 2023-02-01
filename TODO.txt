@@ -1,4 +1,5 @@
 cambiare template autenticazione
+togliere username da login
 
 template versione desktop:
 - al posto di 'REAZIONI' mettere @username
