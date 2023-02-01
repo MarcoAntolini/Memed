@@ -3,7 +3,7 @@ require_once "bootstrap.php";
 
 // if(login_check($mysqli) == true) {
 $templateParams["titolo"] = "Memed";
-$templateParams["nome"] = ""; //file da usare 
+$templateParams["nome"] = "../template/home.php"; //file da usare 
 $templateParams["username"] = $_SESSION["username"];
 $templateParams["posthome"] = $mysqli->ottieniPostPerHome($_SESSION["username"]);
 $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"]);
@@ -11,5 +11,3 @@ $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"])
 //     echo 'You are not authorized to access this page, please login. <br/>';
 //     require "../template/login.php";
 //  }
-
-require "../template/home.php";

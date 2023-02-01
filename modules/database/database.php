@@ -125,7 +125,7 @@ class DatabaseHelper
 
     public function ottieniPostPerHome($username)
     {
-        $sql = "SELECT * FROM post WHERE IDuser IN (SELECT Fol_username FROM segue WHERE username = '$username') ORDER BY data DESC";
+        $sql = "SELECT * FROM post WHERE username IN (SELECT Fol_username FROM segue WHERE username = '$username') ORDER BY data DESC";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
