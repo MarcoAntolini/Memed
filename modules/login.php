@@ -16,7 +16,5 @@ if(isset($_POST['email'], $_POST['p'])) {
     echo 'Invalid Request';
  }
 
-$templateParams["titolo"] = "Memed";
-$templateParams["nome"]="login-form.php"; //file da usare 
-
-?>
+$templateParams["titolo"] = "Login | Memed";
+$templateParams["nome"]="../template/login.php";
