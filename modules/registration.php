@@ -3,13 +3,13 @@ require_once 'bootstrap.php';
 
 // Recupero la password criptata dal form di inserimento.
 if($mysqli->ottieniUtente($_POST['username'])){
-      $error_msg .= '<p class="error">Username già esistente</p>';
+      $templateParams['erroreregistrazione'] = 'Username già esistente';
 }
 if($mysqli->ottieniUtenteemail($_POST['email'])){
-      $error_msg .= '<p class="error">Email già esistente</p>';
+   $templateParams['erroreregistrazione'] = 'Email già esistente';
 }
 if($_POST['password'] != $_POST['confirm-password']){
-      $error_msg .= '<p class="error">Le password non coincidono</p>';
+   $templateParams['erroreregistrazione'] = 'Le password non coincidono';
 }
 $username = $_POST['username'];
 $email = $_POST['email'];
@@ -26,7 +26,7 @@ if ($insert_stmt = $mysqli->getMysqli()->prepare("INSERT INTO utenti (username, 
    $insert_stmt->execute();
 }
 
-$templateParams["titolo"] = "Memed registration";
+$templateParams["titolo"] = "Memed - registration";
 $templateParams["nome"] = "../template/register.php";
 
 require "../template/......php"; //file da usare
