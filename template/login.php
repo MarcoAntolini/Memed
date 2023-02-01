@@ -35,7 +35,7 @@ if (isset($_GET['error'])) {
     </div>
     <div class="registration">
         <p>Non hai un account?
-            <a href="registration.html" role="link">
+            <a href="../template/registration.php" role="link">
                 <span class="redirect">Iscriviti</span>
             </a>
         </p>

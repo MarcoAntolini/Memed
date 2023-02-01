@@ -25,6 +25,5 @@ $mysqli->inserisciUtente($username, $email, $password, $salt);
 $templateParams["titolo"] = "Memed - registration";
 $templateParams["nome"] = "../template/register.php";
 
-require "../template/......php"; //file da usare
-//TODO
+require "../template/authentication.php";
 ?>
