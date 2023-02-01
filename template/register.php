@@ -2,6 +2,11 @@
 <div id="splash-screen">
     <div class="logo">Memed</div>
     <div class="form">
+
+        <?php if(isset($templateParams["erroreregistrazione"])): ?>
+            <p><?php echo $templateParams["erroreregistrazione"]; ?></p>
+        <?php endif; ?>
+
         <form action="" class="registration-form" method="post">
             <!--TODO: action va completato con il file php che elaborerà i dati-->
             <div class="email">
