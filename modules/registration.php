@@ -16,4 +16,4 @@ if ($insert_stmt = $mysqli->getMysqli()->prepare("INSERT INTO utenti (username, 
 }
 
 $templateParams["titolo"] = "Memed registration";
-$templateParams["nome"] = ""; //file da usare
+$templateParams["nome"] = "../template/register.php";
