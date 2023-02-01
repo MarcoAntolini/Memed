@@ -303,7 +303,7 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniUtenteemail($email)
+    public function ottieniEmailDaUtente($email)
     {
         $sql = "SELECT * FROM utente WHERE email = '$email'";
         $result = $this->db->query($sql);
