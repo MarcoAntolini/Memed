@@ -19,6 +19,5 @@ if(isset($_POST['email'], $_POST['password'])) {
 $templateParams["titolo"] = "Login | Memed";
 $templateParams["nome"]="../template/login.php";
 
-require "../template/......php"; //file da usare
-//TODO
+require "../template/authentication.php";
 ?>

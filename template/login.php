@@ -5,6 +5,11 @@ if (isset($_GET['error'])) {
     echo 'Error Logging In!';
 }
 ?>
+
+<?php if(isset($templateParams["erroreregistrazione"])): ?>
+    <p><?php echo $templateParams["erroreregistrazione"]; ?></p>
+<?php endif; ?>
+<!--TODO: non so quale preferite ahahahaah-->
 <form action="process_login.php" method="post" name="login_form">
     <!--TODO: action va completato con il file php che elaborerà i dati-->
     <div class="email">
@@ -30,7 +35,7 @@ if (isset($_GET['error'])) {
     </div>
     <div class="registration">
         <p>Non hai un account?
-            <a href="registration.html" role="link">
+            <a href="../template/registration.php" role="link">
                 <span class="redirect">Iscriviti</span>
             </a>
         </p>
