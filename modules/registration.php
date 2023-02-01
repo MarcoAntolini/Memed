@@ -2,13 +2,13 @@
 require_once 'bootstrap.php';
 
 // Recupero la password criptata dal form di inserimento.
-if($mysqli->ottieniUtente($_POST['username'])){
-      $templateParams['erroreregistrazione'] = 'Username già esistente';
+if ($mysqli->ottieniUtente($_POST['username'])) {
+   $templateParams['erroreregistrazione'] = 'Username già esistente';
 }
-if($mysqli->ottieniUtenteemail($_POST['email'])){
+if ($mysqli->ottieniEmailDaUtente($_POST['email'])) {
    $templateParams['erroreregistrazione'] = 'Email già esistente';
 }
-if($_POST['password'] != $_POST['confirm-password']){
+if ($_POST['password'] != $_POST['confirm-password']) {
    $templateParams['erroreregistrazione'] = 'Le password non coincidono';
 }
 $username = $_POST['username'];
@@ -22,8 +22,7 @@ $password = hash('sha512', $password . $random_salt);
 // Assicurati di usare statement SQL 'prepared'.
 $mysqli->inserisciUtente($username, $email, $password, $salt);
 
-$templateParams["titolo"] = "Memed - registration";
+$templateParams["titolo"] = "Registrati | Memed";
 $templateParams["nome"] = "../template/register.php";
 
 require "../template/authentication.php";
-?>
