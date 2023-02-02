@@ -314,7 +314,7 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniEmailDaUtente($email)
+    public function ottieniUtenteDaEmail($email)
     {
         $sql = "SELECT * FROM utenti WHERE email = '$email' LIMIT 1";
         $result = $this->db->query($sql);

@@ -1,14 +1,13 @@
 <?php
 require_once 'bootstrap.php';
 
+
 if (isset($_POST['email'], $_POST['password'])) {
    $email = $_POST['email'];
-   $password = $_POST['password']; // Recupero la password criptata.
+   $password = $_POST['password'];
    if (login($email, $password, $mysqli) == true) {
-      // Login eseguito
-      header('Location: ../index.php');
+      header('Location: ../modules/index.php');
    } else {
-      // Login fallito
       $templateParams['errorerelogin'] = 'email o password errati';
    }
 }

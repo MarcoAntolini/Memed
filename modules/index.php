@@ -19,7 +19,7 @@ if (login_check($mysqli) == true) {
             $_POST["idpost"]
         );
     }
-    require "../modules/base.php";
+    require "../template/base.php";
 } else {
     require "../modules/login.php";
 }

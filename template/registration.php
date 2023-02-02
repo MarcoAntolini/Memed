@@ -1,5 +1,4 @@
-<!--TODO: action va completato con il file php che elaborerà i dati-->
-<form action="" class="registration-form" method="post">
+<form action="#" class="registration-form" method="post">
     <div class="error">
         <p id="error-message">
             <?php if (isset($templateParams['erroreregistrazione'])) {
