@@ -1,7 +1,7 @@
 <?php
 require_once "bootstrap.php";
 
-date_default_timezone_set('Europe/Rome');
+//date_default_timezone_set('Europe/Rome');
 
 if (login_check($mysqli) == true) {
     $templateParams["titolo"] = "Memed";
