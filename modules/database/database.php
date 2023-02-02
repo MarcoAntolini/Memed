@@ -177,7 +177,7 @@ class DatabaseHelper
         $sql = "SELECT COUNT(*) FROM reazione_pu WHERE idreazione = '$idreazione' AND idpost = '$idpost'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_row();
         } else {
             return false;
         }
