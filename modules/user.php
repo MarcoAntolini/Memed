@@ -5,7 +5,7 @@ if (login_check($mysqli) == true) {
     $templateParams["titolo"] = "Memed - Profilo";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js");
     $templateParams["username"] = $_SESSION["username"];
-    if(isset($_GET["username"])){
+    if (isset($_GET["username"])) {
         $utente = $_GET["username"];
         $templateParams["utente"] = $utente;
         $templateParams["profilo"] = $mysqli->ottieniUtente($utente);
@@ -15,8 +15,7 @@ if (login_check($mysqli) == true) {
         $templateParams["seguiti"] = $mysqli->ottieniSeguiti($utente);
         $templateParams["nPost"] = $mysqli->contaPost($utente);
     }
-
-    require 'template/base.php';
+    require '../template/base.php';
 } else {
     require "../modules/login.php";
 }
