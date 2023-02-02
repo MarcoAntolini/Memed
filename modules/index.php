@@ -13,4 +13,4 @@ $templateParams["nome"] = "../template/login.php"; //file da usare
 //  }
 
 // TODO: template base login/register
-require "../template/authentication_template.php";
+require "../template/baseUnlogged.php";

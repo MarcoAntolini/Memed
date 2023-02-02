@@ -25,4 +25,4 @@ $mysqli->inserisciUtente($username, $email, $password, $salt);
 $templateParams["titolo"] = "Registrati | Memed";
 $templateParams["nome"] = "../template/register.php";
 
-require "../template/authentication.php";
+require "../template/baseUnlogged.php";
