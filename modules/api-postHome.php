@@ -1,5 +1,7 @@
 <?php
 require("bootstrap.php");
+
+// TODO: controllare se home, cerca o profilo
 $post = $mysqli->ottieniPostPerHome($_SESSION["username"]);
 
 for ($i = 0; $i < count($post); $i++) {
