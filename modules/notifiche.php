@@ -11,4 +11,4 @@ if (login_check($mysqli) == true) {
     echo 'You are not authorized to access this page, please login. <br/>';
 }
 
-require 'view/logged-base-view.php';
+require 'template/logged-base-view.php';
