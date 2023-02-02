@@ -5,6 +5,7 @@ require_once "bootstrap.php";
 
 if (login_check($mysqli) == true) {
     $templateParams["titolo"] = "Memed";
+    $templateParams["nome"] = "home.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js");
     $templateParams["username"] = $_SESSION["username"];
     $templateParams["posthome"] = $mysqli->ottieniPostPerHome($_SESSION["username"]);
