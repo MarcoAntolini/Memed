@@ -20,7 +20,7 @@ if (login_check($mysqli) == true) {
             $_POST["idpost"]
         );
     }
-    require "../view/logged-base-view.php";
+    require "../template/logged-base-view.php";
 } else {
     require "../modules/login.php";
 }
