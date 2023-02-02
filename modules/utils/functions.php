@@ -21,13 +21,11 @@ function sec_session_start()
 function login($email, $password, $mysqli)
 {
    // Usando statement sql 'prepared' non sarà possibile attuare un attacco di tipo SQL injection.
-   if (!$stmt = $mysqli->getMysqli()->query("SELECT username, password, salt FROM utenti WHERE email = '$email' LIMIT 1")) return false;
-   $ddd = $stmt->fetch_all(MYSQLI_ASSOC);
+   if (!$ddd = $mysqli->ottieniEmailDaUtente($email)) return false;
    $username = $ddd['username'];
    $db_password = $ddd['password'];
    $salt = $ddd['salt'];
    $password = hash('sha512', $password . $salt); // codifica la password usando una chiave univoca.
-   if ($stmt->num_rows != 1) return false; // l'utente non esiste
    if ($db_password != $password) return false; // Verifica che la password memorizzata nel database corrisponda alla password fornita dall'utente.
    // Password corretta!            
    $user_browser = $_SERVER['HTTP_USER_AGENT']; // Recupero il parametro 'user-agent' relativo all'utente corrente. 
