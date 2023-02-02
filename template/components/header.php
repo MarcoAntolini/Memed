@@ -1,7 +1,7 @@
 <div class="header container-fluid d-flex justify-content-center color-main p-2">
     <div class="row">
         <div class="logo col">
-            <img src="" alt="logo" />
+            <img src="../public/assets/img/logo.png" alt="logo" />
             <h1>Memed</h1>
         </div>
         <div class="search-bar col">
