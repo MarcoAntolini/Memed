@@ -8,7 +8,7 @@ if (isset($_GET['error'])) {
 ?>
 
 <?php if (isset($templateParams["erroreregistrazione"])) : ?>
-    <p><?php echo $templateParams["erroreregistrazione"]; ?></p>
+<p><?php echo $templateParams["erroreregistrazione"]; ?></p>
 <?php endif; ?>
 
 <!--TODO: action va completato con il file php che elaborerà i dati-->
@@ -20,19 +20,13 @@ if (isset($_GET['error'])) {
         <input id="password-input-login" required="true" type="password" name="p" placeholder="Password" />
         <button id="show-pw-btn-login" class="show-pw-btn btn btn-primary" type="button">Mostra</button>
     </div>
-    <div class="login-button">
-        <button class="login-btn" type="submit">
-            <a href="..\index.html" role="link">
-                Accedi
-            </a>
-        </button>
-        <!-- <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" /> -->
-        <!--TODO: Quando si ha il JS aggiungere l'attributo disabled al button per
+    <button id="login-button" class="btn btn-primary" type="submit" disabled>Accedi</button>
+    <!-- <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" /> -->
+    <!--TODO: Quando si ha il JS aggiungere l'attributo disabled al button per
                             rendere il btn attivabile/disattivabile a seconda del numero di caratteri
                         -->
-        <!--TODO: Sostituire il tag <a> con il PHP ASAP-->
-    </div>
-    <div class="registration">
+    <!--TODO: Sostituire il tag <a> con il PHP ASAP-->
+    <div class="registration-redirect">
         <p>Non hai un account?
             <a href="../template/registration.php" role="link">
                 <span class="redirect">Iscriviti</span>
