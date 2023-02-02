@@ -18,7 +18,8 @@ class DatabaseHelper
 
     public function inserisciUtente($username, $email, $password, $salt)
     {
-        $sql = "INSERT INTO utenti (username, email, password, salt) VALUES ('$username', '$email', '$password', '$salt')";
+        $sql = "INSERT INTO utenti (username, email, password, salt, nomefile)
+                VALUES ('$username', '$email', '$password', '$salt', '../public/assets/img/default-pic.jpg')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
