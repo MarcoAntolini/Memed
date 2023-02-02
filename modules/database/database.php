@@ -139,6 +139,17 @@ class DatabaseHelper
         }
     }
 
+    public function ottieniCommentiPerPost($idpost)
+    {
+        $sql = "SELECT * FROM commento WHERE idpost = '$idpost' ORDER BY data DESC";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
     public function ottieniPostDaCategoria($IDcategoria)
     {
         $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM categoriapost WHERE IDcategoria = '$IDcategoria') ORDER BY data DESC";
