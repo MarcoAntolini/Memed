@@ -102,7 +102,7 @@ function validateUsername(usernameInput) {
 }
 
 function validateEmail(emailInput) {
-    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)*$/;
     if (emailInput.value.match(validRegex) && emailInput.value !== "") {
         console.log("Email valida");
         return true;
