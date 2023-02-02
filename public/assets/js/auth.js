@@ -1,4 +1,5 @@
 window.onload = function () {
+    console.log("auth.js loaded");
     const showButtons = document.querySelectorAll(".show-pw-btn");
     showButtons.forEach(button => {
         button.addEventListener("click", function () {
@@ -14,9 +15,25 @@ window.onload = function () {
     const registerButton = document.getElementById("registration-button");
     const loginButton = document.getElementById("login-button");
     if (emailInput && usernameInput && passwordRegister && passwordConfirm && registerButton) {
-        checkRegisterButton(emailInput, usernameInput, passwordRegister, passwordConfirm, registerButton);
+        emailInput.addEventListener("keyup", function () {
+            checkRegisterButton(emailInput, usernameInput, passwordRegister, passwordConfirm, registerButton);
+        });
+        usernameInput.addEventListener("keyup", function () {
+            checkRegisterButton(emailInput, usernameInput, passwordRegister, passwordConfirm, registerButton);
+        });
+        passwordRegister.addEventListener("keyup", function () {
+            checkRegisterButton(emailInput, usernameInput, passwordRegister, passwordConfirm, registerButton);
+        });
+        passwordConfirm.addEventListener("keyup", function () {
+            checkRegisterButton(emailInput, usernameInput, passwordRegister, passwordConfirm, registerButton);
+        });
     } else if (emailInput && passwordLogin && loginButton) {
-        checkLoginButton(emailInput, passwordLogin, loginButton);
+        emailInput.addEventListener("keyup", function () {
+            checkLoginButton(emailInput, passwordLogin, loginButton);
+        });
+        passwordLogin.addEventListener("keyup", function () {
+            checkLoginButton(emailInput, passwordLogin, loginButton);
+        });
     }
 };
 
@@ -60,6 +77,7 @@ function checkLoginButton(emailInput, passwordLogin, loginButton) {
 
 function comparePasswords(pwInput1, pwInput2) {
     if (pwInput1.value === pwInput2.value) {
+        console.log("Le password coincidono");
         return true;
     }
     return false;
@@ -78,6 +96,7 @@ function validatePassword(passwordInput) {
 function validateUsername(usernameInput) {
     const validRegex = /^[a-zA-Z0-9]+$/;
     if (usernameInput.value.match(validRegex) && usernameInput.value !== "") {
+        console.log("Username valido");
         return true;
     }
     return false;
@@ -86,6 +105,7 @@ function validateUsername(usernameInput) {
 function validateEmail(emailInput) {
     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
     if (emailInput.value.match(validRegex) && emailInput.value !== "") {
+        console.log("Email valida");
         return true;
     }
     return false;
