@@ -305,7 +305,7 @@ class DatabaseHelper
 
     public function ottieniUtente($username)
     {
-        $sql = "SELECT * FROM utente WHERE username = '$username'";
+        $sql = "SELECT * FROM utenti WHERE username = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -316,7 +316,7 @@ class DatabaseHelper
 
     public function ottieniEmailDaUtente($email)
     {
-        $sql = "SELECT * FROM utente WHERE email = '$email'";
+        $sql = "SELECT * FROM utenti WHERE email = '$email'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
