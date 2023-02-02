@@ -3,7 +3,7 @@ require_once "bootstrap.php";
 
 // if(login_check($mysqli) == true) {
 $templateParams["titolo"] = "Memed";
-$templateParams["nome"] = "../template/login.php"; //file da usare 
+$templateParams["nome"] = "../template/registration.php"; //file da usare 
 // $templateParams["username"] = $_SESSION["username"];
 // $templateParams["posthome"] = $mysqli->ottieniPostPerHome($_SESSION["username"]);
 // $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"]);
