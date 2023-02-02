@@ -85,13 +85,11 @@ function comparePasswords(pwInput1, pwInput2) {
 
 function validatePassword(passwordInput) {
     // TODO: aggiungere controllo sicurezza?
-    // TODO: correggere regex
-    // const validRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    // if (passwordInput.value.match(validRegex) && passwordInput.value !== "") {
-    //     return true;
-    // }
-    // return false;
-    return true;
+    const validRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-!"#$%&'()*+,.\/:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,.\/:;<=>?@[\\\]^_`{|}~-]{8,}$/;
+    if (passwordInput.value.match(validRegex) && passwordInput.value !== "") {
+        return true;
+    }
+    return false;
 }
 
 function validateUsername(usernameInput) {
