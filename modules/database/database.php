@@ -107,9 +107,9 @@ class DatabaseHelper
         }
     }
 
-    public function inserisciSegue($Fol_IDuser, $username)
+    public function inserisciSegue($Fol_username, $username)
     {
-        $sql = "INSERT INTO segue (Fol_IDuser, username) VALUES ('$Fol_IDuser', '$username')";
+        $sql = "INSERT INTO segue (Fol_username, username) VALUES ('$Fol_username', '$username')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
