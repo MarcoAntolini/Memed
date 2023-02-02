@@ -1,5 +1,12 @@
 <!--TODO: action va completato con il file php che elaborerà i dati-->
 <form action="" class="registration-form" method="post">
+    <div class="error">
+        <p id="error-message">
+            <?php if (isset($templateParams['erroreregistrazione'])) {
+                echo $templateParams['erroreregistrazione'];
+            } ?>
+        </p>
+    </div>
     <div class="email">
         <input id="email-input" required="true" type="text" name="email" placeholder="Email" maxlength="30" />
     </div>
