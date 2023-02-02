@@ -6,15 +6,17 @@ window.onload = function () {
         });
     });
 
-    const pwInput1 = document.getElementById("password-input-register");
-    const pwInput2 = document.getElementById("password-input-confirm");
-    if (pwInput1 && pwInput2) {
-        pwInput1.addEventListener("keyup", function () {
-            checkPasswords(pwInput1, pwInput2);
-        });
-        pwInput2.addEventListener("keyup", function () {
-            checkPasswords(pwInput1, pwInput2);
-        });
+    const passwordLogin = document.getElementById("password-input-login");
+    const passwordRegister = document.getElementById("password-input-register");
+    const passwordConfirm = document.getElementById("password-input-confirm");
+    const emailInput = document.getElementById("email-input");
+    const usernameInput = document.getElementById("username-input");
+    const registerButton = document.getElementById("registration-button");
+    const loginButton = document.getElementById("login-button");
+    if (emailInput && usernameInput && passwordRegister && passwordConfirm && registerButton) {
+        checkRegisterButton(emailInput, usernameInput, passwordRegister, passwordConfirm, registerButton);
+    } else if (emailInput && passwordLogin && loginButton) {
+        checkLoginButton(emailInput, passwordLogin, loginButton);
     }
 };
 
@@ -38,25 +40,53 @@ function showPassword(button) {
     button.innerText = button.innerText === "Mostra" ? "Nascondi" : "Mostra";
 }
 
-function checkPasswords(pwInput1, pwInput2) {
-    const registerButton = document.getElementById("registration-button");
-    // TODO: aggiungere controllo sicurezza?
-    if (pwInput1.value == "" || pwInput2.value == "" || pwInput1.value !== pwInput2.value) {
-        registerButton.disabled = true;
-    } else {
+function checkRegisterButton(emailInput, usernameInput, passwordRegister, passwordConfirm, registerButton) {
+    if (validateEmail(emailInput) && validateUsername(usernameInput)
+        && validatePassword(passwordRegister) && validatePassword(passwordConfirm)
+        && comparePasswords(passwordRegister, passwordConfirm)) {
         registerButton.disabled = false;
+    } else {
+        registerButton.disabled = true;
     }
 }
 
-// function ValidateEmail(input) {
-//     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-//     if (input.value.match(validRegex)) {
-//         alert("Valid email address!");
-//         document.form1.text1.focus();
-//         return true;
-//     } else {
-//         alert("Invalid email address!");
-//         document.form1.text1.focus();
-//         return false;
-//     }
-// }
+function checkLoginButton(emailInput, passwordLogin, loginButton) {
+    if (validateEmail(emailInput) && validatePassword(passwordLogin)) {
+        loginButton.disabled = false;
+    } else {
+        loginButton.disabled = true;
+    }
+}
+
+function comparePasswords(pwInput1, pwInput2) {
+    if (pwInput1.value === pwInput2.value) {
+        return true;
+    }
+    return false;
+}
+
+function validatePassword(passwordInput) {
+    // TODO: aggiungere controllo sicurezza?
+    // TODO: correggere regex
+    const validRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    if (passwordInput.value.match(validRegex) && passwordInput.value !== "") {
+        return true;
+    }
+    return false;
+}
+
+function validateUsername(usernameInput) {
+    const validRegex = /^[a-zA-Z0-9]+$/;
+    if (usernameInput.value.match(validRegex) && usernameInput.value !== "") {
+        return true;
+    }
+    return false;
+}
+
+function validateEmail(emailInput) {
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
+    if (emailInput.value.match(validRegex) && emailInput.value !== "") {
+        return true;
+    }
+    return false;
+}
