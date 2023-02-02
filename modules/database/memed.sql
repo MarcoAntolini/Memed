@@ -110,7 +110,8 @@ CREATE TABLE `utenti` (
   `email` varchar(30) NOT NULL,
   `password` char(128) NOT NULL,
   `salt` char(128) NOT NULL,
-  `nomefile` varchar(100) DEFAULT NULL
+  `nomefile` varchar(100) DEFAULT NULL,
+  `bio` varchar(150) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 --
 -- Indici per le tabelle scaricate
