@@ -6,7 +6,7 @@ if (isset($_GET['error'])) {
 }
 ?>
 
-<?php if(isset($templateParams["erroreregistrazione"])): ?>
+<?php if (isset($templateParams["erroreregistrazione"])) : ?>
     <p><?php echo $templateParams["erroreregistrazione"]; ?></p>
 <?php endif; ?>
 <!--TODO: non so quale preferite ahahahaah-->
@@ -19,7 +19,8 @@ if (isset($_GET['error'])) {
                         -->
     </div>
     <div class="password">
-        <input id="password-input" required="true" type="password" name="p" placeholder="Password" />
+        <input id="password-input-login" required="true" type="password" name="p" placeholder="Password" />
+        <button id="show-pw-btn-login" class="show-pw-btn btn btn-primary" type="button">Mostra</button>
     </div>
     <div class="login-button">
         <button class="login-btn" type="submit">
