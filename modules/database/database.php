@@ -18,8 +18,8 @@ class DatabaseHelper
 
     public function inserisciUtente($username, $email, $password, $salt)
     {
-        $sql = "INSERT INTO utenti (username, email, password, salt, nomefile)
-                VALUES ('$username', '$email', '$password', '$salt', '../public/assets/img/default-pic.jpg')";
+        $sql = "INSERT INTO utenti (username, email, password, salt, nomefile, bio)
+                VALUES ('$username', '$email', '$password', '$salt', '../public/assets/img/default-pic.jpg', '')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -168,17 +168,6 @@ class DatabaseHelper
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            return false;
-        }
-    }
-
-    public function contaReazioniPost($idreazione, $idpost)
-    {
-        $sql = "SELECT COUNT(*) FROM reazione_pu WHERE idreazione = '$idreazione' AND idpost = '$idpost'";
-        $result = $this->db->query($sql);
-        if ($result->num_rows > 0) {
-            return $result->fetch_row();
         } else {
             return false;
         }
@@ -342,7 +331,18 @@ class DatabaseHelper
         $sql = "SELECT COUNT(*) FROM reazione_pu WHERE idpost = '$idpost' AND idreazione = '$idreazione'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_row();
+        } else {
+            return false;
+        }
+    }
+
+    public function contaReazioniPost($idreazione, $idpost)
+    {
+        $sql = "SELECT COUNT(*) FROM reazione_pu WHERE idreazione = '$idreazione' AND idpost = '$idpost'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_row();
         } else {
             return false;
         }
@@ -353,7 +353,7 @@ class DatabaseHelper
         $sql = "SELECT COUNT(*) FROM segue WHERE username = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_row();
         } else {
             return false;
         }
@@ -364,7 +364,7 @@ class DatabaseHelper
         $sql = "SELECT COUNT(*) FROM segue WHERE Fol_username = '$Fol_username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_row();
         } else {
             return false;
         }
@@ -375,7 +375,7 @@ class DatabaseHelper
         $sql = "SELECT COUNT(*) FROM notifica WHERE username = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_row();
         } else {
             return false;
         }
@@ -386,7 +386,7 @@ class DatabaseHelper
         $sql = "SELECT COUNT(*) FROM post WHERE username = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_row();
         } else {
             return false;
         }
