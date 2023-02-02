@@ -21,9 +21,7 @@ function sec_session_start()
 function login($email, $password, $mysqli)
 {
    // Usando statement sql 'prepared' non sarà possibile attuare un attacco di tipo SQL injection.
-   if (!$stmt = $mysqli->getMysqli()->prepare("SELECT username, password, salt FROM utenti WHERE email = ? LIMIT 1")) return false;
-   $stmt->bind_param('s', $email); // esegue il bind del parametro '$email'.
-   $stmt->execute(); // esegue la query appena creata.
+   if (!$stmt = $mysqli->getMysqli()->query("SELECT username, password, salt FROM utenti WHERE email = '$email' LIMIT 1")) return false;
    $ddd = $stmt->fetch_all(MYSQLI_ASSOC);
    $username = $ddd['username'];
    $db_password = $ddd['password'];
