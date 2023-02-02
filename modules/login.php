@@ -8,7 +8,7 @@ if (isset($_POST['email'], $_POST['password'])) {
    if (login($email, $password, $mysqli) == true) {
       header('Location: ../modules/index.php');
    } else {
-      $templateParams['errorerelogin'] = 'email o password errati';
+      $templateParams['errorelogin'] = 'email o password errati';
    }
 }
 

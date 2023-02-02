@@ -1,8 +1,8 @@
 <script type="text/javascript" src="../public/assets/js/sha512.js"></script>
 <script type="text/javascript" src="../public/assets/js/forms.js"></script>
 
-<?php if (isset($templateParams["erroreregistrazione"])) : ?>
-<p><?php echo $templateParams["erroreregistrazione"]; ?></p>
+<?php if (isset($templateParams["errorelogin"])) : ?>
+<p><?php echo $templateParams["errorelogin"]; ?></p>
 <?php endif; ?>
 <form action="#" method="post">
     <div class="email">
