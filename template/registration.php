@@ -17,7 +17,7 @@
     <button id="registration-button" class="btn btn-primary" type="submit" disabled>Iscriviti</button>
     <div class="login-redirect">
         <p>Hai già un account?
-            <a href="../template/login.php" role="link">
+            <a href="../modules/login.php" role="link">
                 <span class="redirect">Accedi</span>
             </a>
         </p>

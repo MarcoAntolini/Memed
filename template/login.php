@@ -28,7 +28,7 @@ if (isset($_GET['error'])) {
     <!--TODO: Sostituire il tag <a> con il PHP ASAP-->
     <div class="registration-redirect">
         <p>Non hai un account?
-            <a href="../template/registration.php" role="link">
+            <a href="../modules/registration.php" role="link">
                 <span class="redirect">Iscriviti</span>
             </a>
         </p>

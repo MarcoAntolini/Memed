@@ -11,9 +11,6 @@ if (isset($_POST['email'], $_POST['password'])) {
       // Login fallito
       $templateParams['errorerelogin'] = 'email o password errati';
    }
-} else {
-   // Le variabili corrette non sono state inviate a questa pagina dal metodo POST.
-   echo 'Invalid Request';
 }
 
 $templateParams["titolo"] = "Login | Memed";
