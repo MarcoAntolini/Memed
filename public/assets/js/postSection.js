@@ -37,7 +37,7 @@ function generatePost(post) {
                 <div class="comments-section">
                     <?php foreach (${post[i]["commenti"]} as $commento): ?>
                     <div class="comment">
-                        <a class="username-comment-owner" href="user.php?username=$commento["username"]">$commento["username"]</a>
+                        <a class="username-comment-owner" href="user.php?username=$commento["username"]"><?php echo $commento["username"]; ?></a>
                         <p class="comment-text">$commento["testo"]</p>
                     </div>
                     <?php endforeach; ?>
