@@ -7,11 +7,11 @@ if (isset($_POST['username'])) {
 
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            echo $row['username'] . "\n";
+            echo "<div>" . $row['username'] . "</div>";
         }
     } else {
-        echo "Nessun risultato.";
+        echo "<div>Nessun risultato.</div>";
     }
 }
 
-require "../view/logged-base-view.php";
+require "../template/logged-base-view.php";
