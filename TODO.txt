@@ -5,3 +5,5 @@ template versione desktop:
 - al posto di 'REAZIONI' mettere @username
 - spostare rotella impostazioni accanto a @username
 - togliere descrizione da post con tetso
+
+mettere caption sotto alla foto
