@@ -1,7 +1,7 @@
 <div class="footer container-fluid d-flex justify-content-center color-main p-2">
     <div class="row gap-2">
         <div class="col">
-            <a href="">
+            <a href="index.php">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -42,8 +42,8 @@
             </a>
         </div>
         <div class="col">
-            <a href="">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5"
+            <a href="user.php?username=<?php $templateParams['username'] ?>">
+                <svg xmlns=" http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <circle cx="12" cy="7" r="4" />
