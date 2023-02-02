@@ -316,7 +316,7 @@ class DatabaseHelper
 
     public function ottieniEmailDaUtente($email)
     {
-        $sql = "SELECT * FROM utenti WHERE email = '$email'";
+        $sql = "SELECT * FROM utenti WHERE email = '$email' LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
