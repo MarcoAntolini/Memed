@@ -5,7 +5,6 @@ window.onload = function () {
             showPassword(button);
         });
     });
-};
 
 function showPassword(button) {
     const buttonId = button.id;
@@ -26,3 +25,4 @@ function showPassword(button) {
     passwordInput.type = passwordInput.type === "password" ? "text" : "password";
     button.innerText = button.innerText === "Mostra" ? "Nascondi" : "Mostra";
 }
+
