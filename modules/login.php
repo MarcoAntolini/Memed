@@ -12,6 +12,6 @@ if (isset($_POST['email'], $_POST['password'])) {
 }
 
 $templateParams["titolo"] = "Login | Memed";
-$templateParams["nome"] = "../template/login.php";
+$templateParams["nome"] = "../view/login-view.php";
 
-require "../template/baseUnlogged.php";
+require "../view/unlogged-base-view.php";

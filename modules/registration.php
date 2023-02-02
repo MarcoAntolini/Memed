@@ -20,6 +20,6 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confi
 }
 
 $templateParams["titolo"] = "Registrati | Memed";
-$templateParams["nome"] = "../template/registration.php";
+$templateParams["nome"] = "../view/registration-view.php";
 
-require "../template/baseUnlogged.php";
+require "../view/unlogged-base-view.php";

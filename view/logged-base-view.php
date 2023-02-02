@@ -14,13 +14,13 @@
 </head>
 
 <body>
-    <?php require 'components/header.php'; ?>
+    <?php require 'components/header-view.php'; ?>
     <?php
     if (isset($templateParams["nome"])) {
         require $templateParams["nome"];
     }
     ?>
-    <?php require 'components/footer.php'; ?>
+    <?php require 'components/footer-view.php'; ?>
 </body>
 
 
