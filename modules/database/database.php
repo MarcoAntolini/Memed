@@ -118,6 +118,27 @@ class DatabaseHelper
         }
     }
 
+    public function ottieniCategorie()
+    {
+        $sql = "SELECT * FROM categoria";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    public function ottienicategoriePost($idpost){
+        $sql = "SELECT * FROM categoria_post WHERE idpost = '$idpost'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
     public function ottieniPostDaUtente($username)
     {
         $sql = "SELECT * FROM post WHERE username = '$username'";
