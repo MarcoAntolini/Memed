@@ -16,10 +16,11 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confi
       $password = hash('sha512', $password . $random_salt);
       $mysqli->inserisciUtente($username, $email, $password, $random_salt);
       header('Location: ../modules/login.php');
+      // TODO: qualcosa a schermo per dire che si è registrato
    }
 }
 
-$templateParams["titolo"] = "Registrati | Memed";
-$templateParams["nome"] = "../template/registration-view.php";
+$templateParams["titolo"] = "Memed - Registrati";
+$templateParams["nome"] = "../template/register-view.php";
 
 require "../template/unlogged-base-view.php";

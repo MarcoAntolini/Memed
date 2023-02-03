@@ -1,8 +1,9 @@
 <?php
 require_once 'bootstrap.php';
 
+// TODO: controllare se è desktop o mobile
 if (login_check($mysqli) == true) {
-    $templateParams["titolo"] = "Memed - notifiche";
+    $templateParams["titolo"] = "Memed - Notifiche";
     $templateParams["nome"] = ""; //file da usare 
     $templateParams["username"] = $_SESSION["username"];
     $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"]);
