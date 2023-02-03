@@ -1,0 +1,23 @@
+@use "sass:meta";
+@use "sass:math";
+@use "sass:map";
+@use "breakpoints" as *;
+
+@mixin mediaQuery($size) {
+    @if map.has-key($breakpoints, $size) {
+        $breakpoint: map-get($breakpoints, $size);
+        @media screen and (min-width: $breakpoint) {
+            @content;
+        }
+    } @else if meta.type-of($size) == number {
+        @if math.is-unitless($size) {
+            @error 'missing unit for #{$size}';
+        } @else {
+            @media screen and (min-width: $size) {
+                @content;
+            }
+        }
+    } @else {
+        @error 'keyword #{$size} is not a valid breakpoint';
+    }
+}
