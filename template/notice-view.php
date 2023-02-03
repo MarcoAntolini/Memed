@@ -2,7 +2,8 @@
     <div class="row">
         <div class="">
             <h2>Notifiche</h2>
-            <button class="btn btn-primary"></button> <!-- segna tutte come lette -->
+            <button class="btn btn-primary" type="button" name="leggi-tutto">leggi tutto</button> <!-- segna tutte come lette -->
+            <button class="btn btn-primary" type="button" name="cancella-tutto">cancella tutto</button>
         </div>
 
         <?php

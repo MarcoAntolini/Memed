@@ -216,6 +216,24 @@ class DatabaseHelper
         }
     }
 
+    public function cancellaTutteNotifiche($username){
+        $sql="DELETE FROM notifica WHERE username = '$username'";
+        if ($this->db->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function leggiTutteNotifiche($username){
+        $sql = "UPDATE notifica SET letta = '1' WHERE username = '$username'";
+        if ($this->db->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function ottieniNotifica($username)
     {
         $sql = "SELECT * FROM notifica WHERE username = '$username' ORDER BY data DESC";

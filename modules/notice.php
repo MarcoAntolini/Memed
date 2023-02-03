@@ -15,6 +15,12 @@ if (login_check($mysqli) == true) {
     if(isset($_POST["cancella"])) {
         $mysqli->cancellaNotifica($_POST["cancella"]);
     }
+    if(isset($_POST["cancella-tutto"])) {
+        $mysqli->cancellaTutteNotifiche($_SESSION["username"]);
+    }
+    if(isset($_POST["leggi-tutto"])) {
+        $mysqli->leggiTutteNotifiche($_SESSION["username"]);
+    }
     require 'template/logged-base-view.php';
 } else {
     require "../modules/login.php";
