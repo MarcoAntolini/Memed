@@ -8,7 +8,6 @@ if (login_check($mysqli) == true) {
     $templateParams["nome"] = "home-view.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js");
     $templateParams["username"] = $_SESSION["username"];
-    echo $templateParams["username"];
     $templateParams["posthome"] = $mysqli->ottieniPostPerHome($_SESSION["username"]);
     $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"]);
     $templateParams["notifiche"] = $mysqli->ottieniNotifica($_SESSION["username"]);
@@ -23,5 +22,5 @@ if (login_check($mysqli) == true) {
     }
     require "../template/logged-base-view.php";
 } else {
-    require "../modules/login.php";
+    header("location: login.php");
 }

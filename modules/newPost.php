@@ -5,8 +5,7 @@ if (login_check($mysqli) == true) {
     $templateParams["titolo"] = "Memed - Crea Post";
     $templateParams["nome"] = ""; //file da usare 
     $templateParams["username"] = $_SESSION["username"];
+    require 'template/logged-base-view.php';
 } else {
-    echo 'You are not authorized to access this page, please login. <br/>';
+    header("location: login.php");
 }
-
-require 'template/logged-base-view.php';
