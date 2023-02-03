@@ -5,6 +5,7 @@ function registerLoggedUser($user)
     $_SESSION["username"] = $user["username"];
 }
 
+// TODO: fixare questa
 function sec_session_start()
 {
     $session_name = 'sec_session_id'; // Imposta un nome di sessione
@@ -20,40 +21,30 @@ function sec_session_start()
 
 function login($email, $password, $mysqli)
 {
-    // Usando statement sql 'prepared' non sarà possibile attuare un attacco di tipo SQL injection.
     if (!$ddd = $mysqli->ottieniUtenteDaEmail($email)) return false;
     $username = $ddd[0]['username'];
     $db_password = $ddd[0]['password'];
     $salt = $ddd[0]['salt'];
-    $password = hash('sha512', $password . $salt); // codifica la password usando una chiave univoca.
-    if ($db_password != $password) return false; // Verifica che la password memorizzata nel database corrisponda alla password fornita dall'utente.
-    // Password corretta!            
-    $user_browser = $_SERVER['HTTP_USER_AGENT']; // Recupero il parametro 'user-agent' relativo all'utente corrente. 
+    $password = hash('sha512', $password . $salt);
+    if ($db_password != $password) return false;
+    $user_browser = $_SERVER['HTTP_USER_AGENT'];
     // $username = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $username); // ci proteggiamo da un attacco XSS
     $_SESSION['username'] = $username;
     $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
-    // Login eseguito con successo.
     return true;
 }
 
 function login_check($mysqli)
 {
-    // Verifica che tutte le variabili di sessione siano impostate correttamente
     if (!isset($_SESSION['username'], $_SESSION['login_string'])) return false;
     $login_string = $_SESSION['login_string'];
     $username = $_SESSION['username'];
-    $user_browser = $_SERVER['HTTP_USER_AGENT']; // reperisce la stringa 'user-agent' dell'utente.
-    // if (!$stmt = $mysqli->getMysqli()->prepare("SELECT password FROM utenti WHERE username = ? LIMIT 1")) return false;
-    // $stmt->bind_param('i', $username); // esegue il bind del parametro '$username'.
-    // $stmt->execute(); // Esegue la query creata.
-    // $stmt->store_result();
+    $user_browser = $_SERVER['HTTP_USER_AGENT'];
     if (!$stmt = $mysqli->ottieniUtente($username)) return false;
-    // if ($stmt->num_rows != 1) return false; // l'utente non esiste
-    // $password = $stmt->fetch_all(MYSQLI_ASSOC)['password'];
     $password = $stmt[0]['password'];
     $login_check = hash('sha512', $password . $user_browser);
-    if ($login_check != $login_string) return false; //  Login non eseguito
-    return true; // Login eseguito!!!!
+    if ($login_check != $login_string) return false;
+    return true;
 }
 
 function uploadImage($path, $image)
