@@ -2,7 +2,7 @@
 <script type="text/javascript" src="../public/assets/js/forms.js"></script>
 
 <?php if (isset($templateParams["errorelogin"])) : ?>
-<p><?php echo $templateParams["errorelogin"]; ?></p>
+    <p><?php echo $templateParams["errorelogin"]; ?></p>
 <?php endif; ?>
 <form action="#" method="post">
     <div class="email">
@@ -13,9 +13,9 @@
         <button id="show-pw-btn-login" class="show-pw-btn btn btn-primary" type="button">Mostra</button>
     </div>
     <button id="login-button" class="btn btn-primary" type="submit" disabled>Accedi</button>
-    <div class="registration-redirect">
+    <div class="register-redirect">
         <p>Non hai un account?
-            <a href="../modules/registration.php" role="link">
+            <a href="../modules/register.php" role="link">
                 <span class="redirect">Iscriviti</span>
             </a>
         </p>
