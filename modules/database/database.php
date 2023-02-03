@@ -392,7 +392,7 @@ class DatabaseHelper
         }
     }
 
-    public function getUserLogin($username, $password)
+    public function ottieniUtenteLoggato($username, $password)
     {
         $sql = "SELECT * FROM utente WHERE username = '$username' AND password = '$password'";
         $result = $this->db->query($sql);
