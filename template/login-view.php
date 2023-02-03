@@ -1,23 +1,27 @@
 <script type="text/javascript" src="../public/assets/js/sha512.js"></script>
 <script type="text/javascript" src="../public/assets/js/forms.js"></script>
 
-<?php if (isset($templateParams["errorelogin"])) : ?>
-    <p><?php echo $templateParams["errorelogin"]; ?></p>
-<?php endif; ?>
 <form action="#" method="post">
-    <div class="email">
-        <input id="email-input" required="true" type="email" name="email" placeholder="Email" maxlength="30" />
-    </div>
-    <div class="password">
-        <input id="password-input-login" required="true" type="password" name="password" placeholder="Password" />
-        <button id="show-pw-btn-login" class="show-pw-btn btn btn-primary" type="button">Mostra</button>
-    </div>
-    <button id="login-button" class="btn btn-primary" type="submit" disabled>Accedi</button>
-    <div class="register-redirect">
-        <p>Non hai un account?
-            <a href="../modules/register.php" role="link">
-                <span class="redirect">Iscriviti</span>
-            </a>
+    <div class="error mb-3">
+        <p id="error-message">
+            <?php if (isset($templateParams['errorelogin'])) {
+                echo $templateParams['errorelogin'];
+            } ?>
         </p>
     </div>
+    <div class="email input-group mb-3">
+        <input id="email-input" required="true" type="email" name="email" placeholder="Email" maxlength="30" class="form-control" />
+    </div>
+    <div class="password input-group mb-3">
+        <input id="password-input-login" required="true" type="password" name="password" placeholder="Password" class="form-control" />
+        <button id="show-pw-btn-login" type="button" class="show-pw-btn btn btn-primary">Mostra</button>
+    </div>
+    <button id="login-button" type="submit" disabled class="btn btn-primary float-end mb-3">Accedi</button>
 </form>
+<div class="register-redirect mb-3">
+    <p class="fst-italic small">Non hai un account?
+        <a href="../modules/register.php" role="link">
+            <span class="redirect">Iscriviti</span>
+        </a>
+    </p>
+</div>

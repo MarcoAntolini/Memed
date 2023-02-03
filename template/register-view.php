@@ -1,4 +1,4 @@
-<form action="#" class="register-form" method="post">
+<form action="#" method="post">
     <div class="error">
         <p id="error-message">
             <?php if (isset($templateParams['erroreregistrazione'])) {
@@ -14,11 +14,11 @@
     </div>
     <div class="password">
         <input id="password-input-register" required="true" type="password" name="password" placeholder="Password" />
-        <button id="show-pw-btn-register" class="show-pw-btn" type="button">Mostra</button>
+        <button id="show-pw-btn-register" class="show-pw-btn btn btn-primary" type="button">Mostra</button>
     </div>
     <div class="confirm-password">
         <input id="password-input-confirm" required="true" type="password" name="confirm-password" placeholder="Conferma password" />
-        <button id="show-pw-btn-confirm" class="show-pw-btn" type="button">Mostra</button>
+        <button id="show-pw-btn-confirm" class="show-pw-btn btn btn-primary" type="button">Mostra</button>
     </div>
     <button id="register-button" class="btn btn-primary" type="submit" disabled>Iscriviti</button>
     <div class="login-redirect">
