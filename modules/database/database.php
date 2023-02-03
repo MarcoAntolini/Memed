@@ -69,7 +69,7 @@ class DatabaseHelper
 
     public function inserisciNotifica($messaggio, $idnotifica, $username, $data)
     {
-        $sql =  "INSERT INTO notifica (username, idnotifica, messaggio, data) VALUES ('$username', '$idnotifica', '$messaggio', '$data')";
+        $sql =  "INSERT INTO notifica (username, idnotifica, messaggio, data, letto) VALUES ('$username', '$idnotifica', '$messaggio', '$data', 0)";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -206,9 +206,27 @@ class DatabaseHelper
         }
     }
 
-    private function cancellaNotifica($idnotifica)
+    public function cancellaNotifica($idnotifica)
     {
         $sql = "DELETE FROM notifica WHERE idnotifica = '$idnotifica'";
+        if ($this->db->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function cancellaTutteNotifiche($username){
+        $sql="DELETE FROM notifica WHERE username = '$username'";
+        if ($this->db->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function leggiTutteNotifiche($username){
+        $sql = "UPDATE notifica SET letta = '1' WHERE username = '$username'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -221,8 +239,16 @@ class DatabaseHelper
         $sql = "SELECT * FROM notifica WHERE username = '$username' ORDER BY data DESC";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            $this->cancellaNotifica($result->fetch_all(MYSQLI_ASSOC)['idnotifica']);
             return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    public function leggiNotifica($idnotifica){
+        $sql="UPDATE notifica SET letta = '1' WHERE idnotifica = '$idnotifica'";
+        if ($this->db->query($sql) === TRUE) {
+            return true;
         } else {
             return false;
         }
