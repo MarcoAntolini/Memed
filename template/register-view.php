@@ -7,7 +7,7 @@
         </p>
     </div>
     <div class="email">
-        <input id="email-input" required="true" type="text" name="email" placeholder="Email" maxlength="30" />
+        <input id="email-input" required="true" type="email" name="email" placeholder="Email" maxlength="30" />
     </div>
     <div class="username">
         <input id="username-input" required="true" type="text" name="username" placeholder="Username" maxlength="30" />

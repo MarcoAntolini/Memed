@@ -6,7 +6,7 @@
 <?php endif; ?>
 <form action="#" method="post">
     <div class="email">
-        <input id="email-input" required="true" type="text" name="email" placeholder="Email" maxlength="30" />
+        <input id="email-input" required="true" type="email" name="email" placeholder="Email" maxlength="30" />
     </div>
     <div class="password">
         <input id="password-input-login" required="true" type="password" name="password" placeholder="Password" />
