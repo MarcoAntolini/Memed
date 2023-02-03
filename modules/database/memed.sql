@@ -25,8 +25,8 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `categoria`
 --
 CREATE TABLE `categoria` (
-  `idcategoria` char(1) NOT NULL,
-  `nome` char(1) NOT NULL
+  `idcategoria` int(11) NOT NULL,
+  `nome` char(30) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
@@ -34,7 +34,7 @@ CREATE TABLE `categoria` (
 --
 CREATE TABLE `categoria_post` (
   `idpost` int(11) NOT NULL,
-  `idcategoria` char(1) NOT NULL
+  `idcategoria` int(11) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
@@ -55,7 +55,7 @@ CREATE TABLE `notifica` (
   `username` varchar(30) NOT NULL,
   `idnotifica` int(11) NOT NULL,
   `mesaggio` varchar(150) NOT NULL,
-  `data` datetime NOT NULL
+  `data` datetime NOT NULL,
   `letto` tinyint(1) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
