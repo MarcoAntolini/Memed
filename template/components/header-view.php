@@ -1,8 +1,8 @@
-<div class="header container-fluid d-flex justify-content-center color-main p-2">
+<div class="header container-fluid d-flex justify-content-center color-main p-2 fixed-top">
     <div class="row">
-        <div class="logo col">
+        <div class="col">
             <img src="../public/assets/img/logo.png" alt="logo" class="logo" />
-            <h1>Memed</h1>
+            <h1 class="title">Memed</h1>
         </div>
         <div class="search-bar col">
             <input id="search" type="text" name="search" placeholder="Cerca" />
