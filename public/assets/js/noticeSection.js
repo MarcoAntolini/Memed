@@ -2,12 +2,12 @@ function generateNotice(notice) {
     let result = "";
     for (let i = 0; i < notice.length; i++) {
         let content = `
-        <div class="notice row">
-            <p class="notice">${notice[i]["messaggio"]}</p>
-            <input type="checkbox" name="letto" value="${notice[i]["idnotifica"]}"> <!-- segna come letta -->
-            <input type="checkbox" name="cancella" value="${notice[i]["idnotifica"]}">
+        <article class="notice row">
+            <p class="notice">${notice[i]["mesaggio"]}</p>
+            <button class="btn btn-primary" type="button" name="letto" value="${notice[i]["idnotifica"]}">letto</button>
+            <button class="btn btn-primary" type="button" name="cancella" value="${notice[i]["idnotifica"]}">cancella</button>
             <!-- se notifica è richiesta allora bottoni accetta e rifiuta -->
-        </div>
+        </article>
         `;
         result += content;
     }
@@ -15,6 +15,7 @@ function generateNotice(notice) {
 }
 
 axios.get("noticeSection.php").then(Response => {
+    console.log(Response.data);
     const notice = generateNotice(Response.data);
     const main = document.getElementById("notice-section");
     main.innerHTML = notice;
