@@ -56,6 +56,7 @@ CREATE TABLE `notifica` (
   `idnotifica` int(11) NOT NULL,
   `mesaggio` varchar(150) NOT NULL,
   `data` datetime NOT NULL
+  `letto` tinyint(1) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
