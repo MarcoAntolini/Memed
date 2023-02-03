@@ -206,7 +206,7 @@ class DatabaseHelper
         }
     }
 
-    private function cancellaNotifica($idnotifica)
+    public function cancellaNotifica($idnotifica)
     {
         $sql = "DELETE FROM notifica WHERE idnotifica = '$idnotifica'";
         if ($this->db->query($sql) === TRUE) {
