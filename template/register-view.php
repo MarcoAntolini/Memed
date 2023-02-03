@@ -1,4 +1,4 @@
-<form action="#" class="registration-form" method="post">
+<form action="#" class="register-form" method="post">
     <div class="error">
         <p id="error-message">
             <?php if (isset($templateParams['erroreregistrazione'])) {
@@ -20,7 +20,7 @@
         <input id="password-input-confirm" required="true" type="password" name="confirm-password" placeholder="Conferma password" />
         <button id="show-pw-btn-confirm" class="show-pw-btn" type="button">Mostra</button>
     </div>
-    <button id="registration-button" class="btn btn-primary" type="submit" disabled>Iscriviti</button>
+    <button id="register-button" class="btn btn-primary" type="submit" disabled>Iscriviti</button>
     <div class="login-redirect">
         <p>Hai già un account?
             <a href="../modules/login.php" role="link">
