@@ -18,5 +18,5 @@ if (login_check($mysqli) == true) {
     }
     require '../template/logged-base-view.php';
 } else {
-    require "../modules/login.php";
+    header("location: login.php");
 }
