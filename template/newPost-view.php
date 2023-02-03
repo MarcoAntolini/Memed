@@ -1,11 +1,11 @@
-<form action="processa-articolo.php" method="POST" enctype="multipart/form-data">
+<form action="processa-post.php" method="POST" enctype="multipart/form-data">
             <h2>Gestisci Articolo</h2>
             <ul>
                 <li>
                     <label for="testopost">Testo post:</label><textarea id="testopost" name="testopost"></textarea>
                 </li>
                 <li>
-                    <label for="imgarticolo">Immagine Articolo</label><input type="file" name="imgarticolo" id="imgarticolo" />
+                    <label for="imgpost">Immagine post</label><input type="file" name="imgpost" id="imgpost" />
                 </li>
                 <li>
                     <?php foreach($templateParams["categorie"] as $categoria): ?>
