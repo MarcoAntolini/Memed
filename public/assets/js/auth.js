@@ -12,7 +12,7 @@ window.onload = function () {
     const passwordConfirm = document.getElementById("password-input-confirm");
     const emailInput = document.getElementById("email-input");
     const usernameInput = document.getElementById("username-input");
-    const registerButton = document.getElementById("registration-button");
+    const registerButton = document.getElementById("register-button");
     const loginButton = document.getElementById("login-button");
     if (emailInput && usernameInput && passwordRegister && passwordConfirm && registerButton) {
         emailInput.addEventListener("keyup", function () {
