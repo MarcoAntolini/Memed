@@ -7,3 +7,5 @@ template versione desktop:
 - togliere descrizione da post con tetso
 
 mettere caption sotto alla foto
+
+aggiungi immagine o video -> aggiungi immagine NO VIDEO
