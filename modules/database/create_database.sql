@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 -- Database: `memed`
 --
 -- --------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `memed` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+-- --------------------------------------------------------
 --
 -- Struttura della tabella `categoria`
 --
