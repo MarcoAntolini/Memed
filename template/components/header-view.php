@@ -5,7 +5,7 @@
             <h1 class="title">Memed</h1>
         </div>
         <div class="col">
-            <form action="" name="search" method="post" class="">
+            <form id="search-form" action="" name="search" method="post">
                 <input id="search" type="text" name="search" placeholder="Cerca" />
             </form>
             <button class="btn">
