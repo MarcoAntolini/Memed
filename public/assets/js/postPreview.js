@@ -1,4 +1,5 @@
 window.onload = function () {
+    console.log(window.location.pathname);
     const imageInput = document.getElementById("image-input");
     imageInput.addEventListener("change", function () {
         previewImage(this.files[0]);
