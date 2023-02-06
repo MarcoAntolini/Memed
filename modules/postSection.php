@@ -9,8 +9,13 @@ if (isset($_GET["url"])) {
             $post = $mysqli->ottieniPostDaUtente($_SESSION["utente"]);
             $_SESSION["utente"] = NULL;
             break;
-        case "search.php":
-            $post = $mysqli->ottieniPostPerEsplora();
+        case "explore.php":
+            if(isset($_SESSION["categoria"])){
+                $post = $mysqli->ottieniPostDaCategoria($_SESSION["categoria"]);
+                $_SESSION["categoria"] = NULL;
+            }else{
+                $post = $mysqli->ottieniPostPerEsplora($_SESSION["username"]);
+            }
             break;
         default:
             $post = NULL;
@@ -30,4 +35,5 @@ if (isset($_GET["url"])) {
     }
 
     header("Content-Type: application/json; charset=UTF-8");
+    echo json_encode($post);
 }

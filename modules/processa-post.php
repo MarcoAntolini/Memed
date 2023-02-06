@@ -17,10 +17,10 @@ foreach ($categorie as $categoria) {
 list($result, $msg) = uploadImage(UPLOAD_DIR, $_FILES["image-input"]);
 if ($result != 0) {
     $imgpost = $msg;
-    $id = $mysqli->inserisciPost($mysqli->ottieniIdUltimoPost() + 1, $imgpost, $testopost, $datapost, $autore);
+    $id = $mysqli->inserisciPost((int) $mysqli->ottieniIdUltimoPost()[0] + 1, $imgpost, $testopost, $datapost, $autore);
     if ($id != false) {
         foreach ($categorie_inserite as $categoria) {
-            $ris = $mysqli->inserisciCategoriaPost($mysqli->ottieniIdUltimoPost(), $categoria["idcategoria"]);
+            $ris = $mysqli->inserisciCategoriaPost((int) $categoria, (int) $mysqli->ottieniIdUltimoPost());
         }
         header("location: index.php");
     }

@@ -19,7 +19,7 @@ class DatabaseHelper
     public function inserisciUtente($username, $email, $password, $salt)
     {
         $sql = "INSERT INTO utenti (username, email, password, salt, nomefile, bio)
-                VALUES ('$username', '$email', '$password', '$salt', '../public/assets/img/default-pic.jpg', '')";
+                VALUES ('$username', '$email', '$password', '$salt', '../public/assets/img/default-pic.png', '')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -129,7 +129,8 @@ class DatabaseHelper
         }
     }
 
-    public function ottienicategoriePost($idpost){
+    public function ottienicategoriePost($idpost)
+    {
         $sql = "SELECT * FROM categoria_post WHERE idpost = '$idpost'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
@@ -183,9 +184,9 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniPostPerEsplora()
+    public function ottieniPostPerEsplora($username)
     { //da finire
-        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM) ORDER BY data DESC";
+        $sql = "SELECT * FROM post WHERE username NOT IN (SELECT username FROM segue where username='$username') ORDER BY data DESC";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -198,7 +199,7 @@ class DatabaseHelper
     {
         $this->cancellaCommentoDaPost($idpost);
         $this->cancellaReazioneDaPost($idpost);
-        $this->cancellaPostSalvato($idpost);
+        $this->cancellapostsalva($idpost);
         $sql = "DELETE FROM post WHERE idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -207,9 +208,18 @@ class DatabaseHelper
         }
     }
 
-    private function cancellaPostSalvato($idpost)
-    {
+    private function cancellapostsalva($idpost){
         $sql = "DELETE FROM salva WHERE idpost = '$idpost'";
+        if ($this->db->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function cancellaPostSalvato($username, $idpost)
+    {
+        $sql = "DELETE FROM salva WHERE idpost = '$idpost' and username = '$username'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -237,8 +247,9 @@ class DatabaseHelper
         }
     }
 
-    public function cancellaTutteNotifiche($username){
-        $sql="DELETE FROM notifica WHERE username = '$username'";
+    public function cancellaTutteNotifiche($username)
+    {
+        $sql = "DELETE FROM notifica WHERE username = '$username'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -246,7 +257,8 @@ class DatabaseHelper
         }
     }
 
-    public function leggiTutteNotifiche($username){
+    public function leggiTutteNotifiche($username)
+    {
         $sql = "UPDATE notifica SET letta = '1' WHERE username = '$username'";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -266,8 +278,9 @@ class DatabaseHelper
         }
     }
 
-    public function leggiNotifica($idnotifica){
-        $sql="UPDATE notifica SET letta = '1' WHERE idnotifica = '$idnotifica'";
+    public function leggiNotifica($idnotifica)
+    {
+        $sql = "UPDATE notifica SET letta = '1' WHERE idnotifica = '$idnotifica'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -312,7 +325,7 @@ class DatabaseHelper
         $sql = "SELECT idpost FROM post ORDER BY idpost DESC LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_row();
         } else {
             return false;
         }

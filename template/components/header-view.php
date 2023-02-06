@@ -20,11 +20,6 @@
                     </button>
                 </div>
             </form>
-            <div class="collapse" id="users-preview">
-                <div class="card card-body">
-                    <!-- TODO: QUI CI VANNO GLI UTENTI TROVATI -->
-                </div>
-            </div>
         </div>
         <div class="col">
             <a href="settings.php">
