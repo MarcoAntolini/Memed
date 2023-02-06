@@ -57,6 +57,6 @@ function generatePost(post) {
 
 axios.get("postSection.php").then(Response => {
     const post = generatePost(Response.data);
-    const section = document.getElementById("explore-section");
+    const section = document.getElementById("post-section");
     section.innerHTML = post;
 });
