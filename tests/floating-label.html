@@ -7,20 +7,20 @@
     .form-group input[type="text"],
     .form-group input[type="email"],
     .form-group input[type="password"] {
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        padding-left: .5rem;
         font-size: 1rem;
         border: 1px solid #ced4da;
         border-radius: .25rem;
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-        width: 100%;
     }
 
     .form-group label {
         position: absolute;
         top: 0;
         left: 0;
-        padding: 1.5rem 1rem;
+        padding: .5rem .5rem;
         font-size: 1rem;
         pointer-events: none;
         transition: all .1s ease-in-out;
@@ -30,15 +30,17 @@
     .form-group input:focus~label,
     .form-group input:valid~label {
         top: -1.9rem;
-        left: .75rem;
+        left: .5rem;
         font-size: .75rem;
+        font-weight: bold;
         color: #2196F3;
         background-color: white;
+        padding: 1.5rem .2rem 0;
     }
 
     .form-group input:focus {
         outline: 0;
-        border-color: #2196F3;
+        border: 2px solid #2196F3;
     }
 </style>
 
