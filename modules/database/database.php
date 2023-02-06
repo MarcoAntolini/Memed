@@ -184,9 +184,9 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniPostPerEsplora()
+    public function ottieniPostPerEsplora($username)
     { //da finire
-        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM) ORDER BY data DESC";
+        $sql = "SELECT * FROM post WHERE username NOT IN (SELECT username FROM segue where username='$username') ORDER BY data DESC";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -259,7 +259,7 @@ class DatabaseHelper
 
     public function leggiTutteNotifiche($username)
     {
-        $sql = "UPDATE notifica SET letta = '1' WHERE username = '$username'";
+        $sql = "UPDATE notifica SET letto = '1' WHERE username = '$username'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -280,7 +280,7 @@ class DatabaseHelper
 
     public function leggiNotifica($idnotifica)
     {
-        $sql = "UPDATE notifica SET letta = '1' WHERE idnotifica = '$idnotifica'";
+        $sql = "UPDATE notifica SET letto = '1' WHERE idnotifica = '$idnotifica'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -432,7 +432,7 @@ class DatabaseHelper
 
     public function contaNotifiche($username)
     {
-        $sql = "SELECT COUNT(*) FROM notifica WHERE username = '$username'";
+        $sql = "SELECT COUNT(*) FROM notifica WHERE username = '$username' and letto = 0";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_row();
@@ -461,5 +461,11 @@ class DatabaseHelper
         } else {
             return false;
         }
+    }
+
+    public function ottieniUtentiPerNome($username) {
+        $sql = "SELECT username, email, nomefile, bio FROM utenti WHERE username LIKE '%$username%'";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
