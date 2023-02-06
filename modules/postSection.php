@@ -6,7 +6,8 @@ if (isset($_GET["url"])) {
             $post = $mysqli->ottieniPostPerHome($_SESSION["username"]);
             break;
         case "/Memed/modules/user.php":
-            $post = $mysqli->ottieniPostDaUtente($_SESSION["username"]);
+            $post = $mysqli->ottieniPostDaUtente($_SESSION["utente"]);
+            $_SESSION["utente"]=NULL;
             break;
         case "/Memed/modules/search.php":
             $post = $mysqli->ottieniPostPerEsplora();
