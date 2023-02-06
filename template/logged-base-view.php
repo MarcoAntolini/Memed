@@ -15,7 +15,7 @@
         <title><?php echo $templateParams["titolo"]; ?></title>
     </head>
     <body>
-        <?php require 'components/header-view.php'; ?>
+        <?php require "./template/components/header-view.php"; ?>
         <?php
         if (isset($templateParams["nome"])) {
             require $templateParams["nome"];
