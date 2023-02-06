@@ -5,17 +5,13 @@
             <h1 class="title">Memed</h1>
         </div>
         <div class="col">
-            <form action="#" method="post">
+            <form id="search-form" action="search-view.php" name="" method="GET">
                 <div class="input-group">
                     <div class="form-floating form-group">
-                        <input class="form-control" name="search-input" list="recents" id="search-input" placeholder="Esplora">
-                        <label for="search-input" class="form-label">Esplora</label>
-                        <datalist id="recents">
-                            <!-- TODO: ULTIME 5 RICERCHE RECENTI TRAMITE SESSION -->
-                            <!-- <option value=""> -->
-                        </datalist>
+                        <input class="form-control" name="search" list="recents" id="search" placeholder="Cerca">
+                        <label for="search-input" class="form-label">Cerca</label>
                     </div>
-                    <button id="search-button" type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#users-preview" aria-expanded="false" aria-controls="users-preview">
+                    <button id="search-button" type="submit" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="" />
                             <circle cx="10" cy="10" r="7" />
