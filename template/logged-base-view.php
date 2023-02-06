@@ -21,10 +21,10 @@
 <body>
     <?php require 'components/header-view.php'; ?>
     <?php
-        if (isset($templateParams["nome"])) {
-            require $templateParams["nome"];
-        }
-        ?>
+    if (isset($templateParams["nome"])) {
+        require $templateParams["nome"];
+    }
+    ?>
     <?php require 'components/footer-view.php'; ?>
 </body>
 
