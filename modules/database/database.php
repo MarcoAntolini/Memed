@@ -449,4 +449,10 @@ class DatabaseHelper
             return false;
         }
     }
+
+    public function ottieniUtentiPerNome($username) {
+        $sql = "SELECT username, email, nomefile, bio FROM utenti WHERE username LIKE '%$username%'";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
