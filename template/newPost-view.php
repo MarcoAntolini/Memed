@@ -1,7 +1,7 @@
 <script src="../public/assets/js/postPreview.js"></script>
 
 <div class="notice-section container-fluid d-flex justify-content-center">
-    <form action="#" method="post" class="">
+    <form action="#" method="post" enctype="multipart/form-data">
         <div class="form-outline mb-3">
             <input class="form-control" type="file" id="image-input" accept="image/png, image/jpg, image/jpeg, image/gif" name="image-input">
         </div>
