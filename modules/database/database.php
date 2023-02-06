@@ -259,7 +259,7 @@ class DatabaseHelper
 
     public function leggiTutteNotifiche($username)
     {
-        $sql = "UPDATE notifica SET letta = '1' WHERE username = '$username'";
+        $sql = "UPDATE notifica SET letto = '1' WHERE username = '$username'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -280,7 +280,7 @@ class DatabaseHelper
 
     public function leggiNotifica($idnotifica)
     {
-        $sql = "UPDATE notifica SET letta = '1' WHERE idnotifica = '$idnotifica'";
+        $sql = "UPDATE notifica SET letto = '1' WHERE idnotifica = '$idnotifica'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -432,7 +432,7 @@ class DatabaseHelper
 
     public function contaNotifiche($username)
     {
-        $sql = "SELECT COUNT(*) FROM notifica WHERE username = '$username'";
+        $sql = "SELECT COUNT(*) FROM notifica WHERE username = '$username' and letto = 0";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_row();

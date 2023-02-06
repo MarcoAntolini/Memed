@@ -7,7 +7,7 @@ if (login_check($mysqli) == true) {
     $templateParams["nome"] = "notice-view.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/noticeSection.js");
     $templateParams["username"] = $_SESSION["username"];
-    $templateParams["numNotifiche"] = (int) $mysqli->contaNotifiche($_SESSION["username"]);
+    $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"])[0];
     $templateParams["notifiche"] = $mysqli->ottieniNotifica($_SESSION["username"]);
     if (isset($_POST["letto"])) {
         $mysqli->leggiNotifica($_POST["letto"]);
