@@ -8,23 +8,23 @@ function generatePost(post) {
                 <img class="post-settings" src="" alt="">
                 <div class="reactions">
                     <div class="1">
-                        <img src="../public/assets/img/reazione-1.jpg" alt="reazione-1">
+                        <img src="../public/assets/img/reazione-1.png" alt="reazione-1">
                         <span class="reaction-count">${post[i]["reazione1"]}</span>
                     </div>
                     <div class="2">
-                        <img src="../public/assets/img/reazione-2.jpg" alt="reazione-2">
+                        <img src="../public/assets/img/reazione-2.png" alt="reazione-2">
                         <span class="reaction-count">${post[i]["reazione2"]}</span>
                     </div>
                     <div class="3">
-                        <img src="../public/assets/img/reazione-3.jpg" alt="reazione-3">
+                        <img src="../public/assets/img/reazione-3.png" alt="reazione-3">
                         <span class="reaction-count">${post[i]["reazione3"]}</span>
                     </div>
                     <div class="4">
-                        <img src="../public/assets/img/reazione-4.jpg" alt="reazione-4">
+                        <img src="../public/assets/img/reazione-4.png" alt="reazione-4">
                         <span class="reaction-count">${post[i]["reazione4"]}</span>
                     </div>
                     <div class="5">
-                        <img src="../public/assets/img/reazione-5.jpg" alt="reazione-5">
+                        <img src="../public/assets/img/reazione-5.png" alt="reazione-5">
                         <span class="reaction-count">${post[i]["reazione5"]}</span>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ function generatePost(post) {
     return result;
 }
 
-function switchPage() {
+function checkPage() {
     const windowPath = window.location.pathname;
     let url = "";
     if (windowPath.includes("index.php")) {
@@ -68,8 +68,8 @@ function switchPage() {
     return url;
 }
 
-axios.get("postSection.php", { params: { url: switchPage() } }).then(Response => {
-    console.log(Response.data);
+axios.get("postSection.php", { params: { url: checkPage() } }).then(Response => {
+    console.log(Response);
     const post = generatePost(Response.data);
     const main = document.getElementById("post-section");
     main.innerHTML = post;
