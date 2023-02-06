@@ -14,4 +14,7 @@ if (isset($_POST['username'])) {
     }
 }
 
+$templateParams["titolo"] = "Memed - Esplora";
+$templateParams["nome"] = "../template/search-view.php";
+
 require "../template/logged-base-view.php";
