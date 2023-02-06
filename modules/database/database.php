@@ -19,7 +19,7 @@ class DatabaseHelper
     public function inserisciUtente($username, $email, $password, $salt)
     {
         $sql = "INSERT INTO utenti (username, email, password, salt, nomefile, bio)
-                VALUES ('$username', '$email', '$password', '$salt', '../public/assets/img/default-pic.jpg', '')";
+                VALUES ('$username', '$email', '$password', '$salt', '../public/assets/img/default-pic.png', '')";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -129,7 +129,8 @@ class DatabaseHelper
         }
     }
 
-    public function ottienicategoriePost($idpost){
+    public function ottienicategoriePost($idpost)
+    {
         $sql = "SELECT * FROM categoria_post WHERE idpost = '$idpost'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
@@ -237,8 +238,9 @@ class DatabaseHelper
         }
     }
 
-    public function cancellaTutteNotifiche($username){
-        $sql="DELETE FROM notifica WHERE username = '$username'";
+    public function cancellaTutteNotifiche($username)
+    {
+        $sql = "DELETE FROM notifica WHERE username = '$username'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
@@ -246,7 +248,8 @@ class DatabaseHelper
         }
     }
 
-    public function leggiTutteNotifiche($username){
+    public function leggiTutteNotifiche($username)
+    {
         $sql = "UPDATE notifica SET letta = '1' WHERE username = '$username'";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -266,8 +269,9 @@ class DatabaseHelper
         }
     }
 
-    public function leggiNotifica($idnotifica){
-        $sql="UPDATE notifica SET letta = '1' WHERE idnotifica = '$idnotifica'";
+    public function leggiNotifica($idnotifica)
+    {
+        $sql = "UPDATE notifica SET letta = '1' WHERE idnotifica = '$idnotifica'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
