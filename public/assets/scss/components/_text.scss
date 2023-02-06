@@ -1,5 +1,13 @@
 @use "../abstract" as *;
 
+a {
+    color: black;
+    text-decoration: none;
+    * {
+        color: black;
+    }
+}
+
 .title {
     font-family: $font-title;
     font-size: 80px;
