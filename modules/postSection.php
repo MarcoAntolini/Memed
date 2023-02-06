@@ -2,17 +2,14 @@
 require("bootstrap.php");
 if (isset($_GET["url"])) {
     switch ($_GET["url"]) {
-        case "/Memed/modules/index.php":
+        case "index.php":
             $post = $mysqli->ottieniPostPerHome($_SESSION["username"]);
             break;
-        case "/Memed/modules/user.php":
+        case "user.php":
             $post = $mysqli->ottieniPostDaUtente($_SESSION["utente"]);
-            $_SESSION["utente"]=NULL;
+            $_SESSION["utente"] = NULL;
             break;
-        case "/Memed/modules/search.php":
-            $post = $mysqli->ottieniPostPerEsplora();
-            break;
-        case "/Memed/modules/search.php":
+        case "search.php":
             $post = $mysqli->ottieniPostPerEsplora();
             break;
         default:
@@ -33,5 +30,4 @@ if (isset($_GET["url"])) {
     }
 
     header("Content-Type: application/json; charset=UTF-8");
-    echo json_encode($post);
 }

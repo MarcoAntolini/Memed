@@ -55,7 +55,20 @@ function generatePost(post) {
     return result;
 }
 
-axios.get("postSection.php", { params: { url: window.location.pathname } }).then(Response => {
+function switchPage() {
+    const windowPath = window.location.pathname;
+    let url = "";
+    if (windowPath.includes("index.php")) {
+        url = "index.php";
+    } else if (windowPath.includes("explore.php")) {
+        url = "explore.php";
+    } else if (windowPath.includes("user.php")) {
+        url = "user.php";
+    }
+    return url;
+}
+
+axios.get("postSection.php", { params: { url: switchPage() } }).then(Response => {
     console.log(Response.data);
     const post = generatePost(Response.data);
     const main = document.getElementById("post-section");
