@@ -15,3 +15,4 @@ https://getbootstrap.com/docs/5.0/content/typography/
 https://getbootstrap.com/docs/5.0/components/popovers/
 https://getbootstrap.com/docs/5.0/components/badge/
 https://getbootstrap.com/docs/5.0/forms/validation/
+spinners e infinite scroll (lazy loading?)
