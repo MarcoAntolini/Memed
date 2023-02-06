@@ -3,7 +3,8 @@ processa-post.php spostare?
 controllare la view di notifiche e il suo file js
 
 cerca con query, bootstrap o js
-cerca utenti o post?
+cerca utenti
+filtra categoria
 
 
 https://getbootstrap.com/docs/5.0/forms/input-group/
