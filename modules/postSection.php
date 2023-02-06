@@ -1,7 +1,7 @@
 <?php
 require("bootstrap.php");
-if(isset($_GET["url"])){
-    switch($_GET["url"]){
+if (isset($_GET["url"])) {
+    switch ($_GET["url"]) {
         case "/Memed/modules/index.php":
             $post = $mysqli->ottieniPostPerHome($_SESSION["username"]);
             break;
@@ -30,7 +30,7 @@ if(isset($_GET["url"])){
             $post[$i]["reazione5"] = $mysqli->contaReazioniPost(5, $post[$i]["idpost"]);
         }
     }
-    
+
     header("Content-Type: application/json; charset=UTF-8");
     echo json_encode($post);
 }

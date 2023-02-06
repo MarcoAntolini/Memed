@@ -26,11 +26,11 @@
                         </div>
                         <div class="modal-body">
                             <?php foreach ($templateParams["follower"] as $follower) : ?>
-                            <div class="follower">
-                                <a href="user.php?username=<?php echo $follower["username"]; ?>">
-                                    <?php echo $follower["username"]; ?>
-                                </a>
-                            </div>
+                                <div class="follower">
+                                    <a href="user.php?username=<?php echo $follower["username"]; ?>">
+                                        <?php echo $follower["username"]; ?>
+                                    </a>
+                                </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -45,13 +45,13 @@
                         </div>
                         <div class="modal-body">
                             <?php if ($templateParams["seguiti"]) : ?>
-                            <?php foreach ($templateParams["seguiti"] as $followed) : ?>
-                            <div class="followed">
-                                <a href="user.php?username=<?php echo $followed["username"]; ?>">
-                                    <?php echo $followed["username"]; ?>
-                                </a>
-                            </div>
-                            <?php endforeach; ?>
+                                <?php foreach ($templateParams["seguiti"] as $followed) : ?>
+                                    <div class="followed">
+                                        <a href="user.php?username=<?php echo $followed["username"]; ?>">
+                                            <?php echo $followed["username"]; ?>
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                 echo '<div id="post-section"></div>';
                 foreach ($templateParams["js"] as $script) :
             ?>
-            <script src="<?php echo $script; ?>"></script>
+                    <script src="<?php echo $script; ?>"></script>
             <?php
                 endforeach;
             endif;
