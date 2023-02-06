@@ -9,7 +9,6 @@ if (login_check($mysqli) == true) {
     if (isset($_GET["username"])) {
         $utente = $_GET["username"];
         $templateParams["utente"] = $utente;
-        $_SESSION["utente"] = $utente;
         $templateParams["profilo"] = $mysqli->ottieniUtente($utente);
         $templateParams["nFol"] = $mysqli->contaFollower($utente);
         $templateParams["nSeguiti"] = $mysqli->contaSeguiti($utente);
