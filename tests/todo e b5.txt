@@ -1,0 +1,17 @@
+processa-post.php spostare?
+
+controllare la view di notifiche e il suo file js
+
+cerca con query, bootstrap o js
+cerca utenti o post?
+
+
+https://getbootstrap.com/docs/5.0/forms/input-group/
+https://getbootstrap.com/docs/5.0/components/tooltips/
+https://getbootstrap.com/docs/5.0/components/toasts/
+https://getbootstrap.com/docs/5.0/components/navs-tabs/
+https://getbootstrap.com/docs/5.0/components/card/
+https://getbootstrap.com/docs/5.0/content/typography/
+https://getbootstrap.com/docs/5.0/components/popovers/
+https://getbootstrap.com/docs/5.0/components/badge/
+https://getbootstrap.com/docs/5.0/forms/validation/
