@@ -16,7 +16,7 @@ if (login_check($mysqli) == true) {
         $templateParams["seguiti"] = $mysqli->ottieniSeguiti($utente);
         $templateParams["nPost"] = $mysqli->contaPost($utente);
     }
-    require '../template/base/logged-base-view.php';
+    require '../template/logged-base-view.php';
 } else {
     header("location: login.php");
 }

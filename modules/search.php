@@ -14,4 +14,4 @@ if (isset($_POST['username'])) {
     }
 }
 
-require "../template/base/logged-base-view.php";
+require "../template/logged-base-view.php";

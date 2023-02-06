@@ -6,7 +6,7 @@ if (login_check($mysqli) == true) {
     $templateParams["nome"] = "newPost-view.php";
     $templateParams["username"] = $_SESSION["username"];
     $templateParams["categorie"] = $mysqli->ottieniCategorie();
-    require '../template/base/logged-base-view.php';
+    require '../template/logged-base-view.php';
 } else {
     header("location: login.php");
 }
