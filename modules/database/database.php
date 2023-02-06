@@ -184,9 +184,9 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniPostPerEsplora()
+    public function ottieniPostPerEsplora($username)
     { //da finire
-        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM) ORDER BY data DESC";
+        $sql = "SELECT * FROM post WHERE username NOT IN (SELECT username FROM segue where username='$username') ORDER BY data DESC";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
