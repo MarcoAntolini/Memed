@@ -55,7 +55,8 @@ function generatePost(post) {
     return result;
 }
 
-axios.get("postSection.php").then(Response => {
+axios.get("postSection.php", {params: {url: window.location.pathname}}).then(Response => {
+    console.log(Response.data);
     const post = generatePost(Response.data);
     const main = document.getElementById("post-section");
     main.innerHTML = post;
