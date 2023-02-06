@@ -51,6 +51,8 @@ VALUES ('user1', 'user2'),
 ('user3', 'user1');
 
 INSERT INTO reazione (idreazione, nomefile) --TODO: mettere a posto i nomi delle immagini
-VALUES ('1', '../public/assets/img/default-pic.jpg'),
-('2', '../public/assets/img/default-pic.jpg'),
-('3', '../public/assets/img/default-pic.jpg');
+VALUES ('1', '../public/assets/img/reazione-1.jpg'),
+('2', '../public/assets/img/reazione-2.jpg'),
+('3', '../public/assets/img/reazione-3.jpg'),
+('4', '../public/assets/img/reazione-4.jpg'),
+('5', '../public/assets/img/reazione-5.jpg');
