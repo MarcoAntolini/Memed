@@ -55,7 +55,7 @@ function generatePost(post) {
     return result;
 }
 
-axios.get("search.php").then(Response => {
+axios.get("postSection.php").then(Response => {
     const post = generatePost(Response.data);
     const section = document.getElementById("explore-section");
     section.innerHTML = post;
