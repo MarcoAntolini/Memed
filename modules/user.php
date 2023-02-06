@@ -17,6 +17,15 @@ if (login_check($mysqli) == true) {
         $templateParams["seguiti"] = $mysqli->ottieniSeguiti($utente);
         $templateParams["nPost"] = $mysqli->contaPost($utente);
     }
+    if (isset($_POST["post-comment"])) {
+        $mysqli->inserisciCommento(
+            $mysqli->ottieniIdUltimoCommento() + 1,
+            $_POST["comment-text"],
+            date("20y-m-d h:m:s"),
+            $_SESSION["username"],
+            $_POST["idpost"]
+        );
+    }
     require '../template/logged-base-view.php';
 } else {
     header("location: login.php");
