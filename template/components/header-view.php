@@ -15,7 +15,7 @@
                             <!-- <option value=""> -->
                         </datalist>
                     </div>
-                    <button id="search-button" type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#users-preview" aria-expanded="false" aria-controls="users-preview">
+                    <button id="search-button" type="button" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="" />
                             <circle cx="10" cy="10" r="7" />
@@ -24,11 +24,6 @@
                     </button>
                 </div>
             </form>
-            <div class="collapse" id="users-preview">
-                <div class="card card-body">
-                    <!-- TODO: QUI CI VANNO GLI UTENTI TROVATI -->
-                </div>
-            </div>
         </div>
         <div class="col">
             <a href="settings.php">
