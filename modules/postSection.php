@@ -11,11 +11,14 @@ if(isset($_GET["url"])){
         case "/Memed/modules/search.php":
             $post = $mysqli->ottieniPostPerEsplora();
             break;
+        case "/Memed/modules/search.php":
+            $post = $mysqli->ottieniPostPerEsplora();
+            break;
         default:
             $post = NULL;
             break;
     }
-    
+
     if ($post != NULL) {
         for ($i = 0; $i < count($post); $i++) {
             $post[$i]["nomefile"] = UPLOAD_DIR . $post[$i]["nomefile"];
