@@ -1,5 +1,12 @@
 <?php 
-    require_once 'bootstrap.php';
-    require 'logged-base-view.php';
-    $templateParams["nome"] = "Memed - Cerca";
-    $templateParams["results"] = $mysqli->ottieniUtentiPerNome($_GET['search']);
+    require_once "../modules/bootstrap.php";
+    $templateParams["titolo"] = "Memed - Ricerca";
+    $templateParams["risultati"] = $mysqli->ottieniUtentiPerNome($_GET['search']);
+    $res = $templateParams["risultati"];
+    if (empty($res)) {
+        echo "Nessun risultato.";
+    }
+    foreach ($res as $r) {
+        echo $r["username"] . '<br>';
+    }
+    require "../template/logged-base-view.php";
