@@ -20,6 +20,12 @@ if (login_check($mysqli) == true) {
             $_POST["idpost"]
         );
     }
+    if(isset($_POST["delete-post"])) {
+        $mysqli->cancellaPost($_POST["delete-post"]);
+    }
+    if(isset($_POST["save-post"])) {
+        $mysqli->inserisciSalva($_SESSION["username"], $_POST["delete-post"]);
+    }
     require "../template/logged-base-view.php";
 } else {
     header("location: login.php");
