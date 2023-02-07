@@ -222,7 +222,7 @@ class DatabaseHelper
     {
         $this->cancellaCommentoDaPost($idpost);
         $this->cancellaReazioneDaPost($idpost);
-        $this->cancellapostsalva($idpost);
+        $this->cancellaPostSalvato($idpost);
         $sql = "DELETE FROM post WHERE idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -231,19 +231,9 @@ class DatabaseHelper
         }
     }
 
-    private function cancellapostsalva($idpost)
+    private function cancellaPostSalvato($idpost)
     {
         $sql = "DELETE FROM salva WHERE idpost = '$idpost'";
-        if ($this->db->query($sql) === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function cancellaPostSalvato($username, $idpost)
-    {
-        $sql = "DELETE FROM salva WHERE idpost = '$idpost' and username = '$username'";
         if ($this->db->query($sql) === TRUE) {
             return true;
         } else {
