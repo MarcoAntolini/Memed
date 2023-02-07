@@ -1,4 +1,5 @@
 processa-post.php spostare?
+inserisciNotifica() del db
 
 controllare la view di notifiche e il suo file js
 

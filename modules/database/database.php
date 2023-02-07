@@ -37,7 +37,8 @@ class DatabaseHelper
         }
     }
 
-    public function ottienePost($idpost){
+    public function ottienePost($idpost)
+    {
         $sql = "select * form post where idpost = '$idpost'";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
@@ -51,7 +52,12 @@ class DatabaseHelper
     {
         $sql = "INSERT INTO commento (idpost, username, idcommento, testo, data) VALUES ('$idpost', '$username', '$idcommento', '$testo', '$data')";
         if ($this->db->query($sql) === TRUE) {
-            $this->inserisciNotifica("<a  href=\"user.php?username='$username'\">'$username'</a> ha commentato un tuo post", (int) $this->ottieniIdUltimaNotifica()+1, $this->ottienePost($idpost)["username"], $data);
+            $this->inserisciNotifica(
+                "<a  href=\"user.php?username='$username'\">'$username'</a> ha commentato un tuo post",
+                (int)$this->ottieniIdUltimaNotifica() + 1,
+                $this->ottienePost($idpost)["username"],
+                $data
+            );
             return true;
         } else {
             return false;
@@ -123,7 +129,12 @@ class DatabaseHelper
     {
         $sql = "INSERT INTO segue (Fol_username, username) VALUES ('$Fol_username', '$username')";
         if ($this->db->query($sql) === TRUE) {
-            $this->inserisciNotifica("<a  href=\"user.php?username='$username'\">'$username'</a> ha iniziato a seguirti", (int) $this->ottieniIdUltimaNotifica()+1, $Fol_username, date("Y-m-d H:i:s"));
+            $this->inserisciNotifica(
+                "<a  href=\"user.php?username='$username'\">'$username'</a> ha iniziato a seguirti",
+                (int) $this->ottieniIdUltimaNotifica() + 1,
+                $Fol_username,
+                date("20y-m-d h:m:s")
+            );
             return true;
         } else {
             return false;
@@ -220,7 +231,8 @@ class DatabaseHelper
         }
     }
 
-    private function cancellapostsalva($idpost){
+    private function cancellapostsalva($idpost)
+    {
         $sql = "DELETE FROM salva WHERE idpost = '$idpost'";
         if ($this->db->query($sql) === TRUE) {
             return true;
@@ -475,7 +487,8 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniUtentiPerNome($username) {
+    public function ottieniUtentiPerNome($username)
+    {
         $sql = "SELECT username, email, nomefile, bio FROM utenti WHERE username LIKE '%$username%'";
         $result = $this->db->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
