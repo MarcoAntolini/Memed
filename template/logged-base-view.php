@@ -15,13 +15,11 @@
 
 <body>
     <?php require 'components/header-view.php'; ?>
-    <main>
     <?php
-        if (isset($templateParams["nome"])) {
-            require $templateParams["nome"];
-        }
+    if (isset($templateParams["nome"])) {
+        require $templateParams["nome"];
+    }
     ?>
-    </main>
     <?php require 'components/footer-view.php'; ?>
 </body>
 

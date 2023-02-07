@@ -1,4 +1,4 @@
-<header class="header container-fluid d-flex justify-content-center color-main p-2 fixed-top">
+<div class="header container-fluid d-flex justify-content-center color-main p-2 fixed-top">
     <div class="row gap-2 align-items-end">
         <div class="col">
             <img src="../public/assets/img/logo.png" alt="logo" class="logo" />
@@ -34,4 +34,4 @@
             </a>
         </div>
     </div>
-</header>
+</div>
