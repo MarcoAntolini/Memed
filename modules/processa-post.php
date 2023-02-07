@@ -1,7 +1,6 @@
 <?php
 require_once 'bootstrap.php';
 
-//Inserisco
 $testopost = htmlspecialchars($_POST["description-input"]);
 $datapost = date("20y-m-d h:m:s");
 $autore = $_SESSION["username"];

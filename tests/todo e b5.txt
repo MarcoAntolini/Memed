@@ -1,7 +1,10 @@
 processa-post.php spostare?
 inserisciNotifica() del db
 
-controllare la view di notifiche e il suo file js
+modifica profilo e post
+
+explore-view
+notice.view e js
 
 cerca con query, bootstrap o js
 cerca utenti
