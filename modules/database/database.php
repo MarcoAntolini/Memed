@@ -37,10 +37,21 @@ class DatabaseHelper
         }
     }
 
+    public function ottienePost($idpost){
+        $sql = "select * form post where idpost = '$idpost'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_row();
+        } else {
+            return false;
+        }
+    }
+
     public function inserisciCommento($idcommento, $testo, $data, $username, $idpost)
     {
         $sql = "INSERT INTO commento (idpost, username, idcommento, testo, data) VALUES ('$idpost', '$username', '$idcommento', '$testo', '$data')";
         if ($this->db->query($sql) === TRUE) {
+            $this->inserisciNotifica("<a  href=\"user.php?username='$username'\">'$username'</a> ha commentato un tuo post", (int) $this->ottieniIdUltimaNotifica()+1, $this->ottienePost($idpost)["username"], $data);
             return true;
         } else {
             return false;
@@ -112,6 +123,7 @@ class DatabaseHelper
     {
         $sql = "INSERT INTO segue (Fol_username, username) VALUES ('$Fol_username', '$username')";
         if ($this->db->query($sql) === TRUE) {
+            $this->inserisciNotifica("<a  href=\"user.php?username='$username'\">'$username'</a> ha iniziato a seguirti", (int) $this->ottieniIdUltimaNotifica()+1, $Fol_username, date("Y-m-d H:i:s"));
             return true;
         } else {
             return false;
@@ -186,7 +198,7 @@ class DatabaseHelper
 
     public function ottieniPostPerEsplora($username)
     { //da finire
-        $sql = "SELECT * FROM post WHERE username NOT IN (SELECT username FROM segue where username='$username') ORDER BY data DESC";
+        $sql = "SELECT * FROM post WHERE username != '$username' ORDER BY data DESC";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
