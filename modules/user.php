@@ -15,6 +15,13 @@ if (login_check($mysqli) == true) {
         $templateParams["follower"] = $mysqli->ottieniFollower($utente);
         $templateParams["seguiti"] = $mysqli->ottieniSeguiti($utente);
         $templateParams["nPost"] = $mysqli->contaPost($utente);
+        if($templateParams["utente"]!=$templateParams["username"]){
+        if(in_array($templateParams["username"], $templateParams["follower"])){
+            $templateParams["isFollowing"] = true;
+        }else{
+            $templateParams["isFollowing"] = false;
+        }}
+            
     }
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js");
     if (isset($_POST["post-comment"])) {
@@ -26,6 +33,7 @@ if (login_check($mysqli) == true) {
             $_POST["idpost"]
         );
     }
+
     if (isset($_POST["delete-post"])) {
         $mysqli->cancellaPost($_POST["idpost"]);
     }

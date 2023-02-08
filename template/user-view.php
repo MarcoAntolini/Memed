@@ -11,6 +11,21 @@
             <div class="bio">
                 <?php echo $templateParams["profilo"][0]["bio"]; ?>
             </div>
+            <?php if($templateParams["utente"] != $_SESSION["username"]): ?>
+                <div class="follow-section">
+                    <?php if($templateParams["isFollowing"]): ?>
+                        <form action="processa-unfollow.php" method="post">
+                            <input type="hidden" name="username" value="<?php echo $templateParams["utente"]; ?>">
+                            <button type="submit" class="btn btn-primary">Unfollow</button>
+                        </form>
+                    <?php else: ?>
+                        <form action="processa-follow.php" method="post">
+                            <input type="hidden" name="username" value="<?php echo $templateParams["utente"]; ?>">
+                            <button type="submit" class="btn btn-primary">Follow</button>
+                        </form>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
             <button class="follower-count btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target=".follower-list">
                 Follower: <?php echo $templateParams["nFol"][0]; ?>
             </button>
