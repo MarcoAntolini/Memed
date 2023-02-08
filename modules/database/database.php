@@ -145,6 +145,19 @@ class DatabaseHelper
         }
     }
 
+    public function isSaved($username, $idpost){
+        $sql = "SELECT * FROM salva WHERE username = ? AND idpost = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("si", $username, $idpost);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function cancellaSalva($username, $idpost)
     {
         $sql = "DELETE FROM salva WHERE username = ? AND idpost = ?";

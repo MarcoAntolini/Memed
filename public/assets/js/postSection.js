@@ -46,10 +46,17 @@ function generatePost(post) {
                             </div>
             `;
         } else {
+            if(!$post[i][isSaved]) {
             content += `
                             <button class="save-post btn btn-primary" type="submit" name="save-post">Salva</button>
                             <button class="report-post btn btn-warning" type="submt" name="report-post">Segnala</button>
             `;
+            } else {
+                content += `
+                <button class="unsave-post btn btn-primary" type="submit" name="unsave-post">Rimuovi</button>
+                <button class="report-post btn btn-warning" type="submt" name="report-post">Segnala</button>
+`;    
+            }
         }
         content += `
                         </form >
