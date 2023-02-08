@@ -47,8 +47,8 @@
                             <?php if ($templateParams["seguiti"]) : ?>
                                 <?php foreach ($templateParams["seguiti"] as $followed) : ?>
                                     <div class="followed">
-                                        <a href="user.php?username=<?php echo $followed["username"]; ?>">
-                                            <?php echo $followed["username"]; ?>
+                                        <a href="user.php?username=<?php echo $followed["Fol_username"]; ?>">
+                                            <?php echo $followed["Fol_username"]; ?>
                                         </a>
                                     </div>
                                 <?php endforeach; ?>
