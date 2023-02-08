@@ -6,6 +6,7 @@ if (login_check($mysqli) == true) {
     $templateParams["nome"] = "saved-view.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js");
     $templateParams["username"] = $_SESSION["username"];
+    require 'postSettings.php';
     require "../template/logged-base-view.php";
 } else {
     header("location: login.php");
