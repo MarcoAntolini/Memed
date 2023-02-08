@@ -163,6 +163,20 @@ class DatabaseHelper
         }
     }
 
+    public function controllasesegiu($Fol_username, $username)
+    {
+        $sql = "SELECT * FROM segue WHERE Fol_username = ? AND username = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("ss", $Fol_username, $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function cancellaSegui($Fol_username, $username)
     {
         $sql = "DELETE FROM segue WHERE Fol_username = ? AND username = ?";

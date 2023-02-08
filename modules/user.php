@@ -17,7 +17,7 @@ if (login_check($mysqli) == true) {
         $templateParams["nPost"] = $mysqli->contaPost($utente);
     }
     if ($templateParams["utente"] != $templateParams["username"]) {
-        if (in_array($templateParams["username"], $templateParams["follower"])) {
+        if ($templateParams["follower"] && $mysqli->controllasesegiu($templateParams["utente"], $templateParams["username"])) {
             $templateParams["isFollowing"] = true;
         } else {
             $templateParams["isFollowing"] = false;
