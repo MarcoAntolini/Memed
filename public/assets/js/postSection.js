@@ -46,19 +46,14 @@ function generatePost(post) {
                             </div>
             `;
         } else {
-            if(!$post[i][isSaved]) {
-            content += `
-                            <button class="save-post btn btn-primary" type="submit" name="save-post">Salva</button>
-                            <button class="report-post btn btn-warning" type="submt" name="report-post">Segnala</button>
-            `;
+            if (!$post[i][controllaSalva]) {
+                content += `<button class="save-post btn btn-primary" type="submit" name="save-post">Salva</button>`;
             } else {
-                content += `
-                <button class="unsave-post btn btn-primary" type="submit" name="unsave-post">Rimuovi</button>
-                <button class="report-post btn btn-warning" type="submt" name="report-post">Segnala</button>
-`;    
+                content += `<button class="unsave-post btn btn-primary" type="submit" name="unsave-post">Rimuovi</button>`;
             }
         }
         content += `
+                        <button class="report-post btn btn-warning" type="submt" name="report-post">Segnala</button>
                         </form >
                         </div >
                     </div >
@@ -169,29 +164,29 @@ function handleReactions() {
     const reactions = document.querySelectorAll(".reactions");
     reactions.forEach(reaction => {
         reaction.addEventListener("click", function () {
-            const idpost = reaction.parentElement.querySelector("input[name='idpost']").value;
-            const username = reaction.parentElement.querySelector("input[name='username']").value;
+            // TODO: cambiare immagine reazione
+            // TODO: cambiare numero reazione
+            // TODO: controllo se è da ggiungere o togliere
             if (reaction.parentElement.classList.contains("1")) {
-                addReaction("1", idpost, username);
-                // TODO: cambiare immagine reazione
+                addReaction("1");
             } else if (reaction.parentElement.classList.contains("2")) {
-                addReaction("2", idpost, username);
+                addReaction("2");
             } else if (reaction.parentElement.classList.contains("3")) {
-                addReaction("3", idpost, username);          
+                addReaction("3");
             } else if (reaction.parentElement.classList.contains("4")) {
-                addReaction("4", idpost, username);
+                addReaction("4");
             } else if (reaction.parentElement.classList.contains("5")) {
-                addReaction("5", idpost, username);                 
+                addReaction("5");
             }
         });
     });
 }
 
-function addReaction(reaction, idpost, username) {
-    axios.post("reactionSection.php", { reaction: reaction, idpost: idpost, username: username}).then(Response => {
-        console.log(Response);
+function addReaction(reaction, username) {
+    const idpost = reaction.parentElement.querySelector("input[name='idpost']").value;
+    const username = reaction.parentElement.querySelector("input[name='username']").value;
+    axios.post("reactionSection.php", { reaction: reaction, idpost: idpost, username: username }).then(Response => {
     });
     axios.get("reactionSection.php", { params: { idreazione: reaction, idpost: idpost } }).then(Response => {
-        console.log(Response);
     });
 }
