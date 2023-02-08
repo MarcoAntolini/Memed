@@ -51,9 +51,9 @@ function generatePost(post) {
             } else {
                 content += `<button class="unsave-post btn btn-primary" type="submit" name="unsave-post">Rimuovi</button>`;
             }
+            content += `<button class="report-post btn btn-warning" type="submt" name="report-post">Segnala</button>`;
         }
         content += `
-                        <button class="report-post btn btn-warning" type="submt" name="report-post">Segnala</button>
                         </form >
                         </div >
                     </div >
@@ -182,7 +182,7 @@ function handleReactions() {
     });
 }
 
-function addReaction(reaction, username) {
+function addReaction(reaction) {
     const idpost = reaction.parentElement.querySelector("input[name='idpost']").value;
     const username = reaction.parentElement.querySelector("input[name='username']").value;
     axios.post("reactionSection.php", { reaction: reaction, idpost: idpost, username: username }).then(Response => {
