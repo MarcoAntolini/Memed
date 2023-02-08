@@ -33,7 +33,12 @@ if (login_check($mysqli) == true) {
             $_POST["idpost"]
         );
     }
-
+    if (isset($_POST["unfollowing"])) {
+        $mysqli->cancellaSegui($_POST["unfollowing"], $_SESSION["username"]);
+    }
+    if (isset($_POST["following"])) {
+        $mysqli->inserisciSegue($_POST["following"], $_SESSION["username"]);
+    }
     if (isset($_POST["delete-post"])) {
         $mysqli->cancellaPost($_POST["idpost"]);
     }
