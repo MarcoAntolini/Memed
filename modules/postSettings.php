@@ -5,13 +5,13 @@ if (isset($_POST["delete-post"])) {
     $mysqli->cancellaPost($_POST["idpost"]);
 }
 if (isset($_POST["edit-post"])) {
-    // $mysqli->inserisciMiPiace($_SESSION["username"], $_POST["idpost"]);
+    $mysqli->modificaPost($_POST["idpost"], $_POST["description"]);
 }
 if (isset($_POST["save-post"])) {
     $mysqli->inserisciSalva($_SESSION["username"], $_POST["idpost"]);
 }
 if (isset($_POST["unsave-post"])) {
-    // $mysqli->cancellaSalva($_SESSION["username"], $_POST["idpost"]);
+    $mysqli->cancellaSalva($_SESSION["username"], $_POST["idpost"]);
 }
 if (isset($_POST["post-comment"])) {
     $mysqli->inserisciCommento(
@@ -22,4 +22,3 @@ if (isset($_POST["post-comment"])) {
         $_POST["idpost"]
     );
 }
-
