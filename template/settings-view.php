@@ -1,14 +1,3 @@
-<?php
-if (isset($templateParams["js"])) :
-    echo '<div id="notice-section"></div>';
-    foreach ($templateParams["js"] as $script) :
-?>
-        <script src="<?php echo $script; ?>"></script>
-<?php
-    endforeach;
-endif;
-?>
-
 <div class="settings-container container d-flex flex-column justify-content-center align-items-start">
     <div class="settings-button" id="profile-settings" data-bs-toggle="modal" data-bs-target=".profile-edit">
         <img src="../public/assets/img/user-settings.png" alt="Modifica profilo">
