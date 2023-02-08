@@ -65,6 +65,8 @@ function generatePost(post) {
                 </div >
             </div >
             <form class="reaction-post" action="#" method="post">
+                <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
+                <input type="hidden" name="username" value="${post[i]["session-username"]}">
                 <div class="reactions">
                     <div class="1">
                         <img src="../public/assets/img/reazione-1.png" alt="reazione-1" class="reaction">
@@ -138,6 +140,11 @@ axios.get("postSection.php", { params: { url: checkPage() } }).then(Response => 
     const post = generatePost(Response.data);
     const main = document.getElementById("post-section");
     main.innerHTML = post;
+    handlePost();
+    handleReactions();
+});
+
+function handlePost() {
     const editButton = document.getElementById("edit-button");
     const deleteButton = document.getElementById("delete-button");
     if (editButton && deleteButton) {
@@ -150,10 +157,41 @@ axios.get("postSection.php", { params: { url: checkPage() } }).then(Response => 
             checkCollapsibles(deleteButton, editButton, editDiv);
         });
     }
-});
+}
 
 function checkCollapsibles(buttonClicked, buttonChecked, divChecked) {
     if (!buttonClicked.classList.contains("collapsed") && !buttonChecked.classList.contains("collapsed")) {
         divChecked.classList.remove("show");
     }
+}
+
+function handleReactions() {
+    const reactions = document.querySelectorAll(".reactions");
+    reactions.forEach(reaction => {
+        reaction.addEventListener("click", function () {
+            const idpost = reaction.parentElement.querySelector("input[name='idpost']").value;
+            const username = reaction.parentElement.querySelector("input[name='username']").value;
+            if (reaction.parentElement.classList.contains("1")) {
+                addReaction("1", idpost, username);
+                // TODO: cambiare immagine reazione
+            } else if (reaction.parentElement.classList.contains("2")) {
+                addReaction("2", idpost, username);
+            } else if (reaction.parentElement.classList.contains("3")) {
+                addReaction("3", idpost, username);          
+            } else if (reaction.parentElement.classList.contains("4")) {
+                addReaction("4", idpost, username);
+            } else if (reaction.parentElement.classList.contains("5")) {
+                addReaction("5", idpost, username);                 
+            }
+        });
+    });
+}
+
+function addReaction(reaction, idpost, username) {
+    axios.post("reactionSection.php", { reaction: reaction, idpost: idpost, username: username}).then(Response => {
+        console.log(Response);
+    });
+    axios.get("reactionSection.php", { params: { idreazione: reaction, idpost: idpost } }).then(Response => {
+        console.log(Response);
+    });
 }
