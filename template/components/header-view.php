@@ -5,7 +5,7 @@
             <h1 class="title">Memed</h1>
         </div>
         <div class="col">
-            <form id="search-form" action="../template/search-view.php" name="" method="GET">
+            <form id="search-form" action="../modules/search.php" name="" method="GET">
                 <div class="input-group">
                     <div class="form-floating form-group">
                         <input class="form-control" name="search" list="recents" id="search" placeholder="Cerca">
