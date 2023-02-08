@@ -14,12 +14,12 @@
             <?php if($templateParams["utente"] != $_SESSION["username"]): ?>
                 <div class="follow-section">
                     <?php if($templateParams["isFollowing"]): ?>
-                        <form action="processa-unfollow.php" method="post">
+                        <form action="#" method="post">
                             <input type="hidden" name="unfollowing" value="<?php echo $templateParams["utente"]; ?>">
                             <button type="submit" class="btn btn-primary">Unfollow</button>
                         </form>
                     <?php else: ?>
-                        <form action="processa-follow.php" method="post">
+                        <form action="#" method="post">
                             <input type="hidden" name="following" value="<?php echo $templateParams["utente"]; ?>">
                             <button type="submit" class="btn btn-primary">Follow</button>
                         </form>
