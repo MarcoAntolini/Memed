@@ -42,7 +42,7 @@ class DatabaseHelper
         }
     }
 
-    public function ottienePost($idpost)
+    public function ottieniPost($idpost)
     {
         $sql = "SELECT * FROM post WHERE idpost = ?";
         $stmt = $this->db->prepare($sql);
@@ -62,7 +62,7 @@ class DatabaseHelper
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("isiss", $idpost, $username, $idcommento, $testo, $data);
         if ($stmt->execute() === TRUE) {
-            $post = $this->ottienePost($idpost);
+            $post = $this->ottieniPost($idpost);
             $this->inserisciNotifica(
                 "<a  href=\"user.php?username='$username'\">'$username'</a> ha commentato un tuo post",
                 (int)$this->ottieniIdUltimaNotifica()[0] + 1,
@@ -138,6 +138,18 @@ class DatabaseHelper
         $sql = "INSERT INTO salva (idpost, username) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("is", $idpost, $username);
+        if ($stmt->execute() === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function cancellaSalva($username, $idpost)
+    {
+        $sql = "DELETE FROM salva WHERE username = ? AND idpost = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("si", $username, $idpost);
         if ($stmt->execute() === TRUE) {
             return true;
         } else {
@@ -296,6 +308,18 @@ class DatabaseHelper
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    public function modificaPost($idpost, $testo)
+    {
+        $query = "UPDATE post SET testo = ? WHERE idpost = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("si", $testo, $idpost);
+        if ($stmt->execute()) {
+            return true;
         } else {
             return false;
         }
