@@ -145,7 +145,8 @@ class DatabaseHelper
         }
     }
 
-    public function isSaved($username, $idpost){
+    public function controllaSalva($username, $idpost)
+    {
         $sql = "SELECT * FROM salva WHERE username = ? AND idpost = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("si", $username, $idpost);
@@ -188,7 +189,7 @@ class DatabaseHelper
         }
     }
 
-    public function controllasesegiu($Fol_username, $username)
+    public function controllaSegue($Fol_username, $username)
     {
         $sql = "SELECT * FROM segue WHERE Fol_username = ? AND username = ?";
         $stmt = $this->db->prepare($sql);
@@ -668,5 +669,15 @@ class DatabaseHelper
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function modificaProfilo($username, $nomefile, $bio)
+    {
+        $sql = "UPDATE utenti SET nomefile = ?, bio = ? WHERE username = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("sss", $nomefile, $bio, $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
     }
 }
