@@ -2,7 +2,7 @@
 require_once 'bootstrap.php';
 
 $testopost = htmlspecialchars($_POST["description-input"]);
-$datapost = date("20y-m-d h:m:s");
+$datapost = date("Y-m-d H:i:s");
 $autore = $_SESSION["username"];
 
 $categorie = $mysqli->ottieniCategorie();

@@ -1,3 +1,5 @@
+SE FAI LOGOUT LA PAHINA PROFILO DIVENTA UNA PUTTANA MA SE AGGIORNI LA PAGINA VA CHE CAZZO DICIICICICIIC
+
 processa-post.php spostare?
 inserisciNotifica() del db
 
@@ -5,6 +7,10 @@ modifica profilo e post
 
 explore-view
 notice.view e js
+
+pagina 404 e 500
+
+settare la root del progetto (eventualmente togliere i .php dall'url)
 
 cerca con query, bootstrap o js
 cerca utenti

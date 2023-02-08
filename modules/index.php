@@ -15,15 +15,15 @@ if (login_check($mysqli) == true) {
         $mysqli->inserisciCommento(
             $mysqli->ottieniIdUltimoCommento() + 1,
             $_POST["comment-text"],
-            date("20y-m-d h:m:s"),
+            date("Y-m-d H:i:s"),
             $_SESSION["username"],
             $_POST["idpost"]
         );
     }
-    if(isset($_POST["delete-post"])) {
+    if (isset($_POST["delete-post"])) {
         $mysqli->cancellaPost($_POST["idpost"]);
     }
-    if(isset($_POST["save-post"])) {
+    if (isset($_POST["save-post"])) {
         $mysqli->inserisciSalva($_SESSION["username"], $_POST["idpost"]);
     }
     require "../template/logged-base-view.php";

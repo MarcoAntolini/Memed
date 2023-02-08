@@ -133,7 +133,7 @@ class DatabaseHelper
                 "<a  href=\"user.php?username='$username'\">'$username'</a> ha iniziato a seguirti",
                 (int) $this->ottieniIdUltimaNotifica() + 1,
                 $Fol_username,
-                date("20y-m-d h:m:s")
+                date("Y-m-d H:i:s")
             );
             return true;
         } else {
@@ -208,7 +208,8 @@ class DatabaseHelper
     }
 
     public function ottieniPostPerEsplora($username)
-    { //da finire
+    {
+        // TODO: da finire
         $sql = "SELECT * FROM post WHERE username != '$username' ORDER BY data DESC";
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
