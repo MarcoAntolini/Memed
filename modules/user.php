@@ -24,9 +24,11 @@ if (login_check($mysqli) == true) {
     }
     if (isset($_POST["unfollowing"])) {
         $mysqli->cancellaSegui($_POST["unfollowing"], $_SESSION["username"]);
+        header("location: user.php?username=" . $templateParams["utente"]);
     }
     if (isset($_POST["following"])) {
         $mysqli->inserisciSegue($_POST["following"], $_SESSION["username"]);
+        header("location: user.php?username=" . $templateParams["utente"]);
     }
     $templateParams["nome"] = "user-view.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js");
