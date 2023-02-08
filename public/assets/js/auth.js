@@ -84,7 +84,7 @@ function comparePasswords(pwInput1, pwInput2) {
 }
 
 function validatePassword(passwordInput) {
-    // TODO: aggiungere controllo sicurezza?
+    // TODO: aggiungere popup per spiegare i requisiti della password e degli altri campi
     /*const validRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-!"#$%&'()*+,.\/:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,.\/:;<=>?@[\\\]^_`{|}~-]{8,}$/;
     if (passwordInput.value.match(validRegex) && passwordInput.value !== "") {
         return true;
