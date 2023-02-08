@@ -61,10 +61,11 @@ class DatabaseHelper
         $stmt->bind_param("isiss", $idpost, $username, $idcommento, $testo, $data);
         if ($stmt->execute() === TRUE) {
             $this->inserisciNotifica(
-            "<a  href=\"user.php?username='$username'\">'$username'</a> ha commentato un tuo post",
-            (int)$this->ottieniIdUltimaNotifica() + 1,
-            $this->ottienePost($idpost)["username"],
-            $data);
+                "<a  href=\"user.php?username='$username'\">'$username'</a> ha commentato un tuo post",
+                (int)$this->ottieniIdUltimaNotifica() + 1,
+                $this->ottienePost($idpost)["username"],
+                $data
+            );
             return true;
         } else {
             return false;
@@ -146,7 +147,7 @@ class DatabaseHelper
         $sql = "INSERT INTO segue (Fol_username, username) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("ss", $Fol_username, $username);
-        if($stmt->execute() === TRUE){
+        if ($stmt->execute() === TRUE) {
             $this->inserisciNotifica(
                 "<a  href=\"user.php?username='$username'\">'$username'</a> ha iniziato a seguirti",
                 (int)$this->ottieniIdUltimaNotifica() + 1,

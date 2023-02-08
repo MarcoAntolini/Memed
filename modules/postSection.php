@@ -7,13 +7,15 @@ if (isset($_GET["url"])) {
             break;
         case "user.php":
             $post = $mysqli->ottieniPostDaUtente($_SESSION["utente"]);
+            // TODO: fixare:
             $_SESSION["utente"] = NULL;
             break;
         case "explore.php":
-            if(isset($_SESSION["categoria"])){
+            if (isset($_SESSION["categoria"])) {
                 $post = $mysqli->ottieniPostDaCategoria($_SESSION["categoria"]);
+                // TODO: fixare:
                 $_SESSION["categoria"] = NULL;
-            }else{
+            } else {
                 $post = $mysqli->ottieniPostPerEsplora($_SESSION["username"]);
             }
             break;
@@ -34,6 +36,7 @@ if (isset($_GET["url"])) {
             $post[$i]["reazione3"] = $mysqli->contaReazioniPost(3, $post[$i]["idpost"]);
             $post[$i]["reazione4"] = $mysqli->contaReazioniPost(4, $post[$i]["idpost"]);
             $post[$i]["reazione5"] = $mysqli->contaReazioniPost(5, $post[$i]["idpost"]);
+            $post[$i]["session-username"] = $_SESSION["username"];
         }
     }
 
