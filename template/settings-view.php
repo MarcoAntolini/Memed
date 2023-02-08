@@ -13,7 +13,7 @@
                     <div class="modal-body">
                         <input type="file" id="profile-pic-input" accept="image/png, image/jpg, image/jpeg" name="profile-pic-input">
                         <img id="profile-pic-preview" class="profile-pic" src="<?php echo $templateParams["profilo"][0]["nomefile"]; ?>" alt="profile-pic">
-                        <textarea id="bio" class="bio" rows="5"><?php echo $templateParams["profilo"][0]["bio"]; ?></textarea>
+                        <textarea id="bio" class="bio" name="bio" rows="5"><?php echo $templateParams["profilo"][0]["bio"]; ?></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="reset" name="reset" class="btn btn-secondary float-start">Annulla</button>
