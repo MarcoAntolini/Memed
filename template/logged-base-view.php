@@ -23,4 +23,6 @@
     <?php require 'components/footer-view.php'; ?>
 </body>
 
+<?php require_once '../modules/notice.php'; ?>
+
 </html>
