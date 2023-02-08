@@ -1,7 +1,7 @@
 <script src="../public/assets/js/postPreview.js"></script>
 
 <div class="notice-section container-fluid d-flex justify-content-center">
-    <form action="processa-post.php" method="post" enctype="multipart/form-data">
+    <form action="uploadPost.php" method="post" enctype="multipart/form-data">
         <div class="form-outline mb-3">
             <input class="form-control" type="file" id="image-input" accept="image/png, image/jpg, image/jpeg, image/gif" name="image-input">
         </div>
@@ -12,8 +12,8 @@
         </div>
         <!-- TODO: DECIDERE PER CATEGORIE -->
         <?php foreach ($templateParams["categorie"] as $categoria) : ?>
-        <input type="checkbox" id="<?php echo $categoria["idcategoria"]; ?>" name="categoria_<?php echo $categoria["idcategoria"]; ?>" />
-        <label for="<?php echo $categoria["idcategoria"]; ?>"><?php echo $categoria["nome"]; ?></label>
+            <input type="checkbox" id="<?php echo $categoria["idcategoria"]; ?>" name="categoria_<?php echo $categoria["idcategoria"]; ?>" />
+            <label for="<?php echo $categoria["idcategoria"]; ?>"><?php echo $categoria["nome"]; ?></label>
         <?php endforeach; ?>
         <!-- TODO: AGGIUNGERE CATEGORIE ALLA PREVIEW -->
         <button type="button" class="btn btn-primary float-start" data-bs-toggle="modal" data-bs-target=".preview">Anteprima</button>
