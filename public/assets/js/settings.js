@@ -17,7 +17,7 @@ function previewProfilePic(file) {
     }
 }
 
-// TODO: chiamata al php al submit del form, pensare cosa fare per il reset
+// TODO: chiamata al php al submit del form, pensare cosa fare per il reset (per rimettere la foto fi profilo attuale nella preview)
 
 axios.get("settingsPic.php").then(Response => {
     console.log(Response.data);

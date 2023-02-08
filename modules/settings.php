@@ -12,7 +12,8 @@ if (login_check($mysqli) == true) {
         header('location: login.php');
     }
     if (isset($_POST["submit"])) {
-        $mysqli->modificaProfilo($_SESSION["username"], $_POST["bio"], $_POST["profile-pic-input"]);
+        // TODO: controllo se l'immagine è stata caricata
+        $mysqli->modificaProfilo($_SESSION["username"], $_POST["profile-pic-input"], $_POST["bio"]);
         header('location: user.php?username=' . $_SESSION["username"] . '');
     }
     require "../template/logged-base-view.php";
