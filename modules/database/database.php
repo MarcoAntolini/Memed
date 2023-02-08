@@ -44,7 +44,7 @@ class DatabaseHelper
 
     public function ottienePost($idpost)
     {
-        $sql = "select * form post where idpost = ?";
+        $sql = "SELECT * FROM post WHERE idpost = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $idpost);
         $stmt->execute();
@@ -62,10 +62,11 @@ class DatabaseHelper
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("isiss", $idpost, $username, $idcommento, $testo, $data);
         if ($stmt->execute() === TRUE) {
+            $post = $this->ottienePost($idpost);
             $this->inserisciNotifica(
                 "<a  href=\"user.php?username='$username'\">'$username'</a> ha commentato un tuo post",
-                (int)$this->ottieniIdUltimaNotifica() + 1,
-                $this->ottienePost($idpost)["username"],
+                (int)$this->ottieniIdUltimaNotifica()[0] + 1,
+                $post[4],
                 $data
             );
             return true;
@@ -100,7 +101,7 @@ class DatabaseHelper
 
     public function inserisciNotifica($messaggio, $idnotifica, $username, $data)
     {
-        $sql =  "INSERT INTO notifica (username, idnotifica, messaggio, data, letto) VALUES (?, ?, ?, ?, ?)";
+        $sql =  "INSERT INTO notifica (username, idnotifica, mesaggio, data, letto) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $letto = 0;
         $stmt->bind_param("sissi", $username, $idnotifica, $messaggio, $data, $letto);
@@ -303,7 +304,7 @@ class DatabaseHelper
 
     private function cancellaPostSalvato($idpost)
     {
-        $sql = "DELETE FROM salva WHERE idpost = '?";
+        $sql = "DELETE FROM salva WHERE idpost = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $idpost);
         if ($stmt->execute()) {
@@ -447,7 +448,7 @@ class DatabaseHelper
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_row();
         } else {
             return false;
         }
@@ -460,7 +461,7 @@ class DatabaseHelper
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_row();
         } else {
             return false;
         }
