@@ -3,7 +3,6 @@ require_once "bootstrap.php";
 
 if (login_check($mysqli) == true) {
     $templateParams["titolo"] = "Memed - Profilo";
-    $templateParams["nome"] = "user-view.php";
     $templateParams["username"] = $_SESSION["username"];
     if (isset($_GET["username"])) {
         $utente = $_GET["username"];
@@ -23,13 +22,14 @@ if (login_check($mysqli) == true) {
             $templateParams["isFollowing"] = false;
         }
     }
-    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js");
     if (isset($_POST["unfollowing"])) {
         $mysqli->cancellaSegui($_POST["unfollowing"], $_SESSION["username"]);
     }
     if (isset($_POST["following"])) {
         $mysqli->inserisciSegue($_POST["following"], $_SESSION["username"]);
     }
+    $templateParams["nome"] = "user-view.php";
+    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js");
     require 'postSettings.php';
     require '../template/logged-base-view.php';
 } else {

@@ -153,7 +153,7 @@ class DatabaseHelper
         if ($stmt->execute() === TRUE) {
             $this->inserisciNotifica(
                 "<a  href=\"user.php?username='$username'\">'$username'</a> ha iniziato a seguirti",
-                (int)$this->ottieniIdUltimaNotifica() + 1,
+                (int)$this->ottieniIdUltimaNotifica()[0] + 1,
                 $Fol_username,
                 date("Y-m-d H:i:s")
             );
