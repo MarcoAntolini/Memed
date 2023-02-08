@@ -1,14 +1,7 @@
-BINDPARAM NEL DATABASE
-
 processa-post.php spostare?
 inserisciNotifica() del db
 
-modifica profilo e post
-
-explore-view
-notice.view e js
-
-cambiare h5 dei modal in qualcosaltro
+modifica profilo
 
 pagina 404 e 500
 
