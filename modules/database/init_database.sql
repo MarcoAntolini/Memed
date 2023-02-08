@@ -1,3 +1,4 @@
+USE `memed`;
 INSERT INTO utenti (username, email, password, salt, nomefile, bio)
 VALUES (
         'user1',
@@ -44,8 +45,9 @@ VALUES ('1', 'categoria1'),
     ('3', 'categoria3');
 INSERT INTO segue (Fol_username, username)
 VALUES ('user1', 'user2'),
-    ('user2', 'user3'), ('user3', 'user1');
-INSERT INTO reazione (idreazione, nomefile) 
+    ('user2', 'user3'),
+    ('user3', 'user1');
+INSERT INTO reazione (idreazione, nomefile)
 VALUES ('1', '../public/assets/img/reazione-1.png'),
     ('2', '../public/assets/img/reazione-2.png'),
     ('3', '../public/assets/img/reazione-3.png'),
