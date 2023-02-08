@@ -37,7 +37,7 @@ if (isset($_GET["url"])) {
             $post[$i]["reazione4"] = $mysqli->contaReazioniPost(4, $post[$i]["idpost"]);
             $post[$i]["reazione5"] = $mysqli->contaReazioniPost(5, $post[$i]["idpost"]);
             $post[$i]["session-username"] = $_SESSION["username"];
-            $post[$i]["isSaved"] = $mysqli->isSaved($_SESSION["username"], $post[$i]["idpost"]);
+            $post[$i]["controllaSalva"] = $mysqli->controllaSalva($_SESSION["username"], $post[$i]["idpost"]);
         }
     }
 
