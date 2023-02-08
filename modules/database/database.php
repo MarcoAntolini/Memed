@@ -141,6 +141,17 @@ class DatabaseHelper
         }
     }
 
+    public function ottieniPostSalvati($username)
+    {
+        $sql = "SELECT * FROM salva WHERE username = '$username'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
     public function ottieniCategorie()
     {
         $sql = "SELECT * FROM categoria";

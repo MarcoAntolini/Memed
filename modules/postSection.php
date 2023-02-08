@@ -17,6 +17,9 @@ if (isset($_GET["url"])) {
                 $post = $mysqli->ottieniPostPerEsplora($_SESSION["username"]);
             }
             break;
+        case "saved.php":
+            $post = $mysqli->ottieniPostSalvati($_SESSION["username"]);
+            break;
         default:
             $post = NULL;
             break;
