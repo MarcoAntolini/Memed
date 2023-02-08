@@ -27,7 +27,7 @@ endif;
                         <textarea id="bio" class="bio" rows="5"><?php echo $templateParams["profilo"][0]["bio"]; ?></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-secondary float-start">Annulla</button>
+                        <button type="reset" name="reset" class="btn btn-secondary float-start">Annulla</button>
                         <button type="submit" name="submit" class="btn btn-primary float-end">Salva</button>
                     </div>
                 </form>
