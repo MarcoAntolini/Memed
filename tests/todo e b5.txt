@@ -9,6 +9,8 @@ modifica profilo e post
 explore-view
 notice.view e js
 
+cambiare h5 dei modal in qualcosaltro
+
 pagina 404 e 500
 
 settare la root del progetto (eventualmente togliere i .php dall'url)
