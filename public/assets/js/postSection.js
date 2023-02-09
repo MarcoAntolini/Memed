@@ -65,23 +65,23 @@ function generatePost(post) {
                 <div class="reactions">
                     <div class="1">
                         <img src="../public/assets/img/reazione-1.png" alt="reazione-1" class="reaction">
-                        <span class="reaction-count">${post[i]["reazione1"]}</span>
+                        <span id="reazione1" class="reaction-count">${post[i]["reazione1"]}</span>
                     </div>
                     <div class="2">
                         <img src="../public/assets/img/reazione-2.png" alt="reazione-2" class="reaction">
-                        <span class="reaction-count">${post[i]["reazione2"]}</span>
+                        <span id="reazione2" class="reaction-count">${post[i]["reazione2"]}</span>
                     </div>
                     <div class="3">
                         <img src="../public/assets/img/reazione-3.png" alt="reazione-3" class="reaction">
-                        <span class="reaction-count">${post[i]["reazione3"]}</span>
+                        <span id="reazione3" class="reaction-count">${post[i]["reazione3"]}</span>
                     </div>
                     <div class="4">
                         <img src="../public/assets/img/reazione-4.png" alt="reazione-4" class="reaction">
-                        <span class="reaction-count">${post[i]["reazione4"]}</span>
+                        <span id="reazione4" class="reaction-count">${post[i]["reazione4"]}</span>
                     </div>
                     <div class="5">
                         <img src="../public/assets/img/reazione-5.png" alt="reazione-5" class="reaction">
-                        <span class="reaction-count">${post[i]["reazione5"]}</span>
+                        <span id="reazione5" class="reaction-count">${post[i]["reazione5"]}</span>
                     </div>
                 </div>
             </form>
@@ -187,6 +187,12 @@ function addReaction(reaction) {
     const username = reaction.parentElement.querySelector("input[name='username']").value;
     axios.post("reactionSection.php", { reaction: reaction, idpost: idpost, username: username }).then(Response => {
     });
-    axios.get("reactionSection.php", { params: { idreazione: reaction, idpost: idpost } }).then(Response => {
+    axios.get("reactionSection.php", { params: { idpost: idpost } }).then(Response => {
+        const count = Response.data;
+        getElementById("reazione1").innerHTML = count[1];
+        getElementById("reazione2").innerHTML = count[2];
+        getElementById("reazione3").innerHTML = count[3];
+        getElementById("reazione4").innerHTML = count[4];
+        getElementById("reazione5").innerHTML = count[5];
     });
 }
