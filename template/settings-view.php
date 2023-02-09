@@ -17,7 +17,6 @@
                     <textarea id="bio" class="bio" name="bio" rows="5"><?php echo $templateParams["profilo"][0]["bio"]; ?></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="reset-button" class="btn btn-secondary float-start">Annulla</button>
                     <button type="button" id="submit-button" class="btn btn-primary float-end">Salva</button>
                 </div>
             </div>
