@@ -1,3 +1,5 @@
+<script src="../public/assets/js/settings.js"></script>
+
 <div class="settings-container container d-flex flex-column justify-content-center align-items-start">
     <div class="settings-button" id="profile-settings" data-bs-toggle="modal" data-bs-target=".profile-edit">
         <img src="../public/assets/img/user-settings.png" alt="Modifica profilo">
@@ -7,38 +9,16 @@
         <div id="profile-edit" class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="#" method="post">
-                    <div class="modal-body">
-                        <input type="file" id="profile-pic-input" accept="image/png, image/jpg, image/jpeg" name="profile-pic-input">
-                        <img id="profile-pic-preview" class="profile-pic" src="<?php echo $templateParams["profilo"][0]["nomefile"]; ?>" alt="profile-pic">
-                        <textarea id="bio" class="bio" name="bio" rows="5"><?php echo $templateParams["profilo"][0]["bio"]; ?></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" name="reset" class="btn btn-secondary float-start">Annulla</button>
-                        <button type="submit" name="submit" class="btn btn-primary float-end">Salva</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="settings-button" id="notice-settings" data-bs-toggle="modal" data-bs-target=".notice-switch">
-        <img src="../public/assets/img/notice-settings.png" alt="Impostazioni notifiche">
-        <span>Impostazioni notifiche</span>
-    </div>
-    <div class="notice-switch modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
-        <div id="notice-switch" class="modal-dialog modal-dialog-scrollable modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="close-button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="switchNotices">
-                        <!-- TODO: GESTIRE NOTIFICHE -->
-                        <label class="form-check-label" for="switchNotices">Attiva notifiche</label>
-                    </div>
+                    <input type="file" id="profile-pic-input" accept="image/png, image/jpg, image/jpeg" name="profile-pic-input">
+                    <img id="profile-pic-preview" class="profile-pic" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["nomefile"]); ?>" alt="profile-pic">
+                    <textarea id="bio" class="bio" name="bio" rows="5"><?php echo $templateParams["profilo"][0]["bio"]; ?></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="reset-button" class="btn btn-secondary float-start">Annulla</button>
+                    <button type="button" id="submit-button" class="btn btn-primary float-end">Salva</button>
                 </div>
             </div>
         </div>
