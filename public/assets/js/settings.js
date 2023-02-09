@@ -3,6 +3,14 @@ window.onload = function () {
     profilePicInput.addEventListener('change', function () {
         previewProfilePic(this.files[0]);
     });
+    const submitButton = document.getElementById('submit-button');
+    submitButton.addEventListener('click', function () {
+        handleSubmit();
+    });
+    const resetButton = document.getElementById('reset-button');
+    resetButton.addEventListener('click', function () {
+        handleReset();
+    });
 };
 
 function previewProfilePic(file) {
@@ -17,13 +25,29 @@ function previewProfilePic(file) {
     }
 }
 
-// TODO: chiamata al php al submit del form, pensare cosa fare per il reset (per rimettere la foto fi profilo attuale nella preview)
+function handleSubmit() {
+    const bio = document.getElementById('bio').value;
+    const picInput = document.getElementById('profile-pic-input').files[0];
+    const closeButton = document.getElementById('close-button');
+    closeButton.click();
+    if (picInput === undefined) {
+        const profilePic = document.getElementById("profile-pic-preview").getAttribute("src");
+        axios.post("profileSettings.php", { bio: bio, profilePic: profilePic }).then(Response => {
+        });
+    } else {
+        const profilePic = picInput["name"];
+        axios.post("profileSettings.php", { bio: bio, profilePic: profilePic }).then(Response => {
+        });
+    }
+}
 
-axios.get("settingsPic.php").then(Response => {
-    console.log(Response.data);
-    const data = Response.data;
-    const bio = document.getElementById("bio");
-    bio.innerText = data["bio"];
-    const profilePic = document.getElementById("profile-pic-preview");
-    profilePic.setAttribute("src", data);
-});
+function handleReset() {
+    axios.get("profileSettings.php").then(Response => {
+        const data = Response.data;
+        console.log(data);
+        const profilePic = document.getElementById("profile-pic-preview");
+        profilePic.setAttribute("src", data["nomefile"]);
+        const bio = document.getElementById("bio");
+        bio.innerText = data["bio"];
+    });
+}
