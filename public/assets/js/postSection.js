@@ -60,8 +60,8 @@ function generatePost(post) {
                 </div >
             </div >
             <form class="reaction-post" action="#" method="post">
-                <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
-                <input type="hidden" name="username" value="${post[i]["session-username"]}">
+                <input type="hidden" id="idpost" name="idpost" value="${post[i]["idpost"]}">
+                <input type="hidden" id="username" name="username" value="${post[i]["session-username"]}">
                 <div class="reactions">
                     <div class="1">
                         <img src="../public/assets/img/reazione-1.png" alt="reazione-1" class="reaction">
@@ -161,38 +161,40 @@ function checkCollapsibles(buttonClicked, buttonChecked, divChecked) {
 }
 
 function handleReactions() {
-    const reactions = document.querySelectorAll(".reactions");
+    const reactions = document.querySelectorAll(".reaction");
     reactions.forEach(reaction => {
         reaction.addEventListener("click", function () {
             // TODO: cambiare immagine reazione
             // TODO: cambiare numero reazione
             // TODO: controllo se è da ggiungere o togliere
             if (reaction.parentElement.classList.contains("1")) {
-                addReaction("1");
+                addReaction(reaction, 1);
             } else if (reaction.parentElement.classList.contains("2")) {
-                addReaction("2");
+                addReaction(reaction, 2);
             } else if (reaction.parentElement.classList.contains("3")) {
-                addReaction("3");
+                addReaction(reaction, 3);
             } else if (reaction.parentElement.classList.contains("4")) {
-                addReaction("4");
+                addReaction(reaction, 4);
             } else if (reaction.parentElement.classList.contains("5")) {
-                addReaction("5");
+                addReaction(reaction, 5);
             }
         });
     });
 }
 
-function addReaction(reaction) {
-    const idpost = reaction.parentElement.querySelector("input[name='idpost']").value;
-    const username = reaction.parentElement.querySelector("input[name='username']").value;
-    axios.post("reactionSection.php", { reaction: reaction, idpost: idpost, username: username }).then(Response => {
+function addReaction(reaction, idreazione) {
+    const idpost = reaction.parentElement.parentElement.parentElement.querySelector("#idpost").value;
+    const username = reaction.parentElement.parentElement.parentElement.querySelector("#username").value;
+    axios.post("reactionSection.php", { idreazione: idreazione, idpost: idpost, username: username }).then(Response => {
     });
     axios.get("reactionSection.php", { params: { idpost: idpost } }).then(Response => {
         const count = Response.data;
-        getElementById("reazione1").innerHTML = count[1];
-        getElementById("reazione2").innerHTML = count[2];
-        getElementById("reazione3").innerHTML = count[3];
-        getElementById("reazione4").innerHTML = count[4];
-        getElementById("reazione5").innerHTML = count[5];
+        console.log(count);
+        reaction.parentElement.parentElement.querySelector("#reazione1").innerHTML = count[1];
+        console.log(reaction.parentElement.parentElement.querySelector("#reazione1").innerHTML);
+        reaction.parentElement.parentElement.querySelector("#reazione2").innerHTML = count[2];
+        reaction.parentElement.parentElement.querySelector("#reazione3").innerHTML = count[3];
+        reaction.parentElement.parentElement.querySelector("#reazione4").innerHTML = count[4];
+        reaction.parentElement.parentElement.querySelector("#reazione5").innerHTML = count[5];
     });
 }
