@@ -20,7 +20,7 @@ class DatabaseHelper
     {
         $sql = "INSERT INTO utenti (username, email, password, salt, nomefile, bio) VALUES (?, ?, ?, ?,?, ?)";
         $stmt = $this->db->prepare($sql);
-        $nomefile = '../public/assets/img/default-pic.png';
+        $nomefile = '../../public/assets/img/default-pic.png';
         $bio = '';
         $stmt->bind_param("ssssss", $username, $email, $password, $salt, $nomefile, $bio);
         if ($stmt->execute() === TRUE) {
