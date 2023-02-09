@@ -190,9 +190,7 @@ function addReaction(reaction, idreazione) {
     });
     axios.get("reactionSection.php", { params: { idpost: idpost } }).then(Response => {
         const count = Response.data;
-        console.log(count);
         reaction.parentElement.parentElement.querySelector("#reazione1").innerHTML = count[1];
-        console.log(reaction.parentElement.parentElement.querySelector("#reazione1").innerHTML);
         reaction.parentElement.parentElement.querySelector("#reazione2").innerHTML = count[2];
         reaction.parentElement.parentElement.querySelector("#reazione3").innerHTML = count[3];
         reaction.parentElement.parentElement.querySelector("#reazione4").innerHTML = count[4];
