@@ -6,6 +6,3 @@
     $currUser = $_SESSION["username"];
     require "../template/logged-base-view.php";
     require "../template/search-view.php";
-    /* TODO:
-        add onclick='follow()' to button
-    */
