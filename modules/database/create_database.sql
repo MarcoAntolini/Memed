@@ -77,8 +77,7 @@ CREATE TABLE `post` (
 -- Struttura della tabella `reazione`
 --
 CREATE TABLE `reazione` (
-  `idreazione` int(11) NOT NULL,
-  `nomefile` varchar(100) NOT NULL
+  `idreazione` int(11) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --

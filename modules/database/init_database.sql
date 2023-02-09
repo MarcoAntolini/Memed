@@ -47,9 +47,9 @@ INSERT INTO segue (Fol_username, username)
 VALUES ('user1', 'user2'),
     ('user2', 'user3'),
     ('user3', 'user1');
-INSERT INTO reazione (idreazione, nomefile)
-VALUES ('1', '../public/assets/img/reazione-1.png'),
-    ('2', '../public/assets/img/reazione-2.png'),
-    ('3', '../public/assets/img/reazione-3.png'),
-    ('4', '../public/assets/img/reazione-4.png'),
-    ('5', '../public/assets/img/reazione-5.png');
+INSERT INTO reazione (idreazione)
+VALUES ('1'),
+    ('2'),
+    ('3'),
+    ('4'),
+    ('5');
