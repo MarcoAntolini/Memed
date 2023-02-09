@@ -7,10 +7,6 @@ window.onload = function () {
     submitButton.addEventListener('click', function () {
         handleSubmit();
     });
-    const resetButton = document.getElementById('reset-button');
-    resetButton.addEventListener('click', function () {
-        handleReset();
-    });
 };
 
 function previewProfilePic(file) {
@@ -32,22 +28,26 @@ function handleSubmit() {
     closeButton.click();
     if (picInput === undefined) {
         const profilePic = document.getElementById("profile-pic-preview").getAttribute("src");
-        axios.post("profileSettings.php", { bio: bio, profilePic: profilePic }).then(Response => {
+        axios.post("profileSettings.php", { bio: bio, profilePic: profilePic }).then(() => {
         });
     } else {
         const profilePic = picInput["name"];
-        axios.post("profileSettings.php", { bio: bio, profilePic: profilePic }).then(Response => {
+        const reader = new FileReader();
+        reader.readAsDataURL(picInput);
+        reader.onloadend = function () {
+            const encodedImage = reader.result;
+            axios.put('profileSettings.php', { encodedImage: encodedImage, profilePic: profilePic }).then(() => {
+            });
+        };
+        axios.post("profileSettings.php", { bio: bio, profilePic: profilePic }).then(() => {
         });
     }
 }
 
-function handleReset() {
-    axios.get("profileSettings.php").then(Response => {
-        const data = Response.data;
-        console.log(data);
-        const profilePic = document.getElementById("profile-pic-preview");
-        profilePic.setAttribute("src", data["nomefile"]);
-        const bio = document.getElementById("bio");
-        bio.innerText = data["bio"];
-    });
-}
+axios.get("profileSettings.php").then(Response => {
+    const data = Response.data;
+    const profilePic = document.getElementById("profile-pic-preview");
+    profilePic.setAttribute("src", data["nomefile"]);
+    const bio = document.getElementById("bio");
+    bio.innerText = data["bio"];
+});
