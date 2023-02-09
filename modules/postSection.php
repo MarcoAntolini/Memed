@@ -6,15 +6,13 @@ if (isset($_GET["url"])) {
             $post = $mysqli->ottieniPostPerHome($_SESSION["username"]);
             break;
         case "user.php":
-            $post = $mysqli->ottieniPostDaUtente($_SESSION["utente"]);
-            // TODO: fixare:
-            $_SESSION["utente"] = NULL;
+            $post = $mysqli->ottieniPostDaUtente($ute);
+            $ute = NULL;
             break;
         case "explore.php":
-            if (isset($_SESSION["categoria"]) && $_SESSION["categoria"] != 0) {
+            if (isset($cat) && $cat != 0) {
                 $post = $mysqli->ottieniPostDaCategoria($_SESSION["categoria"]);
-                // TODO: fixare:
-                $_SESSION["categoria"] = NULL;
+                $cat = NULL;
             } else {
                 $post = $mysqli->ottieniPostPerEsplora($_SESSION["username"]);
             }
