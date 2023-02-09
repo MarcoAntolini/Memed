@@ -17,11 +17,27 @@ INSERT INTO `categoria_post` (`idpost`, `idcategoria`) VALUES
 
 INSERT INTO `commento` (`idpost`, `username`, `idcommento`, `testo`, `data`) VALUES
 (2, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
+(1, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
+(3, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
+(4, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
+(5, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
+(6, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
+(7, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
+(8, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
+(9, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
 (2, 'user5', 2, 'ggg', '2023-02-09 11:19:26');
 
 INSERT INTO `notifica` (`username`, `idnotifica`, `mesaggio`, `data`, `letto`) VALUES
 ('user2', 1, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 10:46:54', 0),
-('user2', 2, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 11:19:26', 0);
+('user1', 2, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 10:46:54', 0),
+('user3', 3, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 10:46:54', 0),
+('user4', 4, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 10:46:54', 0),
+('user5', 5, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 10:46:54', 0),
+('user6', 6, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 10:46:54', 0),
+('user7', 7, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 10:46:54', 0),
+('user8', 8, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 10:46:54', 0),
+('user9', 9, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 10:46:54', 0),
+('user2', 10, '<a  href=\"user.php?username=\'user5\'\">\'user5\'</a> ha commentato un tuo post', '2023-02-09 11:19:26', 0);
 
 INSERT INTO `post` (`idpost`, `nomefile`, `testo`, `data`, `username`) VALUES
 (1, '../public/assets/img/default-pic.png', '', '2023-12-10 20:00:00', 'user1'),
@@ -42,8 +58,51 @@ INSERT INTO `reazione` (`idreazione`) VALUES
 (5);
 
 INSERT INTO `reazione_pu` (`idreazione`, `username`, `idpost`) VALUES
-(1, 'user1', 1),
-(2, 'user5', 2);
+(5, 'user1', 1),
+(5, 'user2', 1),
+(3, 'user3', 1),
+(4, 'user4', 1),
+(5, 'user5', 1),
+(4, 'user1', 2),
+(2, 'user2', 2),
+(3, 'user3', 2),
+(4, 'user4', 2),
+(5, 'user5', 2),
+(3, 'user1', 3),
+(3, 'user2', 3),
+(3, 'user3', 3),
+(4, 'user4', 3),
+(5, 'user5', 3),
+(5, 'user1', 4),
+(5, 'user2', 4),
+(5, 'user3', 4),
+(4, 'user4', 4),
+(5, 'user5', 4),
+(1, 'user1', 5),
+(1, 'user2', 5),
+(1, 'user3', 5),
+(4, 'user4', 5),
+(5, 'user5', 5),
+(2, 'user1', 6),
+(2, 'user2', 6),
+(2, 'user3', 6),
+(4, 'user4', 6),
+(5, 'user5', 6),
+(5, 'user1', 7),
+(5, 'user2', 7),
+(5, 'user3', 7),
+(5, 'user4', 7),
+(5, 'user5', 7),
+(1, 'user1', 8),
+(3, 'user2', 8),
+(3, 'user3', 8),
+(2, 'user4', 8),
+(5, 'user5', 8),
+(1, 'user1', 9),
+(1, 'user2', 9),
+(3, 'user3', 9),
+(4, 'user4', 9),
+(1, 'user5', 9);
 
 INSERT INTO `segue` (`Fol_username`, `username`) VALUES
 ('user3', 'user1'),
