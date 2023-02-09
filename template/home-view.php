@@ -8,4 +8,3 @@ if (isset($templateParams["js"])) :
     endforeach;
 endif;
 ?>
-<!-- TODO: aggiungere notifiche in versione desktop -->

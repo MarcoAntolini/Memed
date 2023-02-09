@@ -29,7 +29,7 @@ if (isset($_GET["url"])) {
 
     if ($post != NULL) {
         for ($i = 0; $i < count($post); $i++) {
-            $post[$i]["nomefile"] = $post[$i]["nomefile"];
+            $post[$i]["nomefile"] =UPLOAD_DIR. $post[$i]["nomefile"];
             $post[$i]["commenti"]  = $mysqli->ottieniCommentiPerPost($post[$i]["idpost"]);
             $post[$i]["reazione1"] = $mysqli->contaReazioniPost(1, $post[$i]["idpost"]);
             $post[$i]["reazione2"] = $mysqli->contaReazioniPost(2, $post[$i]["idpost"]);
