@@ -1,7 +1,7 @@
 <div class="my-profile">
     <div class="container">
         <div class="user-data-section">
-            <img class="profile-pic" src="<?php echo $templateParams["profilo"][0]["nomefile"]; ?>" alt="profile-pic">
+            <img class="profile-pic" src="<?php echo (UPLOAD_DIR. $templateParams["profilo"][0]["nomefile"]); ?>" alt="profile-pic">
             <div class="username">
                 <?php echo $templateParams["profilo"][0]["username"]; ?>
             </div>
