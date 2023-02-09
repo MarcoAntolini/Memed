@@ -20,7 +20,7 @@
                             </span>
                         </div>
                     </div>
-                    <button type='button' class='btn btn-primary btn-sm btn-block' style='width:5vw' onclick=''>Segui</button>
+                    <button type='button' id='follow' class='btn btn-primary btn-sm btn-block' style='width:5vw'>Segui</button>
                 </div>";
             }
         }
