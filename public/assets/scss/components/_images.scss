@@ -7,3 +7,20 @@
     max-width: 50px;
     max-height: 50px;
 }
+
+img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.settings-icon,
+.nav-icon {
+    max-width: 2rem;
+    max-height: 2rem;
+}
+
+.search-icon,
+.post-settings-icon {
+    max-width: 30px !important;
+    max-height: 30px !important;
+}

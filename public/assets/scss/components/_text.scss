@@ -1,5 +1,15 @@
 @use "../abstract" as *;
 
+h1 {
+    font-family: $font-title;
+    transform: skewY(-7deg);
+    letter-spacing: 2px;
+    color: $primary;
+    text-shadow: -1px -1px 0 $queen-blue, -2px -2px 0 $queen-blue, -3px -3px 0 $queen-blue, -4px -4px 0 $queen-blue,
+        -5px -5px 0 $queen-blue, -6px -6px 0 $queen-blue, -7px -7px 0 $queen-blue, -8px -8px 0 $queen-blue,
+        -25px 15px 35px $shadow;
+}
+
 a {
     color: black;
     text-decoration: none !important;
@@ -7,16 +17,4 @@ a {
         color: black;
         text-decoration: none;
     }
-}
-
-.title {
-    font-family: $font-title;
-    font-size: 80px;
-    transform: skewY(-7deg);
-    letter-spacing: 4px;
-    word-spacing: -8px;
-    color: $primary;
-    text-shadow: -1px -1px 0 $queen-blue, -2px -2px 0 $queen-blue, -3px -3px 0 $queen-blue, -4px -4px 0 $queen-blue,
-        -5px -5px 0 $queen-blue, -6px -6px 0 $queen-blue, -7px -7px 0 $queen-blue, -8px -8px 0 $queen-blue,
-        -30px 20px 40px $shadow;
 }

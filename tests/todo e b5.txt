@@ -1,17 +1,3 @@
-inserisciNotifica() del db
-notifiche js e view
-
-modifica profilo
-
-pagina 404 e 500
-
-settare la root del progetto (eventualmente togliere i .php dall'url)
-
-cerca con query, bootstrap o js
-cerca utenti
-filtra categoria
-
-
 https://getbootstrap.com/docs/5.0/forms/input-group/
 https://getbootstrap.com/docs/5.0/components/tooltips/
 https://getbootstrap.com/docs/5.0/components/toasts/

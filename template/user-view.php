@@ -5,9 +5,6 @@
             <div class="username">
                 <?php echo $templateParams["profilo"][0]["username"]; ?>
             </div>
-            <div class="average-reaction">
-                <!-- TODO: get average reaction -->
-            </div>
             <div class="bio">
                 <?php echo $templateParams["profilo"][0]["bio"]; ?>
             </div>
