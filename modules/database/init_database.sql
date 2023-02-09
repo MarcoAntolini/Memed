@@ -30,7 +30,9 @@ INSERT INTO `post` (`idpost`, `nomefile`, `testo`, `data`, `username`) VALUES
 (4, '', 'Qual è la città preferita dai ragni? Mosca!', '2023-01-25 20:00:00', 'user4'),
 (5, '', 'Qual è la pianta più puzzolente? Quella dei piedi!', '2023-01-25 20:00:00', 'user4'),
 (6, '', 'Qual è la pianta più puzzolente? Quella dei piedi!', '2023-01-30 20:00:00', 'user5'),
-(7, 'lk8ikiq3yga61.png', '', '2023-02-09 11:27:37', 'user5');
+(7, 'lk8ikiq3yga61.png', '', '2023-02-09 11:27:37', 'user5'),
+(8, 'browsers.jpg', '', '2023-02-09 11:56:15', 'user4'),
+(9, 'browsers_2.jpg', '', '2023-02-09 12:00:01', 'user4');
 
 INSERT INTO `reazione` (`idreazione`) VALUES
 (1),
