@@ -46,7 +46,7 @@ function generatePost(post) {
                             </div>
             `;
         } else {
-            if (!$post[i][controllaSalva]) {
+            if (!post[i]["controllaSalva"]) {
                 content += `<button class="save-post btn btn-primary" type="submit" name="save-post">Salva</button>`;
             } else {
                 content += `<button class="unsave-post btn btn-primary" type="submit" name="unsave-post">Rimuovi</button>`;
@@ -132,6 +132,7 @@ function checkPage() {
 }
 
 axios.get("postSection.php", { params: { url: checkPage() } }).then(Response => {
+    console.log(Response.data);
     const post = generatePost(Response.data);
     const main = document.getElementById("post-section");
     main.innerHTML = post;
