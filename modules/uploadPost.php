@@ -19,7 +19,7 @@ if ($result != 0) {
     $id = $mysqli->inserisciPost((int) $mysqli->ottieniIdUltimoPost()[0] + 1, $imgpost, $testopost, $datapost, $autore);
     if ($id != false) {
         foreach ($categorie_inserite as $categoria) {
-            $ris = $mysqli->inserisciCategoriaPost((int) $categoria, (int) $mysqli->ottieniIdUltimoPost());
+            $ris = $mysqli->inserisciCategoriaPost((int) $categoria, (int) $mysqli->ottieniIdUltimoPost()[0]);
         }
         header("location: index.php");
     }
