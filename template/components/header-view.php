@@ -1,28 +1,27 @@
-<div class="header container-fluid d-flex justify-content-center color-main p-2 fixed-top">
-    <div class="row gap-2 align-items-end">
-        <div class="col">
-            <img src="../public/assets/img/logo.png" alt="logo" class="logo" />
-            <h1 class="title">Memed</h1>
+<header>
+    <div class="header container-fluid d-flex justify-content-center color-main p-2 fixed-top top-0">
+        <div class="col ">
+            <h1 class="fs-1 position-absolute float-start">Memed</h1>
         </div>
         <div class="col">
-            <form id="search-form" action="../modules/search.php" name="" method="GET">
+            <form id="search-form" action="../modules/search.php" method="GET" class="m-0">
                 <div class="input-group">
                     <div class="form-floating form-group">
                         <input class="form-control" name="search" list="recents" id="search" placeholder="Cerca">
                         <label for="search-input" class="form-label">Cerca</label>
                     </div>
                     <button id="search-button" type="submit" class="btn btn-primary">
-                        <img src="../public/assets/img/search.png" alt="search">
+                        <img src="../public/assets/img/search.png" alt="search" class="search-icon">
                     </button>
                 </div>
             </form>
         </div>
         <div class="col">
-            <a href="settings.php">
+            <a href="settings.php" class="float-end">
                 <button class="btn">
-                    <img src="../public/assets/img/settings.png" alt="settings">
+                    <img src="../public/assets/img/settings.png" alt="settings" class="settings-icon">
                 </button>
             </a>
         </div>
     </div>
-</div>
+</header>
