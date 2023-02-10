@@ -8,7 +8,7 @@
                 <div class="input-group">
                     <div class="form-floating form-group">
                         <input class="form-control" name="search" list="recents" id="search" placeholder="Cerca">
-                        <label for="search-input" class="form-label">Cerca</label>
+                        <label for="search" class="form-label">Cerca</label>
                     </div>
                     <button id="search-button" type="submit" class="btn btn-primary">
                         <img src="../public/assets/img/search.png" alt="search" class="search-icon">
