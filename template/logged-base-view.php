@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,20 +20,22 @@
 
 <body>
     <?php require 'components/header-view.php'; ?>
+    <main class="overflow-auto">
+        <?php
+        if (isset($templateParams["nome"])) {
+            require $templateParams["nome"];
+        }
+        ?>
 
-    <?php
-    if (isset($templateParams["nome"])) {
-        require $templateParams["nome"];
-    }
-    ?>
+        <?php require_once '../modules/noticePage.php'; ?>
+        <?php
+        if (isset($templateParams["notice"])) {
+            require $templateParams["notice"];
+        }
+        ?>
 
-    <?php require_once '../modules/noticePage.php'; ?>
-    <?php
-    if (isset($templateParams["notice"])) {
-        require $templateParams["notice"];
-    }
-    ?>
-
-    <?php require 'components/footer-view.php'; ?>
+        <?php require 'components/footer-view.php'; ?>
+    </main>
 </body>
+
 </html>
