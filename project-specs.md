@@ -18,7 +18,8 @@
 - [ ] Possibilità di mettere campanellina per notifica alla pubblicazione di un nuovo post
 - [x] Home con post di gente seguita (in ordine cronologico)
 - [x] Cerca (solo utenti)
-- [x] Impostazioni: login-out, privacy profilo (privato o pubblico), modifica profilo (immagine, bio, username), post salvati
+- [x] Impostazioni: logout, modifica profilo (immagine, bio, username), post salvati
+- [ ] Impostazioni: privacy profilo (privato o pubblico) e impostazioni notifiche
 - [x] Rimozione o modifica proprio post
 - [x] Salvataggio post o segnalazione post (notifica ad un admin dopo N segnalazioni: da scrivere nella relazione)
 - [x] Nel profilo si deve vedere la LISTA dei propri follower!
@@ -30,3 +31,5 @@
 - [x] PW criptata o hashata
 - [ ] Cookie
 - [ ] Recupero PW
+- [ ] Elimina reazione
+- [ ] Modifica e elimina commento
