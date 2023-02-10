@@ -7,7 +7,7 @@
         </div>
         <div class="form-floating mb-3">
             <!-- TODO: CONTROLLO ALTEZZA -->
-            <textarea type="text" class="form-control" id="description-input" name="description-input"></textarea>
+            <textarea class="form-control" id="description-input" name="description-input"></textarea>
             <label for="description-input">Descrizione</label>
         </div>
         <!-- TODO: DECIDERE PER CATEGORIE -->

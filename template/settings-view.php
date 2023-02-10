@@ -32,7 +32,7 @@
         <img src="../public/assets/img/logout.png" alt="Logout">
         <span>Logout</span>
     </div>
-    <form class="logout-form modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" action="#" method="post">
+    <form class="logout-form modal fade" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" action="#" method="post">
         <div id="logout-form" class="modal-dialog modal-dialog-scrollable modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
