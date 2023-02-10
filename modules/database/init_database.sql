@@ -61,7 +61,7 @@ INSERT INTO `post` (
     )
 VALUES (
         1,
-        '../public/assets/img/default-pic.png',
+        'default-pic.png',
         '',
         '2023-12-10 20:00:00',
         'user1'
