@@ -217,7 +217,7 @@ class DatabaseHelper
 
     public function ottieniPostSalvati($username)
     {
-        $sql = "SELECT * FROM salva WHERE username = ?";
+        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM salva WHERE username = ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();

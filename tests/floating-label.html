@@ -1,4 +1,3 @@
-<!-- TODO: colore #495057 al label quando testo nell'input ma non focus -->
 <style>
     .form-group {
         position: relative;
@@ -12,7 +11,7 @@
         padding-bottom: .5rem;
         padding-left: .5rem;
         font-size: 1rem;
-        border: 1px solid #ced4da;
+        border: 2px solid #ced4da;
         border-radius: .25rem;
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     }
@@ -21,7 +20,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        padding: .5rem .5rem;
+        padding: .6rem .5rem;
         font-size: 1rem;
         pointer-events: none;
         transition: all .1s ease-in-out;
@@ -37,6 +36,10 @@
         color: #2196F3;
         background-color: white;
         padding: 1.5rem .2rem 0;
+    }
+
+    .form-group input:valid:not(:focus)~label {
+        color: #969ca3;
     }
 
     .form-group input:focus {
