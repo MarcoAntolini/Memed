@@ -17,18 +17,24 @@
 </head>
 
 <body>
-    <div class="header container-fluid d-flex justify-content-center color-main p-2 fixed-top">
-        <img src="../public/assets/img/logo.png" alt="logo" class="logo" />
-        <h1 class="title">Memed</h1>
-    </div>
-    <?php
-    if (isset($templateParams["nome"])) {
-        require $templateParams["nome"];
-    }
-    ?>
-    <div class=" footer container-fluid d-flex justify-content-center color-main p-2 fixed-bottom">
-        © 2023 Memed. Tutti i diritti riservati.
-    </div>
+    <header>
+        <div class="container-fluid d-flex justify-content-center color-main p-2 fixed-top">
+            <img src="../public/assets/img/logo.png" alt="logo" class="logo" />
+            <h1 class="title">Memed</h1>
+        </div>
+    </header>
+    <main>
+        <?php
+        if (isset($templateParams["nome"])) {
+            require $templateParams["nome"];
+        }
+        ?>
+    </main>
+    <footer>
+        <div class="container-fluid d-flex justify-content-center color-main p-2 fixed-bottom">
+            © 2023 Memed. Tutti i diritti riservati.
+        </div>
+    </footer>
 </body>
 
 </html>
