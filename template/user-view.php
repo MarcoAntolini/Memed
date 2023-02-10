@@ -13,12 +13,12 @@
                     <?php if($templateParams["isFollowing"]): ?>
                         <form action="#" method="post">
                             <input type="hidden" name="unfollowing" value="<?php echo $templateParams["utente"]; ?>">
-                            <button type="submit" class="btn btn-primary">Unfollow</button>
+                            <button type="submit" class="btn btn-primary">Non seguire più</button>
                         </form>
                     <?php else: ?>
                         <form action="#" method="post">
                             <input type="hidden" name="following" value="<?php echo $templateParams["utente"]; ?>">
-                            <button type="submit" class="btn btn-primary">Follow</button>
+                            <button type="submit" class="btn btn-primary">Segui</button>
                         </form>
                     <?php endif; ?>
                 </div>
