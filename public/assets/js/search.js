@@ -8,9 +8,9 @@ $(function() {
             type: "post",
             data: { "username": username },
             success: function(e) {
-                if (e == "following") {
+                if (e == "follow") {
                     button.html("Non seguire più");
-                } else if (e == "not following") {
+                } else if (e == "unfollow") {
                     button.html("Segui");
                 }
             }
