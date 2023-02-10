@@ -15,6 +15,4 @@ da controllare header-view e gli errori che da
 
 doppione nella pagina delle notifiche
 
-CONTROLLARE PUBBLICAZIONE POST -> fatal error
-
 Capire perché vengono generati i div di search view dopo la fine di html

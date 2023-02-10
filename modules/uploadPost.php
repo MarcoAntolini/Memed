@@ -12,7 +12,7 @@ foreach ($categorie as $categoria) {
         array_push($categorie_inserite, $categoria["idcategoria"]);
     }
 }
-
+if(isset($_FILES["image-input"]) && $_FILES["image-input"]["name"]!=""){
 list($result, $msg) = uploadImage(UPLOAD_DIR, $_FILES["image-input"]);
 if ($result != 0) {
     $imgpost = $msg;
@@ -24,10 +24,19 @@ if ($result != 0) {
         header("location: index.php");
     }
 } else {
-    $id = $mysqli->inserisciPost($mysqli->ottieniIdUltimoPost() + 1, NULL, $testopost, $datapost, $autore);
+    $id = $mysqli->inserisciPost($mysqli->ottieniIdUltimoPost()[0] + 1, NULL, $testopost, $datapost, $autore);
     if ($id != false) {
         foreach ($categorie_inserite as $categoria) {
-            $ris = $mysqli->inserisciCategoriaPost($mysqli->ottieniIdUltimoPost(), $categoria["idcategoria"]);
+            $ris = $mysqli->inserisciCategoriaPost($categoria, $mysqli->ottieniIdUltimoPost()[0]);
+        }
+        header("location: index.php");
+    }
+}
+}else{
+    $id = $mysqli->inserisciPost($mysqli->ottieniIdUltimoPost()[0] + 1, NULL, $testopost, $datapost, $autore);
+    if ($id != false) {
+        foreach ($categorie_inserite as $categoria) {
+            $ris = $mysqli->inserisciCategoriaPost($categoria, $mysqli->ottieniIdUltimoPost()[0]);
         }
         header("location: index.php");
     }
