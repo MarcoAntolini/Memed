@@ -127,7 +127,7 @@ function checkPage() {
         url = "explore.php";
     } else if (windowPath.includes("user.php")) {
         url = "user.php";
-    }else if (windowPath.includes("saved.php")) {
+    } else if (windowPath.includes("saved.php")) {
         url = "saved.php";
     }
     return url;
