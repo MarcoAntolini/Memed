@@ -5,8 +5,8 @@ function generateNotice(notice) {
         <article class="notice row">
         <form action="#" method="post">
             <p class="notice">${notice[i]["mesaggio"]}</p>
-            <button class="btn btn-primary" type="submit" name="letto" value="${notice[i]["idnotifica"]}">letto</button>
-            <button class="btn btn-primary" type="submit" name="cancella" value="${notice[i]["idnotifica"]}">cancella</button>
+            <button class="btn btn-primary" type="submit" name="letto" value="${notice[i]["idnotifica"]}">Letto</button>
+            <button class="btn btn-primary" type="submit" name="cancella" value="${notice[i]["idnotifica"]}">Cancella</button>
             </form>
         </article>
         `;

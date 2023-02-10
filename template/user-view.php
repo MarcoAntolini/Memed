@@ -1,21 +1,21 @@
 <div class="my-profile">
     <div class="container">
         <div class="user-data-section">
-            <img class="profile-pic" src="<?php echo (UPLOAD_DIR. $templateParams["profilo"][0]["nomefile"]); ?>" alt="profile-pic">
+            <img class="profile-pic" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["nomefile"]); ?>" alt="profile-pic">
             <div class="username">
                 <?php echo $templateParams["profilo"][0]["username"]; ?>
             </div>
             <div class="bio">
                 <?php echo $templateParams["profilo"][0]["bio"]; ?>
             </div>
-            <?php if($templateParams["utente"] != $_SESSION["username"]): ?>
+            <?php if ($templateParams["utente"] != $_SESSION["username"]) : ?>
                 <div class="follow-section">
-                    <?php if($templateParams["isFollowing"]): ?>
+                    <?php if ($templateParams["isFollowing"]) : ?>
                         <form action="#" method="post">
                             <input type="hidden" name="unfollowing" value="<?php echo $templateParams["utente"]; ?>">
-                            <button type="submit" class="btn btn-primary">Non seguire più</button>
+                            <button type="submit" class="btn btn-primary">Smetti di seguire</button>
                         </form>
-                    <?php else: ?>
+                    <?php else : ?>
                         <form action="#" method="post">
                             <input type="hidden" name="following" value="<?php echo $templateParams["utente"]; ?>">
                             <button type="submit" class="btn btn-primary">Segui</button>

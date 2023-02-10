@@ -1,5 +1,5 @@
-$(function() {
-    $(".followBtn").on('click', function() {
+$(function () {
+    $(".followBtn").on('click', function () {
         let button = $(this);
         let username = button.attr('id');
 
@@ -7,13 +7,13 @@ $(function() {
             url: "updateFollow.php",
             type: "post",
             data: { "username": username },
-            success: function(e) {
+            success: function (e) {
                 if (e == "follow") {
-                    button.html("Non seguire più");
+                    button.html("Smetti di seguire");
                 } else if (e == "unfollow") {
                     button.html("Segui");
                 }
             }
-        })
-    })
-})
+        });
+    });
+});
