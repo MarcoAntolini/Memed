@@ -32,17 +32,19 @@
         <img src="../public/assets/img/logout.png" alt="Logout">
         <span>Logout</span>
     </div>
-    <form class="logout-form modal fade" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" action="#" method="post">
-        <div id="logout-form" class="modal-dialog modal-dialog-scrollable modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="logout-form modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
+        <form action="#" method="post">
+            <div id="logout-form" class="modal-dialog modal-dialog-scrollable modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body align-items-center">
+                        <h5 class="float-start pt-2">Sei sicuro?</h5>
+                        <button type="submit" name="logout" class="btn btn-danger float-end fs-5">Logout</button>
+                    </div>
                 </div>
-                <div class="modal-body align-items-center">
-                    <h5 class="float-start pt-2">Sei sicuro?</h5>
-                    <button type="submit" name="logout" class="btn btn-danger float-end fs-5">Logout</button>
-                </div>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
+</div>
 </div>
