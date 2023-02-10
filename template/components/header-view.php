@@ -1,7 +1,7 @@
 <header>
     <div class="header container-fluid d-flex justify-content-center color-main p-2 fixed-top top-0">
         <div class="col ">
-            <h1 class="fs-1 position-absolute float-start">Memed</h1>
+            <h1 class="position-absolute float-start">Memed</h1>
         </div>
         <div class="col">
             <form id="search-form" action="../modules/search.php" method="GET" class="m-0">

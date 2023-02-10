@@ -1,4 +1,4 @@
-<nav class="footer container-fluid d-flex justify-content-center color-main p-2 fixed-bottom">
+<nav class="container-fluid d-flex justify-content-center color-main p-2 fixed-bottom">
     <div class="row gap-2">
         <div class="col">
             <a href="index.php">
