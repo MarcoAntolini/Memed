@@ -1,6 +1,6 @@
 <?php
 if (isset($templateParams["js"])) :
-    echo '<div id="post-section"></div>';
+    echo '<section id="post-section"></section>';
     foreach ($templateParams["js"] as $script) :
 ?>
         <script src="<?php echo $script; ?>"></script>

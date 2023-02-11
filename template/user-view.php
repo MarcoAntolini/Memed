@@ -2,12 +2,12 @@
     <div class="container">
         <div class="user-data-section">
             <img class="profile-pic" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["nomefile"]); ?>" alt="profile-pic">
-            <div class="username">
+            <h2 class="username">
                 <?php echo $templateParams["profilo"][0]["username"]; ?>
-            </div>
-            <div class="bio">
+            </h2>
+            <p class="bio">
                 <?php echo $templateParams["profilo"][0]["bio"]; ?>
-            </div>
+            </p>
             <?php if ($templateParams["utente"] != $_SESSION["username"]) : ?>
                 <div class="follow-section">
                     <?php if ($templateParams["isFollowing"]) : ?>
