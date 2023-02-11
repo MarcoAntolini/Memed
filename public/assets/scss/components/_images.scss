@@ -6,6 +6,7 @@
 .reaction {
     max-width: 50px;
     max-height: 50px;
+    cursor: pointer;
 }
 
 img {
@@ -23,4 +24,8 @@ img {
 .post-settings-icon {
     max-width: 30px !important;
     max-height: 30px !important;
+}
+
+.post-settings-icon {
+    cursor: pointer;
 }
