@@ -300,7 +300,7 @@ class DatabaseHelper
 
     public function ottieniPostDaCategoria($IDcategoria)
     {
-        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM categoriapost WHERE IDcategoria = ?) ORDER BY data DESC";
+        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM categoria_post WHERE IDcategoria = ?) ORDER BY data DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $IDcategoria);
         $stmt->execute();
