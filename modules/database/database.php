@@ -120,7 +120,8 @@ class DatabaseHelper
         $stmt->execute();
     }
 
-    private function controlloReazione($username, $idpost, $idreazione){
+    private function controlloReazione($username, $idpost, $idreazione)
+    {
         $sql = "SELECT * FROM reazione_pu WHERE username = ? AND idpost = ? AND idreazione = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("sii", $username, $idpost, $idreazione);
@@ -135,7 +136,7 @@ class DatabaseHelper
 
     public function inserisciReazionePost($username, $idpost, $idreazione)
     {
-        if($this->controlloReazione($username, $idpost, $idreazione)){
+        if ($this->controlloReazione($username, $idpost, $idreazione)) {
             $this->cancellaReazionePost($username, $idpost);
             return true;
         }
@@ -709,5 +710,15 @@ class DatabaseHelper
         $stmt->execute();
         $result = $stmt->get_result();
         return $result;
+    }
+
+    public function ottieniNomeFile($username)
+    {
+        $sql = "SELECT nomefile FROM utenti WHERE username = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_row();
     }
 }
