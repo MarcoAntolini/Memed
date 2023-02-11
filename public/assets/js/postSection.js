@@ -76,25 +76,25 @@ function generatePost(post) {
                         <input type="hidden" id="idpost" name="idpost" value="${post[i]["idpost"]}">
                         <input type="hidden" id="username" name="username" value="${post[i]["session-username"]}">
                         <div class="reactions">
-                            <div class="1">
-                                <img src="../public/assets/img/reazione-1.png" alt="reazione-1" class="reaction">
-                                <span id="reazione1" class="reaction-count">${post[i]["reazione1"]}</span>
+                            <div class="reaction-5">
+                                <img src="../public/assets/img/reazione-5.png" alt="reazione-5" class="reaction-image ${post[i]["reazione-attiva-5"]}">
+                                <span id="reazione5" class="reaction-count">${post[i]["reazione5"]}</span>
                             </div>
-                            <div class="2">
-                                <img src="../public/assets/img/reazione-2.png" alt="reazione-2" class="reaction">
-                                <span id="reazione2" class="reaction-count">${post[i]["reazione2"]}</span>
-                            </div>
-                            <div class="3">
-                                <img src="../public/assets/img/reazione-3.png" alt="reazione-3" class="reaction">
-                                <span id="reazione3" class="reaction-count">${post[i]["reazione3"]}</span>
-                            </div>
-                            <div class="4">
-                                <img src="../public/assets/img/reazione-4.png" alt="reazione-4" class="reaction">
+                            <div class="reaction-4">
+                                <img src="../public/assets/img/reazione-4.png" alt="reazione-4" class="reaction-image ${post[i]["reazione-attiva-4"]}">
                                 <span id="reazione4" class="reaction-count">${post[i]["reazione4"]}</span>
                             </div>
-                            <div class="5">
-                                <img src="../public/assets/img/reazione-5.png" alt="reazione-5" class="reaction">
-                                <span id="reazione5" class="reaction-count">${post[i]["reazione5"]}</span>
+                            <div class="reaction-3">
+                                <img src="../public/assets/img/reazione-3.png" alt="reazione-3" class="reaction-image ${post[i]["reazione-attiva-3"]}">
+                                <span id="reazione3" class="reaction-count">${post[i]["reazione3"]}</span>
+                            </div>
+                            <div class="reaction-2">
+                                <img src="../public/assets/img/reazione-2.png" alt="reazione-2" class="reaction-image ${post[i]["reazione-attiva-2"]}">
+                                <span id="reazione2" class="reaction-count">${post[i]["reazione2"]}</span>
+                            </div>
+                            <div class="reaction-1">
+                                <img src="../public/assets/img/reazione-1.png" alt="reazione-1" class="reaction-image ${post[i]["reazione-attiva-1"]}">
+                                <span id="reazione1" class="reaction-count">${post[i]["reazione1"]}</span>
                             </div>
                         </div>
                     </form>
@@ -192,21 +192,27 @@ function checkCollapsibles(buttonClicked, buttonChecked, divChecked) {
 }
 
 function handleReactions() {
-    const reactions = document.querySelectorAll(".reaction");
+    const reactions = document.querySelectorAll(".reaction-image");
     reactions.forEach(reaction => {
         reaction.addEventListener("click", function () {
-            // TODO: cambiare immagine reazione
-            // TODO: cambiare numero reazione
-            // TODO: controllo se è da ggiungere o togliere
-            if (reaction.parentElement.classList.contains("1")) {
+            if (reaction.classList.contains("active")) {
+                reaction.classList.remove("active");
+            } else {
+                const oldReaction = reaction.parentElement.parentElement.querySelector(".active");
+                if (oldReaction) {
+                    oldReaction.classList.remove("active");
+                }
+                reaction.classList.add("active");
+            }
+            if (reaction.parentElement.classList.contains("reaction-1")) {
                 addReaction(reaction, 1);
-            } else if (reaction.parentElement.classList.contains("2")) {
+            } else if (reaction.parentElement.classList.contains("reaction-2")) {
                 addReaction(reaction, 2);
-            } else if (reaction.parentElement.classList.contains("3")) {
+            } else if (reaction.parentElement.classList.contains("reaction-3")) {
                 addReaction(reaction, 3);
-            } else if (reaction.parentElement.classList.contains("4")) {
+            } else if (reaction.parentElement.classList.contains("reaction-4")) {
                 addReaction(reaction, 4);
-            } else if (reaction.parentElement.classList.contains("5")) {
+            } else if (reaction.parentElement.classList.contains("reaction-5")) {
                 addReaction(reaction, 5);
             }
         });
@@ -216,7 +222,7 @@ function handleReactions() {
 function addReaction(reaction, idreazione) {
     const idpost = reaction.parentElement.parentElement.parentElement.querySelector("#idpost").value;
     const username = reaction.parentElement.parentElement.parentElement.querySelector("#username").value;
-    axios.post("reactionSection.php", { idreazione: idreazione, idpost: idpost, username: username }).then(Response => {
+    axios.post("reactionSection.php", { idreazione: idreazione, idpost: idpost, username: username }).then({
     });
     axios.get("reactionSection.php", { params: { idpost: idpost } }).then(Response => {
         const count = Response.data;
@@ -225,5 +231,6 @@ function addReaction(reaction, idreazione) {
         reaction.parentElement.parentElement.querySelector("#reazione3").innerHTML = count[3];
         reaction.parentElement.parentElement.querySelector("#reazione4").innerHTML = count[4];
         reaction.parentElement.parentElement.querySelector("#reazione5").innerHTML = count[5];
+        // TODO: reazione-attiva da reactionSection.php
     });
 }

@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $port[3] = $mysqli->contaReazioniPost(3, $_GET["idpost"]);
     $port[4] = $mysqli->contaReazioniPost(4, $_GET["idpost"]);
     $port[5] = $mysqli->contaReazioniPost(5, $_GET["idpost"]);
+    $port["reazione-attiva"] = $mysqli->ottieniReazionePost($_GET["idpost"], $_SESSION["username"]);
     header("Content-Type: application/json; charset=UTF-8");
     echo json_encode($port);
 }
