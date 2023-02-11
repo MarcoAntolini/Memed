@@ -314,7 +314,6 @@ class DatabaseHelper
 
     public function ottieniPostPerEsplora($username)
     {
-        // TODO: da finire
         $sql = "SELECT * FROM post WHERE username != ? ORDER BY data DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $username);
@@ -339,11 +338,23 @@ class DatabaseHelper
         }
     }
 
+    public function cancellaCatPost($idpost){
+        $sql = "DELETE FROM categoria_post WHERE idpost = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $idpost);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function cancellaPost($idpost)
     {
         $this->cancellaCommentoDaPost($idpost);
         $this->cancellaReazioneDaPost($idpost);
         $this->cancellaPostSalvato($idpost);
+        $this->cancellaCatPost($idpost);
         $sql = "DELETE FROM post WHERE idpost = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $idpost);

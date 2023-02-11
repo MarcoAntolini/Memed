@@ -45,6 +45,7 @@ function generatePost(post) {
                                             <div class="card card-body">
                                                 <form action="#" method="post" enctype="multipart/form-data">
                                                     <p>Sei sicuro di voler eliminare questo post?</p>
+                                                    <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
                                                     <button type="submit" name="delete-post" class="btn btn-danger">Elimina</button>
                                                 </form>
                                             </div>
@@ -108,7 +109,7 @@ function generatePost(post) {
             post[i]["commenti"].forEach(commento => {
                 content += `
                         <div class="comment">
-                            <a class="username-comment-owner" href="user.php?username=$commento["username"]">${commento["username"]}</a>
+                            <a class="username-comment-owner" href="user.php?username=${commento["username"]}">${commento["username"]}</a>
                             <p class="comment-text">${commento["testo"]}</p>
                         </div>
             `;
@@ -116,24 +117,11 @@ function generatePost(post) {
         }
         content += `
                     </div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#commentModal">Commenta</button>
-                    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true" role="dialog"
-                        data-bs-keyboard="false" data-bs-backdrop="static">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="add-comment" method="post" action="#">
-                                        <textarea class="comment-input" type="text" name="comment-text" placeholder="Commenta..." rows="3"></textarea>
-                                        <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
-                                        <button class="post-comment btn btn-primary mb-3" type="submit" name="post-comment">Pubblica</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <form class="add-comment" method="post" action="#">
+                <input class="comment-input" type="text" name="comment-text" placeholder="Commenta...">
+                <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
+                <button class="post-comment btn btn-primary" type="submit" name="post-comment">Pubblica</button>
+            </form>
                 </div>
             </div>
         </div>

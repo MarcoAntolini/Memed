@@ -21,7 +21,7 @@
 - bottoni cancella, leggi e anteprima devono essere btn-[qualcosa] non primary
 - coerenza segui / smetti di seguire e follow / unfollow
 - @ davanti a ogni username?
-- si può reagire a se stessi?
+- si può reagire a se stessi? be si, si fa anche su insta
 - rimozione reazione
 - ordinamento post esplora per reazione media
 - reazione media nel profilo?
