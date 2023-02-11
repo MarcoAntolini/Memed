@@ -712,9 +712,20 @@ class DatabaseHelper
         return $result;
     }
 
+
     public function ottieniNomeFile($username)
     {
         $sql = "SELECT nomefile FROM utenti WHERE username = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_row();
+    }
+
+    public function mediaReazioniUser($username)
+    {
+        $sql = "SELECT AVG(reazione_pu.idreazione) FROM post, reazione_pu WHERE post.idpost=reazione_pu.idpost AND post.username = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();
