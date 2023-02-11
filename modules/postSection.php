@@ -10,7 +10,7 @@ if (isset($_GET["url"])) {
             break;
         case "explore.php":
             if (isset($_SESSION["categoria"]) && $_SESSION["categoria"] != 0) {
-                $post = $mysqli->ottieniPostDaCategoria($_SESSION["categoria"]);
+                $post = $mysqli->ottieniPostDaCategoria($_SESSION["categoria"], $_SESSION["username"]);
             } else {
                 $post = $mysqli->ottieniPostPerEsplora($_SESSION["username"]);
             }

@@ -315,11 +315,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniPostDaCategoria($IDcategoria)
+    public function ottieniPostDaCategoria($IDcategoria, $username)
     {
-        $sql = "SELECT post.* FROM post, reazione_pu WHERE post.idpost=reazione_pu.idpost AND post.idpost IN (SELECT idpost FROM categoria_post WHERE IDcategoria = ?) GROUP BY post.idpost ORDER BY AVG(reazione_pu.idreazione) DESC";
+        $sql = "SELECT post.* FROM post, reazione_pu WHERE post.idpost=reazione_pu.idpost AND post.idpost IN (SELECT idpost FROM categoria_post WHERE IDcategoria = ?) AND post.username != ? GROUP BY post.idpost ORDER BY AVG(reazione_pu.idreazione) DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $IDcategoria);
+        $stmt->bind_param("is", $IDcategoria, $username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
