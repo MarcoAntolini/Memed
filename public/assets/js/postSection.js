@@ -2,115 +2,139 @@ function generatePost(post) {
     let result = "";
     for (let i = 0; i < post.length; i++) {
         let content = `
-        <div class="post container">
-            <div class="left-up">
-                <a class="username-post-owner" href="user.php?username=${post[i]["username"]}">${post[i]["username"]}</a>
-                <img src="../public/assets/img/user-settings.png" alt="post-settings" data-bs-toggle="modal" data-bs-target=".post-settings" class="post-settings-icon">
-                <div class="post-settings modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
-                <div id="post-settings" class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                        <form class="action-post" action="#" method="post">
-                            <input type="hidden" name="idpost" value="${post[i]["idpost"]}">`;
+        <div class="post card mb-3">
+            <div class="row g-0">
+                <div class="col-md-2 p-2">
+                    <a class="username-post-owner" href="user.php?username=${post[i]["username"]}">${post[i]["username"]}</a>
+                    <img src="../public/assets/img/user-settings.png" alt="post-settings" data-bs-toggle="modal" data-bs-target=".post-settings"
+                        class="post-settings-icon">
+                    <div class="post-settings modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
+                        <div id="post-settings" class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="action-post" action="#" method="post">
+                                        <input type="hidden" name="idpost" value="${post[i]["idpost"]}">`;
         if (post[i]["username"] == post[i]["session-username"]) {
             content += `
-                            <button class="edit-post btn btn-primary" type="button" id="edit-button"
-                                    data-bs-toggle="collapse" data-bs-target="#edit-post"
-                                    aria-expanded="false" aria-controls="edit-post">
-                                    Modifica
-                            </button>
-                            <button class="delete-post btn btn-danger" type="button" id="delete-button"
-                                    data-bs-toggle="collapse" data-bs-target="#delete-post"
-                                    aria-expanded="false" aria-controls="delete-post">
-                                    Elimina
-                            </button>
-                            <div class="collapse" id="edit-post">
-                                <div class="card card-body">
-                                    <form action="#" method="post" enctype="multipart/form-data">
-                                        <label for="edit-post-text">Descrizione:</label>
-                                        <textarea id="edit-post-text" class="edit-post-text" name="description" rows="10">${post[i]["testo"]}</textarea>
-                                        <button type="reset" name="reset" class="btn btn-secondary">Annulla</button>
-                                        <button type="submit" name="edit-post" class="btn btn-primary mb-3">Salva</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="collapse" id="delete-post">
-                                <div class="card card-body">
-                                    <form action="#" method="post" enctype="multipart/form-data">
-                                        <p>Sei sicuro di voler eliminare questo post?</p>
-                                        <button type="submit" name="delete-post" class="btn btn-danger">Elimina</button>
-                                    </form>
-                                </div>
-                            </div>
+                                        <button class="edit-post btn btn-primary" type="button" id="edit-button"
+                                                data-bs-toggle="collapse" data-bs-target="#edit-post"
+                                                aria-expanded="false" aria-controls="edit-post">
+                                            Modifica
+                                        </button>
+                                        <button class="delete-post btn btn-danger" type="button" id="delete-button"
+                                                data-bs-toggle="collapse" data-bs-target="#delete-post"
+                                                aria-expanded="false" aria-controls="delete-post">
+                                            Elimina
+                                        </button>
+                                        <div class="collapse" id="edit-post">
+                                            <div class="card card-body">
+                                                <form action="#" method="post" enctype="multipart/form-data">
+                                                    <label for="edit-post-text">Descrizione:</label>
+                                                    <textarea id="edit-post-text" class="edit-post-text" name="description" rows="10">
+                                                        ${post[i]["testo"]}
+                                                    </textarea>
+                                                    <button type="reset" name="reset" class="btn btn-secondary">Annulla</button>
+                                                    <button type="submit" name="edit-post" class="btn btn-primary mb-3">Salva</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="delete-post">
+                                            <div class="card card-body">
+                                                <form action="#" method="post" enctype="multipart/form-data">
+                                                    <p>Sei sicuro di voler eliminare questo post?</p>
+                                                    <button type="submit" name="delete-post" class="btn btn-danger">Elimina</button>
+                                                </form>
+                                            </div>
+                                        </div>
             `;
         } else {
             if (!post[i]["controllaSalva"]) {
-                content += `<button class="save-post btn btn-primary" type="submit" name="save-post">Salva</button>`;
+                content += `
+                                        <button class="save-post btn btn-primary" type="submit" name="save-post">Salva</button>
+                `;
             } else {
-                content += `<button class="unsave-post btn btn-primary" type="submit" name="unsave-post">Rimuovi</button>`;
+                content += `
+                                        <button class="unsave-post btn btn-primary" type="submit" name="unsave-post">Rimuovi</button>
+                `;
             }
-            content += `<button class="report-post btn btn-warning" type="submt" name="report-post">Segnala</button>`;
+            content += `
+                                        <button class="report-post btn btn-warning" type="submt" name="report-post">Segnala</button>
+            `;
         }
         content += `
-                        </form >
-                        </div >
-                    </div >
-                </div >
-            </div >
-            <form class="reaction-post" action="#" method="post">
-                <input type="hidden" id="idpost" name="idpost" value="${post[i]["idpost"]}">
-                <input type="hidden" id="username" name="username" value="${post[i]["session-username"]}">
-                <div class="reactions">
-                    <div class="1">
-                        <img src="../public/assets/img/reazione-1.png" alt="reazione-1" class="reaction">
-                        <span id="reazione1" class="reaction-count">${post[i]["reazione1"]}</span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="2">
-                        <img src="../public/assets/img/reazione-2.png" alt="reazione-2" class="reaction">
-                        <span id="reazione2" class="reaction-count">${post[i]["reazione2"]}</span>
-                    </div>
-                    <div class="3">
-                        <img src="../public/assets/img/reazione-3.png" alt="reazione-3" class="reaction">
-                        <span id="reazione3" class="reaction-count">${post[i]["reazione3"]}</span>
-                    </div>
-                    <div class="4">
-                        <img src="../public/assets/img/reazione-4.png" alt="reazione-4" class="reaction">
-                        <span id="reazione4" class="reaction-count">${post[i]["reazione4"]}</span>
-                    </div>
-                    <div class="5">
-                        <img src="../public/assets/img/reazione-5.png" alt="reazione-5" class="reaction">
-                        <span id="reazione5" class="reaction-count">${post[i]["reazione5"]}</span>
-                    </div>
+                    <form class="reaction-post" action="#" method="post">
+                        <input type="hidden" id="idpost" name="idpost" value="${post[i]["idpost"]}">
+                        <input type="hidden" id="username" name="username" value="${post[i]["session-username"]}">
+                        <div class="reactions">
+                            <div class="1">
+                                <img src="../public/assets/img/reazione-1.png" alt="reazione-1" class="reaction">
+                                <span id="reazione1" class="reaction-count">${post[i]["reazione1"]}</span>
+                            </div>
+                            <div class="2">
+                                <img src="../public/assets/img/reazione-2.png" alt="reazione-2" class="reaction">
+                                <span id="reazione2" class="reaction-count">${post[i]["reazione2"]}</span>
+                            </div>
+                            <div class="3">
+                                <img src="../public/assets/img/reazione-3.png" alt="reazione-3" class="reaction">
+                                <span id="reazione3" class="reaction-count">${post[i]["reazione3"]}</span>
+                            </div>
+                            <div class="4">
+                                <img src="../public/assets/img/reazione-4.png" alt="reazione-4" class="reaction">
+                                <span id="reazione4" class="reaction-count">${post[i]["reazione4"]}</span>
+                            </div>
+                            <div class="5">
+                                <img src="../public/assets/img/reazione-5.png" alt="reazione-5" class="reaction">
+                                <span id="reazione5" class="reaction-count">${post[i]["reazione5"]}</span>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
-            </div >
-            <div class="mid">
-                <img class="post-image" src="${post[i]["nomefile"]}" alt="">
-                <p class="post-text">${post[i]["testo"]}</p>
-            </div>
-            <div class="right-down">
-                <div class="comments-section">   
+                <div class="col-md-6 border-start border-end p-2">
+                    <img class="post-image" src="${post[i]["nomefile"]}" alt="">
+                    <p class="post-text">${post[i]["testo"]}</p>
+                </div>
+                <div class="col-md-4 p-2">
+                    <div class="comments-section">   
         `;
         if (post[i]["commenti"]) {
             post[i]["commenti"].forEach(commento => {
                 content += `
-                    <div class="comment">
-                        <a class="username-comment-owner" href="user.php?username=$commento["username"]">${commento["username"]}</a>
-                        <p class="comment-text">${commento["testo"]}</p>
-                    </div>
+                        <div class="comment">
+                            <a class="username-comment-owner" href="user.php?username=$commento["username"]">${commento["username"]}</a>
+                            <p class="comment-text">${commento["testo"]}</p>
+                        </div>
             `;
             });
         }
         content += `
-                </div >
-            <form class="add-comment" method="post" action="#">
-                <input class="comment-input" type="text" name="comment-text" placeholder="Commenta...">
-                <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
-                <button class="post-comment btn btn-primary" type="submit" name="post-comment">Pubblica</button>
-            </form>
+                    </div>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#commentModal">Commenta</button>
+                    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true" role="dialog"
+                        data-bs-keyboard="false" data-bs-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="add-comment" method="post" action="#">
+                                        <textarea class="comment-input" type="text" name="comment-text" placeholder="Commenta..." rows="3"></textarea>
+                                        <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
+                                        <button class="post-comment btn btn-primary mb-3" type="submit" name="post-comment">Pubblica</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         `;
