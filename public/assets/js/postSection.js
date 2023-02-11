@@ -118,11 +118,25 @@ function generatePost(post) {
         }
         content += `
                     </div>
-                    <form class="add-comment" method="post" action="#">
-                <input class="comment-input" type="text" name="comment-text" placeholder="Commenta...">
-                <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
-                <button class="post-comment btn btn-primary" type="submit" name="post-comment">Pubblica</button>
-            </form>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target=".post-comment-${post[i]["idpost"]}">Commenta</button>
+                    <div class="post-comment-${post[i]["idpost"]} modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
+                        aria-hidden="true" role="dialog"
+                        data-bs-keyboard="false" data-bs-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="add-comment" method="post" action="#">
+                                        <textarea class="comment-input" type="text" name="comment-text" placeholder="Commenta..." rows="3"></textarea>
+                                        <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
+                                        <button class="submit-comment btn btn-primary mb-3" type="submit" name="submit-comment">Pubblica</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

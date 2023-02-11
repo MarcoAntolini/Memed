@@ -8,7 +8,7 @@ if (empty($res)) {
                 echo
                 "<div class='d-flex justify-content-between border border-dark rounded bg-light text-dark p-3 m-2'>
                         <div class='d-flex align-items-center' style='width:40vw;'>
-                            <img src='" . UPLOAD_DIR . $r['nomefile'] . "' style='width:3vw; height:3vw' />
+                            <img src='" . UPLOAD_DIR . $r['nomefile'] . "' alt='' style='width:3vw; height:3vw' />
                             <div class=''>
                                 <span class='font-weight-bold'>
                                     <a href='user.php?username=" . $r['username'] . "'>" . $r["username"] . "</a><br>
@@ -24,7 +24,7 @@ if (empty($res)) {
                 echo
                 "<div class='d-flex justify-content-between border border-dark rounded bg-light text-dark p-3 m-2'>
                         <div class='d-flex align-items-center' style='width:40vw;'>
-                            <img src='" . UPLOAD_DIR . $r['nomefile'] . "' style='width:3vw; height:3vw' />
+                            <img src='" . UPLOAD_DIR . $r['nomefile'] . "' alt='' style='width:3vw; height:3vw' />
                             <div class=''>
                                 <span class='font-weight-bold'>
                                     <a href='user.php?username=" . $r['username'] . "'>" . $r["username"] . "</a><br>

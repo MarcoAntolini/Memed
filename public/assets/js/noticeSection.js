@@ -3,10 +3,10 @@ function generateNotice(notice) {
     for (let i = 0; i < notice.length; i++) {
         let content = `
         <article class="notice row">
-        <form action="#" method="post">
-            <p class="notice">${notice[i]["mesaggio"]}</p>
-            <button class="btn btn-primary" type="submit" name="letto" value="${notice[i]["idnotifica"]}">Letto</button>
-            <button class="btn btn-primary" type="submit" name="cancella" value="${notice[i]["idnotifica"]}">Cancella</button>
+            <form action="#" method="post">
+                <p class="notice">${notice[i]["mesaggio"]}</p>
+                <button class="btn btn-primary" type="submit" name="letto" value="${notice[i]["idnotifica"]}">Letto</button>
+                <button class="btn btn-primary" type="submit" name="cancella" value="${notice[i]["idnotifica"]}">Cancella</button>
             </form>
         </article>
         `;

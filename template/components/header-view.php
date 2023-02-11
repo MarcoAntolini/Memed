@@ -17,10 +17,8 @@
             </form>
         </div>
         <div class="col">
-            <a href="settings.php" class="float-end">
-                <button class="btn">
-                    <img src="../public/assets/img/settings.png" alt="settings" class="settings-icon">
-                </button>
+            <a href="settings.php" class="float-end btn">
+                <img src="../public/assets/img/settings.png" alt="settings" class="settings-icon">
             </a>
         </div>
     </div>

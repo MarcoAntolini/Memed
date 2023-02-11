@@ -11,17 +11,8 @@ if (login_check($mysqli) == true) {
     $templateParams["posthome"] = $mysqli->ottieniPostPerHome($_SESSION["username"]);
     $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"]);
     $templateParams["notifiche"] = $mysqli->ottieniNotifica($_SESSION["username"]);
-    if (isset($_POST["post-comment"])) {
-        $mysqli->inserisciCommento(
-            $mysqli->ottieniIdUltimoCommento() + 1,
-            $_POST["comment-text"],
-            date("Y-m-d H:i:s"),
-            $_SESSION["username"],
-            $_POST["idpost"]
-        );
-    }
-    require 'postSettings.php';
     require "../template/logged-base-view.php";
+    require 'postSettings.php';
 } else {
     header("location: login.php");
 }
