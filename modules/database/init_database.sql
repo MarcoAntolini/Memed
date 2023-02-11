@@ -143,12 +143,6 @@ VALUES (2, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
     (8, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
     (9, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
     (2, 'user5', 2, 'ggg', '2023-02-09 11:19:26');
-INSERT INTO `reazione` (`idreazione`)
-VALUES (1),
-    (2),
-    (3),
-    (4),
-    (5);
 INSERT INTO `reazione_pu` (`idreazione`, `username`, `idpost`)
 VALUES (5, 'user1', 1),
     (5, 'user2', 1),
