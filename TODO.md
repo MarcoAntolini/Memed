@@ -27,3 +27,4 @@
 - reazione media nel profilo?
 - se schiaccio cerca con l'input vuoto non mostrare nulla
 - se un post non ha l'immagine la caption sta troppo in giù
+- ESPLODE QUANDO CLICCHI SU UN UTENTE DEI COMMENTI
