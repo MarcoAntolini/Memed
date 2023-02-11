@@ -21,10 +21,9 @@
 - bottoni cancella, leggi e anteprima devono essere btn-[qualcosa] non primary
 - coerenza segui / smetti di seguire e follow / unfollow
 - @ davanti a ogni username?
-- si può reagire a se stessi? be si, si fa anche su insta
 - rimozione reazione
 - ordinamento post esplora per reazione media
 - reazione media nel profilo?
 - se schiaccio cerca con l'input vuoto non mostrare nulla
 - se un post non ha l'immagine la caption sta troppo in giù
-- ESPLODE QUANDO CLICCHI SU UN UTENTE DEI COMMENTI
+- nella textarea dei commenti se non c'è nulla mettere nulla (e non tutti gli spazi)
