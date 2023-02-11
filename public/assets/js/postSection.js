@@ -6,9 +6,9 @@ function generatePost(post) {
             <div class="row g-0">
                 <div class="col-md-2 p-2">
                     <a class="username-post-owner" href="user.php?username=${post[i]["username"]}">${post[i]["username"]}</a>
-                    <img src="../public/assets/img/user-settings.png" alt="post-settings" data-bs-toggle="modal" data-bs-target=".post-settings"
+                    <img src="../public/assets/img/user-settings.png" alt="post-settings" data-bs-toggle="modal" data-bs-target=".post-settings${post[i]["idpost"]}"
                         class="post-settings-icon">
-                    <div class="post-settings modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
+                    <div class="post-settings${post[i]["idpost"]} modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
                         <div id="post-settings" class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
