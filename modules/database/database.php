@@ -120,8 +120,25 @@ class DatabaseHelper
         $stmt->execute();
     }
 
+    private function controlloReazione($username, $idpost, $idreazione){
+        $sql = "SELECT * FROM reazione_pu WHERE username = ? AND idpost = ? AND idreazione = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("sii", $username, $idpost, $idreazione);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
     public function inserisciReazionePost($username, $idpost, $idreazione)
     {
+        if($this->controlloReazione($username, $idpost, $idreazione)){
+            $this->cancellaReazionePost($username, $idpost);
+            return true;
+        }
         $this->cancellaReazionePost($username, $idpost);
         $sql = "INSERT INTO reazione_pu (idreazione, username, idpost) VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($sql);
