@@ -76,9 +76,7 @@ CREATE TABLE `post` (
 --
 -- Struttura della tabella `reazione`
 --
-CREATE TABLE `reazione` (
-  `idreazione` int(11) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+CREATE TABLE `reazione` (`idreazione` int(11) NOT NULL) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
 -- Struttura della tabella `reazione_pu`
@@ -237,3 +235,11 @@ COMMIT;
 ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
 ;
+--
+-- Inizializzazione tabella `categoria`
+--
+INSERT INTO `categoria` (`idcategoria`, `nome`)
+VALUES (1, 'Freddura'),
+  (2, 'Black Humor'),
+  (3, 'Barzelletta'),
+  (4, 'Meme');

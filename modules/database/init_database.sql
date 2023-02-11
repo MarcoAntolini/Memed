@@ -1,9 +1,4 @@
 USE `memed`;
-INSERT INTO `categoria` (`idcategoria`, `nome`)
-VALUES (1, 'freddure'),
-    (2, 'BlackHumor'),
-    (3, 'barzellette'),
-    (4, 'meme');
 INSERT INTO `utenti` (
         `username`,
         `email`,
