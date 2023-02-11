@@ -317,7 +317,7 @@ class DatabaseHelper
 
     public function ottieniPostDaCategoria($IDcategoria)
     {
-        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM categoria_post WHERE IDcategoria = ?) ORDER BY data DESC";
+        $sql = "SELECT post.* FROM post, reazione_pu WHERE post.idpost=reazione_pu.idpost AND post.idpost IN (SELECT idpost FROM categoria_post WHERE IDcategoria = ?) GROUP BY post.idpost ORDER BY AVG(reazione_pu.idreazione) DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $IDcategoria);
         $stmt->execute();
@@ -331,7 +331,7 @@ class DatabaseHelper
 
     public function ottieniPostPerEsplora($username)
     {
-        $sql = "SELECT * FROM post WHERE username != ? ORDER BY data DESC";
+        $sql = "SELECT post.* FROM post, reazione_pu WHERE post.idpost=reazione_pu.idpost AND post.username != ? GROUP BY post.idpost ORDER BY AVG(reazione_pu.idreazione) DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();
