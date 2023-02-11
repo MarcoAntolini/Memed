@@ -36,6 +36,7 @@ function generatePost(post) {
                                                     <textarea id="edit-post-text" class="edit-post-text" name="description" rows="10">
                                                         ${post[i]["testo"]}
                                                     </textarea>
+                                                    <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
                                                     <button type="reset" name="reset" class="btn btn-secondary">Annulla</button>
                                                     <button type="submit" name="edit-post" class="btn btn-primary mb-3">Salva</button>
                                                 </form>
