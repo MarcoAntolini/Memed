@@ -16,7 +16,6 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confi
       $password = hash('sha512', $password . $random_salt);
       $mysqli->inserisciUtente($username, $email, $password, $random_salt);
       header('Location: ../modules/login.php');
-      // TODO: qualcosa a schermo per dire che si è registrato
    }
 }
 
