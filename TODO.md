@@ -16,8 +16,9 @@
 - in header-view.php sostituire l'a con il js o php che reindirizza a settings.php
 - da controllare header-view e gli errori che da
 - doppione nella pagina delle notifiche
-- Capire perché vengono generati i div di search view dopo la fine di html
+- capire perché vengono generati i div di search view dopo la fine di html
 - bottone leggi e leggi tutto disabled se non ci sono notifiche
 - bottoni cancella, leggi e anteprima devono essere btn-[qualcosa] non primary
 - coerenza segui / smetti di seguire e follow / unfollow
-- @ davanti a ogni username
+- @ davanti a ogni username?
+- si può reagire a se stessi?
