@@ -30,9 +30,10 @@ function generatePost(post) {
                             <div class="collapse" id="edit-post">
                                 <div class="card card-body">
                                     <form action="#" method="post" enctype="multipart/form-data">
-                                        <textarea class="edit-post-text" name="description" rows="10">${post[i]["testo"]}</textarea>
+                                        <label for="edit-post-text">Descrizione:</label>
+                                        <textarea id="edit-post-text" class="edit-post-text" name="description" rows="10">${post[i]["testo"]}</textarea>
                                         <button type="reset" name="reset" class="btn btn-secondary">Annulla</button>
-                                        <button type="submit" name="edit-post" class="btn btn-primary">Salva</button>
+                                        <button type="submit" name="edit-post" class="btn btn-primary mb-3">Salva</button>
                                     </form>
                                 </div>
                             </div>
