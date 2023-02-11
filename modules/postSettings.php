@@ -13,12 +13,16 @@ if (isset($_POST["save-post"])) {
 if (isset($_POST["unsave-post"])) {
     $mysqli->cancellaSalva($_SESSION["username"], $_POST["idpost"]);
 }
-if (isset($_POST["post-comment"])) {
-    $mysqli->inserisciCommento(
-        $mysqli->ottieniIdUltimoCommento()[0] + 1,
-        $_POST["comment-text"],
-        date("Y-m-d H:i:s"),
-        $_SESSION["username"],
-        $_POST["idpost"]
-    );
+if (isset($_POST["submit-comment"])) {
+    if (empty($_POST["comment-text"])) {
+        return;
+    } else {
+        $mysqli->inserisciCommento(
+            $mysqli->ottieniIdUltimoCommento($_POST["idpost"])[0] + 1,
+            $_POST["comment-text"],
+            date("Y-m-d H:i:s"),
+            $_SESSION["username"],
+            $_POST["idpost"]
+        );
+    }
 }

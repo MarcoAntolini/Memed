@@ -338,7 +338,8 @@ class DatabaseHelper
         }
     }
 
-    public function cancellaCatPost($idpost){
+    public function cancellaCatPost($idpost)
+    {
         $sql = "DELETE FROM categoria_post WHERE idpost = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $idpost);
@@ -504,10 +505,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniIdUltimoCommento()
+    public function ottieniIdUltimoCommento($idpost)
     {
-        $sql = "SELECT idcommento FROM commento ORDER BY idcommento DESC LIMIT 1";
+        $sql = "SELECT idcommento FROM commento WHERE idpost = ? ORDER BY idcommento DESC LIMIT 1";
         $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $idpost);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
