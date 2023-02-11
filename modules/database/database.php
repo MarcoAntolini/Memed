@@ -723,7 +723,7 @@ class DatabaseHelper
         return $result->fetch_row();
     }
 
-    public function mediaReazioniUser($username)
+    public function ottieniMediaReazioni($username)
     {
         $sql = "SELECT AVG(reazione_pu.idreazione) FROM post, reazione_pu WHERE post.idpost=reazione_pu.idpost AND post.username = ?";
         $stmt = $this->db->prepare($sql);
@@ -731,5 +731,21 @@ class DatabaseHelper
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_row();
+    }
+
+    public function ottieniReazionePost($idpost, $username)
+    {
+        $sql = "SELECT idreazione FROM reazione_pu WHERE idpost = ? AND username = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("is", $idpost, $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result == null) {
+            return 0;
+        } else if ($result->num_rows > 0) {
+            return $result->fetch_row();
+        } else {
+            return 0;
+        }
     }
 }
