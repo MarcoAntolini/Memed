@@ -217,7 +217,7 @@ class DatabaseHelper
 
     public function ottieniPostSalvati($username)
     {
-        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM salva WHERE username = ?)";
+        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM salva WHERE username = ?) ORDER BY data DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -258,7 +258,7 @@ class DatabaseHelper
 
     public function ottieniPostDaUtente($username)
     {
-        $sql = "SELECT * FROM post WHERE username = ?";
+        $sql = "SELECT * FROM post WHERE username = ? ORDER BY data DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -286,7 +286,7 @@ class DatabaseHelper
 
     public function ottieniCommentiPerPost($idpost)
     {
-        $sql = "SELECT * FROM commento WHERE idpost = ? ORDER BY data DESC";
+        $sql = "SELECT * FROM commento WHERE idpost = ? ORDER BY data ASC";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $idpost);
         $stmt->execute();
