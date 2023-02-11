@@ -20,7 +20,7 @@
 
 <body>
     <?php require 'components/header-view.php'; ?>
-    <main class="overflow-auto">
+    <main>
         <?php
         if (isset($templateParams["nome"])) {
             require $templateParams["nome"];
