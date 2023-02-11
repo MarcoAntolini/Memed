@@ -11,7 +11,7 @@ if (empty($res)) {
                             <img src='" . UPLOAD_DIR . $r['nomefile'] . "' alt='' style='width:3vw; height:3vw' />
                             <div class=''>
                                 <span class='font-weight-bold'>
-                                    <a href='user.php?username=" . $r['username'] . "'>" . $r["username"] . "</a><br>
+                                    <a href='user.php?username=" . $r['username'] . "'>" . "@" . $r["username"] . "</a><br>
                                 </span>
                                 <span class='text-muted'>
                                     " . $r['bio'] . "
@@ -27,7 +27,7 @@ if (empty($res)) {
                             <img src='" . UPLOAD_DIR . $r['nomefile'] . "' alt='' style='width:3vw; height:3vw' />
                             <div class=''>
                                 <span class='font-weight-bold'>
-                                    <a href='user.php?username=" . $r['username'] . "'>" . $r["username"] . "</a><br>
+                                    <a href='user.php?username=" . $r['username'] . "'>" . "@" . $r["username"] . "</a><br>
                                 </span>
                                 <span class='text-muted'>
                                     " . $r['bio'] . "

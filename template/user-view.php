@@ -37,13 +37,16 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <?php foreach ($templateParams["follower"] as $follower) : ?>
-                                <div class="follower">
-                                    <a href="user.php?username=<?php echo $follower["username"]; ?>">
-                                        <?php echo $follower["username"]; ?>
-                                    </a>
-                                </div>
-                            <?php endforeach; ?>
+                            <?php if ($templateParams["follower"]) : ?>
+                                <?php foreach ($templateParams["follower"] as $follower) : ?>
+                                    <div class="follower">
+                                        <img src="<?php echo (UPLOAD_DIR . $mysqli->ottieniNomeFile($follower["username"])[0]); ?>" alt="follower-profile-pic">
+                                        <a href="user.php?username=<?php echo $follower["username"]; ?>">
+                                            @<?php echo $follower["username"]; ?>
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -59,8 +62,9 @@
                             <?php if ($templateParams["seguiti"]) : ?>
                                 <?php foreach ($templateParams["seguiti"] as $followed) : ?>
                                     <div class="followed">
+                                        <img src="<?php echo (UPLOAD_DIR . $mysqli->ottieniNomeFile($followed["Fol_username"])[0]); ?>" alt="followed-profile-pic">
                                         <a href="user.php?username=<?php echo $followed["Fol_username"]; ?>">
-                                            <?php echo $followed["Fol_username"]; ?>
+                                            @<?php echo $followed["Fol_username"]; ?>
                                         </a>
                                     </div>
                                 <?php endforeach; ?>

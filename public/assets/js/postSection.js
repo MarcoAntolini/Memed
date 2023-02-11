@@ -5,7 +5,7 @@ function generatePost(post) {
         <div class="post card mb-3">
             <div class="row g-0">
                 <div class="col-md-2 p-2">
-                    <a class="username-post-owner" href="user.php?username=${post[i]["username"]}">${post[i]["username"]}</a>
+                    <a class="username-post-owner" href="user.php?username=${post[i]["username"]}">@${post[i]["username"]}</a>
                     <img src="../public/assets/img/user-settings.png" alt="post-settings" data-bs-toggle="modal"
                         data-bs-target=".post-settings-${post[i]["idpost"]}" class="post-settings-icon">
                     <div class="post-settings-${post[i]["idpost"]} modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
@@ -110,7 +110,7 @@ function generatePost(post) {
             post[i]["commenti"].forEach(commento => {
                 content += `
                         <div class="comment">
-                            <a class="username-comment-owner" href="user.php?username=${commento["username"]}">${commento["username"]}</a>
+                            <a class="username-comment-owner" href="user.php?username=${commento["username"]}">@${commento["username"]}</a>
                             <p class="comment-text">${commento["testo"]}</p>
                         </div>
             `;
