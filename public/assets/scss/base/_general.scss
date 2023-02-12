@@ -18,10 +18,18 @@ body {
   }
 }
 
-header form {
-  &,
-  * {
-    max-height: 3rem;
+header {
+  form {
+    &,
+    * {
+      max-height: 3rem;
+    }
+  }
+}
+
+footer {
+  p {
+    margin: 0;
   }
 }
 
