@@ -1,4 +1,4 @@
-<section class="container-fluid d-flex justify-content-center p-2">
+<section class="container-fluid di-flex justify-content-center p-2">
     <div class="row">
         <form action="#" method="post">
             <div>

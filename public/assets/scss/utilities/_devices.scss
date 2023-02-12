@@ -2,18 +2,24 @@
 
 .desktop-hidden {
     @include mediaQuery("desktop-lower", "desktop-upper") {
-        display: none;
+        display: none !important;
     }
 }
 
 .tablet-hidden {
     @include mediaQuery("tablet-lower", "tablet-upper") {
-        display: none;
+        display: none !important;
     }
 }
 
 .mobile-hidden {
     @include mediaQuery("mobile-lower", "mobile-upper") {
-        display: none;
+        display: none !important;
     }
+}
+
+.di-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
 }
