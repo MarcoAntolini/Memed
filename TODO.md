@@ -10,8 +10,6 @@
 - gli script vengono inclusi dentro all'html
 - bottone salva estetica
 - controllare todo
-- cosa fa il bottone "leggi"?
 - errore quando ti commenti un post
-- quando fai cancella tutto non si aggiorna da solo ma devi refreshare
 - aggiungere lo script anche alla pagina delle notifiche mobile
 - il footer deve stare dentro al main perchè non è un footer xD da desktop sta a sinistra

@@ -21,6 +21,7 @@ if (login_check($mysqli) == true) {
     if (isset($_POST["leggi-tutto"])) {
         $mysqli->leggiTutteNotifiche($_SESSION["username"]);
     }
+    header("location: notice.php");
     require "../template/logged-base-view.php";
 } else {
     header("location: login.php");
