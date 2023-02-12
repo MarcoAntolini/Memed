@@ -9,3 +9,8 @@
 - spostare al javascript il controllo sul submit del commento e del post (se non c'è nulla non fare nulla)
 - gli script vengono inclusi dentro all'html
 - bottone salva estetica
+- controllare todo
+- cosa fa il bottone "leggi"?
+- errore quando ti commenti un post
+- quando fai cancella tutto non si aggiorna da solo ma devi refreshare
+- aggiungere lo script anche alla pagina delle notifiche mobile
