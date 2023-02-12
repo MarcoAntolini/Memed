@@ -58,8 +58,8 @@
         }
         ?>
 
+        <?php require 'components/footer-view.php'; ?>
     </main>
-    <?php require 'components/footer-view.php'; ?>
 </body>
 
 </html>
