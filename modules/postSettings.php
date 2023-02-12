@@ -14,7 +14,7 @@ if (isset($_POST["unsave-post"])) {
     $mysqli->cancellaSalva($_SESSION["username"], $_POST["idpost"]);
 }
 if (isset($_POST["submit-comment"])) {
-    if (empty($_POST["comment-text"]) || $_POST["comment-text"]=="" || preg_match('/^[\s]+$/', $string)) {
+    if (empty($_POST["comment-text"]) || $_POST["comment-text"]=="" || preg_match("/^[\s]+$/", $_POST["comment-text"])) {
         return;
     } else {
         $mysqli->inserisciCommento(
