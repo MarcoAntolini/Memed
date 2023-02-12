@@ -533,7 +533,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_row();
         } else {
-            return false;
+            return array(0);
         }
     }
 
