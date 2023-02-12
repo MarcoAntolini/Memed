@@ -8,7 +8,6 @@
             <textarea class="form-control" id="description-input" name="description-input"></textarea>
             <label for="description-input">Descrizione</label>
         </div>
-        <!-- TODO: DECIDERE PER CATEGORIE -->
         <?php foreach ($templateParams["categorie"] as $categoria) : ?>
             <input type="checkbox" id="<?php echo $categoria["idcategoria"]; ?>" name="categoria_<?php echo $categoria["idcategoria"]; ?>" />
             <label for="<?php echo $categoria["idcategoria"]; ?>"><?php echo $categoria["nome"]; ?></label>
