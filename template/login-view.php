@@ -1,6 +1,3 @@
-<script src="../public/assets/js/sha512.js"></script>
-<script src="../public/assets/js/forms.js"></script>
-
 <form action="#" method="post">
     <div class="error mb-3">
         <p id="error-message">
