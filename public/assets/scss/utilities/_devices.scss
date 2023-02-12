@@ -1,0 +1,19 @@
+@use "../abstract/" as *;
+
+.desktop-hidden {
+    @include mediaQuery("desktop") {
+        display: none;
+    }
+}
+
+.tablet-hidden {
+    @include mediaQuery("tablet") {
+        display: none;
+    }
+}
+
+.mobile-hidden {
+    @include mediaQuery("mobile") {
+        display: none;
+    }
+}
