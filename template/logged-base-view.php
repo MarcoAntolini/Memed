@@ -17,6 +17,7 @@
     <script src="../public/assets/js/search.js"></script>
     <script src="../public/assets/js/search-input.js"></script>
     <script src="../public/assets/js/redirect.js"></script>
+    <script src="../public/assets/js/notifications.js"></script>
     <title><?php echo $templateParams["titolo"]; ?></title>
 </head>
 
