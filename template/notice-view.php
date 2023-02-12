@@ -1,11 +1,16 @@
 <section class="container-fluid d-flex justify-content-center p-2">
     <div class="row">
         <form action="#" method="post">
-            <div class="">
+            <div>
                 <h2>Notifiche</h2>
-                <p>Benvenuto <?php echo $templateParams["username"]; ?>, hai <?php echo $templateParams["numNotifiche"]; ?> notifiche</p>
-                <button class="btn btn-primary" type="submit" name="leggi-tutto">Leggi tutto</button> <!-- segna tutte come lette -->
-                <button class="btn btn-primary" type="submit" name="cancella-tutto">Cancella tutto</button>
+                <p>Benvenuto <?php echo $templateParams["username"]; ?>, hai 
+                <?php
+                    $notifications = $templateParams["numNotifiche"]; 
+                    echo $notifications;
+                ?> notifiche</p>
+                <button id="readall" class="btn btn-primary" type="submit" name="leggi-tutto">Leggi tutto</button> <!-- segna tutte come lette -->
+                <button id="clearall" class="btn btn-primary" type="submit" name="cancella-tutto">Cancella tutto</button>
+                <input type="hidden" id="notifications" value="<?php echo $notifications; ?>">
             </div>
         </form>
         <?php
