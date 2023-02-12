@@ -5,7 +5,17 @@ function generateNotice(notice) {
         <article class="notice row">
             <form action="#" method="post">
                 <p class="notice">${notice[i]["mesaggio"]}</p>
-                <button class="btn btn-primary" type="submit" name="letto" value="${notice[i]["idnotifica"]}">Letto</button>
+        `;
+        if (notice[i]["letto"] == 0) {
+            content += `
+                <button class="btn btn-primary" type="submit" name="letto" value="${notice[i]["idnotifica"]}">Leggi</button>
+            `;
+        } else {
+            content += `
+                <button class="btn btn-primary" type="submit" name="letto" value="${notice[i]["idnotifica"]}" disabled>Letto</button>
+            `;
+        }
+        content += `
                 <button class="btn btn-primary" type="submit" name="cancella" value="${notice[i]["idnotifica"]}">Cancella</button>
             </form>
         </article>
