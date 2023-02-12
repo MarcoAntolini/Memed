@@ -1,8 +1,8 @@
 <?php
 require_once 'bootstrap.php';
 
-$templateParams["notice"] = "notice-view.php";
 $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/noticeSection.js");
+$templateParams["notice"] = "notice-view.php";
 $templateParams["username"] = $_SESSION["username"];
 $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"])[0];
 if($mysqli->ottieniNotifica($_SESSION["username"])){
