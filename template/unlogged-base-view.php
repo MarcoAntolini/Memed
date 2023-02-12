@@ -33,7 +33,7 @@
     </main>
     <footer>
         <div class="container-fluid d-flex justify-content-center color-main p-2 fixed-bottom">
-            © 2023 Memed. Tutti i diritti riservati.
+            <p>© 2023 Memed. Tutti i diritti riservati.</p>
         </div>
     </footer>
 </body>
