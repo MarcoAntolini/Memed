@@ -1,19 +1,19 @@
 @use "../abstract/" as *;
 
 .desktop-hidden {
-    @include mediaQuery("desktop") {
+    @include mediaQuery("desktop-lower", "desktop-upper") {
         display: none;
     }
 }
 
 .tablet-hidden {
-    @include mediaQuery("tablet") {
+    @include mediaQuery("tablet-lower", "tablet-upper") {
         display: none;
     }
 }
 
 .mobile-hidden {
-    @include mediaQuery("mobile") {
+    @include mediaQuery("mobile-lower", "mobile-upper") {
         display: none;
     }
 }
