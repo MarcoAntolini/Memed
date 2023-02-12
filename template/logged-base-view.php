@@ -50,14 +50,12 @@
             require $templateParams["nome"];
         }
         ?>
-
         <?php require_once '../modules/noticePage.php'; ?>
         <?php
         if (isset($templateParams["notice"])) {
             require $templateParams["notice"];
         }
         ?>
-
         <?php require 'components/footer-view.php'; ?>
     </main>
 </body>
