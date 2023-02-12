@@ -13,7 +13,7 @@
         @if math.is-unitless($size) {
             @error 'missing unit for #{$size}';
         } @else {
-            @media screen and (min-width: $size) {
+            @media screen and (width <= $size) {
                 @content;
             }
         }
