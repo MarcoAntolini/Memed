@@ -31,7 +31,7 @@ if (login_check($mysqli) == true) {
         header("location: user.php?username=" . $templateParams["utente"]);
     }
     $templateParams["nome"] = "user-view.php";
-    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js");
+    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js", "../public/assets/js/noticeSection.js");
     require 'postSettings.php';
     require '../template/logged-base-view.php';
 } else {

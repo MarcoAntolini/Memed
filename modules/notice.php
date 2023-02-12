@@ -19,10 +19,10 @@ if (login_check($mysqli) == true) {
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/noticeSection.js");
     $templateParams["username"] = $_SESSION["username"];
     $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"])[0];
-    if($mysqli->ottieniNotifica($_SESSION["username"])){
-        $templateParams["notifiche"] =true;
-    }else{
-        $templateParams["notifiche"] =false;
+    if ($mysqli->ottieniNotifica($_SESSION["username"])) {
+        $templateParams["notifiche"] = true;
+    } else {
+        $templateParams["notifiche"] = false;
     }
     require "../template/logged-base-view.php";
 } else {

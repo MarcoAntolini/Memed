@@ -9,7 +9,7 @@ if (login_check($mysqli) == true) {
     if (isset($_POST["categoria"])) {
         $_SESSION["categoria"] = $_POST["categoria"];
     }
-    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js");
+    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js", "../public/assets/js/noticeSection.js");
     require 'postSettings.php';
     require "../template/logged-base-view.php";
 } else {

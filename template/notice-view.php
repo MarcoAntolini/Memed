@@ -15,14 +15,9 @@
             </div>
         </form>
         <?php
-        if (isset($templateParams["js"])) :
+        if (isset($templateParams["js"])) {
             echo '<div id="notice-section"></div>';
-            foreach ($templateParams["js"] as $script) :
-        ?>
-                <script src="<?php echo $script; ?>"></script>
-        <?php
-            endforeach;
-        endif;
+        }
         ?>
     </div>
 </section>
