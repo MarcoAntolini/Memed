@@ -1,10 +1,6 @@
 <?php
 require_once 'bootstrap.php';
 
-$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/noticeSection.js");
-$templateParams["notice"] = "notice-view.php";
-$templateParams["username"] = $_SESSION["username"];
-$templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"])[0];
 if($mysqli->ottieniNotifica($_SESSION["username"])){
     $templateParams["notifiche"] =true;
 }else{
@@ -22,3 +18,7 @@ if (isset($_POST["cancella-tutto"])) {
 if (isset($_POST["leggi-tutto"])) {
     $mysqli->leggiTutteNotifiche($_SESSION["username"]);
 }
+$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/noticeSection.js");
+$templateParams["notice"] = "notice-view.php";
+$templateParams["username"] = $_SESSION["username"];
+$templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"])[0];
