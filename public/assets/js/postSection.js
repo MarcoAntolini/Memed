@@ -160,7 +160,6 @@ function checkPage() {
 }
 
 axios.get("postSection.php", { params: { url: checkPage() } }).then(Response => {
-    //console.log(Response.data);
     const post = generatePost(Response.data);
     const main = document.getElementById("post-section");
     main.innerHTML = post;

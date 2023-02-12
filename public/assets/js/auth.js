@@ -1,5 +1,4 @@
 window.onload = function () {
-    console.log("auth.js loaded");
     const showButtons = document.querySelectorAll(".show-pw-btn");
     showButtons.forEach(button => {
         button.addEventListener("click", function () {
@@ -77,7 +76,6 @@ function checkLoginButton(emailInput, passwordLogin, loginButton) {
 
 function comparePasswords(pwInput1, pwInput2) {
     if (pwInput1.value === pwInput2.value) {
-        console.log("Le password coincidono");
         return true;
     }
     return false;
@@ -96,7 +94,6 @@ function validatePassword(passwordInput) {
 function validateUsername(usernameInput) {
     const validRegex = /^[a-zA-Z0-9]+$/;
     if (usernameInput.value.match(validRegex) && usernameInput.value !== "") {
-        console.log("Username valido");
         return true;
     }
     return false;
@@ -105,7 +102,6 @@ function validateUsername(usernameInput) {
 function validateEmail(emailInput) {
     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)*$/;
     if (emailInput.value.match(validRegex) && emailInput.value !== "") {
-        console.log("Email valida");
         return true;
     }
     return false;
