@@ -1,5 +1,3 @@
-<script src="../public/assets/js/postPreview.js"></script>
-
 <div class="notice-section container-fluid d-flex justify-content-center">
     <form action="uploadPost.php" method="post" enctype="multipart/form-data">
         <div class="form-outline mb-3">

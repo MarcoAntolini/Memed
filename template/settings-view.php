@@ -1,5 +1,3 @@
-<script src="../public/assets/js/settings.js"></script>
-
 <div class="settings-container container d-flex flex-column justify-content-center align-items-start">
     <div class="settings-button" id="profile-settings" data-bs-toggle="modal" data-bs-target=".profile-edit">
         <img src="../public/assets/img/user-settings.png" alt="Modifica profilo">
@@ -44,7 +42,7 @@
                         <button type="submit" name="logout" class="btn btn-danger float-end fs-5">Logout</button>
                     </div>
                 </div>
+            </div>
         </form>
     </div>
-</div>
 </div>
