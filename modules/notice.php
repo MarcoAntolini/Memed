@@ -1,7 +1,6 @@
 <?php
 require_once 'bootstrap.php';
 
-// TODO: controllare se è desktop o mobile
 if (login_check($mysqli) == true) {
     $templateParams["titolo"] = "Memed - Notifiche";
     $templateParams["nome"] = "notice-view.php";

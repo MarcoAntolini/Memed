@@ -19,3 +19,4 @@ if (isset($_POST["cancella-tutto"])) {
 if (isset($_POST["leggi-tutto"])) {
     $mysqli->leggiTutteNotifiche($_SESSION["username"]);
 }
+header("location: noticePage.php");
