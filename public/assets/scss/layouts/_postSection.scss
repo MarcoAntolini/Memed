@@ -1,0 +1,41 @@
+@use "../abstract/" as *;
+
+#post-section {
+    overflow: auto;
+    padding: 0 5px;
+    @include mediaQuery("desktop-lower", "desktop-upper") {
+        overflow: auto;
+    }
+
+    .post {
+        &,
+        * {
+            max-height: 20rem;
+        }
+    }
+
+    .post-image {
+        max-height: 13rem;
+    }
+
+    -post-text {
+        max-height: 7rem;
+    }
+
+    .post-content {
+        .post-image {
+            margin: auto !important;
+        }
+    }
+
+    .comments-section {
+        overflow-y: scroll !important;
+        max-height: 16rem;
+    }
+
+    .comment-button {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+    }
+}

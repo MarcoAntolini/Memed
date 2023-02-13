@@ -33,7 +33,6 @@ function generatePost(post) {
                                                     <label for="edit-post-text">Descrizione:</label>
                                                     <textarea id="edit-post-text" name="description" rows="10">${post[i]["testo"]}</textarea>
                                                     <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
-                                                    <button type="reset" name="reset" class="btn btn-secondary">Annulla</button>
                                                     <button type="submit" name="edit-post" class="btn btn-primary mb-3">Salva</button>
                                                 </form>
                                             </div>
@@ -97,10 +96,20 @@ function generatePost(post) {
                     <img src="../public/assets/img/user-settings.png" alt="post-settings" data-bs-toggle="modal"
                         data-bs-target=".post-settings-${post[i]["idpost"]}" class="post-settings-icon float-end">
                 </div>
-                <div class="col-md-6 border-start border-end p-2">
+                <div class="post-content col-md-6 border-start border-end p-2">
+        `;
+        if (post[i]["nomefile"] != "./upload/") {
+            content += `
                     <img class="post-image" src="${post[i]["nomefile"]}" alt="">
+            `;
+        }
+        if (post[i]["testo"] != "") {
+            content += `
                     <p class="post-text">${post[i]["testo"]}</p>
-                </div>
+            `;
+        };
+        content += `
+                </div >
                 <div class="col-md-4 p-2">
                     <div class="comments-section">
         `;
@@ -108,37 +117,37 @@ function generatePost(post) {
             post[i]["commenti"].forEach(commento => {
                 content += `
                         <div class="comment">
-                            <a class="username-comment-owner fw-bold" href="user.php?username=${commento["username"]}">@${commento["username"]}</a>
-                            <p class="comment-text">${commento["testo"]}</p>
+                            <p class="comment-text"><a class="username-comment-owner fw-bold" href="user.php?username=${commento["username"]}">@${commento["username"]}</a>: ${commento["testo"]}</p>
                         </div>
             `;
             });
         }
         content += `
                     </div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target=".post-comment-${post[i]["idpost"]}">Commenta</button>
-                    <div class="post-comment-${post[i]["idpost"]} modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
-                        aria-hidden="true" role="dialog"
-                        data-bs-keyboard="false" data-bs-backdrop="static">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="add-comment" method="post" action="#">
-                                        <textarea class="comment-input" type="text" name="comment-text" placeholder="Commenta..." rows="3"></textarea>
-                                        <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
-                                        <button class="submit-comment btn btn-primary mb-3" type="submit" name="submit-comment">Pubblica</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <button class="btn btn-primary comment-button" type="button" data-bs-toggle="modal"
+                            data-bs-target=".post-comment-${post[i]["idpost"]}">Commenta</button>
+                    <div class="post-comment-${post[i]["idpost"]} modal fade" id = "commentModal" tabindex = "-1" aria - labelledby="commentModalLabel";
+        aria - hidden="true" role = "dialog";
+        data - bs - keyboard="false" data - bs - backdrop="static" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="add-comment" method="post" action="#">
+                            <textarea class="comment-input" type="text" name="comment-text" placeholder="Commenta..." rows="3"></textarea>
+                            <input type="hidden" name="idpost" value="${post[i][" idpost"]}">
+                            <button class="submit-comment btn btn-primary mb-3" type="submit" name="submit-comment">Pubblica</button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-        `;
+                    </div >
+                </div >
+            </div >
+        </div >
+            `;
         result += content;
     };
     return result;
@@ -266,4 +275,4 @@ function addReaction(reaction, idreazione) {
         reaction.parentElement.parentElement.querySelector("#reazione4").innerHTML = count[4];
         reaction.parentElement.parentElement.querySelector("#reazione5").innerHTML = count[5];
     });
-}
+};
