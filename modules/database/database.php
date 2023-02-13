@@ -64,7 +64,7 @@ class DatabaseHelper
         if ($stmt->execute() === TRUE) {
             $post = $this->ottieniPost($idpost);
             $this->inserisciNotifica(
-                "<a  href=\"user.php?username='$username'\">'$username'</a> ha commentato un tuo post",
+                "<a  href=\"user.php?username='$username'\">$username</a> ha commentato un tuo post",
                 (int)$this->ottieniIdUltimaNotifica()[0] + 1,
                 $post[4],
                 $data
@@ -196,7 +196,7 @@ class DatabaseHelper
         $stmt->bind_param("ss", $Fol_username, $username);
         if ($stmt->execute() === TRUE) {
             $this->inserisciNotifica(
-                "<a  href=\"user.php?username='$username'\">'$username'</a> ha iniziato a seguirti",
+                "<a href=\"user.php?username='$username'\">$username</a> ha iniziato a seguirti.",
                 (int)$this->ottieniIdUltimaNotifica()[0] + 1,
                 $Fol_username,
                 date("Y-m-d H:i:s")
