@@ -1,6 +1,6 @@
 <header>
     <div class="header container-fluid d-flex justify-content-center color-main p-2 fixed-top top-0">
-        <div class="col ">
+        <div class="col mobile-hidden">
             <h1 class="position-absolute float-start">Memed</h1>
         </div>
         <div class="col">

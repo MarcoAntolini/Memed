@@ -8,8 +8,10 @@ header h1 {
     color: $primary;
     text-shadow: -1px -1px 0 $queen-blue, -2px -2px 0 $queen-blue, -3px -3px 0 $queen-blue, -4px -4px 0 $queen-blue,
         -5px -5px 0 $queen-blue, -6px -6px 0 $queen-blue, -7px -7px 0 $queen-blue, -8px -8px 0 $queen-blue,
-        -25px 15px 35px $shadow;
+        -15px 5px 25px $shadow;
     min-width: 126px;
+    padding-left: 30px;
+    padding-bottom: 30px;
 }
 
 a {
@@ -19,4 +21,8 @@ a {
         color: black;
         text-decoration: none;
     }
+}
+
+.nav-text {
+    font-weight: bold;
 }
