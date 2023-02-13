@@ -2,9 +2,9 @@ function generateNotice(notice) {
     let result = "";
     for (let i = 0; i < notice.length; i++) {
         let content = `
-        <article class="notice row">
+        <article class="notice row mb-3 border-top">
             <form action="#" method="post">
-                <p class="notice">${notice[i]["mesaggio"]}</p>
+                <p class="notice-text">${notice[i]["mesaggio"]}</p>
         `;
         if (notice[i]["letto"] == 0) {
             content += `

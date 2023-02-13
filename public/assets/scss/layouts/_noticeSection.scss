@@ -1,0 +1,25 @@
+@use "../abstract/" as *;
+
+.notice-container {
+    margin-left: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+    width: 25vw;
+
+    form {
+        padding-bottom: 15px;
+        p {
+            margin: 0;
+        }
+        button {
+            margin-top: 0.5rem;
+        }
+    }
+
+    .di-flex {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
