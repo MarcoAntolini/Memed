@@ -1,65 +1,29 @@
 @use "../abstract" as *;
 
 body {
-  background-color: $light-shade-yellow !important;
-  text-align: center;
-  height: 100vh;
-  width: 100vw;
-  &,
-  main {
-    display: flex;
-    flex-direction: column;
+    background-color: $light-shade-yellow !important;
+    height: 100vh;
+    text-align: center;
     align-items: center;
-    justify-content: center;
-    overflow-x: hidden;
-    height: 90vh;
-    @include mediaQuery("desktop-lower", "desktop-upper") {
-      display: flex;
-      flex-direction: row;
-      #post-section {
-        overflow: auto;
-      }
-    }
-    * {
-      overflow: hidden;
-    }
-  }
-}
-
-header {
-  form {
     &,
-    * {
-      max-height: 3rem;
+    main {
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
     }
-  }
-}
 
-footer {
-  p {
-    margin: 0;
-  }
-}
+    main {
+        margin-top: 15px;
+        padding-top: 90px;
+        flex-direction: column;
+        height: 84%;
+        padding: 0 1rem;
+        @include mediaQuery("desktop-lower", "desktop-upper") {
+            flex-direction: row;
+        }
+    }
 
-#post-section {
-  overflow: auto;
-  padding: 0 5px;
-}
-
-.post {
-  &,
-  * {
-    max-height: 20rem;
-  }
-}
-
-.comments-section {
-  overflow-y: scroll !important;
-  max-height: 16rem;
-  margin-top: 5px;
-}
-
-.aaaa {
-  display: flex;
-  flex-direction: column;
+    .form-label {
+        padding: 0.75rem !important;
+    }
 }
