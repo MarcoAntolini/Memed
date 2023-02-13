@@ -1,0 +1,51 @@
+.my-profile {
+    .follower,
+    .followed {
+        img {
+            max-width: 50px;
+            max-height: 50px;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+    }
+
+    .profile-pic {
+        max-width: 100px;
+        max-height: 100px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-pic,
+    .follower img,
+    .followed img {
+        border-radius: 50%;
+    }
+
+    h2 {
+        font-size: x-large !important;
+    }
+
+    .follow-section {
+        &,
+        form {
+            width: fit-content;
+        }
+    }
+
+    .follow-section,
+    .follower-count,
+    .followed-count {
+        display: inline-block;
+    }
+
+    .user-data-section {
+        padding-bottom: 1rem;
+        padding-left: 1rem;
+    }
+
+    #post-section {
+        max-height: 57vh;
+    }
+}
