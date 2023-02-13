@@ -4,7 +4,7 @@ function generatePost(post) {
         let content = `
         <div class="post card mb-3">
             <div class="row g-0">
-                <div class="col-md-2 p-2">
+                <div class="left-col p-2">
                     <a class="username-post-owner fw-bold" href="user.php?username=${post[i]["username"]}">@${post[i]["username"]}</a>
                     <div class="post-settings-${post[i]["idpost"]} modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
                         <div id="post-settings" class="modal-dialog modal-dialog-scrollable">
@@ -96,7 +96,7 @@ function generatePost(post) {
                     <img src="../public/assets/img/user-settings.png" alt="post-settings" data-bs-toggle="modal"
                         data-bs-target=".post-settings-${post[i]["idpost"]}" class="post-settings-icon float-end">
                 </div>
-                <div class="post-content col-md-6 border-start border-end p-2">
+                <div class="post-content mid-col p-2">
         `;
         if (post[i]["nomefile"] != "./upload/") {
             content += `
@@ -110,7 +110,7 @@ function generatePost(post) {
         };
         content += `
                 </div >
-                <div class="col-md-4 p-2">
+                <div class="right-col p-2">
                     <div class="comments-section">
         `;
         if (post[i]["commenti"]) {
@@ -126,9 +126,8 @@ function generatePost(post) {
                     </div>
                     <button class="btn btn-primary comment-button" type="button" data-bs-toggle="modal"
                             data-bs-target=".post-comment-${post[i]["idpost"]}">Commenta</button>
-                    <div class="post-comment-${post[i]["idpost"]} modal fade" id = "commentModal" tabindex = "-1" aria - labelledby="commentModalLabel";
-        aria - hidden="true" role = "dialog";
-        data - bs - keyboard="false" data - bs - backdrop="static" >
+                    <div class="post-comment-${post[i]["idpost"]} modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
+                        aria-hidden="true" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
