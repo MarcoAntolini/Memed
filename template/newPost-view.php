@@ -4,7 +4,6 @@
             <input class="form-control" type="file" id="image-input" accept="image/png, image/jpg, image/jpeg, image/gif" name="image-input">
         </div>
         <div class="form-floating mb-3">
-            <!-- TODO: CONTROLLO ALTEZZA -->
             <textarea class="form-control" id="description-input" name="description-input"></textarea>
             <label for="description-input">Descrizione</label>
         </div>
@@ -12,7 +11,6 @@
             <input type="checkbox" id="<?php echo $categoria["idcategoria"]; ?>" name="categoria_<?php echo $categoria["idcategoria"]; ?>" />
             <label for="<?php echo $categoria["idcategoria"]; ?>"><?php echo $categoria["nome"]; ?></label>
         <?php endforeach; ?>
-        <!-- TODO: AGGIUNGERE CATEGORIE ALLA PREVIEW -->
         <button type="button" class="btn btn-info float-start" data-bs-toggle="modal" data-bs-target=".preview">Anteprima</button>
         <button type="submit" name="submit" class="btn btn-primary float-end">Pubblica</button>
     </form>
