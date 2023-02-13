@@ -25,23 +25,16 @@
   overflow: auto;
   padding: 0 5px;
 }
-@media screen and (721px <= width <= 7680px) {
-  #post-section {
-    overflow: auto;
-  }
-}
 #post-section .post,
 #post-section .post * {
   max-height: 20rem;
 }
 #post-section .post-image {
+  margin: auto !important;
   max-height: 13rem;
 }
-#post-section -post-text {
+#post-section .post-text {
   max-height: 7rem;
-}
-#post-section .post-content .post-image {
-  margin: auto !important;
 }
 #post-section .comments-section {
   overflow-y: scroll !important;
@@ -51,6 +44,57 @@
   position: absolute;
   bottom: 0.5rem;
   right: 0.5rem;
+}
+#post-section .left-col {
+  flex: 0 0 auto;
+  width: 16.66666667%;
+}
+#post-section .mid-col {
+  flex: 0 0 auto;
+  width: 50%;
+  border-right: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+}
+#post-section .right-col {
+  flex: 0 0 auto;
+  width: 33.33333333%;
+}
+@media screen and (481px <= width <= 720px) {
+  #post-section .post,
+  #post-section .post * {
+    max-height: 35rem;
+  }
+  #post-section .left-col {
+    width: 30%;
+  }
+  #post-section .mid-col {
+    width: 70%;
+    border-right: none;
+  }
+  #post-section .right-col {
+    width: 100%;
+    border-top: 1px solid #dee2e6;
+  }
+  #post-section .comments-section {
+    max-height: 25rem;
+    margin-bottom: 3rem;
+  }
+  #post-section .post-image {
+    max-height: 16rem;
+  }
+}
+@media screen and (320px <= width <= 480px) {
+  #post-section .left-col {
+    width: 30%;
+  }
+  #post-section .mid-col {
+    width: 70%;
+    border-right: none;
+  }
+  #post-section .right-col {
+    width: 100%;
+    border-top: 1px solid #dee2e6;
+  }
 }
 
 .notice-container {
@@ -228,6 +272,18 @@ img {
 }
 .reaction-image.active {
   filter: invert(36%) sepia(70%) saturate(5181%) hue-rotate(210deg) brightness(101%) contrast(104%);
+}
+@media screen and (481px <= width <= 720px) {
+  .reaction-image {
+    max-width: 40px !important;
+    max-height: 40px !important;
+  }
+}
+@media screen and (320px <= width <= 480px) {
+  .reaction-image {
+    max-width: 30px !important;
+    max-height: 30px !important;
+  }
 }
 
 .settings-icon,
