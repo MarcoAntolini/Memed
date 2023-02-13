@@ -23,10 +23,10 @@
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
-            <button class="follower-count btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target=".follower-list">
+            <button class="follower-count btn btn-info" type="button" data-bs-toggle="modal" data-bs-target=".follower-list">
                 Follower: <?php echo $templateParams["nFol"][0]; ?>
             </button>
-            <button class="followed-count btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target=".followed-list">
+            <button class="followed-count btn btn-info" type="button" data-bs-toggle="modal" data-bs-target=".followed-list">
                 Seguiti: <?php echo $templateParams["nSeguiti"][0]; ?>
             </button>
             <div class="follower-list modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
@@ -41,7 +41,7 @@
                                 <?php foreach ($templateParams["follower"] as $follower) : ?>
                                     <div class="follower">
                                         <img src="<?php echo (UPLOAD_DIR . $mysqli->ottieniNomeFile($follower["username"])[0]); ?>" alt="follower-profile-pic">
-                                        <a href="user.php?username=<?php echo $follower["username"]; ?>">
+                                        <a href="user.php?username=<?php echo $follower["username"]; ?>" class="fw-bold">
                                             @<?php echo $follower["username"]; ?>
                                         </a>
                                     </div>
@@ -63,7 +63,7 @@
                                 <?php foreach ($templateParams["seguiti"] as $followed) : ?>
                                     <div class="followed">
                                         <img src="<?php echo (UPLOAD_DIR . $mysqli->ottieniNomeFile($followed["Fol_username"])[0]); ?>" alt="followed-profile-pic">
-                                        <a href="user.php?username=<?php echo $followed["Fol_username"]; ?>">
+                                        <a href="user.php?username=<?php echo $followed["Fol_username"]; ?>" class="fw-bold">
                                             @<?php echo $followed["Fol_username"]; ?>
                                         </a>
                                     </div>

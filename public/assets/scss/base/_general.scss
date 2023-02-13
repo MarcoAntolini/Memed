@@ -12,6 +12,14 @@ body {
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
+    height: 90vh;
+    @include mediaQuery("desktop-lower", "desktop-upper") {
+      display: flex;
+      flex-direction: row;
+      #post-section {
+        overflow: auto;
+      }
+    }
     * {
       overflow: hidden;
     }
@@ -36,4 +44,22 @@ footer {
 #post-section {
   overflow: auto;
   padding: 0 5px;
+}
+
+.post {
+  &,
+  * {
+    max-height: 20rem;
+  }
+}
+
+.comments-section {
+  overflow-y: scroll !important;
+  max-height: 16rem;
+  margin-top: 5px;
+}
+
+.aaaa {
+  display: flex;
+  flex-direction: column;
 }

@@ -13,7 +13,7 @@
             <label for="<?php echo $categoria["idcategoria"]; ?>"><?php echo $categoria["nome"]; ?></label>
         <?php endforeach; ?>
         <!-- TODO: AGGIUNGERE CATEGORIE ALLA PREVIEW -->
-        <button type="button" class="btn btn-primary float-start" data-bs-toggle="modal" data-bs-target=".preview">Anteprima</button>
+        <button type="button" class="btn btn-info float-start" data-bs-toggle="modal" data-bs-target=".preview">Anteprima</button>
         <button type="submit" name="submit" class="btn btn-primary float-end">Pubblica</button>
     </form>
     <div class="preview modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">

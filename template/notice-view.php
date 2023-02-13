@@ -2,14 +2,13 @@
     <div class="row">
         <form action="#" method="post">
             <div>
-                <h2>Notifiche</h2>
-                <p>Benvenuto <?php echo $templateParams["username"]; ?>, hai
+                <p>Hai
                     <?php
                     $notifications = $templateParams["numNotifiche"];
                     echo $notifications;
-                    ?> notifiche</p>
-                <button id="readall" class="btn btn-primary" type="submit" name="leggi-tutto">Leggi tutto</button> <!-- segna tutte come lette -->
-                <button id="clearall" class="btn btn-primary" type="submit" name="cancella-tutto">Cancella tutto</button>
+                    ?> notifiche non lette</p>
+                <button id="readall" class="btn btn-success" type="submit" name="leggi-tutto">Leggi tutto</button> <!-- segna tutte come lette -->
+                <button id="clearall" class="btn btn-danger" type="submit" name="cancella-tutto">Cancella tutto</button>
                 <input type="hidden" id="notifications" value="<?php echo $notifications; ?>">
                 <input type="hidden" id="notifiche" value="<?php echo $templateParams["notifiche"]; ?>">
             </div>

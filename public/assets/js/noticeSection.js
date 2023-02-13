@@ -8,15 +8,15 @@ function generateNotice(notice) {
         `;
         if (notice[i]["letto"] == 0) {
             content += `
-                <button class="btn btn-primary" type="submit" name="letto" value="${notice[i]["idnotifica"]}">Leggi</button>
+                <button class="btn btn-success" type="submit" name="letto" value="${notice[i]["idnotifica"]}">Leggi</button>
             `;
         } else {
             content += `
-                <button class="btn btn-primary" type="submit" name="letto" value="${notice[i]["idnotifica"]}" disabled>Letto</button>
+                <button class="btn btn-success" type="submit" name="letto" value="${notice[i]["idnotifica"]}" disabled>Letto</button>
             `;
         }
         content += `
-                <button class="btn btn-primary" type="submit" name="cancella" value="${notice[i]["idnotifica"]}">Cancella</button>
+                <button class="btn btn-danger" type="submit" name="cancella" value="${notice[i]["idnotifica"]}">Cancella</button>
             </form>
         </article>
         `;

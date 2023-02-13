@@ -74,23 +74,23 @@ function generatePost(post) {
                         <div class="reactions">
                             <div class="reaction-5">
                                 <img src="../public/assets/img/reazione-5.png" alt="reazione-5" id="reaction-5-${post[i]["idpost"]}" class="reaction-image">
-                                <span id="reazione5" class="reaction-count">${post[i]["reazione5"]}</span>
+                                <span id="reazione5" class="reaction-count fw-bold">${post[i]["reazione5"]}</span>
                             </div>
                             <div class="reaction-4">
                                 <img src="../public/assets/img/reazione-4.png" alt="reazione-4" id="reaction-4-${post[i]["idpost"]}" class="reaction-image">
-                                <span id="reazione4" class="reaction-count">${post[i]["reazione4"]}</span>
+                                <span id="reazione4" class="reaction-count fw-bold">${post[i]["reazione4"]}</span>
                             </div>
                             <div class="reaction-3">
                                 <img src="../public/assets/img/reazione-3.png" alt="reazione-3" id="reaction-3-${post[i]["idpost"]}" class="reaction-image">
-                                <span id="reazione3" class="reaction-count">${post[i]["reazione3"]}</span>
+                                <span id="reazione3" class="reaction-count fw-bold">${post[i]["reazione3"]}</span>
                             </div>
                             <div class="reaction-2">
                                 <img src="../public/assets/img/reazione-2.png" alt="reazione-2" id="reaction-2-${post[i]["idpost"]}" class="reaction-image">
-                                <span id="reazione2" class="reaction-count">${post[i]["reazione2"]}</span>
+                                <span id="reazione2" class="reaction-count fw-bold">${post[i]["reazione2"]}</span>
                             </div>
                             <div class="reaction-1">
                                 <img src="../public/assets/img/reazione-1.png" alt="reazione-1" id="reaction-1-${post[i]["idpost"]}" class="reaction-image">
-                                <span id="reazione1" class="reaction-count">${post[i]["reazione1"]}</span>
+                                <span id="reazione1" class="reaction-count fw-bold">${post[i]["reazione1"]}</span>
                             </div>
                         </div>
                     </form>
@@ -101,7 +101,7 @@ function generatePost(post) {
                     <img class="post-image" src="${post[i]["nomefile"]}" alt="">
                     <p class="post-text">${post[i]["testo"]}</p>
                 </div>
-                <div class="col-md-4 p-2 aaaa">
+                <div class="col-md-4 p-2">
                     <div class="comments-section">
         `;
         if (post[i]["commenti"]) {
