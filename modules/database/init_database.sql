@@ -292,98 +292,98 @@ INSERT INTO `notifica` (
 VALUES (
         'user2',
         1,
-        '<a  href=\"user.php?username=\"user5\"\">\"user5\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user1',
         2,
-        '<a  href=\"user.php?username=\"user5\"\">\"user5\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user3',
         3,
-        '<a  href=\"user.php?username=\"user5\"\">\"user5\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user4',
         4,
-        '<a  href=\"user.php?username=\"user5\"\">\"user5\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user4',
         5,
-        '<a  href=\"user.php?username=\"user5\"\">\"user5\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
         '2023-02-10 10:46:54',
         0
     ),
     (
         'user1',
         6,
-        '<a  href=\"user.php?username=\"user5\"\">\"user5\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
         '2023-02-10 10:46:54',
         0
     ),
     (
         'user4',
         7,
-        '<a  href=\"user.php?username=\"user5\"\">\"user5\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
         '2023-02-11 10:46:54',
         0
     ),
     (
         'user1',
         8,
-        '<a  href=\"user.php?username=\"user5\"\">\"user5\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
         '2023-02-11 10:46:54',
         0
     ),
     (
         'user3',
         9,
-        '<a  href=\"user.php?username=\"user5\"\">\"user5\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
         '2023-02-10 10:46:54',
         0
     ),
     (
         'user2',
         10,
-        '<a  href=\"user.php?username=\"user5\"\">\"user5\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
         '2023-02-10 11:19:26',
         0
     ),
     (
         'user5',
         11,
-        '<a  href=\"user.php?username=\"user3\"\">\"user3\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user3\">\"user3\"</a> ha commentato un tuo post',
         '2023-02-09 11:19:26',
         0
     ),
     (
         'user4',
         12,
-        '<a  href=\"user.php?username=\"user2\"\">\"user2\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user2\">\"user2\"</a> ha commentato un tuo post',
         '2023-02-09 11:16:36',
         0
     ),
     (
         'user3',
         13,
-        '<a  href=\"user.php?username=\"user1\"\">\"user1\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user1\">\"user1\"</a> ha commentato un tuo post',
         '2023-02-09 11:16:26',
         0
     ),
     (
         'user2',
         14,
-        '<a  href=\"user.php?username=\"user4\"\">\"user4\"</a> ha commentato un tuo post',
+        '<a  href=\"user.php?username=user4\">\"user4\"</a> ha commentato un tuo post',
         '2023-02-09 11:16:26',
         0
     );
