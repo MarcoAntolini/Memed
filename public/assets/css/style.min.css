@@ -59,6 +59,22 @@
   overflow-x: hidden;
   padding: 5px;
   width: 25vw;
+  height: 82vh !important;
+}
+@media screen and (481px <= width <= 720px) {
+  .notice-container {
+    width: 95vw;
+    margin: 0;
+  }
+}
+@media screen and (320px <= width <= 480px) {
+  .notice-container {
+    width: 95vw;
+    margin: 0;
+  }
+}
+.notice-container .row {
+  width: inherit;
 }
 .notice-container form {
   padding-bottom: 15px;
@@ -185,6 +201,14 @@ header h1 {
 }
 .new-post-container #description-input {
   margin-bottom: 10px;
+}
+
+.explore-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 img {
