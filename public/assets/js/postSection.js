@@ -75,23 +75,23 @@ function generatePost(post) {
                         <input type="hidden" id="username" name="username" value="${post[i]["session-username"]}">
                         <div class="reactions">
                             <div class="reaction-5">
-                                <img src="../public/assets/img/reazione-5.png" alt="reazione-5" class="reaction-image ${post[i]["reazione-attiva-5"]}">
+                                <img src="../public/assets/img/reazione-5.png" alt="reazione-5" id="reaction-5-${post[i]["idpost"]}" class="reaction-image">
                                 <span id="reazione5" class="reaction-count">${post[i]["reazione5"]}</span>
                             </div>
                             <div class="reaction-4">
-                                <img src="../public/assets/img/reazione-4.png" alt="reazione-4" class="reaction-image ${post[i]["reazione-attiva-4"]}">
+                                <img src="../public/assets/img/reazione-4.png" alt="reazione-4" id="reaction-4-${post[i]["idpost"]}" class="reaction-image">
                                 <span id="reazione4" class="reaction-count">${post[i]["reazione4"]}</span>
                             </div>
                             <div class="reaction-3">
-                                <img src="../public/assets/img/reazione-3.png" alt="reazione-3" class="reaction-image ${post[i]["reazione-attiva-3"]}">
+                                <img src="../public/assets/img/reazione-3.png" alt="reazione-3" id="reaction-3-${post[i]["idpost"]}" class="reaction-image">
                                 <span id="reazione3" class="reaction-count">${post[i]["reazione3"]}</span>
                             </div>
                             <div class="reaction-2">
-                                <img src="../public/assets/img/reazione-2.png" alt="reazione-2" class="reaction-image ${post[i]["reazione-attiva-2"]}">
+                                <img src="../public/assets/img/reazione-2.png" alt="reazione-2" id="reaction-2-${post[i]["idpost"]}" class="reaction-image">
                                 <span id="reazione2" class="reaction-count">${post[i]["reazione2"]}</span>
                             </div>
                             <div class="reaction-1">
-                                <img src="../public/assets/img/reazione-1.png" alt="reazione-1" class="reaction-image ${post[i]["reazione-attiva-1"]}">
+                                <img src="../public/assets/img/reazione-1.png" alt="reazione-1" id="reaction-1-${post[i]["idpost"]}" class="reaction-image">
                                 <span id="reazione1" class="reaction-count">${post[i]["reazione1"]}</span>
                             </div>
                         </div>
@@ -163,9 +163,46 @@ axios.get("postSection.php", { params: { url: checkPage() } }).then(Response => 
     const post = generatePost(Response.data);
     const main = document.getElementById("post-section");
     main.innerHTML = post;
+    checkReaction(Response.data);
     handlePost();
     handleReactions();
 });
+
+function checkReaction(data) {
+    for (let i = 0; i < data.length; i++) {
+        switch (data[i]["reazione-attiva"][0]) {
+            case 1:
+                const reaction1 = document.getElementById("reaction-1-" + data[i]["idpost"]);
+                switchActive(reaction1);
+                break;
+            case 2:
+                const reaction2 = document.getElementById("reaction-2-" + data[i]["idpost"]);
+                switchActive(reaction2);
+                break;
+            case 3:
+                const reaction3 = document.getElementById("reaction-3-" + data[i]["idpost"]);
+                switchActive(reaction3);
+                break;
+            case 4:
+                const reaction4 = document.getElementById("reaction-4-" + data[i]["idpost"]);
+                switchActive(reaction4);
+                break;
+            case 5:
+                const reaction5 = document.getElementById("reaction-5-" + data[i]["idpost"]);
+                switchActive(reaction5);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+function switchActive(reaction) {
+    const closest = reaction.closest(".active");
+    if (closest) closest.classList.remove("active");
+    reaction.classList.add("active");
+}
+
 
 function handlePost() {
     const editButton = document.getElementById("edit-button");
@@ -228,6 +265,5 @@ function addReaction(reaction, idreazione) {
         reaction.parentElement.parentElement.querySelector("#reazione3").innerHTML = count[3];
         reaction.parentElement.parentElement.querySelector("#reazione4").innerHTML = count[4];
         reaction.parentElement.parentElement.querySelector("#reazione5").innerHTML = count[5];
-        // TODO: reazione-attiva da reactionSection.php
     });
 }

@@ -35,34 +35,7 @@ if (isset($_GET["url"])) {
             $post[$i]["reazione5"] = $mysqli->contaReazioniPost(5, $post[$i]["idpost"]);
             $post[$i]["session-username"] = $_SESSION["username"];
             $post[$i]["controllaSalva"] = $mysqli->controllaSalva($_SESSION["username"], $post[$i]["idpost"]);
-            $post[$i]["reazione-attiva-1"] = "";
-            $post[$i]["reazione-attiva-2"] = "";
-            $post[$i]["reazione-attiva-3"] = "";
-            $post[$i]["reazione-attiva-4"] = "";
-            $post[$i]["reazione-attiva-5"] = "";
-            $reazionePost = $mysqli->ottieniReazionePost($post[$i]["idpost"], $_SESSION["username"]);
-            // if ($reazionePost === NULL || $reazionePost === false || !is_int($reazionePost)) {
-            //     $reazionePost = 0;
-            // }
-            switch ($reazionePost) {
-                case 1:
-                    $post[$i]["reazione-attiva-1"] = "active";
-                    break;
-                case 2:
-                    $post[$i]["reazione-attiva-2"] = "active";
-                    break;
-                case 3:
-                    $post[$i]["reazione-attiva-3"] = "active";
-                    break;
-                case 4:
-                    $post[$i]["reazione-attiva-4"] = "active";
-                    break;
-                case 5:
-                    $post[$i]["reazione-attiva-5"] = "active";
-                    break;
-                default:
-                    break;
-            }
+            $post[$i]["reazione-attiva"] = $mysqli->ottieniReazionePost($post[$i]["idpost"], $_SESSION["username"]);
         }
     }
 
