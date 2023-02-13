@@ -5,9 +5,7 @@ function generatePost(post) {
         <div class="post card mb-3">
             <div class="row g-0">
                 <div class="col-md-2 p-2">
-                    <a class="username-post-owner" href="user.php?username=${post[i]["username"]}">@${post[i]["username"]}</a>
-                    <img src="../public/assets/img/user-settings.png" alt="post-settings" data-bs-toggle="modal"
-                        data-bs-target=".post-settings-${post[i]["idpost"]}" class="post-settings-icon">
+                    <a class="username-post-owner fw-bold" href="user.php?username=${post[i]["username"]}">@${post[i]["username"]}</a>
                     <div class="post-settings-${post[i]["idpost"]} modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
                         <div id="post-settings" class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
@@ -57,7 +55,7 @@ function generatePost(post) {
                 `;
             } else {
                 content += `
-                                        <button class="unsave-post btn btn-primary" type="submit" name="unsave-post">Rimuovi</button>
+                                        <button class="unsave-post btn btn-primary" type="submit" name="unsave-post">Rimuovi dai salvati</button>
                 `;
             }
             content += `
@@ -96,19 +94,21 @@ function generatePost(post) {
                             </div>
                         </div>
                     </form>
+                    <img src="../public/assets/img/user-settings.png" alt="post-settings" data-bs-toggle="modal"
+                        data-bs-target=".post-settings-${post[i]["idpost"]}" class="post-settings-icon float-end">
                 </div>
                 <div class="col-md-6 border-start border-end p-2">
                     <img class="post-image" src="${post[i]["nomefile"]}" alt="">
                     <p class="post-text">${post[i]["testo"]}</p>
                 </div>
-                <div class="col-md-4 p-2">
-                    <div class="comments-section">   
+                <div class="col-md-4 p-2 aaaa">
+                    <div class="comments-section">
         `;
         if (post[i]["commenti"]) {
             post[i]["commenti"].forEach(commento => {
                 content += `
                         <div class="comment">
-                            <a class="username-comment-owner" href="user.php?username=${commento["username"]}">@${commento["username"]}</a>
+                            <a class="username-comment-owner fw-bold" href="user.php?username=${commento["username"]}">@${commento["username"]}</a>
                             <p class="comment-text">${commento["testo"]}</p>
                         </div>
             `;
