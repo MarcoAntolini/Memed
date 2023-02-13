@@ -1,0 +1,29 @@
+@use "../abstract/" as *;
+
+footer {
+    p {
+        margin: 0;
+    }
+    .row {
+        @include mediaQuery("mobile-lower", "mobile-upper") {
+            gap: 2vw;
+        }
+        @include mediaQuery("tablet-lower", "tablet-upper") {
+            gap: 6vw;
+        }
+        @include mediaQuery("desktop-lower", "desktop-upper") {
+            gap: 10vw;
+        }
+    }
+    .nav-col {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1 0 0%;
+        width: 25vw !important;
+        &:hover {
+            filter: invert(36%) sepia(70%) saturate(5181%) hue-rotate(210deg) brightness(101%) contrast(104%);
+            cursor: pointer;
+        }
+    }
+}
