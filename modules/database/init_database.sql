@@ -57,7 +57,7 @@ INSERT INTO `post` (
 VALUES (
         1,
         '',
-        'La maestra dice a un alunno: “Il tuo tema intitolato "Il mio cane è uguale a quello di tuo fratello, l’hai copiato?” E lui: “No maestra, è che abbiamo lo stesso cane!”',
+        'La maestra dice a un alunno: “Il tuo tema intitolato "Il mio cane" è uguale a quello di tuo fratello, l’hai copiato?” E lui: “No maestra, è che abbiamo lo stesso cane!”',
         '2023-12-10 20:00:00',
         'user1'
     ),
