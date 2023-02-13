@@ -24,7 +24,7 @@
             <h1 class="title">Memed</h1>
         </div>
     </header>
-    <main class="vw-100">
+    <main class="auth vw-100">
         <?php
         if (isset($templateParams["nome"])) {
             require $templateParams["nome"];
