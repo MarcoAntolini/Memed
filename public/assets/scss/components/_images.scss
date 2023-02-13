@@ -1,3 +1,5 @@
+@use "../abstract/" as *;
+
 img {
     max-width: inherit;
     max-height: inherit;
@@ -13,7 +15,7 @@ img {
     max-height: 50px;
     cursor: pointer;
     &.active {
-        filter: invert(36%) sepia(70%) saturate(5181%) hue-rotate(210deg) brightness(101%) contrast(104%);
+        filter: $filter-blue;
     }
 }
 
@@ -31,9 +33,4 @@ img {
 
 .post-settings-icon {
     cursor: pointer;
-}
-
-.profile-pic {
-    max-width: 100px;
-    max-height: 100px;
 }
