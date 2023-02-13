@@ -1,3 +1,8 @@
+img {
+    max-width: inherit;
+    max-height: inherit;
+}
+
 .logo {
     max-width: 100px;
     max-height: 100px;
@@ -10,11 +15,6 @@
     &.active {
         filter: invert(36%) sepia(70%) saturate(5181%) hue-rotate(210deg) brightness(101%) contrast(104%);
     }
-}
-
-img {
-    max-width: 100px;
-    max-height: 100px;
 }
 
 .settings-icon,
@@ -31,4 +31,9 @@ img {
 
 .post-settings-icon {
     cursor: pointer;
+}
+
+.profile-pic {
+    max-width: 100px;
+    max-height: 100px;
 }
