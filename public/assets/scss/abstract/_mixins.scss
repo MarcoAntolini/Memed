@@ -3,13 +3,13 @@
 @use "breakpoints" as *;
 
 @mixin mediaQuery($lowerBound, $upperBound) {
-    @if map.has-key($breakpoints, $lowerBound) && map.has-key($breakpoints, $upperBound) {
+    @if map.has-key($breakpoints, $lowerBound) and map.has-key($breakpoints, $upperBound) {
         $lowerBreakpoint: map-get($breakpoints, $lowerBound);
         $upperBreakpoint: map-get($breakpoints, $upperBound);
         @media screen and ($lowerBreakpoint <= width <= $upperBreakpoint) {
             @content;
         }
-    } @else if meta.type-of($lowerBound) == number && meta.type-of($upperBound) == number {
+    } @else if meta.type-of($lowerBound) == number and meta.type-of($upperBound) == number {
         @media screen and ($lowerBound <= width <= $upperBound) {
             @content;
         }
