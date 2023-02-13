@@ -1,4 +1,4 @@
-# Memed
+# Istruzioni per l'uso del progetto
 
 Per utilizzare il progetto è necessario attivate tramite **Xampp** il server Apache e il server MySQL.
 
