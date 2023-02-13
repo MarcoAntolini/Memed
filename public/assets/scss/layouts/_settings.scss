@@ -1,13 +1,27 @@
-.settings-button {
-    cursor: pointer;
-    * {
-        cursor: pointer;
-    }
-}
+@use "../abstract/" as *;
 
 .settings-container {
+    gap: 5rem;
+
     img {
         max-width: 50px;
     }
-    gap: 5rem;
+
+    .settings-button {
+        cursor: pointer;
+        &:hover {
+            filter: $filter-blue;
+        }
+        * {
+            cursor: pointer;
+        }
+    }
+
+    .profile-pic-preview {
+        max-width: 150px !important;
+        width: 150px;
+        height: 150px;
+        margin-left: 10px;
+        border-radius: 50%;
+    }
 }

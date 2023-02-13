@@ -10,9 +10,12 @@
                     <button type="button" id="close-button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="file" id="profile-pic-input" accept="image/png, image/jpg, image/jpeg" name="profile-pic-input">
-                    <img id="profile-pic-preview" class="profile-pic" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["nomefile"]); ?>" alt="profile-pic">
-                    <textarea id="bio" class="bio" name="bio" rows="5"><?php echo $templateParams["profilo"][0]["bio"]; ?></textarea>
+                    <input type="file" id="profile-pic-input" accept="image/png, image/jpg, image/jpeg" name="profile-pic-input" class="mb-2">
+                    <div class="row">
+                        <label for="bio">Bio:</label>
+                        <textarea id="bio" class="bio col-8" name="bio" rows="5"><?php echo $templateParams["profilo"][0]["bio"]; ?></textarea>
+                        <img id="profile-pic-preview" class="profile-pic-preview" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["nomefile"]); ?>" alt="profile-pic">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="submit-button" class="btn btn-primary float-end">Salva</button>
