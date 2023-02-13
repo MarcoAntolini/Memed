@@ -48,10 +48,12 @@
         ?>
         <?php require_once '../modules/noticePage.php'; ?>
         <?php
-        if (isset($templateParams["notice"])) {
-            echo '<section class="mobile-hidden tablet-hidden">';
-            require $templateParams["notice"];
-            echo '</section>';
+        if ($templateParams["nome"] == "user-view.php" || $templateParams["nome"] == "home-view.php") {
+            if (isset($templateParams["notice"])) {
+                echo '<div class="mobile-hidden tablet-hidden">';
+                require $templateParams["notice"];
+                echo '</div>';
+            }
         }
         ?>
     </main>
