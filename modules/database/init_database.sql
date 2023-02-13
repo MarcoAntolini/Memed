@@ -196,7 +196,6 @@ VALUES (2, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
     (3, 'user3', 16, 'wow', '2023-02-11 11:16:26'),
     (5, 'user4', 17, 'wow', '2023-02-11 11:18:26'),
     (10, 'user2', 18, 'wow', '2023-02-11 11:19:26');
-
 INSERT INTO `reazione_pu` (`idreazione`, `username`, `idpost`)
 VALUES (5, 'user1', 1),
     (5, 'user2', 1),
@@ -292,98 +291,98 @@ INSERT INTO `notifica` (
 VALUES (
         'user2',
         1,
-        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user1',
         2,
-        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user3',
         3,
-        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user4',
         4,
-        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user4',
         5,
-        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-10 10:46:54',
         0
     ),
     (
         'user1',
         6,
-        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-10 10:46:54',
         0
     ),
     (
         'user4',
         7,
-        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-11 10:46:54',
         0
     ),
     (
         'user1',
         8,
-        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-11 10:46:54',
         0
     ),
     (
         'user3',
         9,
-        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-10 10:46:54',
         0
     ),
     (
         'user2',
         10,
-        '<a  href=\"user.php?username=user5\">\"user5\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-10 11:19:26',
         0
     ),
     (
         'user5',
         11,
-        '<a  href=\"user.php?username=user3\">\"user3\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user3\" class=\"fw-bold\">user3</a> ha commentato un tuo post.',
         '2023-02-09 11:19:26',
         0
     ),
     (
         'user4',
         12,
-        '<a  href=\"user.php?username=user2\">\"user2\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user2\" class=\"fw-bold\">user2</a> ha commentato un tuo post.',
         '2023-02-09 11:16:36',
         0
     ),
     (
         'user3',
         13,
-        '<a  href=\"user.php?username=user1\">\"user1\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user1\" class=\"fw-bold\">user1</a> ha commentato un tuo post.',
         '2023-02-09 11:16:26',
         0
     ),
     (
         'user2',
         14,
-        '<a  href=\"user.php?username=user4\">\"user4\"</a> ha commentato un tuo post',
+        '<a href=\"user.php?username=user4\" class=\"fw-bold\">user4</a> ha commentato un tuo post.',
         '2023-02-09 11:16:26',
         0
     );
