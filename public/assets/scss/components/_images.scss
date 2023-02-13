@@ -17,6 +17,14 @@ img {
     &.active {
         filter: $filter-blue;
     }
+    @include mediaQuery("tablet-lower", "tablet-upper") {
+        max-width: 40px !important;
+        max-height: 40px !important;
+    }
+    @include mediaQuery("mobile-lower", "mobile-upper") {
+        max-width: 30px !important;
+        max-height: 30px !important;
+    }
 }
 
 .settings-icon,
