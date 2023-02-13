@@ -1,0 +1,19 @@
+.new-post-container {
+    padding: 10px;
+
+    .categories-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        .category {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+    }
+
+    #description-input {
+        margin-bottom: 10px;
+    }
+}

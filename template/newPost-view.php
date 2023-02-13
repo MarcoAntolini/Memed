@@ -1,16 +1,20 @@
-<div class="notice-section container-fluid d-flex justify-content-center">
+<div class="new-post-container container-fluid d-flex justify-content-center">
     <form action="uploadPost.php" method="post" enctype="multipart/form-data">
         <div class="form-outline mb-3">
             <input class="form-control" type="file" id="image-input" accept="image/png, image/jpg, image/jpeg, image/gif" name="image-input">
         </div>
-        <div class="form-floating mb-3">
-            <textarea class="form-control" id="description-input" name="description-input"></textarea>
-            <label for="description-input">Descrizione</label>
+        <div class="form-outline mb-3">
+            <label for="description-input">Descrizione:</label>
+            <textarea class="form-control" id="description-input" name="description-input" rows="5"></textarea>
         </div>
-        <?php foreach ($templateParams["categorie"] as $categoria) : ?>
-            <input type="checkbox" id="<?php echo $categoria["idcategoria"]; ?>" name="categoria_<?php echo $categoria["idcategoria"]; ?>" />
-            <label for="<?php echo $categoria["idcategoria"]; ?>"><?php echo $categoria["nome"]; ?></label>
-        <?php endforeach; ?>
+        <datalist class="form-outline mb-3 categories-container">
+            <?php foreach ($templateParams["categorie"] as $categoria) : ?>
+                <div class="category">
+                    <input type="checkbox" id="<?php echo $categoria["idcategoria"]; ?>" name="categoria_<?php echo $categoria["idcategoria"]; ?>" />
+                    <label for="<?php echo $categoria["idcategoria"]; ?>"><?php echo $categoria["nome"]; ?></label>
+                </div>
+            <?php endforeach; ?>
+        </datalist>
         <button type="button" class="btn btn-info float-start" data-bs-toggle="modal" data-bs-target=".preview">Anteprima</button>
         <button type="submit" name="submit" class="btn btn-primary float-end">Pubblica</button>
     </form>
