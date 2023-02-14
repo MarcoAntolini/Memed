@@ -1,8 +1,10 @@
 @use "../abstract/" as *;
 
 #post-section {
+    min-width: 73vw;
     overflow: auto;
     padding: 0 5px;
+    height: 82vh;
 
     .post {
         &,
@@ -29,6 +31,11 @@
         position: absolute;
         bottom: 0.5rem;
         right: 0.5rem;
+    }
+
+    .add-comment {
+        display: flex;
+        flex-direction: column;
     }
 
     .left-col {
