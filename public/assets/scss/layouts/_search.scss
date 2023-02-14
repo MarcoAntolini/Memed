@@ -1,0 +1,24 @@
+.search-container {
+    padding-top: 2rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    h2 {
+        font-size: x-large !important;
+    }
+
+    img {
+        max-width: 50px;
+        max-height: 50px;
+        border-radius: 50%;
+    }
+
+    .card {
+        min-width: 280px;
+    }
+}
