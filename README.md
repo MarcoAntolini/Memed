@@ -7,4 +7,4 @@ Per creare il database dirigersi al link `http://localhost/phpmyadmin`, cliccare
 
 Per abilitare l'upload dei file aprire il client di **Xampp**, cliccare su *'Explorer'* per aprire la cartella di Xampp, aprire la cartella *'php'* e modificare il file `php.ini` cercando la riga `;extension=gd` e togliendo il punto e virgola iniziale per abilitare l'estensione. Successivamente salvare il file e riavviare il server Apache per attuare le modifiche.
 
-Infine per aprire il progetto basta aprire il browser e digitare `http://localhost/Memed/modules/` per accedere alla pagina principale.
+Infine per aprire il progetto basta spostare la cartella del progetto all'interno della cartella *htdocs* di Xampp e aprire il browser e digitare `http://localhost/Memed/modules/` per accedere alla pagina principale.
