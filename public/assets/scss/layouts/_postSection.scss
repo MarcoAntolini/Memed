@@ -67,7 +67,7 @@
             border-top: 1px solid $border;
         }
         .comments-section {
-            max-height: 25rem;
+            max-height: 14rem;
             margin-bottom: 3rem;
         }
         .post-image {
@@ -76,6 +76,12 @@
     }
 
     @include mediaQuery("mobile-lower", "mobile-upper") {
+        .post {
+            &,
+            * {
+                max-height: 35rem;
+            }
+        }
         .left-col {
             width: 30%;
         }
@@ -86,6 +92,13 @@
         .right-col {
             width: 100%;
             border-top: 1px solid $border;
+        }
+        .comments-section {
+            max-height: 14rem;
+            margin-bottom: 3rem;
+        }
+        .post-image {
+            max-height: 16rem;
         }
     }
 }
