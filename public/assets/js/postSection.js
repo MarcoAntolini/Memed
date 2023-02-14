@@ -17,12 +17,12 @@ function generatePost(post) {
                                         <input type="hidden" name="idpost" value="${post[i]["idpost"]}">`;
         if (post[i]["username"] == post[i]["session-username"]) {
             content += `
-                                        <button class="edit-post btn btn-primary" type="button" id="edit-button"
+                                        <button class="edit-post btn btn-primary mb-2 collapsed" type="button" id="edit-button"
                                                 data-bs-toggle="collapse" data-bs-target="#edit-post"
                                                 aria-expanded="false" aria-controls="edit-post">
                                             Modifica
                                         </button>
-                                        <button class="delete-post btn btn-danger" type="button" id="delete-button"
+                                        <button class="delete-post btn btn-danger mb-2 collapsed" type="button" id="delete-button"
                                                 data-bs-toggle="collapse" data-bs-target="#delete-post"
                                                 aria-expanded="false" aria-controls="delete-post">
                                             Elimina
@@ -229,9 +229,11 @@ function handlePost() {
 }
 
 function checkCollapsibles(buttonClicked, buttonChecked, divChecked) {
-    if (!buttonClicked.classList.contains("collapsed") && !buttonChecked.classList.contains("collapsed")) {
-        divChecked.classList.remove("show");
-    }
+    divChecked.classList.remove("show");
+    buttonChecked.classList.add("collapsed");
+    buttonChecked.setAttribute("aria-expanded", "false");
+    buttonClicked.classList.remove("collapsed");
+    buttonClicked.setAttribute("aria-expanded", "true");
 }
 
 function handleReactions() {
