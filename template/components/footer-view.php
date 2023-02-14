@@ -20,6 +20,12 @@
         </div>
         <div class="nav-col desktop-hidden">
             <a href="notice.php">
+                <?php if ($templateParams["numNotifiche"] > 0) : ?>
+                    <span class="counter position-absolute top-10 start-75 translate-middle badge rounded-pill bg-danger">
+                        <?php echo $templateParams["numNotifiche"]; ?>
+                        <span class="visually-hidden">Notifiche non lette</span>
+                    </span>
+                <?php endif; ?>
                 <img src="../public/assets/img/notices.png" alt="notices" class="nav-icon">
             </a>
         </div>
