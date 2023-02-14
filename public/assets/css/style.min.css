@@ -227,11 +227,16 @@ footer .nav-col {
   width: 25vw !important;
 }
 footer .nav-col:hover {
-  filter: invert(36%) sepia(70%) saturate(5181%) hue-rotate(210deg) brightness(101%) contrast(104%);
   cursor: pointer;
+}
+footer .nav-col:hover:not(.counter) {
+  filter: invert(36%) sepia(70%) saturate(5181%) hue-rotate(210deg) brightness(101%) contrast(104%);
 }
 footer .nav-text {
   font-weight: bold;
+}
+footer .counter {
+  filter: none !important;
 }
 
 header form,
