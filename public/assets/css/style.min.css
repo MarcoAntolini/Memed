@@ -296,6 +296,28 @@ header h1 {
   margin-top: 3rem;
 }
 
+.search-container {
+  padding-top: 2rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+.search-container h2 {
+  font-size: x-large !important;
+}
+.search-container img {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+}
+.search-container .card {
+  min-width: 280px;
+}
+
 img {
   max-width: inherit;
   max-height: inherit;
