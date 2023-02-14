@@ -137,7 +137,7 @@ function generatePost(post) {
                     <div class="modal-body">
                         <form class="add-comment" method="post" action="#">
                             <textarea class="comment-input mb-3" type="text" name="comment-text" placeholder="Commenta..." rows="3"></textarea>
-                            <input type="hidden" name="idpost" value="${post[i][" idpost"]}">
+                            <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
                             <button class="submit-comment btn btn-primary float-end" type="submit" name="submit-comment">Pubblica</button>
                         </form>
                     </div>
