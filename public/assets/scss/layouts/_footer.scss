@@ -24,12 +24,18 @@ footer {
         flex: 1 0 0%;
         width: 25vw !important;
         &:hover {
-            filter: $filter-blue;
+            &:not(.counter) {
+                filter: $filter-blue;
+            }
             cursor: pointer;
         }
     }
 
     .nav-text {
         font-weight: bold;
+    }
+
+    .counter {
+        filter: none !important;
     }
 }
