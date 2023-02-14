@@ -27,25 +27,26 @@ function generatePost(post) {
                                                 aria-expanded="false" aria-controls="delete-post">
                                             Elimina
                                         </button>
-                                        <div class="collapse" id="edit-post">
-                                            <div class="card card-body">
-                                                <form action="#" method="post" enctype="multipart/form-data">
-                                                    <label for="edit-post-text">Descrizione:</label>
-                                                    <textarea id="edit-post-text" name="description" rows="10">${post[i]["testo"]}</textarea>
-                                                    <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
-                                                    <button type="submit" name="edit-post" class="btn btn-primary mb-3">Salva</button>
-                                                </form>
-                                            </div>
+                                    </form>
+                                    <div class="collapse" id="edit-post">
+                                        <div class="card card-body">
+                                            <form action="#" method="post" enctype="multipart/form-data" class="edit-form">
+                                                <label for="edit-post-text">Descrizione:</label>
+                                                <textarea id="edit-post-text" class="mb-3" name="description" rows="5">${post[i]["testo"]}</textarea>
+                                                <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
+                                                <button type="submit" name="edit-post" class="btn btn-primary float-end">Salva</button>
+                                            </form>
                                         </div>
-                                        <div class="collapse" id="delete-post">
-                                            <div class="card card-body">
-                                                <form action="#" method="post" enctype="multipart/form-data">
-                                                    <p>Sei sicuro di voler eliminare questo post?</p>
-                                                    <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
-                                                    <button type="submit" name="delete-post" class="btn btn-danger">Elimina</button>
-                                                </form>
-                                            </div>
+                                    </div>
+                                    <div class="collapse" id="delete-post">
+                                        <div class="card card-body">
+                                            <form action="#" method="post" enctype="multipart/form-data">
+                                                <p>Sei sicuro di voler eliminare questo post?</p>
+                                                <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
+                                                <button type="submit" name="delete-post" class="btn btn-danger">Elimina</button>
+                                            </form>
                                         </div>
+                                    </div>
             `;
         } else {
             if (!post[i]["controllaSalva"]) {
@@ -59,10 +60,10 @@ function generatePost(post) {
             }
             content += `
                                         <button class="report-post btn btn-warning" type="submt" name="report-post">Segnala</button>
+                                    </form>
             `;
         }
         content += `
-                                    </form>
                                 </div>
                             </div>
                         </div>
