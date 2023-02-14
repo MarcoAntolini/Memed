@@ -28,5 +28,7 @@ function generateNotice(notice) {
 axios.get("noticeSection.php").then(Response => {
     const notice = generateNotice(Response.data);
     const main = document.getElementById("notice-section");
-    main.innerHTML = notice;
+    if (main) {
+        main.innerHTML = notice;
+    }
 });
