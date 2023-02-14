@@ -76,7 +76,7 @@
     border-top: 1px solid #dee2e6;
   }
   #post-section .comments-section {
-    max-height: 25rem;
+    max-height: 14rem;
     margin-bottom: 3rem;
   }
   #post-section .post-image {
@@ -84,6 +84,10 @@
   }
 }
 @media screen and (320px <= width <= 480px) {
+  #post-section .post,
+  #post-section .post * {
+    max-height: 35rem;
+  }
   #post-section .left-col {
     width: 30%;
   }
@@ -94,6 +98,13 @@
   #post-section .right-col {
     width: 100%;
     border-top: 1px solid #dee2e6;
+  }
+  #post-section .comments-section {
+    max-height: 14rem;
+    margin-bottom: 3rem;
+  }
+  #post-section .post-image {
+    max-height: 16rem;
   }
 }
 
