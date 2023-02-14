@@ -22,8 +22,10 @@
 }
 
 #post-section {
+  min-width: 73vw;
   overflow: auto;
   padding: 0 5px;
+  height: 82vh;
 }
 #post-section .post,
 #post-section .post * {
@@ -44,6 +46,10 @@
   position: absolute;
   bottom: 0.5rem;
   right: 0.5rem;
+}
+#post-section .add-comment {
+  display: flex;
+  flex-direction: column;
 }
 #post-section .left-col {
   flex: 0 0 auto;
