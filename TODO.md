@@ -2,6 +2,8 @@
 
 - [ ] sistemare db (nomi, id utente, id: auto_increment)
 - [ ] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
+- [ ] sistemare file php (api, checkSesion, etc)
+- [ ] sistemare file js
 - [ ] alert se pubblico post, modifico profilo o post, cancello post o commento, e se mi registro o faccio login
 - [ ] popup in login e register per i requisiti
 - [ ] il nuovo post deve uscire per primo
@@ -15,9 +17,12 @@
 - [ ] aumentare dimensione massima immagine profilo uploadabile
 - [ ] fixare preview dell'immagine profilo se è default
 - [ ] cropperjs per resizare l'immagine profilo a quadrato quando viene pubblicata (anche per i post?)
+- [ ] bordo dell'immagine profilo (box-shadow?)
 - [ ] css dell'header del login
 - [ ] css dell'anteprima del post
 - [ ] css del modifica post e modifica profilo
 - [ ] css di cerca
 - [ ] css generale
-- [ ] usare floating label e hamburger menu e controllare input type (<https://www.youtube.com/watch?v=nnZS761ngXE&list=LL&index=1>)
+- [ ] usare floating label e hamburger menu
+- [ ] controllare input type (<https://www.youtube.com/watch?v=nnZS761ngXE&list=LL&index=1>)
+- [ ] validare con w3c validator (<https://validator.w3.org/#validate_by_input>) e achecker (<https://achecker.achecks.ca/checker/index.php>)
