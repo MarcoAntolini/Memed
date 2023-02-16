@@ -1,0 +1,22 @@
+# Todo list
+
+- [ ] sistemare db (nomi, id utente, id: auto_increment, reazione id 12345)
+- [ ] alert se pubblico post, modifico profilo o post, cancello post o commento, e se mi registro o faccio login
+- [ ] popup in login e register per i requisiti
+- [ ] il nuovo post deve uscire per primo
+- [ ] cancellazione commenti
+- [ ] reazione media nel profilo
+- [ ] categorie nell'anteprima e nel post
+- [ ] la notifica del commento ti porta al tuo post
+- [ ] le notifche si aggiornano in tempo reale senza refresh (bootstrap toast?)
+- [ ] niente notifiche se ti commenti da solo
+- [ ] in esplora si vede il filtro attivo
+- [ ] aumentare dimensione massima immagine profilo uploadabile
+- [ ] fixare preview dell'immagine profilo se è default
+- [ ] cropperjs per resizare l'immagine profilo a quadrato quando viene pubblicata (anche per i post?)
+- [ ] css dell'header del login
+- [ ] css dell'anteprima del post
+- [ ] css del modifica post e modifica profilo
+- [ ] css di cerca
+- [ ] css generale
+- [ ] usare floating label e hamburger menu e controllare input type (<https://www.youtube.com/watch?v=nnZS761ngXE&list=LL&index=1>)
