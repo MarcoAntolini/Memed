@@ -1,6 +1,7 @@
 # Todo list
 
-- [ ] sistemare db (nomi, id utente, id: auto_increment, reazione id 12345)
+- [ ] sistemare db (nomi, id utente, id: auto_increment)
+- [ ] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
 - [ ] alert se pubblico post, modifico profilo o post, cancello post o commento, e se mi registro o faccio login
 - [ ] popup in login e register per i requisiti
 - [ ] il nuovo post deve uscire per primo
