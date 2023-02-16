@@ -3,7 +3,7 @@ require_once "bootstrap.php";
 
 if (login_check($mysqli) == true) {
     $templateParams["titolo"] = "Memed - Profilo";
-    $templateParams["username"] = $_SESSION["username"];
+    $templateParams["Username"] = $_SESSION["Username"];
     if (isset($_GET["username"])) {
         $utente = $_GET["username"];
         $_SESSION["utente"] = $utente;
@@ -15,19 +15,19 @@ if (login_check($mysqli) == true) {
         $templateParams["seguiti"] = $mysqli->ottieniSeguiti($utente);
         $templateParams["nPost"] = $mysqli->contaPost($utente);
     }
-    if ($templateParams["utente"] != $templateParams["username"]) {
-        if ($templateParams["follower"] && $mysqli->controllaSegue($templateParams["utente"], $templateParams["username"])) {
+    if ($templateParams["utente"] != $templateParams["Username"]) {
+        if ($templateParams["follower"] && $mysqli->controllaSegue($templateParams["utente"], $templateParams["Username"])) {
             $templateParams["isFollowing"] = true;
         } else {
             $templateParams["isFollowing"] = false;
         }
     }
     if (isset($_POST["unfollowing"])) {
-        $mysqli->cancellaSegui($_POST["unfollowing"], $_SESSION["username"]);
+        $mysqli->cancellaSegui($_POST["unfollowing"], $_SESSION["Username"]);
         header("location: user.php?username=" . $templateParams["utente"]);
     }
     if (isset($_POST["following"])) {
-        $mysqli->inserisciSegue($_POST["following"], $_SESSION["username"]);
+        $mysqli->inserisciSegue($_POST["following"], $_SESSION["Username"]);
         header("location: user.php?username=" . $templateParams["utente"]);
     }
     $templateParams["nome"] = "user-view.php";

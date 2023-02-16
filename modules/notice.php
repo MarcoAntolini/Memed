@@ -9,17 +9,17 @@ if (login_check($mysqli) == true) {
         $mysqli->cancellaNotifica($_POST["cancella"]);
     }
     if (isset($_POST["cancella-tutto"])) {
-        $mysqli->cancellaTutteNotifiche($_SESSION["username"]);
+        $mysqli->cancellaTutteNotifiche($_SESSION["Username"]);
     }
     if (isset($_POST["leggi-tutto"])) {
-        $mysqli->leggiTutteNotifiche($_SESSION["username"]);
+        $mysqli->leggiTutteNotifiche($_SESSION["Username"]);
     }
     $templateParams["titolo"] = "Memed - Notifiche";
     $templateParams["nome"] = "notice-view.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/noticeSection.js");
-    $templateParams["username"] = $_SESSION["username"];
-    $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["username"])[0];
-    if ($mysqli->ottieniNotifica($_SESSION["username"])) {
+    $templateParams["Username"] = $_SESSION["Username"];
+    $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["Username"])[0];
+    if ($mysqli->ottieniNotifica($_SESSION["Username"])) {
         $templateParams["notifiche"] = true;
     } else {
         $templateParams["notifiche"] = false;

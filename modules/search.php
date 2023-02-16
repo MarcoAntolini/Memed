@@ -5,5 +5,5 @@ $templateParams["nome"] = "search-view.php";
 $templateParams["risultati"] = $mysqli->ottieniUtentiPerNome($_GET['search']);
 $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/noticeSection.js");
 $res = $templateParams["risultati"];
-$currUser = $_SESSION["username"];
+$currUser = $_SESSION["Username"];
 require "../template/logged-base-view.php";

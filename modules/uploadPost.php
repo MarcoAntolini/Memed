@@ -4,13 +4,13 @@ require_once 'bootstrap.php';
 if ((isset($_POST["description-input"]) && !empty($_POST["description-input"])) || (isset($_POST["image-input"]) && !empty($_POST["image-input"]["name"]))) {
     $testopost = htmlspecialchars($_POST["description-input"]);
     $datapost = date("Y-m-d H:i:s");
-    $autore = $_SESSION["username"];
+    $autore = $_SESSION["Username"];
 
     $categorie = $mysqli->ottieniCategorie();
     $categorie_inserite = array();
     foreach ($categorie as $categoria) {
-        if (isset($_POST["categoria_" . $categoria["idcategoria"]])) {
-            array_push($categorie_inserite, $categoria["idcategoria"]);
+        if (isset($_POST["categoria_" . $categoria["CategoryID"]])) {
+            array_push($categorie_inserite, $categoria["CategoryID"]);
         }
     }
     if (isset($_FILES["image-input"]) && $_FILES["image-input"]["name"] != "") {

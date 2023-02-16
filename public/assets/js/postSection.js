@@ -5,8 +5,8 @@ function generatePost(post) {
         <div class="post card mb-3">
             <div class="row g-0">
                 <div class="left-col p-2">
-                    <a class="username-post-owner fw-bold" href="user.php?username=${post[i]["username"]}">@${post[i]["username"]}</a>
-                    <div class="post-settings-${post[i]["idpost"]} modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
+                    <a class="username-post-owner fw-bold" href="user.php?username=${post[i]["Username"]}">@${post[i]["Username"]}</a>
+                    <div class="post-settings-${post[i]["PostID"]} modal fade" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
                         <div id="post-settings" class="modal-dialog modal-dialog-scrollable pb-5">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -14,8 +14,8 @@ function generatePost(post) {
                                 </div>
                                 <div class="modal-body">
                                     <form class="action-post" action="#" method="post">
-                                        <input type="hidden" name="idpost" value="${post[i]["idpost"]}">`;
-        if (post[i]["username"] == post[i]["session-username"]) {
+                                        <input type="hidden" name="post-id" value="${post[i]["PostID"]}">`;
+        if (post[i]["Username"] == post[i]["session-username"]) {
             content += `
                                         <button class="edit-post btn btn-primary mb-2 collapsed" type="button" id="edit-button"
                                                 data-bs-toggle="collapse" data-bs-target="#edit-post"
@@ -32,8 +32,8 @@ function generatePost(post) {
                                         <div class="card card-body">
                                             <form action="#" method="post" enctype="multipart/form-data" class="edit-form">
                                                 <label for="edit-post-text">Descrizione:</label>
-                                                <textarea id="edit-post-text" class="mb-3" name="description" rows="5">${post[i]["testo"]}</textarea>
-                                                <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
+                                                <textarea id="edit-post-text" class="mb-3" name="description" rows="5">${post[i]["TextContent"]}</textarea>
+                                                <input type="hidden" name="post-id" value="${post[i]["PostID"]}">
                                                 <button type="submit" name="edit-post" class="btn btn-primary float-end">Salva</button>
                                             </form>
                                         </div>
@@ -42,7 +42,7 @@ function generatePost(post) {
                                         <div class="card card-body">
                                             <form action="#" method="post" enctype="multipart/form-data">
                                                 <p>Sei sicuro di voler eliminare questo post?</p>
-                                                <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
+                                                <input type="hidden" name="post-id" value="${post[i]["PostID"]}">
                                                 <button type="submit" name="delete-post" class="btn btn-danger">Elimina</button>
                                             </form>
                                         </div>
@@ -69,33 +69,33 @@ function generatePost(post) {
                         </div>
                     </div>
                     <form class="reaction-post" action="#" method="post">
-                        <input type="hidden" id="idpost" name="idpost" value="${post[i]["idpost"]}">
+                        <input type="hidden" id="post-id" name="post-id" value="${post[i]["PostID"]}">
                         <input type="hidden" id="username" name="username" value="${post[i]["session-username"]}">
                         <div class="reactions">
                             <div class="reaction-5">
-                                <img src="../public/assets/img/reazione-5.png" alt="reazione-5" id="reaction-5-${post[i]["idpost"]}" class="reaction-image">
+                                <img src="../public/assets/img/reazione-5.png" alt="reazione-5" id="reaction-5-${post[i]["PostID"]}" class="reaction-image">
                                 <span id="reazione5" class="reaction-count fw-bold">${post[i]["reazione5"]}</span>
                             </div>
                             <div class="reaction-4">
-                                <img src="../public/assets/img/reazione-4.png" alt="reazione-4" id="reaction-4-${post[i]["idpost"]}" class="reaction-image">
+                                <img src="../public/assets/img/reazione-4.png" alt="reazione-4" id="reaction-4-${post[i]["PostID"]}" class="reaction-image">
                                 <span id="reazione4" class="reaction-count fw-bold">${post[i]["reazione4"]}</span>
                             </div>
                             <div class="reaction-3">
-                                <img src="../public/assets/img/reazione-3.png" alt="reazione-3" id="reaction-3-${post[i]["idpost"]}" class="reaction-image">
+                                <img src="../public/assets/img/reazione-3.png" alt="reazione-3" id="reaction-3-${post[i]["PostID"]}" class="reaction-image">
                                 <span id="reazione3" class="reaction-count fw-bold">${post[i]["reazione3"]}</span>
                             </div>
                             <div class="reaction-2">
-                                <img src="../public/assets/img/reazione-2.png" alt="reazione-2" id="reaction-2-${post[i]["idpost"]}" class="reaction-image">
+                                <img src="../public/assets/img/reazione-2.png" alt="reazione-2" id="reaction-2-${post[i]["PostID"]}" class="reaction-image">
                                 <span id="reazione2" class="reaction-count fw-bold">${post[i]["reazione2"]}</span>
                             </div>
                             <div class="reaction-1">
-                                <img src="../public/assets/img/reazione-1.png" alt="reazione-1" id="reaction-1-${post[i]["idpost"]}" class="reaction-image">
+                                <img src="../public/assets/img/reazione-1.png" alt="reazione-1" id="reaction-1-${post[i]["PostID"]}" class="reaction-image">
                                 <span id="reazione1" class="reaction-count fw-bold">${post[i]["reazione1"]}</span>
                             </div>
                         </div>
                     </form>
                     <img src="../public/assets/img/user-settings.png" alt="post-settings" data-bs-toggle="modal"
-                        data-bs-target=".post-settings-${post[i]["idpost"]}" class="post-settings-icon float-end">
+                        data-bs-target=".post-settings-${post[i]["PostID"]}" class="post-settings-icon float-end">
                 </div>
                 <div class="post-content mid-col p-2">
         `;
@@ -104,9 +104,9 @@ function generatePost(post) {
                     <img class="post-image" src="${post[i]["nomefile"]}" alt="">
             `;
         }
-        if (post[i]["testo"] != "") {
+        if (post[i]["TextContent"] != "") {
             content += `
-                    <p class="post-text">${post[i]["testo"]}</p>
+                    <p class="post-text">${post[i]["TextContent"]}</p>
             `;
         };
         content += `
@@ -118,7 +118,7 @@ function generatePost(post) {
             post[i]["commenti"].forEach(commento => {
                 content += `
                         <div class="comment">
-                            <p class="comment-text"><a class="username-comment-owner fw-bold" href="user.php?username=${commento["username"]}">@${commento["username"]}</a>: ${commento["testo"]}</p>
+                            <p class="comment-text"><a class="username-comment-owner fw-bold" href="user.php?username=${commento["Username"]}">@${commento["Username"]}</a>: ${commento["TextContent"]}</p>
                         </div>
             `;
             });
@@ -126,8 +126,8 @@ function generatePost(post) {
         content += `
                     </div>
                     <button class="btn btn-primary comment-button" type="button" data-bs-toggle="modal"
-                            data-bs-target=".post-comment-${post[i]["idpost"]}">Commenta</button>
-                    <div class="post-comment-${post[i]["idpost"]} modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
+                            data-bs-target=".post-comment-${post[i]["PostID"]}">Commenta</button>
+                    <div class="post-comment-${post[i]["PostID"]} modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
                         aria-hidden="true" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -137,7 +137,7 @@ function generatePost(post) {
                     <div class="modal-body">
                         <form class="add-comment" method="post" action="#">
                             <textarea class="comment-input mb-3" type="text" name="comment-text" placeholder="Commenta..." rows="3"></textarea>
-                            <input type="hidden" name="idpost" value="${post[i]["idpost"]}">
+                            <input type="hidden" name="post-id" value="${post[i]["PostID"]}">
                             <button class="submit-comment btn btn-primary float-end" type="submit" name="submit-comment">Pubblica</button>
                         </form>
                     </div>
@@ -181,23 +181,23 @@ function checkReaction(data) {
     for (let i = 0; i < data.length; i++) {
         switch (data[i]["reazione-attiva"][0]) {
             case 1:
-                const reaction1 = document.getElementById("reaction-1-" + data[i]["idpost"]);
+                const reaction1 = document.getElementById("reaction-1-" + data[i]["PostID"]);
                 switchActive(reaction1);
                 break;
             case 2:
-                const reaction2 = document.getElementById("reaction-2-" + data[i]["idpost"]);
+                const reaction2 = document.getElementById("reaction-2-" + data[i]["PostID"]);
                 switchActive(reaction2);
                 break;
             case 3:
-                const reaction3 = document.getElementById("reaction-3-" + data[i]["idpost"]);
+                const reaction3 = document.getElementById("reaction-3-" + data[i]["PostID"]);
                 switchActive(reaction3);
                 break;
             case 4:
-                const reaction4 = document.getElementById("reaction-4-" + data[i]["idpost"]);
+                const reaction4 = document.getElementById("reaction-4-" + data[i]["PostID"]);
                 switchActive(reaction4);
                 break;
             case 5:
-                const reaction5 = document.getElementById("reaction-5-" + data[i]["idpost"]);
+                const reaction5 = document.getElementById("reaction-5-" + data[i]["PostID"]);
                 switchActive(reaction5);
                 break;
             default:
@@ -265,11 +265,11 @@ function handleReactions() {
 }
 
 function addReaction(reaction, idreazione) {
-    const idpost = reaction.parentElement.parentElement.parentElement.querySelector("#idpost").value;
+    const post-id = reaction.parentElement.parentElement.parentElement.querySelector("#post-id").value;
     const username = reaction.parentElement.parentElement.parentElement.querySelector("#username").value;
-    axios.post("reactionSection.php", { idreazione: idreazione, idpost: idpost, username: username }).then({
+    axios.post("reactionSection.php", { idreazione: idreazione, PostID: post - id, Username: username }).then({
     });
-    axios.get("reactionSection.php", { params: { idpost: idpost } }).then(Response => {
+    axios.get("reactionSection.php", { params: { PostID: post - id } }).then(Response => {
         const count = Response.data;
         reaction.parentElement.parentElement.querySelector("#reazione1").innerHTML = count[1];
         reaction.parentElement.parentElement.querySelector("#reazione2").innerHTML = count[2];

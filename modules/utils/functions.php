@@ -2,28 +2,28 @@
 
 function registerLoggedUser($user)
 {
-    $_SESSION["username"] = $user["username"];
+    $_SESSION["Username"] = $user["Username"];
 }
 
 function login($email, $password, $mysqli)
 {
     if (!$ddd = $mysqli->ottieniUtenteDaEmail($email)) return false;
-    $username = $ddd[0]['username'];
+    $username = $ddd[0]['Username'];
     $db_password = $ddd[0]['password'];
     $salt = $ddd[0]['salt'];
     $password = hash('sha512', $password . $salt);
     if ($db_password != $password) return false;
     $user_browser = $_SERVER['HTTP_USER_AGENT'];
-    $_SESSION['username'] = $username;
+    $_SESSION['Username'] = $username;
     $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
     return true;
 }
 
 function login_check($mysqli)
 {
-    if (!isset($_SESSION['username'], $_SESSION['login_string'])) return false;
+    if (!isset($_SESSION['Username'], $_SESSION['login_string'])) return false;
     $login_string = $_SESSION['login_string'];
-    $username = $_SESSION['username'];
+    $username = $_SESSION['Username'];
     $user_browser = $_SERVER['HTTP_USER_AGENT'];
     if (!$stmt = $mysqli->ottieniUtente($username)) return false;
     $password = $stmt[0]['password'];

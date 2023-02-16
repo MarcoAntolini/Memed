@@ -25,40 +25,40 @@ CREATE DATABASE IF NOT EXISTS `memed` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8
 USE `memed`;
 -- --------------------------------------------------------
 --
--- Struttura della tabella `categoria`
+-- Struttura della tabella `categories`
 --
-CREATE TABLE `categoria` (
-  `idcategoria` int(11) NOT NULL,
-  `nome` char(30) NOT NULL
+CREATE TABLE `categories` (
+  `CategoryID` int(11) NOT NULL,
+  `Name` char(30) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
--- Struttura della tabella `categoria_post`
+-- Struttura della tabella `post_categories`
 --
-CREATE TABLE `categoria_post` (
-  `idpost` int(11) NOT NULL,
-  `idcategoria` int(11) NOT NULL
+CREATE TABLE `post_categories` (
+  `PostID` int(11) NOT NULL,
+  `CategoryID` int(11) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
--- Struttura della tabella `commento`
+-- Struttura della tabella `comments`
 --
-CREATE TABLE `commento` (
-  `idpost` int(11) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `idcommento` int(11) NOT NULL,
-  `testo` varchar(150) NOT NULL,
-  `data` datetime NOT NULL
+CREATE TABLE `comments` (
+  `PostID` int(11) NOT NULL,
+  `Username` varchar(30) NOT NULL,
+  `CommentID` int(11) NOT NULL,
+  `TextContent` varchar(150) NOT NULL,
+  `DateAndTime` datetime NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
 -- Struttura della tabella `notifica`
 --
 CREATE TABLE `notifica` (
-  `username` varchar(30) NOT NULL,
+  `Username` varchar(30) NOT NULL,
   `idnotifica` int(11) NOT NULL,
   `mesaggio` varchar(150) NOT NULL,
-  `data` datetime NOT NULL,
+  `DateAndTime` datetime NOT NULL,
   `letto` tinyint(1) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
@@ -66,11 +66,11 @@ CREATE TABLE `notifica` (
 -- Struttura della tabella `post`
 --
 CREATE TABLE `post` (
-  `idpost` int(11) NOT NULL,
+  `PostID` int(11) NOT NULL,
   `nomefile` varchar(100) DEFAULT NULL,
-  `testo` varchar(250) DEFAULT NULL,
-  `data` datetime NOT NULL,
-  `username` varchar(30) NOT NULL
+  `TextContent` varchar(250) DEFAULT NULL,
+  `DateAndTime` datetime NOT NULL,
+  `Username` varchar(30) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
@@ -83,16 +83,16 @@ CREATE TABLE `reazione` (`idreazione` int(11) NOT NULL) ENGINE = InnoDB DEFAULT 
 --
 CREATE TABLE `reazione_pu` (
   `idreazione` int(11) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `idpost` int(11) NOT NULL
+  `Username` varchar(30) NOT NULL,
+  `PostID` int(11) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
 -- Struttura della tabella `salva`
 --
 CREATE TABLE `salva` (
-  `idpost` int(11) NOT NULL,
-  `username` varchar(30) NOT NULL
+  `PostID` int(11) NOT NULL,
+  `Username` varchar(30) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
@@ -100,14 +100,14 @@ CREATE TABLE `salva` (
 --
 CREATE TABLE `segue` (
   `Fol_username` varchar(30) NOT NULL,
-  `username` varchar(30) NOT NULL
+  `Username` varchar(30) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
 -- Struttura della tabella `utenti`
 --
 CREATE TABLE `utenti` (
-  `username` varchar(30) NOT NULL,
+  `Username` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `password` char(128) NOT NULL,
   `salt` char(128) NOT NULL,
@@ -118,38 +118,38 @@ CREATE TABLE `utenti` (
 -- Indici per le tabelle scaricate
 --
 --
--- Indici per le tabelle `categoria`
+-- Indici per le tabelle `categories`
 --
-ALTER TABLE `categoria`
-ADD PRIMARY KEY (`idcategoria`),
-  ADD UNIQUE KEY `ID_CATEGORIA_IND` (`idcategoria`);
+ALTER TABLE `categories`
+ADD PRIMARY KEY (`CategoryID`),
+  ADD UNIQUE KEY `ID_CATEGORIA_IND` (`CategoryID`);
 --
--- Indici per le tabelle `categoria_post`
+-- Indici per le tabelle `post_categories`
 --
-ALTER TABLE `categoria_post`
-ADD PRIMARY KEY (`idpost`, `idcategoria`),
-  ADD UNIQUE KEY `ID_CATEGORIA_POST_IND` (`idpost`, `idcategoria`),
-  ADD KEY `FKa_IND` (`idcategoria`);
+ALTER TABLE `post_categories`
+ADD PRIMARY KEY (`PostID`, `CategoryID`),
+  ADD UNIQUE KEY `ID_post_categories_IND` (`PostID`, `CategoryID`),
+  ADD KEY `FKa_IND` (`CategoryID`);
 --
--- Indici per le tabelle `commento`
+-- Indici per le tabelle `comments`
 --
-ALTER TABLE `commento`
-ADD PRIMARY KEY (`idpost`, `username`, `idcommento`),
-  ADD UNIQUE KEY `ID_COMMENTO_IND` (`idpost`, `username`, `idcommento`),
-  ADD KEY `FKfa_IND` (`username`);
+ALTER TABLE `comments`
+ADD PRIMARY KEY (`PostID`, `Username`, `CommentID`),
+  ADD UNIQUE KEY `ID_COMMENTO_IND` (`PostID`, `Username`, `CommentID`),
+  ADD KEY `FKfa_IND` (`Username`);
 --
 -- Indici per le tabelle `notifica`
 --
 ALTER TABLE `notifica`
-ADD PRIMARY KEY (`username`, `idnotifica`),
-  ADD UNIQUE KEY `ID_NOTIFICA_IND` (`username`, `idnotifica`);
+ADD PRIMARY KEY (`Username`, `idnotifica`),
+  ADD UNIQUE KEY `ID_NOTIFICA_IND` (`Username`, `idnotifica`);
 --
 -- Indici per le tabelle `post`
 --
 ALTER TABLE `post`
-ADD PRIMARY KEY (`idpost`),
-  ADD UNIQUE KEY `ID_POST_IND` (`idpost`),
-  ADD KEY `FKcrea_IND` (`username`);
+ADD PRIMARY KEY (`PostID`),
+  ADD UNIQUE KEY `ID_POST_IND` (`PostID`),
+  ADD KEY `FKcrea_IND` (`Username`);
 --
 -- Indici per le tabelle `reazione`
 --
@@ -160,74 +160,74 @@ ADD PRIMARY KEY (`idreazione`),
 -- Indici per le tabelle `reazione_pu`
 --
 ALTER TABLE `reazione_pu`
-ADD PRIMARY KEY (`idreazione`, `username`, `idpost`),
-  ADD UNIQUE KEY `ID_REAZIONE_PU_IND` (`idreazione`, `username`, `idpost`),
-  ADD KEY `FKhareazione_IND` (`idpost`),
-  ADD KEY `FKreagisce_IND` (`username`);
+ADD PRIMARY KEY (`idreazione`, `Username`, `PostID`),
+  ADD UNIQUE KEY `ID_REAZIONE_PU_IND` (`idreazione`, `Username`, `PostID`),
+  ADD KEY `FKhareazione_IND` (`PostID`),
+  ADD KEY `FKreagisce_IND` (`Username`);
 --
 -- Indici per le tabelle `salva`
 --
 ALTER TABLE `salva`
-ADD PRIMARY KEY (`idpost`, `username`),
-  ADD UNIQUE KEY `ID_salva_IND` (`idpost`, `username`),
-  ADD KEY `FKsal_UTE_IND` (`username`);
+ADD PRIMARY KEY (`PostID`, `Username`),
+  ADD UNIQUE KEY `ID_salva_IND` (`PostID`, `Username`),
+  ADD KEY `FKsal_UTE_IND` (`Username`);
 --
 -- Indici per le tabelle `segue`
 --
 ALTER TABLE `segue`
-ADD PRIMARY KEY (`username`, `Fol_username`),
-  ADD UNIQUE KEY `ID_segue_IND` (`username`, `Fol_username`),
+ADD PRIMARY KEY (`Username`, `Fol_username`),
+  ADD UNIQUE KEY `ID_segue_IND` (`Username`, `Fol_username`),
   ADD KEY `FKfollower_IND` (`Fol_username`);
 --
 -- Indici per le tabelle `utenti`
 --
 ALTER TABLE `utenti`
-ADD PRIMARY KEY (`username`),
-  ADD UNIQUE KEY `ID_UTENTI_IND` (`username`);
+ADD PRIMARY KEY (`Username`),
+  ADD UNIQUE KEY `ID_UTENTI_IND` (`Username`);
 --
 -- Limiti per le tabelle scaricate
 --
 --
--- Limiti per la tabella `categoria_post`
+-- Limiti per la tabella `post_categories`
 --
-ALTER TABLE `categoria_post`
-ADD CONSTRAINT `FKa_FK` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`),
-  ADD CONSTRAINT `FKs` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`);
+ALTER TABLE `post_categories`
+ADD CONSTRAINT `FKa_FK` FOREIGN KEY (`CategoryID`) REFERENCES `categories` (`CategoryID`),
+  ADD CONSTRAINT `FKs` FOREIGN KEY (`PostID`) REFERENCES `post` (`PostID`);
 --
--- Limiti per la tabella `commento`
+-- Limiti per la tabella `comments`
 --
-ALTER TABLE `commento`
-ADD CONSTRAINT `FKfa_FK` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`),
-  ADD CONSTRAINT `FKriceve` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`);
+ALTER TABLE `comments`
+ADD CONSTRAINT `FKfa_FK` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`),
+  ADD CONSTRAINT `FKriceve` FOREIGN KEY (`PostID`) REFERENCES `post` (`PostID`);
 --
 -- Limiti per la tabella `notifica`
 --
 ALTER TABLE `notifica`
-ADD CONSTRAINT `FKnortifiche` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`);
+ADD CONSTRAINT `FKnortifiche` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`);
 --
 -- Limiti per la tabella `post`
 --
 ALTER TABLE `post`
-ADD CONSTRAINT `FKcrea_FK` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`);
+ADD CONSTRAINT `FKcrea_FK` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`);
 --
 -- Limiti per la tabella `reazione_pu`
 --
 ALTER TABLE `reazione_pu`
-ADD CONSTRAINT `FKhareazione_FK` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`),
-  ADD CONSTRAINT `FKreagisce_FK` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`),
+ADD CONSTRAINT `FKhareazione_FK` FOREIGN KEY (`PostID`) REFERENCES `post` (`PostID`),
+  ADD CONSTRAINT `FKreagisce_FK` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`),
   ADD CONSTRAINT `FKtipo` FOREIGN KEY (`idreazione`) REFERENCES `reazione` (`idreazione`);
 --
 -- Limiti per la tabella `salva`
 --
 ALTER TABLE `salva`
-ADD CONSTRAINT `FKsal_POS` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`),
-  ADD CONSTRAINT `FKsal_UTE_FK` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`);
+ADD CONSTRAINT `FKsal_POS` FOREIGN KEY (`PostID`) REFERENCES `post` (`PostID`),
+  ADD CONSTRAINT `FKsal_UTE_FK` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`);
 --
 -- Limiti per la tabella `segue`
 --
 ALTER TABLE `segue`
-ADD CONSTRAINT `FKfollower_FK` FOREIGN KEY (`Fol_username`) REFERENCES `utenti` (`username`),
-  ADD CONSTRAINT `FKseg_UTE` FOREIGN KEY (`username`) REFERENCES `utenti` (`username`);
+ADD CONSTRAINT `FKfollower_FK` FOREIGN KEY (`Fol_username`) REFERENCES `utenti` (`Username`),
+  ADD CONSTRAINT `FKseg_UTE` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`);
 COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;
@@ -245,9 +245,9 @@ VALUES (1),
   (4),
   (5);
 --
--- Inizializzazione della tabella `categoria`
+-- Inizializzazione della tabella `categories`
 --
-INSERT INTO `categoria` (`idcategoria`, `nome`)
+INSERT INTO `categories` (`CategoryID`, `nome`)
 VALUES (1, 'Freddura'),
   (2, 'Black Humor'),
   (3, 'Barzelletta'),

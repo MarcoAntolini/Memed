@@ -3,9 +3,9 @@ class DatabaseHelper
 {
     private $db;
 
-    public function __construct($servername, $username, $password, $dbname, $port)
+    public function __construct($servername, $Username, $password, $dbname, $port)
     {
-        $this->db = new mysqli($servername, $username, $password, $dbname, $port);
+        $this->db = new mysqli($servername, $Username, $password, $dbname, $port);
         if ($this->db->connect_error) {
             die("Connection failed: " . $this->db->connect_error);
         }
@@ -16,13 +16,13 @@ class DatabaseHelper
         return $this->db;
     }
 
-    public function inserisciUtente($username, $email, $password, $salt)
+    public function inserisciUtente($Username, $email, $password, $salt)
     {
-        $sql = "INSERT INTO utenti (username, email, password, salt, nomefile, bio) VALUES (?, ?, ?, ?,?, ?)";
+        $sql = "INSERT INTO utenti (Username, email, password, salt, nomefile, bio) VALUES (?, ?, ?, ?,?, ?)";
         $stmt = $this->db->prepare($sql);
         $nomefile = 'default-pic.png';
         $bio = '';
-        $stmt->bind_param("ssssss", $username, $email, $password, $salt, $nomefile, $bio);
+        $stmt->bind_param("ssssss", $Username, $email, $password, $salt, $nomefile, $bio);
         if ($stmt->execute() === TRUE) {
             return true;
         } else {
@@ -30,11 +30,11 @@ class DatabaseHelper
         }
     }
 
-    public function inserisciPost($idpost, $nomefile, $testo, $data, $username)
+    public function inserisciPost($PostID, $nomefile, $TextContent, $DateAndTime, $Username)
     {
-        $sql = "INSERT INTO post (idpost, nomefile, testo, data, username) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO post (PostID, nomefile, TextContent, DateAndTime, Username) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("issss", $idpost, $nomefile, $testo, $data, $username);
+        $stmt->bind_param("issss", $PostID, $nomefile, $TextContent, $DateAndTime, $Username);
         if ($stmt->execute() === TRUE) {
             return true;
         } else {
@@ -42,11 +42,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniPost($idpost)
+    public function ottieniPost($PostID)
     {
-        $sql = "SELECT * FROM post WHERE idpost = ?";
+        $sql = "SELECT * FROM post WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $idpost);
+        $stmt->bind_param("i", $PostID);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -56,18 +56,18 @@ class DatabaseHelper
         }
     }
 
-    public function inserisciCommento($idcommento, $testo, $data, $username, $idpost)
+    public function inserisciCommento($CommentID, $TextContent, $DateAndTime, $Username, $PostID)
     {
-        $sql = "INSERT INTO commento (idpost, username, idcommento, testo, data) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO comments (PostID, Username, CommentID, TextContent, DateAndTime) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("isiss", $idpost, $username, $idcommento, $testo, $data);
+        $stmt->bind_param("isiss", $PostID, $Username, $CommentID, $TextContent, $DateAndTime);
         if ($stmt->execute() === TRUE) {
-            $post = $this->ottieniPost($idpost);
+            $post = $this->ottieniPost($PostID);
             $this->inserisciNotifica(
-                "<a  href=\"user.php?username=$username\" class=\"fw-bold\">$username</a> ha commentato un tuo post.",
+                "<a  href=\"user.php?Username=$Username\" class=\"fw-bold\">$Username</a> ha commentato un tuo post.",
                 (int)$this->ottieniIdUltimaNotifica()[0] + 1,
                 $post[4],
-                $data
+                $DateAndTime
             );
             return true;
         } else {
@@ -75,11 +75,11 @@ class DatabaseHelper
         }
     }
 
-    public function inserisciCategoriaPost($IDcategoria, $idpost)
+    public function inserisciCategoriaPost($CategoryID, $PostID)
     {
-        $sql = "INSERT INTO categoria_post (idpost, IDcategoria) VALUES (?, ?)";
+        $sql = "INSERT INTO post_categories (PostID, CategoryID) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ii", $idpost, $IDcategoria);
+        $stmt->bind_param("ii", $PostID, $CategoryID);
         if ($stmt->execute() === TRUE) {
             return true;
         } else {
@@ -87,11 +87,11 @@ class DatabaseHelper
         }
     }
 
-    public function inserisciCategoria($nome, $idcategoria)
+    public function inserisciCategoria($Name, $CategoryID)
     {
-        $sql = "INSERT INTO categoria (idcategoria, nome) VALUES (?, ?)";
+        $sql = "INSERT INTO categories (CategoryID, Name) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("is", $idcategoria, $nome);
+        $stmt->bind_param("is", $CategoryID, $Name);
         if ($stmt->execute() === TRUE) {
             return true;
         } else {
@@ -99,12 +99,12 @@ class DatabaseHelper
         }
     }
 
-    public function inserisciNotifica($messaggio, $idnotifica, $username, $data)
+    public function inserisciNotifica($messaggio, $idnotifica, $Username, $DateAndTime)
     {
-        $sql =  "INSERT INTO notifica (username, idnotifica, mesaggio, data, letto) VALUES (?, ?, ?, ?, ?)";
+        $sql =  "INSERT INTO notifica (Username, idnotifica, mesaggio, DateAndTime, letto) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $letto = 0;
-        $stmt->bind_param("sissi", $username, $idnotifica, $messaggio, $data, $letto);
+        $stmt->bind_param("sissi", $Username, $idnotifica, $messaggio, $DateAndTime, $letto);
         if ($stmt->execute() === TRUE) {
             return true;
         } else {
@@ -112,19 +112,19 @@ class DatabaseHelper
         }
     }
 
-    private function cancellaReazionePost($username, $idpost)
+    private function cancellaReazionePost($Username, $PostID)
     {
-        $sql = "DELETE FROM reazione_pu WHERE username = ? AND idpost = ?";
+        $sql = "DELETE FROM reazione_pu WHERE Username = ? AND PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("si", $username, $idpost);
+        $stmt->bind_param("si", $Username, $PostID);
         $stmt->execute();
     }
 
-    private function controlloReazione($username, $idpost, $idreazione)
+    private function controlloReazione($Username, $PostID, $idreazione)
     {
-        $sql = "SELECT * FROM reazione_pu WHERE username = ? AND idpost = ? AND idreazione = ?";
+        $sql = "SELECT * FROM reazione_pu WHERE Username = ? AND PostID = ? AND idreazione = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("sii", $username, $idpost, $idreazione);
+        $stmt->bind_param("sii", $Username, $PostID, $idreazione);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -134,16 +134,16 @@ class DatabaseHelper
         }
     }
 
-    public function inserisciReazionePost($username, $idpost, $idreazione)
+    public function inserisciReazionePost($Username, $PostID, $idreazione)
     {
-        if ($this->controlloReazione($username, $idpost, $idreazione)) {
-            $this->cancellaReazionePost($username, $idpost);
+        if ($this->controlloReazione($Username, $PostID, $idreazione)) {
+            $this->cancellaReazionePost($Username, $PostID);
             return true;
         }
-        $this->cancellaReazionePost($username, $idpost);
-        $sql = "INSERT INTO reazione_pu (idreazione, username, idpost) VALUES (?, ?, ?)";
+        $this->cancellaReazionePost($Username, $PostID);
+        $sql = "INSERT INTO reazione_pu (idreazione, Username, PostID) VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("isi", $idreazione, $username, $idpost);
+        $stmt->bind_param("isi", $idreazione, $Username, $PostID);
         if ($stmt->execute() === TRUE) {
             return true;
         } else {
@@ -151,11 +151,11 @@ class DatabaseHelper
         }
     }
 
-    public function inserisciSalva($username, $idpost)
+    public function inserisciSalva($Username, $PostID)
     {
-        $sql = "INSERT INTO salva (idpost, username) VALUES (?, ?)";
+        $sql = "INSERT INTO salva (PostID, Username) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("is", $idpost, $username);
+        $stmt->bind_param("is", $PostID, $Username);
         if ($stmt->execute() === TRUE) {
             return true;
         } else {
@@ -163,11 +163,11 @@ class DatabaseHelper
         }
     }
 
-    public function controllaSalva($username, $idpost)
+    public function controllaSalva($Username, $PostID)
     {
-        $sql = "SELECT * FROM salva WHERE username = ? AND idpost = ?";
+        $sql = "SELECT * FROM salva WHERE Username = ? AND PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("si", $username, $idpost);
+        $stmt->bind_param("si", $Username, $PostID);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -177,11 +177,11 @@ class DatabaseHelper
         }
     }
 
-    public function cancellaSalva($username, $idpost)
+    public function cancellaSalva($Username, $PostID)
     {
-        $sql = "DELETE FROM salva WHERE username = ? AND idpost = ?";
+        $sql = "DELETE FROM salva WHERE Username = ? AND PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("si", $username, $idpost);
+        $stmt->bind_param("si", $Username, $PostID);
         if ($stmt->execute() === TRUE) {
             return true;
         } else {
@@ -189,14 +189,14 @@ class DatabaseHelper
         }
     }
 
-    public function inserisciSegue($Fol_username, $username)
+    public function inserisciSegue($Fol_username, $Username)
     {
-        $sql = "INSERT INTO segue (Fol_username, username) VALUES (?, ?)";
+        $sql = "INSERT INTO segue (Fol_username, Username) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $Fol_username, $username);
+        $stmt->bind_param("ss", $Fol_username, $Username);
         if ($stmt->execute() === TRUE) {
             $this->inserisciNotifica(
-                "<a href=\"user.php?username=$username\" class=\"fw-bold\">$username</a> ha iniziato a seguirti.",
+                "<a href=\"user.php?Username=$Username\" class=\"fw-bold\">$Username</a> ha iniziato a seguirti.",
                 (int)$this->ottieniIdUltimaNotifica()[0] + 1,
                 $Fol_username,
                 date("Y-m-d H:i:s")
@@ -207,11 +207,11 @@ class DatabaseHelper
         }
     }
 
-    public function controllaSegue($Fol_username, $username)
+    public function controllaSegue($Fol_username, $Username)
     {
-        $sql = "SELECT * FROM segue WHERE Fol_username = ? AND username = ?";
+        $sql = "SELECT * FROM segue WHERE Fol_username = ? AND Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $Fol_username, $username);
+        $stmt->bind_param("ss", $Fol_username, $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -221,11 +221,11 @@ class DatabaseHelper
         }
     }
 
-    public function cancellaSegui($Fol_username, $username)
+    public function cancellaSegui($Fol_username, $Username)
     {
-        $sql = "DELETE FROM segue WHERE Fol_username = ? AND username = ?";
+        $sql = "DELETE FROM segue WHERE Fol_username = ? AND Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $Fol_username, $username);
+        $stmt->bind_param("ss", $Fol_username, $Username);
         if ($stmt->execute() === TRUE) {
             return true;
         } else {
@@ -233,11 +233,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniPostSalvati($username)
+    public function ottieniPostSalvati($Username)
     {
-        $sql = "SELECT * FROM post WHERE idpost IN (SELECT idpost FROM salva WHERE username = ?) ORDER BY data DESC";
+        $sql = "SELECT * FROM post WHERE PostID IN (SELECT PostID FROM salva WHERE Username = ?) ORDER BY DateAndTime DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -249,7 +249,7 @@ class DatabaseHelper
 
     public function ottieniCategorie()
     {
-        $sql = "SELECT * FROM categoria";
+        $sql = "SELECT * FROM categories";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -260,11 +260,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottienicategoriePost($idpost)
+    public function ottienicategoriePost($PostID)
     {
-        $sql = "SELECT * FROM categoria_post WHERE idpost = ?";
+        $sql = "SELECT * FROM post_categories WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $idpost);
+        $stmt->bind_param("i", $PostID);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -274,11 +274,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniPostDaUtente($username)
+    public function ottieniPostDaUtente($Username)
     {
-        $sql = "SELECT * FROM post WHERE username = ? ORDER BY data DESC";
+        $sql = "SELECT * FROM post WHERE Username = ? ORDER BY DateAndTime DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -288,11 +288,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniPostPerHome($username)
+    public function ottieniPostPerHome($Username)
     {
-        $sql = "SELECT * FROM post WHERE username IN (SELECT Fol_username FROM segue WHERE username = ?) ORDER BY data DESC";
+        $sql = "SELECT * FROM post WHERE Username IN (SELECT Fol_username FROM segue WHERE Username = ?) ORDER BY DateAndTime DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -302,11 +302,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniCommentiPerPost($idpost)
+    public function ottieniCommentiPerPost($PostID)
     {
-        $sql = "SELECT * FROM commento WHERE idpost = ? ORDER BY data ASC";
+        $sql = "SELECT * FROM comments WHERE PostID = ? ORDER BY DateAndTime ASC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $idpost);
+        $stmt->bind_param("i", $PostID);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -316,11 +316,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniPostDaCategoria($IDcategoria, $username)
+    public function ottieniPostDaCategoria($CategoryID, $Username)
     {
-        $sql = "SELECT post.* FROM post, reazione_pu WHERE post.idpost=reazione_pu.idpost AND post.idpost IN (SELECT idpost FROM categoria_post WHERE IDcategoria = ?) AND post.username != ? GROUP BY post.idpost ORDER BY AVG(reazione_pu.idreazione) DESC";
+        $sql = "SELECT post.* FROM post, reazione_pu WHERE post.PostID=reazione_pu.PostID AND post.PostID IN (SELECT PostID FROM post_categories WHERE CategoryID = ?) AND post.Username != ? GROUP BY post.PostID ORDER BY AVG(reazione_pu.idreazione) DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("is", $IDcategoria, $username);
+        $stmt->bind_param("is", $CategoryID, $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -330,11 +330,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniPostPerEsplora($username)
+    public function ottieniPostPerEsplora($Username)
     {
-        $sql = "SELECT post.* FROM post, reazione_pu WHERE post.idpost=reazione_pu.idpost AND post.username != ? GROUP BY post.idpost ORDER BY AVG(reazione_pu.idreazione) DESC";
+        $sql = "SELECT post.* FROM post, reazione_pu WHERE post.PostID=reazione_pu.PostID AND post.Username != ? GROUP BY post.PostID ORDER BY AVG(reazione_pu.idreazione) DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -344,11 +344,11 @@ class DatabaseHelper
         }
     }
 
-    public function modificaPost($idpost, $testo)
+    public function modificaPost($PostID, $TextContent)
     {
-        $query = "UPDATE post SET testo = ? WHERE idpost = ?";
+        $query = "UPDATE post SET TextContent = ? WHERE PostID = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("si", $testo, $idpost);
+        $stmt->bind_param("si", $TextContent, $PostID);
         if ($stmt->execute()) {
             return true;
         } else {
@@ -356,11 +356,11 @@ class DatabaseHelper
         }
     }
 
-    public function cancellaCatPost($idpost)
+    public function cancellaCatPost($PostID)
     {
-        $sql = "DELETE FROM categoria_post WHERE idpost = ?";
+        $sql = "DELETE FROM post_categories WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $idpost);
+        $stmt->bind_param("i", $PostID);
         if ($stmt->execute()) {
             return true;
         } else {
@@ -368,15 +368,15 @@ class DatabaseHelper
         }
     }
 
-    public function cancellaPost($idpost)
+    public function cancellaPost($PostID)
     {
-        $this->cancellaCommentoDaPost($idpost);
-        $this->cancellaReazioneDaPost($idpost);
-        $this->cancellaPostSalvato($idpost);
-        $this->cancellaCatPost($idpost);
-        $sql = "DELETE FROM post WHERE idpost = ?";
+        $this->cancellaCommentoDaPost($PostID);
+        $this->cancellaReazioneDaPost($PostID);
+        $this->cancellaPostSalvato($PostID);
+        $this->cancellaCatPost($PostID);
+        $sql = "DELETE FROM post WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $idpost);
+        $stmt->bind_param("i", $PostID);
         if ($stmt->execute()) {
             return true;
         } else {
@@ -384,11 +384,11 @@ class DatabaseHelper
         }
     }
 
-    private function cancellaPostSalvato($idpost)
+    private function cancellaPostSalvato($PostID)
     {
-        $sql = "DELETE FROM salva WHERE idpost = ?";
+        $sql = "DELETE FROM salva WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $idpost);
+        $stmt->bind_param("i", $PostID);
         if ($stmt->execute()) {
             return true;
         } else {
@@ -396,11 +396,11 @@ class DatabaseHelper
         }
     }
 
-    private function cancellaCommentoDaPost($idpost)
+    private function cancellaCommentoDaPost($PostID)
     {
-        $sql = "DELETE FROM commento WHERE idpost = ?";
+        $sql = "DELETE FROM comments WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $idpost);
+        $stmt->bind_param("i", $PostID);
         if ($stmt->execute()) {
             return true;
         } else {
@@ -420,11 +420,11 @@ class DatabaseHelper
         }
     }
 
-    public function cancellaTutteNotifiche($username)
+    public function cancellaTutteNotifiche($Username)
     {
-        $sql = "DELETE FROM notifica WHERE username = ?";
+        $sql = "DELETE FROM notifica WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         if ($stmt->execute()) {
             return true;
         } else {
@@ -432,11 +432,11 @@ class DatabaseHelper
         }
     }
 
-    public function leggiTutteNotifiche($username)
+    public function leggiTutteNotifiche($Username)
     {
-        $sql = "UPDATE notifica SET letto = '1' WHERE username = ?";
+        $sql = "UPDATE notifica SET letto = '1' WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         if ($stmt->execute()) {
             return true;
         } else {
@@ -444,11 +444,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniNotifica($username)
+    public function ottieniNotifica($Username)
     {
-        $sql = "SELECT * FROM notifica WHERE username = ? ORDER BY data DESC";
+        $sql = "SELECT * FROM notifica WHERE Username = ? ORDER BY DateAndTime DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -470,11 +470,11 @@ class DatabaseHelper
         }
     }
 
-    private function cancellaReazioneDaPost($idpost)
+    private function cancellaReazioneDaPost($PostID)
     {
-        $sql = "DELETE FROM reazione_pu WHERE idpost = ?";
+        $sql = "DELETE FROM reazione_pu WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $idpost);
+        $stmt->bind_param("i", $PostID);
         if ($stmt->execute()) {
             return true;
         } else {
@@ -482,11 +482,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniSeguiti($username)
+    public function ottieniSeguiti($Username)
     {
-        $sql = "SELECT Fol_username FROM segue WHERE username = ?";
+        $sql = "SELECT Fol_username FROM segue WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -498,7 +498,7 @@ class DatabaseHelper
 
     public function ottieniFollower($Fol_username)
     {
-        $sql = "SELECT username FROM segue WHERE Fol_username = ?";
+        $sql = "SELECT Username FROM segue WHERE Fol_username = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $Fol_username);
         $stmt->execute();
@@ -512,7 +512,7 @@ class DatabaseHelper
 
     public function ottieniIdUltimoPost()
     {
-        $sql = "SELECT idpost FROM post ORDER BY idpost DESC LIMIT 1";
+        $sql = "SELECT PostID FROM post ORDER BY PostID DESC LIMIT 1";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -523,11 +523,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniIdUltimoCommento($idpost)
+    public function ottieniIdUltimoCommento($PostID)
     {
-        $sql = "SELECT idcommento FROM commento WHERE idpost = ? ORDER BY idcommento DESC LIMIT 1";
+        $sql = "SELECT CommentID FROM comments WHERE PostID = ? ORDER BY CommentID DESC LIMIT 1";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $idpost);
+        $stmt->bind_param("i", $PostID);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -550,11 +550,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniUtente($username)
+    public function ottieniUtente($Username)
     {
-        $sql = "SELECT * FROM utenti WHERE username = ? LIMIT 1";
+        $sql = "SELECT * FROM utenti WHERE Username = ? LIMIT 1";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -592,11 +592,11 @@ class DatabaseHelper
         }
     }
 
-    public function contaPostConReazione($idpost, $idreazione)
+    public function contaPostConReazione($PostID, $idreazione)
     {
-        $sql = "SELECT COUNT(*) FROM reazione_pu WHERE idpost = ? AND idreazione = ?";
+        $sql = "SELECT COUNT(*) FROM reazione_pu WHERE PostID = ? AND idreazione = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ii", $idpost, $idreazione);
+        $stmt->bind_param("ii", $PostID, $idreazione);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -606,11 +606,11 @@ class DatabaseHelper
         }
     }
 
-    public function contaReazioniPost($idreazione, $idpost)
+    public function contaReazioniPost($idreazione, $PostID)
     {
-        $sql = "SELECT COUNT(*) FROM reazione_pu WHERE idreazione = ? AND idpost = ?";
+        $sql = "SELECT COUNT(*) FROM reazione_pu WHERE idreazione = ? AND PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ii", $idreazione, $idpost);
+        $stmt->bind_param("ii", $idreazione, $PostID);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -620,11 +620,11 @@ class DatabaseHelper
         }
     }
 
-    public function contaSeguiti($username)
+    public function contaSeguiti($Username)
     {
-        $sql = "SELECT COUNT(*) FROM segue WHERE username = ?";
+        $sql = "SELECT COUNT(*) FROM segue WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -648,12 +648,12 @@ class DatabaseHelper
         }
     }
 
-    public function contaNotifiche($username)
+    public function contaNotifiche($Username)
     {
-        $sql = "SELECT COUNT(*) FROM notifica WHERE username = ? and letto = ?";
+        $sql = "SELECT COUNT(*) FROM notifica WHERE Username = ? and letto = ?";
         $stmt = $this->db->prepare($sql);
         $letto = 0;
-        $stmt->bind_param("si", $username, $letto);
+        $stmt->bind_param("si", $Username, $letto);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -663,11 +663,11 @@ class DatabaseHelper
         }
     }
 
-    public function contaPost($username)
+    public function contaPost($Username)
     {
-        $sql = "SELECT COUNT(*) FROM post WHERE username = ?";
+        $sql = "SELECT COUNT(*) FROM post WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -677,11 +677,11 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniUtenteLoggato($username, $password)
+    public function ottieniUtenteLoggato($Username, $password)
     {
-        $sql = "SELECT * FROM utente WHERE username = ? AND password = ?";
+        $sql = "SELECT * FROM utente WHERE Username = ? AND password = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $username, $password);
+        $stmt->bind_param("ss", $Username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -691,53 +691,53 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniUtentiPerNome($username)
+    public function ottieniUtentiPerNome($Username)
     {
-        $sql = "SELECT username, email, nomefile, bio FROM utenti WHERE username LIKE ?";
+        $sql = "SELECT Username, email, nomefile, bio FROM utenti WHERE Username LIKE ?";
         $stmt = $this->db->prepare($sql);
-        $username = "%" . $username . "%";
-        $stmt->bind_param("s", $username);
+        $Username = "%" . $Username . "%";
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function modificaProfilo($username, $nomefile, $bio)
+    public function modificaProfilo($Username, $nomefile, $bio)
     {
-        $sql = "UPDATE utenti SET nomefile = ?, bio = ? WHERE username = ?";
+        $sql = "UPDATE utenti SET nomefile = ?, bio = ? WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("sss", $nomefile, $bio, $username);
+        $stmt->bind_param("sss", $nomefile, $bio, $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result;
     }
 
 
-    public function ottieniNomeFile($username)
+    public function ottieniNomeFile($Username)
     {
-        $sql = "SELECT nomefile FROM utenti WHERE username = ?";
+        $sql = "SELECT nomefile FROM utenti WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_row();
     }
 
-    public function ottieniMediaReazioni($username)
+    public function ottieniMediaReazioni($Username)
     {
-        $sql = "SELECT AVG(reazione_pu.idreazione) FROM post, reazione_pu WHERE post.idpost=reazione_pu.idpost AND post.username = ?";
+        $sql = "SELECT AVG(reazione_pu.idreazione) FROM post, reazione_pu WHERE post.PostID=reazione_pu.PostID AND post.Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_row();
     }
 
-    public function ottieniReazionePost($idpost, $username)
+    public function ottieniReazionePost($PostID, $Username)
     {
-        $sql = "SELECT idreazione FROM reazione_pu WHERE idpost = ? AND username = ?";
+        $sql = "SELECT idreazione FROM reazione_pu WHERE PostID = ? AND Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("is", $idpost, $username);
+        $stmt->bind_param("is", $PostID, $Username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result == null) {

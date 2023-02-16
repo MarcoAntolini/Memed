@@ -2,7 +2,7 @@
     <div class="user-data-section">
         <img class="profile-pic" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["nomefile"]); ?>" alt="profile-pic">
         <h2 class="username">
-            <?php echo $templateParams["profilo"][0]["username"]; ?>
+            <?php echo $templateParams["profilo"][0]["Username"]; ?>
         </h2>
         <p class="bio">
             <?php echo $templateParams["profilo"][0]["bio"]; ?>
@@ -14,7 +14,7 @@
             <button class="followed-count btn btn-info" type="button" data-bs-toggle="modal" data-bs-target=".followed-list">
                 Seguiti: <?php echo $templateParams["nSeguiti"][0]; ?>
             </button>
-            <?php if ($templateParams["utente"] != $_SESSION["username"]) : ?>
+            <?php if ($templateParams["utente"] != $_SESSION["Username"]) : ?>
                 <div class="follow-section">
                     <?php if ($templateParams["isFollowing"]) : ?>
                         <form action="#" method="post">
@@ -41,9 +41,9 @@
                         <?php if ($templateParams["follower"]) : ?>
                             <?php foreach ($templateParams["follower"] as $follower) : ?>
                                 <div class="follower mb-3">
-                                    <img src="<?php echo (UPLOAD_DIR . $mysqli->ottieniNomeFile($follower["username"])[0]); ?>" alt="follower-profile-pic">
-                                    <a href="user.php?username=<?php echo $follower["username"]; ?>" class="fw-bold">
-                                        @<?php echo $follower["username"]; ?>
+                                    <img src="<?php echo (UPLOAD_DIR . $mysqli->ottieniNomeFile($follower["Username"])[0]); ?>" alt="follower-profile-pic">
+                                    <a href="user.php?username=<?php echo $follower["Username"]; ?>" class="fw-bold">
+                                        @<?php echo $follower["Username"]; ?>
                                     </a>
                                 </div>
                             <?php endforeach; ?>

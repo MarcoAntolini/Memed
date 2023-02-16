@@ -6,7 +6,7 @@ $(function () {
         $.ajax({
             url: "updateFollow.php",
             type: "post",
-            data: { "username": username },
+            data: { "Username": username },
             success: function (e) {
                 if (e == "follow") {
                     button.html("Smetti di seguire");

@@ -1,6 +1,6 @@
 USE `memed`;
 INSERT INTO `utenti` (
-        `username`,
+        `Username`,
         `email`,
         `password`,
         `salt`,
@@ -48,11 +48,11 @@ VALUES (
         'ciao sono user5, <3 <3 <3'
     );
 INSERT INTO `post` (
-        `idpost`,
+        `PostID`,
         `nomefile`,
-        `testo`,
-        `data`,
-        `username`
+        `TextContent`,
+        `DateAndTime`,
+        `Username`
     )
 VALUES (
         1,
@@ -152,7 +152,7 @@ VALUES (
         '2023-02-11 10:35:01',
         'user2'
     );
-INSERT INTO `categoria_post` (`idpost`, `idcategoria`)
+INSERT INTO `post_categories` (`PostID`, `CategoryID`)
 VALUES (1, 4),
     (3, 1),
     (3, 3),
@@ -171,12 +171,12 @@ VALUES (1, 4),
     (14, 4),
     (1, 3),
     (2, 3);
-INSERT INTO `commento` (
-        `idpost`,
-        `username`,
-        `idcommento`,
-        `testo`,
-        `data`
+INSERT INTO `comments` (
+        `PostID`,
+        `Username`,
+        `CommentID`,
+        `TextContent`,
+        `DateAndTime`
     )
 VALUES (2, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
     (1, 'user5', 2, 'wow', '2023-02-09 11:46:54'),
@@ -196,7 +196,7 @@ VALUES (2, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
     (3, 'user3', 16, 'wow', '2023-02-11 11:16:26'),
     (5, 'user4', 17, 'wow', '2023-02-11 11:18:26'),
     (10, 'user2', 18, 'wow', '2023-02-11 11:19:26');
-INSERT INTO `reazione_pu` (`idreazione`, `username`, `idpost`)
+INSERT INTO `reazione_pu` (`idreazione`, `Username`, `PostID`)
 VALUES (5, 'user1', 1),
     (5, 'user2', 1),
     (3, 'user3', 1),
@@ -268,7 +268,7 @@ VALUES (5, 'user1', 1),
     (4, 'user4', 14),
     (5, 'user5', 14),
     (1, 'user5', 9);
-INSERT INTO `segue` (`Fol_username`, `username`)
+INSERT INTO `segue` (`Fol_username`, `Username`)
 VALUES ('user3', 'user1'),
     ('user5', 'user1'),
     ('user1', 'user2'),
@@ -282,111 +282,111 @@ VALUES ('user3', 'user1'),
     ('user1', 'user5'),
     ('user2', 'user5');
 INSERT INTO `notifica` (
-        `username`,
+        `Username`,
         `idnotifica`,
         `mesaggio`,
-        `data`,
+        `DateAndTime`,
         `letto`
     )
 VALUES (
         'user2',
         1,
-        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user1',
         2,
-        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user3',
         3,
-        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user4',
         4,
-        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-09 10:46:54',
         0
     ),
     (
         'user4',
         5,
-        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-10 10:46:54',
         0
     ),
     (
         'user1',
         6,
-        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-10 10:46:54',
         0
     ),
     (
         'user4',
         7,
-        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-11 10:46:54',
         0
     ),
     (
         'user1',
         8,
-        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-11 10:46:54',
         0
     ),
     (
         'user3',
         9,
-        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-10 10:46:54',
         0
     ),
     (
         'user2',
         10,
-        '<a href=\"user.php?username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user5\" class=\"fw-bold\">user5</a> ha commentato un tuo post.',
         '2023-02-10 11:19:26',
         0
     ),
     (
         'user5',
         11,
-        '<a href=\"user.php?username=user3\" class=\"fw-bold\">user3</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user3\" class=\"fw-bold\">user3</a> ha commentato un tuo post.',
         '2023-02-09 11:19:26',
         0
     ),
     (
         'user4',
         12,
-        '<a href=\"user.php?username=user2\" class=\"fw-bold\">user2</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user2\" class=\"fw-bold\">user2</a> ha commentato un tuo post.',
         '2023-02-09 11:16:36',
         0
     ),
     (
         'user3',
         13,
-        '<a href=\"user.php?username=user1\" class=\"fw-bold\">user1</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user1\" class=\"fw-bold\">user1</a> ha commentato un tuo post.',
         '2023-02-09 11:16:26',
         0
     ),
     (
         'user2',
         14,
-        '<a href=\"user.php?username=user4\" class=\"fw-bold\">user4</a> ha commentato un tuo post.',
+        '<a href=\"user.php?Username=user4\" class=\"fw-bold\">user4</a> ha commentato un tuo post.',
         '2023-02-09 11:16:26',
         0
     );
-INSERT INTO `salva`(`idpost`, `username`)
+INSERT INTO `salva`(`PostID`, `Username`)
 VALUES(1, 'user2'),
     (7, 'user1'),
     (7, 'user3'),
