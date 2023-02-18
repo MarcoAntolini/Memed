@@ -6,8 +6,8 @@ if ($mysqli->ottieniNotifica($_SESSION["Username"])) {
 } else {
     $templateParams["notifiche"] = false;
 }
-if (isset($_POST["letto"])) {
-    $mysqli->leggiNotifica($_POST["letto"]);
+if (isset($_POST["Read"])) {
+    $mysqli->leggiNotifica($_POST["Read"]);
 }
 if (isset($_POST["cancella"])) {
     $mysqli->cancellaNotifica($_POST["cancella"]);

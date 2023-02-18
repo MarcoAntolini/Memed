@@ -1,11 +1,11 @@
 <div class="my-profile">
     <div class="user-data-section">
-        <img class="profile-pic" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["nomefile"]); ?>" alt="profile-pic">
+        <img class="profile-pic" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["FileName"]); ?>" alt="profile-pic">
         <h2 class="username">
             <?php echo $templateParams["profilo"][0]["Username"]; ?>
         </h2>
         <p class="bio">
-            <?php echo $templateParams["profilo"][0]["bio"]; ?>
+            <?php echo $templateParams["profilo"][0]["Bio"]; ?>
         </p>
         <div>
             <button class="follower-count btn btn-info" type="button" data-bs-toggle="modal" data-bs-target=".follower-list">
@@ -63,9 +63,9 @@
                         <?php if ($templateParams["seguiti"]) : ?>
                             <?php foreach ($templateParams["seguiti"] as $followed) : ?>
                                 <div class="followed mb-3">
-                                    <img src="<?php echo (UPLOAD_DIR . $mysqli->ottieniNomeFile($followed["Fol_username"])[0]); ?>" alt="followed-profile-pic">
-                                    <a href="user.php?username=<?php echo $followed["Fol_username"]; ?>" class="fw-bold">
-                                        @<?php echo $followed["Fol_username"]; ?>
+                                    <img src="<?php echo (UPLOAD_DIR . $mysqli->ottieniNomeFile($followed["FollowedUsername"])[0]); ?>" alt="followed-profile-pic">
+                                    <a href="user.php?username=<?php echo $followed["FollowedUsername"]; ?>" class="fw-bold">
+                                        @<?php echo $followed["FollowedUsername"]; ?>
                                     </a>
                                 </div>
                             <?php endforeach; ?>

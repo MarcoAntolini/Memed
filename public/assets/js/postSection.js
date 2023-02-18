@@ -99,9 +99,9 @@ function generatePost(post) {
                 </div>
                 <div class="post-content mid-col p-2">
         `;
-        if (post[i]["nomefile"] != "./upload/") {
+        if (post[i]["FileName"] != "./upload/") {
             content += `
-                    <img class="post-image" src="${post[i]["nomefile"]}" alt="">
+                    <img class="post-image" src="${post[i]["FileName"]}" alt="">
             `;
         }
         if (post[i]["TextContent"] != "") {
@@ -264,12 +264,12 @@ function handleReactions() {
     });
 }
 
-function addReaction(reaction, idreazione) {
-    const post-id = reaction.parentElement.parentElement.parentElement.querySelector("#post-id").value;
+function addReaction(reaction, reactionId) {
+    const postId = reaction.parentElement.parentElement.parentElement.querySelector("#post-id").value;
     const username = reaction.parentElement.parentElement.parentElement.querySelector("#username").value;
-    axios.post("reactionSection.php", { idreazione: idreazione, PostID: post - id, Username: username }).then({
+    axios.post("reactionSection.php", { ReactionID: reactionId, PostID: postId, Username: username }).then({
     });
-    axios.get("reactionSection.php", { params: { PostID: post - id } }).then(Response => {
+    axios.get("reactionSection.php", { params: { PostID: postId } }).then(Response => {
         const count = Response.data;
         reaction.parentElement.parentElement.querySelector("#reazione1").innerHTML = count[1];
         reaction.parentElement.parentElement.querySelector("#reazione2").innerHTML = count[2];

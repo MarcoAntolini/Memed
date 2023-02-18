@@ -13,8 +13,8 @@
                     <input type="file" id="profile-pic-input" accept="image/png, image/jpg, image/jpeg" name="profile-pic-input" class="mb-2">
                     <div class="row">
                         <label for="bio">Bio:</label>
-                        <textarea id="bio" class="bio col-8" name="bio" rows="5"><?php echo $templateParams["profilo"][0]["bio"]; ?></textarea>
-                        <img id="profile-pic-preview" class="profile-pic-preview" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["nomefile"]); ?>" alt="profile-pic">
+                        <textarea id="bio" class="bio col-8" name="bio" rows="5"><?php echo $templateParams["profilo"][0]["Bio"]; ?></textarea>
+                        <img id="profile-pic-preview" class="profile-pic-preview" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["FileName"]); ?>" alt="profile-pic">
                     </div>
                 </div>
                 <div class="modal-footer">

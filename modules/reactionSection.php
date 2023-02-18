@@ -3,7 +3,7 @@ require("bootstrap.php");
 
 $data = json_decode(file_get_contents("php://input"), true);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $mysqli->inserisciReazionePost($data["Username"], (int) $data["post-id"], $data["idreazione"]);
+    $mysqli->inserisciReazionePost($data["Username"], (int) $data["post-id"], $data["ReactionID"]);
 } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $port[1] = $mysqli->contaReazioniPost(1, $_GET["post-id"]);
     $port[2] = $mysqli->contaReazioniPost(2, $_GET["post-id"]);

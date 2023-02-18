@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Versione del server: 10.4.25-MariaDB
--- Versione PHP: 8.1.10
+-- Server version: 10.4.25-MariaDB
+-- PHP version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,54 +33,56 @@ CREATE TABLE `post_categories` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE `comments` (
+  `CommentID` int(11) NOT NULL,
   `PostID` int(11) NOT NULL,
   `Username` varchar(30) NOT NULL,
-  `CommentID` int(11) NOT NULL,
   `TextContent` varchar(150) NOT NULL,
   `DateAndTime` datetime NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE `notifica` (
+CREATE TABLE `notifications` (
+  `NotificationID` int(11) NOT NULL,
   `Username` varchar(30) NOT NULL,
-  `idnotifica` int(11) NOT NULL,
-  `mesaggio` varchar(150) NOT NULL,
+  `Message` varchar(150) NOT NULL,
   `DateAndTime` datetime NOT NULL,
-  `letto` tinyint(1) NOT NULL
+  `Read` tinyint(1) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE `post` (
+CREATE TABLE `posts` (
   `PostID` int(11) NOT NULL,
-  `nomefile` varchar(100) DEFAULT NULL,
+  `Username` varchar(30) NOT NULL
+  `FileName` varchar(100) DEFAULT NULL,
   `TextContent` varchar(250) DEFAULT NULL,
   `DateAndTime` datetime NOT NULL,
-  `Username` varchar(30) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE `reazione` (`idreazione` int(11) NOT NULL) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+CREATE TABLE `reactions` (
+  `ReactionID` int(11) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE `reazione_pu` (
-  `idreazione` int(11) NOT NULL,
-  `Username` varchar(30) NOT NULL,
+CREATE TABLE `post_reactions` (
+  `ReactionID` int(11) NOT NULL,
   `PostID` int(11) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
-
-CREATE TABLE `salva` (
-  `PostID` int(11) NOT NULL,
-  `Username` varchar(30) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
-
-CREATE TABLE `segue` (
-  `Fol_username` varchar(30) NOT NULL,
-  `Username` varchar(30) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
-
-CREATE TABLE `utenti` (
   `Username` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `password` char(128) NOT NULL,
-  `salt` char(128) NOT NULL,
-  `nomefile` varchar(100) DEFAULT NULL,
-  `bio` varchar(150) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE `saved_posts` (
+  `Username` varchar(30) NOT NULL
+  `PostID` int(11) NOT NULL,
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE `follows` (
+  `FollowedUsername` varchar(30) NOT NULL,
+  `FollowerUsername` varchar(30) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE `users` (
+  `Username` varchar(30) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `Password` char(128) NOT NULL,
+  `PasswordSalt` char(128) NOT NULL,
+  `FileName` varchar(100) DEFAULT NULL,
+  `Bio` varchar(150) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 ALTER TABLE `categories`
@@ -97,69 +99,69 @@ ADD PRIMARY KEY (`PostID`, `Username`, `CommentID`),
   ADD UNIQUE KEY `ID_COMMENTO_IND` (`PostID`, `Username`, `CommentID`),
   ADD KEY `FKfa_IND` (`Username`);
 
-ALTER TABLE `notifica`
-ADD PRIMARY KEY (`Username`, `idnotifica`),
-  ADD UNIQUE KEY `ID_NOTIFICA_IND` (`Username`, `idnotifica`);
+ALTER TABLE `notifications`
+ADD PRIMARY KEY (`Username`, `NotificationID`),
+  ADD UNIQUE KEY `ID_NOTIFICA_IND` (`Username`, `NotificationID`);
 
-ALTER TABLE `post`
+ALTER TABLE `posts`
 ADD PRIMARY KEY (`PostID`),
   ADD UNIQUE KEY `ID_POST_IND` (`PostID`),
   ADD KEY `FKcrea_IND` (`Username`);
 
-ALTER TABLE `reazione`
-ADD PRIMARY KEY (`idreazione`),
-  ADD UNIQUE KEY `ID_REAZIONE_IND` (`idreazione`);
+ALTER TABLE `reactions`
+ADD PRIMARY KEY (`ReactionID`),
+  ADD UNIQUE KEY `ID_REAZIONE_IND` (`ReactionID`);
 
-ALTER TABLE `reazione_pu`
-ADD PRIMARY KEY (`idreazione`, `Username`, `PostID`),
-  ADD UNIQUE KEY `ID_REAZIONE_PU_IND` (`idreazione`, `Username`, `PostID`),
+ALTER TABLE `post_reactions`
+ADD PRIMARY KEY (`ReactionID`, `Username`, `PostID`),
+  ADD UNIQUE KEY `ID_REAZIONE_PU_IND` (`ReactionID`, `Username`, `PostID`),
   ADD KEY `FKhareazione_IND` (`PostID`),
   ADD KEY `FKreagisce_IND` (`Username`);
 
-ALTER TABLE `salva`
+ALTER TABLE `saved_posts`
 ADD PRIMARY KEY (`PostID`, `Username`),
   ADD UNIQUE KEY `ID_salva_IND` (`PostID`, `Username`),
   ADD KEY `FKsal_UTE_IND` (`Username`);
 
-ALTER TABLE `segue`
-ADD PRIMARY KEY (`Username`, `Fol_username`),
-  ADD UNIQUE KEY `ID_segue_IND` (`Username`, `Fol_username`),
-  ADD KEY `FKfollower_IND` (`Fol_username`);
+ALTER TABLE `follows`
+ADD PRIMARY KEY (`FollowerUsername`, `FollowedUsername`),
+  ADD UNIQUE KEY `ID_segue_IND` (`FollowerUsername`, `FollowedUsername`),
+  ADD KEY `FKfollower_IND` (`FollowedUsername`);
 
-ALTER TABLE `utenti`
+ALTER TABLE `users`
 ADD PRIMARY KEY (`Username`),
   ADD UNIQUE KEY `ID_UTENTI_IND` (`Username`);
 
 ALTER TABLE `post_categories`
 ADD CONSTRAINT `FKa_FK` FOREIGN KEY (`CategoryID`) REFERENCES `categories` (`CategoryID`),
-  ADD CONSTRAINT `FKs` FOREIGN KEY (`PostID`) REFERENCES `post` (`PostID`);
+  ADD CONSTRAINT `FKs` FOREIGN KEY (`PostID`) REFERENCES `posts` (`PostID`);
 
 ALTER TABLE `comments`
-ADD CONSTRAINT `FKfa_FK` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`),
-  ADD CONSTRAINT `FKriceve` FOREIGN KEY (`PostID`) REFERENCES `post` (`PostID`);
+ADD CONSTRAINT `FKfa_FK` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`),
+  ADD CONSTRAINT `FKriceve` FOREIGN KEY (`PostID`) REFERENCES `posts` (`PostID`);
 
-ALTER TABLE `notifica`
-ADD CONSTRAINT `FKnortifiche` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`);
+ALTER TABLE `notifications`
+ADD CONSTRAINT `FKnortifiche` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`);
 
-ALTER TABLE `post`
-ADD CONSTRAINT `FKcrea_FK` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`);
+ALTER TABLE `posts`
+ADD CONSTRAINT `FKcrea_FK` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`);
 
-ALTER TABLE `reazione_pu`
-ADD CONSTRAINT `FKhareazione_FK` FOREIGN KEY (`PostID`) REFERENCES `post` (`PostID`),
-  ADD CONSTRAINT `FKreagisce_FK` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`),
-  ADD CONSTRAINT `FKtipo` FOREIGN KEY (`idreazione`) REFERENCES `reazione` (`idreazione`);
+ALTER TABLE `post_reactions`
+ADD CONSTRAINT `FKhareazione_FK` FOREIGN KEY (`PostID`) REFERENCES `posts` (`PostID`),
+  ADD CONSTRAINT `FKreagisce_FK` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`),
+  ADD CONSTRAINT `FKtipo` FOREIGN KEY (`ReactionID`) REFERENCES `reactions` (`ReactionID`);
 
-ALTER TABLE `salva`
-ADD CONSTRAINT `FKsal_POS` FOREIGN KEY (`PostID`) REFERENCES `post` (`PostID`),
-  ADD CONSTRAINT `FKsal_UTE_FK` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`);
+ALTER TABLE `saved_posts`
+ADD CONSTRAINT `FKsal_POS` FOREIGN KEY (`PostID`) REFERENCES `posts` (`PostID`),
+  ADD CONSTRAINT `FKsal_UTE_FK` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`);
 
-ALTER TABLE `segue`
-ADD CONSTRAINT `FKfollower_FK` FOREIGN KEY (`Fol_username`) REFERENCES `utenti` (`Username`),
-  ADD CONSTRAINT `FKseg_UTE` FOREIGN KEY (`Username`) REFERENCES `utenti` (`Username`);
+ALTER TABLE `follows`
+ADD CONSTRAINT `FKfollower_FK` FOREIGN KEY (`FollowedUsername`) REFERENCES `users` (`FollowerUsername`),
+  ADD CONSTRAINT `FKseg_UTE` FOREIGN KEY (`FollowerUsername`) REFERENCES `users` (`FollowerUsername`);
   
 COMMIT;
 
-INSERT INTO `reazione` (`idreazione`)
+INSERT INTO `reactions` (`ReactionID`)
 VALUES (1),
   (2),
   (3),

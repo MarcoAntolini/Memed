@@ -9,8 +9,8 @@ function login($email, $password, $mysqli)
 {
     if (!$ddd = $mysqli->ottieniUtenteDaEmail($email)) return false;
     $username = $ddd[0]['Username'];
-    $db_password = $ddd[0]['password'];
-    $salt = $ddd[0]['salt'];
+    $db_password = $ddd[0]['Password'];
+    $salt = $ddd[0]['PasswordSalt'];
     $password = hash('sha512', $password . $salt);
     if ($db_password != $password) return false;
     $user_browser = $_SERVER['HTTP_USER_AGENT'];
@@ -26,7 +26,7 @@ function login_check($mysqli)
     $username = $_SESSION['Username'];
     $user_browser = $_SERVER['HTTP_USER_AGENT'];
     if (!$stmt = $mysqli->ottieniUtente($username)) return false;
-    $password = $stmt[0]['password'];
+    $password = $stmt[0]['Password'];
     $login_check = hash('sha512', $password . $user_browser);
     if ($login_check != $login_string) return false;
     return true;

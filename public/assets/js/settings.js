@@ -28,7 +28,7 @@ function handleSubmit() {
     closeButton.click();
     if (picInput === undefined) {
         const profilePic = document.getElementById("profile-pic-preview").getAttribute("src");
-        axios.post("profileSettings.php", { bio: bio, profilePic: profilePic }).then(() => {
+        axios.post("profileSettings.php", { Bio: bio, profilePic: profilePic }).then(() => {
         });
     } else {
         const profilePic = picInput["name"];
@@ -39,7 +39,7 @@ function handleSubmit() {
             axios.put('profileSettings.php', { encodedImage: encodedImage, profilePic: profilePic }).then(() => {
             });
         };
-        axios.post("profileSettings.php", { bio: bio, profilePic: profilePic }).then(() => {
+        axios.post("profileSettings.php", { Bio: bio, profilePic: profilePic }).then(() => {
         });
     }
 }
@@ -47,7 +47,7 @@ function handleSubmit() {
 axios.get("profileSettings.php").then(Response => {
     const data = Response.data;
     const profilePic = document.getElementById("profile-pic-preview");
-    profilePic.setAttribute("src", data["nomefile"]);
+    profilePic.setAttribute("src", data["FileName"]);
     const bio = document.getElementById("bio");
-    bio.innerText = data["bio"];
+    bio.innerText = data["Bio"];
 });

@@ -3,7 +3,7 @@ require("bootstrap.php");
 
 $data = json_decode(file_get_contents("php://input"), true);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $mysqli->modificaProfilo($_SESSION["Username"], $data["profilePic"], $data["bio"]);
+    $mysqli->modificaProfilo($_SESSION["Username"], $data["profilePic"], $data["Bio"]);
     header("location: user.php?username=" . $_SESSION["Username"]);
 } else if ($_SERVER["REQUEST_METHOD"] == "PUT") {
     $encodedImage = $data["encodedImage"];
@@ -20,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     imagedestroy($sourceImg);
 } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $profilo = $mysqli->ottieniUtente($_SESSION["Username"]);
-    $data["nomefile"] = $profilo[0]["nomefile"];
-    $data["bio"] = $profilo[0]["bio"];
+    $data["FileName"] = $profilo[0]["FileName"];
+    $data["Bio"] = $profilo[0]["Bio"];
     header("Content-Type: application/json; charset=UTF-8");
     echo json_encode($data);
 }

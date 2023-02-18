@@ -6,10 +6,10 @@
             <?php if ($r["Username"] !== $currUser) : ?>
                 <div class="card p-2 mb-3">
                     <div class="">
-                        <img src="<?php echo (UPLOAD_DIR . $r["nomefile"]) ?>" alt="profile-picture" />
+                        <img src="<?php echo (UPLOAD_DIR . $r["FileName"]) ?>" alt="profile-picture" />
                         <div class="">
                             <h2 class="fw-bold"><a href="user.php?username=<?php echo $r["Username"] ?>">@<?php echo $r["Username"] ?></a><br></h2>
-                            <p class="text-muted"><?php echo $r["bio"] ?></p>
+                            <p class="text-muted"><?php echo $r["Bio"] ?></p>
                         </div>
                     </div>
                     <?php if ($mysqli->controllaSegue($r["Username"], $currUser)) : ?>

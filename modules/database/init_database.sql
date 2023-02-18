@@ -1,11 +1,11 @@
 USE `memed`;
-INSERT INTO `utenti` (
+INSERT INTO `users` (
         `Username`,
-        `email`,
-        `password`,
-        `salt`,
-        `nomefile`,
-        `bio`
+        `Email`,
+        `Password`,
+        `PasswordSalt`,
+        `FileName`,
+        `Bio`
     )
 VALUES (
         'user1',
@@ -47,9 +47,9 @@ VALUES (
         'default-pic.png',
         'ciao sono user5, <3 <3 <3'
     );
-INSERT INTO `post` (
+INSERT INTO `posts` (
         `PostID`,
-        `nomefile`,
+        `FileName`,
         `TextContent`,
         `DateAndTime`,
         `Username`
@@ -196,7 +196,7 @@ VALUES (2, 'user5', 1, 'wow', '2023-02-09 10:46:54'),
     (3, 'user3', 16, 'wow', '2023-02-11 11:16:26'),
     (5, 'user4', 17, 'wow', '2023-02-11 11:18:26'),
     (10, 'user2', 18, 'wow', '2023-02-11 11:19:26');
-INSERT INTO `reazione_pu` (`idreazione`, `Username`, `PostID`)
+INSERT INTO `post_reactions` (`ReactionID`, `Username`, `PostID`)
 VALUES (5, 'user1', 1),
     (5, 'user2', 1),
     (3, 'user3', 1),
@@ -268,7 +268,7 @@ VALUES (5, 'user1', 1),
     (4, 'user4', 14),
     (5, 'user5', 14),
     (1, 'user5', 9);
-INSERT INTO `segue` (`Fol_username`, `Username`)
+INSERT INTO `follows` (`FollowedUsername`, `FollowerUsername`)
 VALUES ('user3', 'user1'),
     ('user5', 'user1'),
     ('user1', 'user2'),
@@ -281,12 +281,12 @@ VALUES ('user3', 'user1'),
     ('user5', 'user4'),
     ('user1', 'user5'),
     ('user2', 'user5');
-INSERT INTO `notifica` (
+INSERT INTO `notifications` (
         `Username`,
-        `idnotifica`,
-        `mesaggio`,
+        `NotificationID`,
+        `Message`,
         `DateAndTime`,
-        `letto`
+        `Read`
     )
 VALUES (
         'user2',
@@ -386,7 +386,7 @@ VALUES (
         '2023-02-09 11:16:26',
         0
     );
-INSERT INTO `salva`(`PostID`, `Username`)
+INSERT INTO `saved_posts`(`PostID`, `Username`)
 VALUES(1, 'user2'),
     (7, 'user1'),
     (7, 'user3'),
