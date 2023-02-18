@@ -1,6 +1,6 @@
 # Todo list
 
-- [ ] sistemare db (nomi, id utente, id: auto_increment)
+- [ ] sistemare db (nomi, id utente, id: auto_increment, Read diventa boolean, $templateParams["Username"] diventa $templateParams["LoggedUsername"])
 - [ ] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
 - [ ] sistemare file php (api, checkSesion, etc)
 - [ ] sistemare file js
