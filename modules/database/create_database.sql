@@ -25,12 +25,12 @@ USE `memed`;
 CREATE TABLE `categories` (
   `CategoryID` int(11) NOT NULL,
   `Name` char(30) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+);
 
 CREATE TABLE `post_categories` (
   `PostID` int(11) NOT NULL,
   `CategoryID` int(11) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+);
 
 CREATE TABLE `comments` (
   `CommentID` int(11) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `comments` (
   `Username` varchar(30) NOT NULL,
   `TextContent` varchar(150) NOT NULL,
   `DateAndTime` datetime NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+);
 
 CREATE TABLE `notifications` (
   `NotificationID` int(11) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE `notifications` (
   `Message` varchar(150) NOT NULL,
   `DateAndTime` datetime NOT NULL,
   `Read` tinyint(1) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+);
 
 CREATE TABLE `posts` (
   `PostID` int(11) NOT NULL,
@@ -54,27 +54,27 @@ CREATE TABLE `posts` (
   `FileName` varchar(100) DEFAULT NULL,
   `TextContent` varchar(250) DEFAULT NULL,
   `DateAndTime` datetime NOT NULL,
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+);
 
 CREATE TABLE `reactions` (
   `ReactionID` int(11) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+);
 
 CREATE TABLE `post_reactions` (
   `ReactionID` int(11) NOT NULL,
   `PostID` int(11) NOT NULL
   `Username` varchar(30) NOT NULL,
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+);
 
 CREATE TABLE `saved_posts` (
   `Username` varchar(30) NOT NULL
   `PostID` int(11) NOT NULL,
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+);
 
 CREATE TABLE `follows` (
   `FollowedUsername` varchar(30) NOT NULL,
   `FollowerUsername` varchar(30) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+);
 
 CREATE TABLE `users` (
   `Username` varchar(30) NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE `users` (
   `PasswordSalt` char(128) NOT NULL,
   `FileName` varchar(100) DEFAULT NULL,
   `Bio` varchar(150) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+);
 
 ALTER TABLE `categories`
 ADD PRIMARY KEY (`CategoryID`),
