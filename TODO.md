@@ -4,8 +4,9 @@
 - [ ] sistemare db: id utente
 - [ ] sistemare db: id auto_increment
 - [ ] sistemare db: Read diventa boolean
-- [ ] sistemare db: $templateParams["Username"] diventa $templateParams["LoggedUsername"]
+- [ ] riempire il database con dati veri (soprattutto le date, per controllare l'ordine dei post)
 - [ ] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
+- [ ] $templateParams["Username"] diventa $templateParams["LoggedUsername"]
 - [ ] sistemare file php (api, checkSesion, etc)
 - [ ] sistemare file js
 - [ ] alert se pubblico post, modifico profilo o post, cancello post o commento, e se mi registro o faccio login
