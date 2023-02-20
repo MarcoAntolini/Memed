@@ -34,3 +34,4 @@
 - [ ] usare floating label e hamburger menu
 - [ ] controllare input type (<https://www.youtube.com/watch?v=nnZS761ngXE&list=LL&index=1>)
 - [ ] validare con w3c validator (<https://validator.w3.org/#validate_by_input>) e achecker (<https://achecker.achecks.ca/checker/index.php>)
+- [ ] .htaccess
