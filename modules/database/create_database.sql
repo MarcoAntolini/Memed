@@ -121,25 +121,6 @@ ALTER TABLE saved_posts
 ALTER TABLE follows
   ADD CONSTRAINT FK_FOLLOWER_USERNAME FOREIGN KEY (FollowedUsername) REFERENCES users (FollowerUsername),
   ADD CONSTRAINT FK_FOLLOWED_USERNAME FOREIGN KEY (FollowerUsername) REFERENCES users (FollowerUsername);
-
--- ALTER TABLE post_categories
---   ADD KEY FKa_IND (CategoryID);
-
--- ALTER TABLE comments
---   ADD KEY FKfa_IND (Username);
-
--- ALTER TABLE posts
---   ADD KEY FKcrea_IND (Username);
-
--- ALTER TABLE post_reactions
---   ADD KEY FKhareazione_IND (PostID),
---   ADD KEY FKreagisce_IND (Username);
-
--- ALTER TABLE saved_posts
---   ADD KEY FKsal_UTE_IND (Username);
-
--- ALTER TABLE follows
---   ADD KEY FKfollower_IND (FollowedUsername);
   
 COMMIT;
 
