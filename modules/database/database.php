@@ -11,23 +11,14 @@ class DatabaseHelper
         }
     }
 
-    public function getMysqli()
-    {
-        return $this->db;
-    }
-
     public function inserisciUtente($Username, $Email, $Password, $PasswordSalt)
     {
-        $sql = "INSERT INTO users (Username, Email, Password, PasswordSalt, FileName, Bio) VALUES (?, ?, ?, ?,?, ?)";
+        $sql = "INSERT INTO users (Username, Email, Password, PasswordSalt, FileName, Bio) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $FileName = 'default-pic.png';
         $Bio = '';
         $stmt->bind_param("ssssss", $Username, $Email, $Password, $PasswordSalt, $FileName, $Bio);
-        if ($stmt->execute() === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function inserisciPost($PostID, $FileName, $TextContent, $DateAndTime, $Username)
@@ -35,11 +26,7 @@ class DatabaseHelper
         $sql = "INSERT INTO posts (PostID, FileName, TextContent, DateAndTime, Username) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("issss", $PostID, $FileName, $TextContent, $DateAndTime, $Username);
-        if ($stmt->execute() === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function ottieniPost($PostID)
@@ -52,6 +39,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_row();
         } else {
+            // TODO: return false?
             return false;
         }
     }
@@ -61,18 +49,18 @@ class DatabaseHelper
         $sql = "INSERT INTO comments (PostID, Username, CommentID, TextContent, DateAndTime) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("isiss", $PostID, $Username, $CommentID, $TextContent, $DateAndTime);
-        if ($stmt->execute() === TRUE) {
-            $post = $this->ottieniPost($PostID);
-            $this->inserisciNotifica(
-                "<a  href=\"user.php?Username=$Username\" class=\"fw-bold\">$Username</a> ha commentato un tuo post.",
-                (int)$this->ottieniIdUltimaNotifica()[0] + 1,
-                $post[4],
-                $DateAndTime
-            );
-            return true;
-        } else {
-            return false;
-        }
+        // if ($stmt->execute() === TRUE) {
+        $post = $this->ottieniPost($PostID);
+        $this->inserisciNotifica(
+            "<a href=\"user.php?Username=$Username\" class=\"fw-bold\">$Username</a> ha commentato un tuo post.",
+            (int)$this->ottieniIdUltimaNotifica()[0] + 1,
+            $post[4],
+            $DateAndTime
+        );
+        // return true;
+        // } else {
+        // return false;
+        // }
     }
 
     public function inserisciCategoriaPost($CategoryID, $PostID)
@@ -80,24 +68,16 @@ class DatabaseHelper
         $sql = "INSERT INTO post_categories (PostID, CategoryID) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("ii", $PostID, $CategoryID);
-        if ($stmt->execute() === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
-    public function inserisciCategoria($Name, $CategoryID)
-    {
-        $sql = "INSERT INTO categories (CategoryID, Name) VALUES (?, ?)";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("is", $CategoryID, $Name);
-        if ($stmt->execute() === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public function inserisciCategoria($Name, $CategoryID)
+    // {
+    //     $sql = "INSERT INTO categories (CategoryID, Name) VALUES (?, ?)";
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->bind_param("is", $CategoryID, $Name);
+    //     $stmt->execute();
+    // }
 
     public function inserisciNotifica($messaggio, $NotificationID, $Username, $DateAndTime)
     {
@@ -105,11 +85,7 @@ class DatabaseHelper
         $stmt = $this->db->prepare($sql);
         $Read = 0;
         $stmt->bind_param("sissi", $Username, $NotificationID, $messaggio, $DateAndTime, $Read);
-        if ($stmt->execute() === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     private function cancellaReazionePost($Username, $PostID)
@@ -127,6 +103,7 @@ class DatabaseHelper
         $stmt->bind_param("sii", $Username, $PostID, $ReactionID);
         $stmt->execute();
         $result = $stmt->get_result();
+        // TODO: non return true?
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
@@ -144,11 +121,7 @@ class DatabaseHelper
         $sql = "INSERT INTO post_reactions (ReactionID, Username, PostID) VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("isi", $ReactionID, $Username, $PostID);
-        if ($stmt->execute() === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function inserisciSalva($Username, $PostID)
@@ -156,11 +129,7 @@ class DatabaseHelper
         $sql = "INSERT INTO saved_posts (PostID, Username) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("is", $PostID, $Username);
-        if ($stmt->execute() === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function controllaSalva($Username, $PostID)
@@ -170,11 +139,7 @@ class DatabaseHelper
         $stmt->bind_param("si", $Username, $PostID);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return $result->num_rows > 0;
     }
 
     public function cancellaSalva($Username, $PostID)
@@ -182,11 +147,7 @@ class DatabaseHelper
         $sql = "DELETE FROM saved_posts WHERE Username = ? AND PostID = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("si", $Username, $PostID);
-        if ($stmt->execute() === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function inserisciSegue($FollowedUsername, $FollowerUsername)
@@ -194,17 +155,17 @@ class DatabaseHelper
         $sql = "INSERT INTO follows (FollowedUsername, FollowerUsername) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("ss", $FollowedUsername, $FollowerUsername);
-        if ($stmt->execute() === TRUE) {
-            $this->inserisciNotifica(
-                "<a href=\"user.php?Username=$FollowerUsername\" class=\"fw-bold\">$FollowerUsername</a> ha iniziato a seguirti.",
-                (int)$this->ottieniIdUltimaNotifica()[0] + 1,
-                $FollowedUsername,
-                date("Y-m-d H:i:s")
-            );
-            return true;
-        } else {
-            return false;
-        }
+        // if ($stmt->execute() === TRUE) {
+        $this->inserisciNotifica(
+            "<a href=\"user.php?Username=$FollowerUsername\" class=\"fw-bold\">$FollowerUsername</a> ha iniziato a seguirti.",
+            (int)$this->ottieniIdUltimaNotifica()[0] + 1,
+            $FollowedUsername,
+            date("Y-m-d H:i:s")
+        );
+        //     return true;
+        // } else {
+        //     return false;
+        // }
     }
 
     public function controllaSegue($FollowedUsername, $FollowerUsername)
@@ -214,11 +175,7 @@ class DatabaseHelper
         $stmt->bind_param("ss", $FollowedUsername, $FollowerUsername);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return $result->num_rows > 0;
     }
 
     public function cancellaSegui($FollowedUsername, $FollowerUsername)
@@ -226,11 +183,7 @@ class DatabaseHelper
         $sql = "DELETE FROM follows WHERE FollowedUsername = ? AND FollowerUsername = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("ss", $FollowedUsername, $FollowerUsername);
-        if ($stmt->execute() === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function ottieniPostSalvati($Username)
@@ -243,6 +196,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
+            // TODO: return false?
             return false;
         }
     }
@@ -253,26 +207,26 @@ class DatabaseHelper
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            return false;
-        }
+        // if ($result->num_rows > 0) {
+        return $result->fetch_all(MYSQLI_ASSOC);
+        // } else {
+        //     return false;
+        // }
     }
 
-    public function ottienicategoriePost($PostID)
-    {
-        $sql = "SELECT * FROM post_categories WHERE PostID = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $PostID);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            return false;
-        }
-    }
+    // public function ottienicategoriePost($PostID)
+    // {
+    //     $sql = "SELECT * FROM post_categories WHERE PostID = ?";
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->bind_param("i", $PostID);
+    //     $stmt->execute();
+    //     $result = $stmt->get_result();
+    //     if ($result->num_rows > 0) {
+    //         return $result->fetch_all(MYSQLI_ASSOC);
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     public function ottieniPostDaUtente($Username)
     {
@@ -284,6 +238,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
+            // TODO: return false?
             return false;
         }
     }
@@ -298,6 +253,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
+            // TODO: return false?
             return false;
         }
     }
@@ -312,6 +268,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
+            // TODO: return false?
             return false;
         }
     }
@@ -326,6 +283,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
+            // TODO: return false?
             return false;
         }
     }
@@ -340,6 +298,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
+            // TODO: return false?
             return false;
         }
     }
@@ -349,11 +308,7 @@ class DatabaseHelper
         $query = "UPDATE posts SET TextContent = ? WHERE PostID = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("si", $TextContent, $PostID);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function cancellaCatPost($PostID)
@@ -361,11 +316,7 @@ class DatabaseHelper
         $sql = "DELETE FROM post_categories WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $PostID);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function cancellaPost($PostID)
@@ -377,11 +328,7 @@ class DatabaseHelper
         $sql = "DELETE FROM posts WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $PostID);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     private function cancellaPostSalvato($PostID)
@@ -389,11 +336,7 @@ class DatabaseHelper
         $sql = "DELETE FROM saved_posts WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $PostID);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     private function cancellaCommentoDaPost($PostID)
@@ -401,11 +344,7 @@ class DatabaseHelper
         $sql = "DELETE FROM comments WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $PostID);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function cancellaNotifica($NotificationID)
@@ -413,11 +352,7 @@ class DatabaseHelper
         $sql = "DELETE FROM notifications WHERE NotificationID = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $NotificationID);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function cancellaTutteNotifiche($Username)
@@ -425,11 +360,7 @@ class DatabaseHelper
         $sql = "DELETE FROM notifications WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $Username);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function leggiTutteNotifiche($Username)
@@ -437,11 +368,7 @@ class DatabaseHelper
         $sql = "UPDATE notifications SET Read = '1' WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $Username);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function ottieniNotifica($Username)
@@ -463,11 +390,7 @@ class DatabaseHelper
         $sql = "UPDATE notifications SET Read = '1' WHERE NotificationID = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $NotificationID);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     private function cancellaReazioneDaPost($PostID)
@@ -475,11 +398,7 @@ class DatabaseHelper
         $sql = "DELETE FROM post_reactions WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $PostID);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
     }
 
     public function ottieniSeguiti($FollowerUsername)
@@ -519,7 +438,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_row();
         } else {
-            return false;
+            return array(0);
         }
     }
 
@@ -546,7 +465,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_row();
         } else {
-            return false;
+            return array(0);
         }
     }
 
@@ -557,11 +476,11 @@ class DatabaseHelper
         $stmt->bind_param("s", $Username);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            return false;
-        }
+        // if ($result->num_rows > 0) {
+        return $result->fetch_all(MYSQLI_ASSOC);
+        // } else {
+        //     return false;
+        // }
     }
 
     public function ottieniUtenteDaEmail($Email)
@@ -578,33 +497,33 @@ class DatabaseHelper
         }
     }
 
-    public function ottieniReazione($ReactionID)
-    {
-        $sql = "SELECT * FROM reactions WHERE ReactionID = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $ReactionID);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            return false;
-        }
-    }
+    // public function ottieniReazione($ReactionID)
+    // {
+    //     $sql = "SELECT * FROM reactions WHERE ReactionID = ?";
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->bind_param("i", $ReactionID);
+    //     $stmt->execute();
+    //     $result = $stmt->get_result();
+    //     if ($result->num_rows > 0) {
+    //         return $result->fetch_all(MYSQLI_ASSOC);
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-    public function contaPostConReazione($PostID, $ReactionID)
-    {
-        $sql = "SELECT COUNT(*) FROM post_reactions WHERE PostID = ? AND ReactionID = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ii", $PostID, $ReactionID);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            return $result->fetch_row();
-        } else {
-            return false;
-        }
-    }
+    // public function contaPostConReazione($PostID, $ReactionID)
+    // {
+    //     $sql = "SELECT COUNT(*) FROM post_reactions WHERE PostID = ? AND ReactionID = ?";
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->bind_param("ii", $PostID, $ReactionID);
+    //     $stmt->execute();
+    //     $result = $stmt->get_result();
+    //     if ($result->num_rows > 0) {
+    //         return $result->fetch_row();
+    //     } else {
+    //         return 0;
+    //     }
+    // }
 
     public function contaReazioniPost($ReactionID, $PostID)
     {
@@ -616,7 +535,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_row();
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -630,7 +549,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_row();
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -644,7 +563,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_row();
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -659,7 +578,7 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_row();
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -673,23 +592,23 @@ class DatabaseHelper
         if ($result->num_rows > 0) {
             return $result->fetch_row();
         } else {
-            return false;
+            return 0;
         }
     }
 
-    public function ottieniUtenteLoggato($Username, $Password)
-    {
-        $sql = "SELECT * FROM utente WHERE Username = ? AND Password = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $Username, $Password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            return false;
-        }
-    }
+    // public function ottieniUtenteLoggato($Username, $Password)
+    // {
+    //     $sql = "SELECT * FROM utente WHERE Username = ? AND Password = ?";
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->bind_param("ss", $Username, $Password);
+    //     $stmt->execute();
+    //     $result = $stmt->get_result();
+    //     if ($result->num_rows > 0) {
+    //         return $result->fetch_all(MYSQLI_ASSOC);
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     public function ottieniUtentiPerNome($Username)
     {
@@ -704,12 +623,10 @@ class DatabaseHelper
 
     public function modificaProfilo($Username, $FileName, $Bio)
     {
-        $sql = "UPDATE users SET FileName = ?, Bio = ? WHERE Username = ?";
+        $sql = "UPDATE users SET FileName = ? Bio = ? WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("sss", $FileName, $Bio, $Username);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $result;
     }
 
 
