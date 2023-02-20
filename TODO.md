@@ -1,9 +1,9 @@
 # Todo list
 
 - [x] sistemare db: nomi
-- [ ] sistemare db: id utente
+- [x] sistemare db: id utente
 - [ ] sistemare db: id auto_increment
-- [ ] sistemare db: Read diventa boolean
+- [x] sistemare db: Read diventa boolean
 - [ ] riempire il database con dati veri (soprattutto le date, per controllare l'ordine dei post)
 - [ ] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
 - [ ] $templateParams["Username"] diventa $templateParams["LoggedUsername"]
