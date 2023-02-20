@@ -8,6 +8,7 @@
 - [ ] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
 - [ ] rimuovere commenti da database.php
 - [x] $ddd in functions.php ?
+- [ ] sistemare functions.php
 - [ ] $templateParams["Username"] diventa $templateParams["LoggedUsername"]
 - [ ] sistemare file php (api, checkSesion, etc)
 - [ ] sistemare file js
