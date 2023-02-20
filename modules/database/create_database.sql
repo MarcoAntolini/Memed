@@ -121,7 +121,7 @@ ALTER TABLE saved_posts
 ALTER TABLE follows
   ADD CONSTRAINT FK_FOLLOWER_USERNAME FOREIGN KEY (FollowedUsername) REFERENCES users (FollowerUsername),
   ADD CONSTRAINT FK_FOLLOWED_USERNAME FOREIGN KEY (FollowerUsername) REFERENCES users (FollowerUsername);
-  
+
 COMMIT;
 
 INSERT INTO reactions (ReactionID)
