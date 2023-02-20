@@ -7,10 +7,10 @@ function registerLoggedUser($user)
 
 function login($email, $password, $mysqli)
 {
-    if (!$ddd = $mysqli->ottieniUtenteDaEmail($email)) return false;
-    $username = $ddd[0]['Username'];
-    $db_password = $ddd[0]['Password'];
-    $salt = $ddd[0]['PasswordSalt'];
+    if (!$user = $mysqli->ottieniUtenteDaEmail($email)) return false;
+    $username = $user[0]['Username'];
+    $db_password = $user[0]['Password'];
+    $salt = $user[0]['PasswordSalt'];
     $password = hash('sha512', $password . $salt);
     if ($db_password != $password) return false;
     $user_browser = $_SERVER['HTTP_USER_AGENT'];
