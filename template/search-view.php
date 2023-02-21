@@ -12,7 +12,7 @@
                             <p class="text-muted"><?php echo $r["Bio"] ?></p>
                         </div>
                     </div>
-                    <?php if ($mysqli->controllaSegue($r["Username"], $currUser)) : ?>
+                    <?php if ($mysqli->checkFollow($r["Username"], $currUser)) : ?>
                         <button type="button" id="<?php echo $r["Username"] ?>" class="btn btn-primary">Smetti di seguire</button>
                 </div>
             <?php else : ?>

@@ -49,7 +49,7 @@ function generatePost(post) {
                                     </div>
             `;
         } else {
-            if (!post[i]["controllaSalva"]) {
+            if (!post[i]["checkSavedPost"]) {
                 content += `
                                         <button class="save-post btn btn-primary" type="submit" name="save-post">Salva</button>
                 `;

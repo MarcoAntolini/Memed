@@ -41,7 +41,7 @@
                         <?php if ($templateParams["follower"]) : ?>
                             <?php foreach ($templateParams["follower"] as $follower) : ?>
                                 <div class="follower mb-3">
-                                    <img src="<?php echo (UPLOAD_DIR . $mysqli->ottieniNomeFile($follower["Username"])[0]); ?>" alt="follower-profile-pic">
+                                    <img src="<?php echo (UPLOAD_DIR . $mysqli->getFileNameByUsername($follower["Username"])[0]); ?>" alt="follower-profile-pic">
                                     <a href="user.php?username=<?php echo $follower["Username"]; ?>" class="fw-bold">
                                         @<?php echo $follower["Username"]; ?>
                                     </a>
@@ -63,7 +63,7 @@
                         <?php if ($templateParams["seguiti"]) : ?>
                             <?php foreach ($templateParams["seguiti"] as $followed) : ?>
                                 <div class="followed mb-3">
-                                    <img src="<?php echo (UPLOAD_DIR . $mysqli->ottieniNomeFile($followed["FollowedUsername"])[0]); ?>" alt="followed-profile-pic">
+                                    <img src="<?php echo (UPLOAD_DIR . $mysqli->getFileNameByUsername($followed["FollowedUsername"])[0]); ?>" alt="followed-profile-pic">
                                     <a href="user.php?username=<?php echo $followed["FollowedUsername"]; ?>" class="fw-bold">
                                         @<?php echo $followed["FollowedUsername"]; ?>
                                     </a>

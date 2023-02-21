@@ -6,9 +6,9 @@ if (login_check($mysqli) == true) {
     $templateParams["nome"] = "home-view.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/postSection.js", "../public/assets/js/noticeSection.js");
     $templateParams["Username"] = $_SESSION["Username"];
-    $templateParams["posthome"] = $mysqli->ottieniPostPerHome($_SESSION["Username"]);
-    $templateParams["numNotifiche"] = $mysqli->contaNotifiche($_SESSION["Username"]);
-    $templateParams["notifiche"] = $mysqli->ottieniNotifica($_SESSION["Username"]);
+    $templateParams["posthome"] = $mysqli->getPostsForHomeByUsername($_SESSION["Username"]);
+    $templateParams["numNotifiche"] = $mysqli->countNotificationsByUsername($_SESSION["Username"]);
+    $templateParams["notifiche"] = $mysqli->getNotificationByUsername($_SESSION["Username"]);
     require "../template/logged-base-view.php";
     require 'postSettings.php';
 } else {

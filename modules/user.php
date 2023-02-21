@@ -8,26 +8,26 @@ if (login_check($mysqli) == true) {
         $utente = $_GET["username"];
         $_SESSION["utente"] = $utente;
         $templateParams["utente"] = $utente;
-        $templateParams["profilo"] = $mysqli->ottieniUtente($utente);
-        $templateParams["nFol"] = $mysqli->contaFollower($utente);
-        $templateParams["nSeguiti"] = $mysqli->contaSeguiti($utente);
-        $templateParams["follower"] = $mysqli->ottieniFollower($utente);
-        $templateParams["seguiti"] = $mysqli->ottieniSeguiti($utente);
-        $templateParams["nPost"] = $mysqli->contaPost($utente);
+        $templateParams["profilo"] = $mysqli->getUserByUsername($utente);
+        $templateParams["nFol"] = $mysqli->countFollowersByFollowedUsername($utente);
+        $templateParams["nSeguiti"] = $mysqli->countFollowedByFollowerUsername($utente);
+        $templateParams["follower"] = $mysqli->getAllFollowersByFollowedUsername($utente);
+        $templateParams["seguiti"] = $mysqli->getAllFollowedByFollowerUsername($utente);
+        $templateParams["nPost"] = $mysqli->countPostsByUsername($utente);
     }
     if ($templateParams["utente"] != $templateParams["Username"]) {
-        if ($templateParams["follower"] && $mysqli->controllaSegue($templateParams["utente"], $templateParams["Username"])) {
+        if ($templateParams["follower"] && $mysqli->checkFollow($templateParams["utente"], $templateParams["Username"])) {
             $templateParams["isFollowing"] = true;
         } else {
             $templateParams["isFollowing"] = false;
         }
     }
     if (isset($_POST["unfollowing"])) {
-        $mysqli->cancellaSegui($_POST["unfollowing"], $_SESSION["Username"]);
+        $mysqli->deleteFollow($_POST["unfollowing"], $_SESSION["Username"]);
         header("location: user.php?username=" . $templateParams["utente"]);
     }
     if (isset($_POST["following"])) {
-        $mysqli->inserisciSegue($_POST["following"], $_SESSION["Username"]);
+        $mysqli->insertFollow($_POST["following"], $_SESSION["Username"]);
         header("location: user.php?username=" . $templateParams["utente"]);
     }
     $templateParams["nome"] = "user-view.php";

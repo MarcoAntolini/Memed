@@ -7,7 +7,7 @@ function registerLoggedUser($user)
 
 function login($email, $password, $mysqli)
 {
-    if (!$user = $mysqli->ottieniUtenteDaEmail($email)) return false;
+    if (!$user = $mysqli->getUserByEmail($email)) return false;
     $username = $user[0]['Username'];
     $db_password = $user[0]['Password'];
     $salt = $user[0]['PasswordSalt'];
@@ -25,7 +25,7 @@ function login_check($mysqli)
     $login_string = $_SESSION['login_string'];
     $username = $_SESSION['Username'];
     $user_browser = $_SERVER['HTTP_USER_AGENT'];
-    if (!$stmt = $mysqli->ottieniUtente($username)) return false;
+    if (!$stmt = $mysqli->getUserByUsername($username)) return false;
     $password = $stmt[0]['Password'];
     $login_check = hash('sha512', $password . $user_browser);
     if ($login_check != $login_string) return false;
