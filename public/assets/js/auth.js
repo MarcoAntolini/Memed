@@ -41,22 +41,17 @@ function showPassword(button) {
 }
 
 function checkRegisterButton(emailInput, usernameInput, passwordRegister, passwordConfirm, registerButton) {
-	if (
+	registerButton.disabled = !(
 		validateEmail(emailInput) &&
 		validateUsername(usernameInput) &&
 		validatePassword(passwordRegister) &&
 		validatePassword(passwordConfirm) &&
 		comparePasswords(passwordRegister, passwordConfirm)
-	) {
-		registerButton.disabled = false
-	} else {
-		registerButton.disabled = true
-	}
+	)
 }
 
 function checkLoginButton(emailInput, passwordLogin, loginButton) {
-	if (validateEmail(emailInput) && validatePassword(passwordLogin)) loginButton.disabled = false
-	else loginButton.disabled = true
+	loginButton.disabled = !(validateEmail(emailInput) && validatePassword(passwordLogin))
 }
 
 function comparePasswords(pwInput1, pwInput2) {
