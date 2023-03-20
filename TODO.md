@@ -12,6 +12,10 @@
 - [ ] $templateParams["Username"] diventa $templateParams["LoggedUsername"]
 - [ ] sistemare file php (api, checkSesion, etc)
 - [ ] sistemare file js
+- [ ] rimuovere import jquery
+- [ ] cancella tutto non si disabilita se non refreshi
+- [ ] controllare variabili con iniziali maiuscole
+- [ ] controllare variabili, id, name, etc
 - [ ] alert se pubblico post, modifico profilo o post, cancello post o commento, e se mi registro o faccio login
 - [ ] popup in login e register per i requisiti
 - [ ] il nuovo post deve uscire per primo
