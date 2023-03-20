@@ -1,5 +1,6 @@
 function generateNotice(notice) {
 	let result = ""
+	if (!notice) return
 	for (const element of notice) {
 		let content = `
         <article class="notice row mb-3 border-top">
@@ -28,5 +29,5 @@ function generateNotice(notice) {
 axios.get("noticeSection.php").then(Response => {
 	const notice = generateNotice(Response.data)
 	const main = document.getElementById("notice-section")
-	if (main) main.innerHTML = notice
+	if (main && notice) main.innerHTML = notice
 })
