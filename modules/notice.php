@@ -1,7 +1,7 @@
 <?php
 require_once 'bootstrap.php';
 
-if (login_check($mysqli) == true) {
+if (login_check($mysqli)) {
     if (isset($_POST["Read"])) {
         $mysqli->readNotificationById($_POST["Read"]);
     }
