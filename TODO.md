@@ -6,6 +6,7 @@
 - [x] sistemare db: Read diventa boolean
 - [ ] riempire il database con dati veri (soprattutto le date, per controllare l'ordine dei post)
 - [ ] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
+- [ ] aggiustare i return di database.php
 - [ ] rimuovere commenti da database.php
 - [x] $ddd in functions.php ?
 - [ ] sistemare functions.php
