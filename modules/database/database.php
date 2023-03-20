@@ -81,7 +81,7 @@ class DatabaseHelper
 
     public function insertNotification($messaggio, $NotificationID, $Username, $DateAndTime)
     {
-        $sql =  "INSERT INTO notifications (Username, NotificationID, Message, DateAndTime, Read) VALUES (?, ?, ?, ?, ?)";
+        $sql =  "INSERT INTO notifications (Username, NotificationID, Message, DateAndTime, `Read`) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $Read = 0;
         $stmt->bind_param("sissi", $Username, $NotificationID, $messaggio, $DateAndTime, $Read);
@@ -360,7 +360,7 @@ class DatabaseHelper
 
     public function readAllNotificationsByUsername($Username)
     {
-        $sql = "UPDATE notifications SET Read = '1' WHERE Username = ?";
+        $sql = "UPDATE notifications SET `Read` = '1' WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $Username);
         $stmt->execute();
@@ -382,7 +382,7 @@ class DatabaseHelper
 
     public function readNotificationById($NotificationID)
     {
-        $sql = "UPDATE notifications SET Read = '1' WHERE NotificationID = ?";
+        $sql = "UPDATE notifications SET `Read` = '1' WHERE NotificationID = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $NotificationID);
         $stmt->execute();
@@ -564,7 +564,7 @@ class DatabaseHelper
 
     public function countNotificationsByUsername($Username)
     {
-        $sql = "SELECT COUNT(*) FROM notifications WHERE Username = ? and Read = ?";
+        $sql = "SELECT COUNT(*) FROM notifications WHERE Username = ? and `Read` = ?";
         $stmt = $this->db->prepare($sql);
         $Read = 0;
         $stmt->bind_param("si", $Username, $Read);
