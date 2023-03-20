@@ -11,29 +11,29 @@ class DatabaseHelper
         }
     }
 
-    public function insertUser($Username, $Email, $Password, $PasswordSalt)
+    public function insertUser($username, $email, $password, $passwordSalt)
     {
         $sql = "INSERT INTO users (Username, Email, Password, PasswordSalt, FileName, Bio) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $FileName = 'default-pic.png';
-        $Bio = '';
-        $stmt->bind_param("ssssss", $Username, $Email, $Password, $PasswordSalt, $FileName, $Bio);
+        $fileName = 'default-pic.png';
+        $bio = '';
+        $stmt->bind_param("ssssss", $username, $email, $password, $passwordSalt, $fileName, $bio);
         $stmt->execute();
     }
 
-    public function insertPost($PostID, $FileName, $TextContent, $DateAndTime, $Username)
+    public function insertPost($postId, $fileName, $textContent, $dateAndTime, $username)
     {
         $sql = "INSERT INTO posts (PostID, FileName, TextContent, DateAndTime, Username) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("issss", $PostID, $FileName, $TextContent, $DateAndTime, $Username);
+        $stmt->bind_param("issss", $postId, $fileName, $textContent, $dateAndTime, $username);
         $stmt->execute();
     }
 
-    public function getPostById($PostID)
+    public function getPostById($postId)
     {
         $sql = "SELECT * FROM posts WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $PostID);
+        $stmt->bind_param("i", $postId);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -44,18 +44,18 @@ class DatabaseHelper
         }
     }
 
-    public function insertComment($CommentID, $TextContent, $DateAndTime, $Username, $PostID)
+    public function insertComment($commentId, $textContent, $dateAndTime, $username, $postId)
     {
         $sql = "INSERT INTO comments (PostID, Username, CommentID, TextContent, DateAndTime) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("isiss", $PostID, $Username, $CommentID, $TextContent, $DateAndTime);
+        $stmt->bind_param("isiss", $postId, $username, $commentId, $textContent, $dateAndTime);
         // if ($stmt->execute() === TRUE) {
-        $post = $this->getPostById($PostID);
+        $post = $this->getPostById($postId);
         $this->insertNotification(
-            "<a href=\"user.php?Username=$Username\" class=\"fw-bold\">$Username</a> ha commentato un tuo post.",
+            "<a href=\"user.php?Username=$username\" class=\"fw-bold\">$username</a> ha commentato un tuo post.",
             (int)$this->getLastNotificationId()[0] + 1,
             $post[4],
-            $DateAndTime
+            $dateAndTime
         );
         // return true;
         // } else {
@@ -63,98 +63,98 @@ class DatabaseHelper
         // }
     }
 
-    public function insertPostCategory($CategoryID, $PostID)
+    public function insertPostCategory($categoryId, $postId)
     {
         $sql = "INSERT INTO post_categories (PostID, CategoryID) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ii", $PostID, $CategoryID);
+        $stmt->bind_param("ii", $postId, $categoryId);
         $stmt->execute();
     }
 
-    // public function inserisciCategoria($Name, $CategoryID)
+    // public function inserisciCategoria($Name, $categoryId)
     // {
     //     $sql = "INSERT INTO categories (CategoryID, Name) VALUES (?, ?)";
     //     $stmt = $this->db->prepare($sql);
-    //     $stmt->bind_param("is", $CategoryID, $Name);
+    //     $stmt->bind_param("is", $categoryId, $Name);
     //     $stmt->execute();
     // }
 
-    public function insertNotification($messaggio, $NotificationID, $Username, $DateAndTime)
+    public function insertNotification($messaggio, $notificationId, $username, $dateAndTime)
     {
         $sql =  "INSERT INTO notifications (Username, NotificationID, Message, DateAndTime, `Read`) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $Read = 0;
-        $stmt->bind_param("sissi", $Username, $NotificationID, $messaggio, $DateAndTime, $Read);
+        $read = 0;
+        $stmt->bind_param("sissi", $username, $notificationId, $messaggio, $dateAndTime, $read);
         $stmt->execute();
     }
 
-    private function deleteReactionOfUserFromPost($Username, $PostID)
+    private function deleteReactionOfUserFromPost($username, $postId)
     {
         $sql = "DELETE FROM post_reactions WHERE Username = ? AND PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("si", $Username, $PostID);
+        $stmt->bind_param("si", $username, $postId);
         $stmt->execute();
     }
 
-    private function checkReaction($Username, $PostID, $ReactionID)
+    private function checkReaction($username, $postId, $reactionId)
     {
         $sql = "SELECT * FROM post_reactions WHERE Username = ? AND PostID = ? AND ReactionID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("sii", $Username, $PostID, $ReactionID);
+        $stmt->bind_param("sii", $username, $postId, $reactionId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->num_rows > 0;
     }
 
-    public function insertReactionOfPost($Username, $PostID, $ReactionID)
+    public function insertReactionOfPost($username, $postId, $reactionId)
     {
-        if ($this->checkReaction($Username, $PostID, $ReactionID)) {
-            $this->deleteReactionOfUserFromPost($Username, $PostID);
+        if ($this->checkReaction($username, $postId, $reactionId)) {
+            $this->deleteReactionOfUserFromPost($username, $postId);
             return true;
         }
-        $this->deleteReactionOfUserFromPost($Username, $PostID);
+        $this->deleteReactionOfUserFromPost($username, $postId);
         $sql = "INSERT INTO post_reactions (ReactionID, Username, PostID) VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("isi", $ReactionID, $Username, $PostID);
+        $stmt->bind_param("isi", $reactionId, $username, $postId);
         $stmt->execute();
     }
 
-    public function insertSavedPost($Username, $PostID)
+    public function insertSavedPost($username, $postId)
     {
         $sql = "INSERT INTO saved_posts (PostID, Username) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("is", $PostID, $Username);
+        $stmt->bind_param("is", $postId, $username);
         $stmt->execute();
     }
 
-    public function checkSavedPost($Username, $PostID)
+    public function checkSavedPost($username, $postId)
     {
         $sql = "SELECT * FROM saved_posts WHERE Username = ? AND PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("si", $Username, $PostID);
+        $stmt->bind_param("si", $username, $postId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->num_rows > 0;
     }
 
-    public function deleteSavedPost($Username, $PostID)
+    public function deleteSavedPost($username, $postId)
     {
         $sql = "DELETE FROM saved_posts WHERE Username = ? AND PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("si", $Username, $PostID);
+        $stmt->bind_param("si", $username, $postId);
         $stmt->execute();
     }
 
-    public function insertFollow($FollowedUsername, $FollowerUsername)
+    public function insertFollow($followedUsername, $followerUsername)
     {
         $sql = "INSERT INTO follows (FollowedUsername, FollowerUsername) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $FollowedUsername, $FollowerUsername);
+        $stmt->bind_param("ss", $followedUsername, $followerUsername);
         // if ($stmt->execute() === TRUE) {
         $this->insertNotification(
-            "<a href=\"user.php?Username=$FollowerUsername\" class=\"fw-bold\">$FollowerUsername</a> ha iniziato a seguirti.",
+            "<a href=\"user.php?Username=$followerUsername\" class=\"fw-bold\">$followerUsername</a> ha iniziato a seguirti.",
             (int)$this->getLastNotificationId()[0] + 1,
-            $FollowedUsername,
+            $followedUsername,
             date("Y-m-d H:i:s")
         );
         //     return true;
@@ -163,29 +163,29 @@ class DatabaseHelper
         // }
     }
 
-    public function checkFollow($FollowedUsername, $FollowerUsername)
+    public function checkFollow($followedUsername, $followerUsername)
     {
         $sql = "SELECT * FROM follows WHERE FollowedUsername = ? AND FollowerUsername = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $FollowedUsername, $FollowerUsername);
+        $stmt->bind_param("ss", $followedUsername, $followerUsername);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->num_rows > 0;
     }
 
-    public function deleteFollow($FollowedUsername, $FollowerUsername)
+    public function deleteFollow($followedUsername, $followerUsername)
     {
         $sql = "DELETE FROM follows WHERE FollowedUsername = ? AND FollowerUsername = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $FollowedUsername, $FollowerUsername);
+        $stmt->bind_param("ss", $followedUsername, $followerUsername);
         $stmt->execute();
     }
 
-    public function getSavedPostsByUsername($Username)
+    public function getSavedPostsByUsername($username)
     {
         $sql = "SELECT * FROM posts WHERE PostID IN (SELECT PostID FROM saved_posts WHERE Username = ?) ORDER BY DateAndTime DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -209,11 +209,11 @@ class DatabaseHelper
         // }
     }
 
-    // public function ottienicategoriePost($PostID)
+    // public function ottienicategoriePost($postId)
     // {
     //     $sql = "SELECT * FROM post_categories WHERE PostID = ?";
     //     $stmt = $this->db->prepare($sql);
-    //     $stmt->bind_param("i", $PostID);
+    //     $stmt->bind_param("i", $postId);
     //     $stmt->execute();
     //     $result = $stmt->get_result();
     //     if ($result->num_rows > 0) {
@@ -223,11 +223,11 @@ class DatabaseHelper
     //     }
     // }
 
-    public function getPostsByUsername($Username)
+    public function getPostsByUsername($username)
     {
         $sql = "SELECT * FROM posts WHERE Username = ? ORDER BY DateAndTime DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -238,11 +238,11 @@ class DatabaseHelper
         }
     }
 
-    public function getPostsForHomeByUsername($Username)
+    public function getPostsForHomeByUsername($username)
     {
         $sql = "SELECT * FROM posts WHERE Username IN (SELECT FollowedUsername FROM follows WHERE Username = ?) ORDER BY DateAndTime DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -253,11 +253,11 @@ class DatabaseHelper
         }
     }
 
-    public function getCommentsByPostId($PostID)
+    public function getCommentsByPostId($postId)
     {
         $sql = "SELECT * FROM comments WHERE PostID = ? ORDER BY DateAndTime ASC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $PostID);
+        $stmt->bind_param("i", $postId);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -268,11 +268,11 @@ class DatabaseHelper
         }
     }
 
-    public function getPostsByCategoryIdAndUsername($CategoryID, $Username)
+    public function getPostsByCategoryIdAndUsername($categoryId, $username)
     {
         $sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.PostID IN (SELECT PostID FROM post_categories WHERE CategoryID = ?) AND posts.Username != ? GROUP BY posts.PostID ORDER BY AVG(post_reactions.ReactionID) DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("is", $CategoryID, $Username);
+        $stmt->bind_param("is", $categoryId, $username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -283,11 +283,11 @@ class DatabaseHelper
         }
     }
 
-    public function getPostsForExploreByUsername($Username)
+    public function getPostsForExploreByUsername($username)
     {
         $sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.Username != ? GROUP BY posts.PostID ORDER BY AVG(post_reactions.ReactionID) DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -298,79 +298,79 @@ class DatabaseHelper
         }
     }
 
-    public function updatePost($PostID, $TextContent)
+    public function updatePost($postId, $textContent)
     {
         $query = "UPDATE posts SET TextContent = ? WHERE PostID = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("si", $TextContent, $PostID);
+        $stmt->bind_param("si", $textContent, $postId);
         $stmt->execute();
     }
 
-    public function deleteAllCategoriesFromPost($PostID)
+    public function deleteAllCategoriesFromPost($postId)
     {
         $sql = "DELETE FROM post_categories WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $PostID);
+        $stmt->bind_param("i", $postId);
         $stmt->execute();
     }
 
-    public function deletePostById($PostID)
+    public function deletePostById($postId)
     {
-        $this->deleteAllCategoriesFromPost($PostID);
-        $this->deleteAllCommentsFromPost($PostID);
-        $this->deleteAllReactionsFromPost($PostID);
-        $this->deleteSavedPostById($PostID);
+        $this->deleteAllCategoriesFromPost($postId);
+        $this->deleteAllCommentsFromPost($postId);
+        $this->deleteAllReactionsFromPost($postId);
+        $this->deleteSavedPostById($postId);
         $sql = "DELETE FROM posts WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $PostID);
+        $stmt->bind_param("i", $postId);
         $stmt->execute();
     }
 
-    private function deleteSavedPostById($PostID)
+    private function deleteSavedPostById($postId)
     {
         $sql = "DELETE FROM saved_posts WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $PostID);
+        $stmt->bind_param("i", $postId);
         $stmt->execute();
     }
 
-    private function deleteAllCommentsFromPost($PostID)
+    private function deleteAllCommentsFromPost($postId)
     {
         $sql = "DELETE FROM comments WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $PostID);
+        $stmt->bind_param("i", $postId);
         $stmt->execute();
     }
 
-    public function deleteNotificationById($NotificationID)
+    public function deleteNotificationById($notificationId)
     {
         $sql = "DELETE FROM notifications WHERE NotificationID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $NotificationID);
+        $stmt->bind_param("i", $notificationId);
         $stmt->execute();
     }
 
-    public function deleteAllNotificationsByUsername($Username)
+    public function deleteAllNotificationsByUsername($username)
     {
         $sql = "DELETE FROM notifications WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
     }
 
-    public function readAllNotificationsByUsername($Username)
+    public function readAllNotificationsByUsername($username)
     {
         $sql = "UPDATE notifications SET `Read` = '1' WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
     }
 
-    public function getNotificationByUsername($Username)
+    public function getNotificationByUsername($username)
     {
         $sql = "SELECT * FROM notifications WHERE Username = ? ORDER BY DateAndTime DESC";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -380,27 +380,27 @@ class DatabaseHelper
         }
     }
 
-    public function readNotificationById($NotificationID)
+    public function readNotificationById($notificationId)
     {
         $sql = "UPDATE notifications SET `Read` = '1' WHERE NotificationID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $NotificationID);
+        $stmt->bind_param("i", $notificationId);
         $stmt->execute();
     }
 
-    private function deleteAllReactionsFromPost($PostID)
+    private function deleteAllReactionsFromPost($postId)
     {
         $sql = "DELETE FROM post_reactions WHERE PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $PostID);
+        $stmt->bind_param("i", $postId);
         $stmt->execute();
     }
 
-    public function getAllFollowedByFollowerUsername($FollowerUsername)
+    public function getAllFollowedByFollowerUsername($followerUsername)
     {
         $sql = "SELECT FollowedUsername FROM follows WHERE FollowerUsername = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $FollowerUsername);
+        $stmt->bind_param("s", $followerUsername);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -410,11 +410,11 @@ class DatabaseHelper
         }
     }
 
-    public function getAllFollowersByFollowedUsername($FollowedUsername)
+    public function getAllFollowersByFollowedUsername($followedUsername)
     {
         $sql = "SELECT FollowerUsername FROM follows WHERE FollowedUsername = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $FollowedUsername);
+        $stmt->bind_param("s", $followedUsername);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -437,11 +437,11 @@ class DatabaseHelper
         }
     }
 
-    public function getLastCommentIdByPost($PostID)
+    public function getLastCommentIdByPost($postId)
     {
         $sql = "SELECT CommentID FROM comments WHERE PostID = ? ORDER BY CommentID DESC LIMIT 1";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $PostID);
+        $stmt->bind_param("i", $postId);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -464,11 +464,11 @@ class DatabaseHelper
         }
     }
 
-    public function getUserByUsername($Username)
+    public function getUserByUsername($username)
     {
         $sql = "SELECT * FROM users WHERE Username = ? LIMIT 1";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         // if ($result->num_rows > 0) {
@@ -478,11 +478,11 @@ class DatabaseHelper
         // }
     }
 
-    public function getUserByEmail($Email)
+    public function getUserByEmail($email)
     {
         $sql = "SELECT * FROM users WHERE Email = ? LIMIT 1";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Email);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -492,11 +492,11 @@ class DatabaseHelper
         }
     }
 
-    // public function ottieniReazione($ReactionID)
+    // public function ottieniReazione($reactionId)
     // {
     //     $sql = "SELECT * FROM reactions WHERE ReactionID = ?";
     //     $stmt = $this->db->prepare($sql);
-    //     $stmt->bind_param("i", $ReactionID);
+    //     $stmt->bind_param("i", $reactionId);
     //     $stmt->execute();
     //     $result = $stmt->get_result();
     //     if ($result->num_rows > 0) {
@@ -506,11 +506,11 @@ class DatabaseHelper
     //     }
     // }
 
-    // public function contaPostConReazione($PostID, $ReactionID)
+    // public function contaPostConReazione($postId, $reactionId)
     // {
     //     $sql = "SELECT COUNT(*) FROM post_reactions WHERE PostID = ? AND ReactionID = ?";
     //     $stmt = $this->db->prepare($sql);
-    //     $stmt->bind_param("ii", $PostID, $ReactionID);
+    //     $stmt->bind_param("ii", $postId, $reactionId);
     //     $stmt->execute();
     //     $result = $stmt->get_result();
     //     if ($result->num_rows > 0) {
@@ -520,11 +520,11 @@ class DatabaseHelper
     //     }
     // }
 
-    public function countPostReactionsByReactionIdAndPostId($ReactionID, $PostID)
+    public function countPostReactionsByReactionIdAndPostId($reactionId, $postId)
     {
         $sql = "SELECT COUNT(*) FROM post_reactions WHERE ReactionID = ? AND PostID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ii", $ReactionID, $PostID);
+        $stmt->bind_param("ii", $reactionId, $postId);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -534,11 +534,11 @@ class DatabaseHelper
         }
     }
 
-    public function countFollowedByFollowerUsername($FollowerUsername)
+    public function countFollowedByFollowerUsername($followerUsername)
     {
         $sql = "SELECT COUNT(*) FROM follows WHERE FollowerUsername = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $FollowerUsername);
+        $stmt->bind_param("s", $followerUsername);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -548,11 +548,11 @@ class DatabaseHelper
         }
     }
 
-    public function countFollowersByFollowedUsername($FollowedUsername)
+    public function countFollowersByFollowedUsername($followedUsername)
     {
         $sql = "SELECT COUNT(*) FROM follows WHERE FollowedUsername = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $FollowedUsername);
+        $stmt->bind_param("s", $followedUsername);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -562,12 +562,12 @@ class DatabaseHelper
         }
     }
 
-    public function countNotificationsByUsername($Username)
+    public function countNotificationsByUsername($username)
     {
         $sql = "SELECT COUNT(*) FROM notifications WHERE Username = ? and `Read` = ?";
         $stmt = $this->db->prepare($sql);
-        $Read = 0;
-        $stmt->bind_param("si", $Username, $Read);
+        $read = 0;
+        $stmt->bind_param("si", $username, $read);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -577,11 +577,11 @@ class DatabaseHelper
         }
     }
 
-    public function countPostsByUsername($Username)
+    public function countPostsByUsername($username)
     {
         $sql = "SELECT COUNT(*) FROM posts WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -591,11 +591,11 @@ class DatabaseHelper
         }
     }
 
-    // public function ottieniUtenteLoggato($Username, $Password)
+    // public function ottieniUtenteLoggato($username, $password)
     // {
     //     $sql = "SELECT * FROM utente WHERE Username = ? AND Password = ?";
     //     $stmt = $this->db->prepare($sql);
-    //     $stmt->bind_param("ss", $Username, $Password);
+    //     $stmt->bind_param("ss", $username, $password);
     //     $stmt->execute();
     //     $result = $stmt->get_result();
     //     if ($result->num_rows > 0) {
@@ -605,51 +605,51 @@ class DatabaseHelper
     //     }
     // }
 
-    public function getUserLikeUsername($Username)
+    public function getUserLikeUsername($username)
     {
         $sql = "SELECT Username, Email, FileName, Bio FROM users WHERE Username LIKE ?";
         $stmt = $this->db->prepare($sql);
-        $Username = "%" . $Username . "%";
-        $stmt->bind_param("s", $Username);
+        $username = "%" . $username . "%";
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function updateUser($Username, $FileName, $Bio)
+    public function updateUser($username, $fileName, $bio)
     {
         $sql = "UPDATE users SET FileName = ? Bio = ? WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("sss", $FileName, $Bio, $Username);
+        $stmt->bind_param("sss", $fileName, $bio, $username);
         $stmt->execute();
     }
 
 
-    public function getFileNameByUsername($Username)
+    public function getFileNameByUsername($username)
     {
         $sql = "SELECT FileName FROM users WHERE Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_row();
     }
 
-    public function getAverageReactionByUsername($Username)
+    public function getAverageReactionByUsername($username)
     {
         $sql = "SELECT AVG(post_reactions.ReactionID) FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $Username);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_row();
     }
 
-    public function getPostReactionByPostIdAndUsername($PostID, $Username)
+    public function getPostReactionByPostIdAndUsername($postId, $username)
     {
         $sql = "SELECT ReactionID FROM post_reactions WHERE PostID = ? AND Username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("is", $PostID, $Username);
+        $stmt->bind_param("is", $postId, $username);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result == null) {
