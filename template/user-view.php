@@ -41,9 +41,9 @@
                         <?php if ($templateParams["follower"]) : ?>
                             <?php foreach ($templateParams["follower"] as $follower) : ?>
                                 <div class="follower mb-3">
-                                    <img src="<?php echo (UPLOAD_DIR . $mysqli->getFileNameByUsername($follower["Username"])[0]); ?>" alt="follower-profile-pic">
-                                    <a href="user.php?username=<?php echo $follower["Username"]; ?>" class="fw-bold">
-                                        @<?php echo $follower["Username"]; ?>
+                                    <img src="<?php echo (UPLOAD_DIR . $mysqli->getFileNameByUsername($follower["FollowerUsername"])[0]); ?>" alt="follower-profile-pic">
+                                    <a href="user.php?username=<?php echo $follower["FollowerUsername"]; ?>" class="fw-bold">
+                                        @<?php echo $follower["FollowerUsername"]; ?>
                                     </a>
                                 </div>
                             <?php endforeach; ?>
