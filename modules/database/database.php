@@ -49,6 +49,7 @@ class DatabaseHelper
         $sql = "INSERT INTO comments (PostID, Username, CommentID, TextContent, DateAndTime) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("isiss", $postId, $username, $commentId, $textContent, $dateAndTime);
+        $stmt->execute();
         // if ($stmt->execute() === TRUE) {
         $post = $this->getPostById($postId);
         $this->insertNotification(
@@ -150,6 +151,7 @@ class DatabaseHelper
         $sql = "INSERT INTO follows (FollowedUsername, FollowerUsername) VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("ss", $followedUsername, $followerUsername);
+        $stmt->execute();
         // if ($stmt->execute() === TRUE) {
         $this->insertNotification(
             "<a href=\"user.php?Username=$followerUsername\" class=\"fw-bold\">$followerUsername</a> ha iniziato a seguirti.",
@@ -654,7 +656,7 @@ class DatabaseHelper
         $result = $stmt->get_result();
         if ($result == null) {
             return 0;
-        } else if ($result->num_rows > 0) {
+        } elseif ($result->num_rows > 0) {
             return $result->fetch_row();
         } else {
             return 0;
