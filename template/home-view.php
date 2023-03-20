@@ -1,4 +1,3 @@
-<?php
-if (isset($templateParams["js"])) {
-    echo '<section id="post-section"></section>';
-}
+<?php if (isset($templateParams["js"])) : ?>
+    <div id="post-section"></div>
+<?php endif ?>

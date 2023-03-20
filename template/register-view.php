@@ -1,10 +1,10 @@
 <form action="#" method="post">
     <div class="error mb-3">
-        <p id="error-message">
-            <?php if (isset($templateParams['erroreregistrazione'])) {
-                echo $templateParams['erroreregistrazione'];
-            } ?>
-        </p>
+        <?php if (isset($templateParams['erroreregistrazione'])) : ?>
+            <p id="error-message">
+                <?php echo $templateParams['erroreregistrazione'] ?>
+            </p>
+        <?php endif ?>
     </div>
     <div class="email input-group mb-3">
         <input id="email-input" class="form-control" type="email" name="email" placeholder="Email" maxlength="30" required />

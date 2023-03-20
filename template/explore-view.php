@@ -5,9 +5,7 @@
         <?php endforeach; ?>
         <button type="submit" id="0" name="categoria" value="0" class="category btn btn-outline-primary" />Tutti</button>
     </form>
-    <?php
-    if (isset($templateParams["js"])) {
-        echo '<div id="post-section"></div>';
-    }
-    ?>
+    <?php if (isset($templateParams["js"])) : ?>
+        <div id="post-section"></div>
+    <?php endif ?>
 </div>
