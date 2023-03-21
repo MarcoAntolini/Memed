@@ -1,27 +1,17 @@
-$(function () {
-    $(".followBtn").on('click', function () {
-        let button = $(this);
-        let username = button.attr('id');
+window.onload = () => {
+	console.log("loaded")
+	const followButtons = document.querySelectorAll(".followBtn")
+	followButtons.forEach(button => {
+		button.addEventListener("click", () => {
+			const username = button.id
+			axios.post("updateFollow.php", { Username: username }).then(Response => {
+				if (Response.data == "follow") button.innerHTML = "Smetti di seguire"
+				else if (Response.data == "unfollow") button.innerHTML = "Segui"
+			})
+		})
+	})
 
-        $.ajax({
-            url: "updateFollow.php",
-            type: "post",
-            data: { "Username": username },
-            success: function (e) {
-                if (e == "follow") {
-                    button.html("Smetti di seguire");
-                } else if (e == "unfollow") {
-                    button.html("Segui");
-                }
-            }
-        });
-    });
-});
-
-$(function () {
-    $("#search-form").submit(function (event) {
-        if ($("#search").val() === "") {
-            event.preventDefault();
-        }
-    });
-});
+	document.querySelector("#search-form").addEventListener("submit", e => {
+		if (document.querySelector("#search").value === "") e.preventDefault()
+	})
+}
