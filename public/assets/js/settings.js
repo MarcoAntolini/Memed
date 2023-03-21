@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = () => {
 	const profilePicInput = document.getElementById("profile-pic-input")
 	profilePicInput.addEventListener("change", () => previewProfilePic(this.files[0]))
 
