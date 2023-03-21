@@ -15,7 +15,7 @@
         <div class="nav-col">
             <a href="newPost.php">
                 <img src="../public/assets/img/new-post.png" alt="new-post" class="nav-icon">
-                <span class="nav-text mobile-hidden tablet-hidden">Posta</span>
+                <span class="nav-text mobile-hidden tablet-hidden">Pubblica</span>
             </a>
         </div>
         <div class="nav-col desktop-hidden">
