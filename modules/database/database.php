@@ -626,7 +626,6 @@ class DatabaseHelper
         $stmt->execute();
     }
 
-
     public function getFileNameByUsername($username)
     {
         $sql = "SELECT FileName FROM users WHERE Username = ?";
