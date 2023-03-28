@@ -21,6 +21,7 @@
 - [x] sistemare db: Read diventa boolean
 - [ ] riempire il database con dati veri (soprattutto le date, per controllare l'ordine dei post)
 - [ ] aggiungere il return type alle funzioni getter
+- [ ] aggiungere il tipo ai parametri delle funzioni
 
 ## Php
 
