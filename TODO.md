@@ -23,17 +23,16 @@
 
 ## Php
 
-- [ ] return $result->fetch_row() ?? 0;
 - [ ] namespace modules con dentro namespace database
+- [x] migliorare i return statement
 - [x] aggiungere il return type alle funzioni getter
 - [x] aggiungere il tipo ai parametri delle funzioni
 - [x] sistemare ordine parametri nelle funzioni del database
 - [ ] (e le rispettive call)
 - [x] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
-- [ ] aggiustare i return di database.php
 - [x] rimuovere commenti da database.php
 - [x] $ddd in functions.php ?
-- [ ] sistemare functions.php
+- [ ] sistemare functions.php (dividere in login e upload)
 - [ ] $templateParams["Username"] diventa $templateParams["LoggedUsername"]
 - [ ] sistemare file php (api, checkSesion, etc)
 
