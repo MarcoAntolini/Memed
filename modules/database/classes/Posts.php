@@ -125,19 +125,6 @@ class Posts
 		$stmt->execute();
 	}
 
-	// public function getLastPostId()
-	// {
-	// 	$sql = "SELECT PostID FROM posts ORDER BY PostID DESC LIMIT 1";
-	// 	$stmt = $this->db->prepare($sql);
-	// 	$stmt->execute();
-	// 	$result = $stmt->get_result();
-	// 	if ($result->num_rows > 0) {
-	// 		return $result->fetch_row();
-	// 	} else {
-	// 		return array(0);
-	// 	}
-	// }
-
 	public function countPostsByUsername($username): int
 	{
 		$sql = "SELECT COUNT(*) FROM posts WHERE Username = ?";

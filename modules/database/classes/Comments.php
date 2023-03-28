@@ -48,18 +48,4 @@ class Comments
 		$stmt->bind_param("i", $postId);
 		$stmt->execute();
 	}
-
-	// public function getLastCommentIdByPost($postId)
-	// {
-	// 	$sql = "SELECT CommentID FROM comments WHERE PostID = ? ORDER BY CommentID DESC LIMIT 1";
-	// 	$stmt = $this->db->prepare($sql);
-	// 	$stmt->bind_param("i", $postId);
-	// 	$stmt->execute();
-	// 	$result = $stmt->get_result();
-	// 	if ($result->num_rows > 0) {
-	// 		return $result->fetch_row();
-	// 	} else {
-	// 		return array(0);
-	// 	}
-	// }
 }

@@ -64,19 +64,6 @@ class Notifications
 		}
 	}
 
-	// public function getLastNotificationId()
-	// {
-	// 	$sql = "SELECT NotificationID FROM notifications ORDER BY NotificationID DESC LIMIT 1";
-	// 	$stmt = $this->db->prepare($sql);
-	// 	$stmt->execute();
-	// 	$result = $stmt->get_result();
-	// 	if ($result->num_rows > 0) {
-	// 		return $result->fetch_row();
-	// 	} else {
-	// 		return array(0);
-	// 	}
-	// }
-
 	public function countNotificationsByUsername($username): int
 	{
 		$sql = "SELECT COUNT(*) FROM notifications WHERE Username = ? and `Read` = ?";
