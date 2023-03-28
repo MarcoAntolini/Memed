@@ -35,7 +35,7 @@ CREATE TABLE post_categories (
 );
 
 CREATE TABLE comments (
-  CommentID int(11) NOT NULL,
+  CommentID int(11) NOT NULL AUTOINCREMENT,
   PostID int(11) NOT NULL,
   Username varchar(30) NOT NULL,
   TextContent varchar(150) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE comments (
 );
 
 CREATE TABLE notifications (
-  NotificationID int(11) NOT NULL,
+  NotificationID int(11) NOT NULL AUTOINCREMENT,
   Username varchar(30) NOT NULL,
   Message varchar(150) NOT NULL,
   DateAndTime datetime NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE notifications (
 );
 
 CREATE TABLE posts (
-  PostID int(11) NOT NULL,
+  PostID int(11) NOT NULL AUTOINCREMENT,
   Username varchar(30) NOT NULL,
   FileName varchar(100) DEFAULT NULL,
   TextContent varchar(250) DEFAULT NULL,
