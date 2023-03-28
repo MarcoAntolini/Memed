@@ -32,9 +32,9 @@
 - [x] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
 - [x] rimuovere commenti da database.php
 - [x] $ddd in functions.php ?
-- [ ] sistemare functions.php (dividere in login e upload)
-- [ ] $templateParams["Username"] diventa $templateParams["LoggedUsername"]
-- [ ] sistemare file php (api, checkSesion, etc)
+- [x] sistemare functions.php (dividere in login e upload)
+- [x] $templateParams["Username"] diventa $templateParams["LoggedUsername"]
+- [ ] sistemare file php (api, checkSession, etc)
 
 ## Javascript
 
