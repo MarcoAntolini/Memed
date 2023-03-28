@@ -9,7 +9,7 @@ class SavedPosts
 		$this->db = $db;
 	}
 
-	public function insertSavedPost($username, $postId)
+	public function insertSavedPost($postId, $username): void
 	{
 		$sql = "INSERT INTO saved_posts (PostID, Username) VALUES (?, ?)";
 		$stmt = $this->db->prepare($sql);
@@ -17,7 +17,22 @@ class SavedPosts
 		$stmt->execute();
 	}
 
-	public function checkSavedPost($username, $postId)
+	public function getSavedPostsByUsername($username): array
+	{
+		$sql = "SELECT * FROM posts WHERE PostID IN (SELECT PostID FROM saved_posts WHERE Username = ?)
+				ORDER BY DateAndTime DESC";
+		$stmt = $this->db->prepare($sql);
+		$stmt->bind_param("s", $username);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		if ($result->num_rows > 0) {
+			return $result->fetch_all(MYSQLI_ASSOC);
+		} else {
+			return array(0);
+		}
+	}
+
+	public function checkSavedPost($username, $postId): bool
 	{
 		$sql = "SELECT * FROM saved_posts WHERE Username = ? AND PostID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -27,7 +42,7 @@ class SavedPosts
 		return $result->num_rows > 0;
 	}
 
-	public function deleteSavedPost($username, $postId)
+	public function deleteSavedPost($username, $postId): void
 	{
 		$sql = "DELETE FROM saved_posts WHERE Username = ? AND PostID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -35,22 +50,7 @@ class SavedPosts
 		$stmt->execute();
 	}
 
-	public function getSavedPostsByUsername($username)
-	{
-		$sql = "SELECT * FROM posts WHERE PostID IN (SELECT PostID FROM saved_posts WHERE Username = ?) ORDER BY DateAndTime DESC";
-		$stmt = $this->db->prepare($sql);
-		$stmt->bind_param("s", $username);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_all(MYSQLI_ASSOC);
-		} else {
-			// TODO: return false?
-			return false;
-		}
-	}
-
-	public function deleteSavedPostById($postId)
+	public function deleteAllSavedPostsById($postId): void
 	{
 		$sql = "DELETE FROM saved_posts WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);

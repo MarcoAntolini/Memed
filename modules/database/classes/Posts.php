@@ -22,7 +22,7 @@ class Posts
 		$this->savedPosts = $savedPosts;
 	}
 
-	public function insertPost($fileName, $textContent, $dateAndTime, $username)
+	public function insertPost($fileName, $textContent, $dateAndTime, $username): void
 	{
 		$sql = "INSERT INTO posts (FileName, TextContent, DateAndTime, Username) VALUES (?, ?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
@@ -30,7 +30,7 @@ class Posts
 		$stmt->execute();
 	}
 
-	public function getPostById($postId)
+	public function getPostById($postId): array
 	{
 		$sql = "SELECT * FROM posts WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -40,12 +40,11 @@ class Posts
 		if ($result->num_rows > 0) {
 			return $result->fetch_row();
 		} else {
-			// TODO: return false?
-			return false;
+			return array(0);
 		}
 	}
 
-	public function getPostsByUsername($username)
+	public function getPostsByUsername($username): array
 	{
 		$sql = "SELECT * FROM posts WHERE Username = ? ORDER BY DateAndTime DESC";
 		$stmt = $this->db->prepare($sql);
@@ -55,14 +54,14 @@ class Posts
 		if ($result->num_rows > 0) {
 			return $result->fetch_all(MYSQLI_ASSOC);
 		} else {
-			// TODO: return false?
-			return false;
+			return array(0);
 		}
 	}
 
 	public function getPostsForHomeByUsername($username)
 	{
-		$sql = "SELECT * FROM posts WHERE Username IN (SELECT FollowedUsername FROM follows WHERE Username = ?) ORDER BY DateAndTime DESC";
+		$sql = "SELECT * FROM posts WHERE Username IN (SELECT FollowedUsername FROM follows WHERE Username = ?)
+				ORDER BY DateAndTime DESC";
 		$stmt = $this->db->prepare($sql);
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
@@ -70,14 +69,15 @@ class Posts
 		if ($result->num_rows > 0) {
 			return $result->fetch_all(MYSQLI_ASSOC);
 		} else {
-			// TODO: return false?
-			return false;
+			return array(0);
 		}
 	}
 
-	public function getPostsByCategoryIdAndUsername($categoryId, $username)
+	public function getPostsByCategoryIdAndUsername($categoryId, $username): array
 	{
-		$sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.PostID IN (SELECT PostID FROM post_categories WHERE CategoryID = ?) AND posts.Username != ? GROUP BY posts.PostID ORDER BY AVG(post_reactions.ReactionID) DESC";
+		$sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.PostID
+				IN (SELECT PostID FROM post_categories WHERE CategoryID = ?) AND posts.Username != ? GROUP BY posts.PostID
+				ORDER BY AVG(post_reactions.ReactionID) DESC";
 		$stmt = $this->db->prepare($sql);
 		$stmt->bind_param("is", $categoryId, $username);
 		$stmt->execute();
@@ -85,14 +85,14 @@ class Posts
 		if ($result->num_rows > 0) {
 			return $result->fetch_all(MYSQLI_ASSOC);
 		} else {
-			// TODO: perchè return false?
-			return false;
+			return array(0);
 		}
 	}
 
-	public function getPostsForExploreByUsername($username)
+	public function getPostsForExploreByUsername($username): array
 	{
-		$sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.Username != ? GROUP BY posts.PostID ORDER BY AVG(post_reactions.ReactionID) DESC";
+		$sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.Username != ?
+				GROUP BY posts.PostID ORDER BY AVG(post_reactions.ReactionID) DESC";
 		$stmt = $this->db->prepare($sql);
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
@@ -100,12 +100,11 @@ class Posts
 		if ($result->num_rows > 0) {
 			return $result->fetch_all(MYSQLI_ASSOC);
 		} else {
-			// TODO: perchè return false?
-			return false;
+			return array(0);
 		}
 	}
 
-	public function updatePost($postId, $textContent)
+	public function updatePost($textContent, $postId): void
 	{
 		$query = "UPDATE posts SET TextContent = ? WHERE PostID = ?";
 		$stmt = $this->db->prepare($query);
@@ -113,12 +112,12 @@ class Posts
 		$stmt->execute();
 	}
 
-	public function deletePostById($postId)
+	public function deletePostById($postId): void
 	{
 		$this->postCategories->deleteAllCategoriesFromPost($postId);
 		$this->postReactions->deleteAllReactionsFromPost($postId);
 		$this->comments->deleteAllCommentsFromPost($postId);
-		$this->savedPosts->deleteSavedPostById($postId);
+		$this->savedPosts->deleteAllSavedPostsById($postId);
 		// TODO delete post from notifications
 		$sql = "DELETE FROM posts WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -139,7 +138,7 @@ class Posts
 	// 	}
 	// }
 
-	public function countPostsByUsername($username)
+	public function countPostsByUsername($username): int
 	{
 		$sql = "SELECT COUNT(*) FROM posts WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);

@@ -13,26 +13,21 @@ class Comments
 		$this->posts = $posts;
 	}
 
-	public function insertComment($textContent, $dateAndTime, $username, $postId)
+	public function insertComment($postId, $username, $textContent, $dateAndTime): void
 	{
-		$sql = "INSERT INTO comments (PostID, Username, TextContent, DateAndTime) VALUES (?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO comments (PostID, Username, TextContent, DateAndTime) VALUES (?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
 		$stmt->bind_param("isss", $postId, $username, $textContent, $dateAndTime);
 		$stmt->execute();
-		// if ($stmt->execute() === TRUE) {
 		$post = $this->posts->getPostById($postId);
 		$this->notifications->insertNotification(
 			"<a href=\"user.php?Username=$username\" class=\"fw-bold\">$username</a> ha commentato un tuo post.",
 			$post[4],
 			$dateAndTime
 		);
-		// return true;
-		// } else {
-		// return false;
-		// }
 	}
 
-	public function getCommentsByPostId($postId)
+	public function getCommentsByPostId($postId): array
 	{
 		$sql = "SELECT * FROM comments WHERE PostID = ? ORDER BY DateAndTime ASC";
 		$stmt = $this->db->prepare($sql);
@@ -42,12 +37,11 @@ class Comments
 		if ($result->num_rows > 0) {
 			return $result->fetch_all(MYSQLI_ASSOC);
 		} else {
-			// TODO: perchè return false?
-			return false;
+			return array(0);
 		}
 	}
 
-	public function deleteAllCommentsFromPost($postId)
+	public function deleteAllCommentsFromPost($postId): void
 	{
 		$sql = "DELETE FROM comments WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);
