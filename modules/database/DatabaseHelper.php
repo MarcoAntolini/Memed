@@ -16,7 +16,7 @@ class DatabaseHelper
 	private Follows $follows;
 	private Users $users;
 
-	public function __construct($servername, $username, $password, $dbname, $port)
+	public function __construct(string $servername, string $username, string $password, string $dbname, int $port)
 	{
 		$this->db = new mysqli($servername, $username, $password, $dbname, $port);
 		if ($this->db->connect_error) {

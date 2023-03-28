@@ -6,7 +6,7 @@ class Comments
 	private Notifications $notifications;
 	private Posts $posts;
 
-	public function __construct($db, $notifications, $posts)
+	public function __construct(mysqli $db, Notifications $notifications, Posts $posts)
 	{
 		$this->db = $db;
 		$this->notifications = $notifications;

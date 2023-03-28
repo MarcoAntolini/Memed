@@ -5,7 +5,7 @@ class Follows
 	private mysqli $db;
 	private Notifications $notifications;
 
-	public function __construct($db, $notifications)
+	public function __construct(mysqli $db, Notifications $notifications)
 	{
 		$this->db = $db;
 		$this->notifications = $notifications;

@@ -8,8 +8,13 @@ class Posts
 	private Comments $comments;
 	private SavedPosts $savedPosts;
 
-	public function __construct($db, $postCategories, $postReactions, $comments, $savedPosts)
-	{
+	public function __construct(
+		mysqli $db,
+		PostCategories $postCategories,
+		PostReactions $postReactions,
+		Comments $comments,
+		SavedPosts $savedPosts
+	) {
 		$this->db = $db;
 		$this->postCategories = $postCategories;
 		$this->postReactions = $postReactions;
