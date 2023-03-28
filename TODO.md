@@ -5,7 +5,7 @@
 - [ ] elimina tutte si disabilita in mobile ma non in desktop
 - [ ] window.onload overrida se presente in altri file
 - [ ] il nuovo post deve uscire per primo
-- [ ] niente notifiche se ti commenti da solo
+- [x] niente notifiche se ti commenti da solo
 - [ ] fixare preview dell'immagine profilo se è default
 
 ## Refactor
@@ -36,6 +36,7 @@
 - [x] $templateParams["Username"] diventa $templateParams["LoggedUsername"]
 - [ ] sistemare file php (api, checkSession, etc)
 - [ ] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
+- [ ] sistemare funzioni di login/register/logout
 
 ## Javascript
 
