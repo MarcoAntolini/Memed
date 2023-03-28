@@ -32,10 +32,8 @@ class PostReactions
 		$result = $stmt->get_result();
 		if ($result == null) {
 			return 0;
-		} elseif ($result->num_rows > 0) {
-			return $result->fetch_row();
 		} else {
-			return 0;
+			return $result->fetch_row()[0] ?? 0;
 		}
 	}
 
@@ -72,10 +70,6 @@ class PostReactions
 		$stmt->bind_param("ii", $reactionId, $postId);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_row();
-		} else {
-			return 0;
-		}
+		return $result->fetch_row()[0] ?? 0;
 	}
 }

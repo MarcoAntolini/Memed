@@ -26,11 +26,7 @@ class Users
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_all(MYSQLI_ASSOC);
-		} else {
-			return array(0);
-		}
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
 	public function getUserByEmail(string $email): array
@@ -40,11 +36,7 @@ class Users
 		$stmt->bind_param("s", $email);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_all(MYSQLI_ASSOC);
-		} else {
-			return array(0);
-		}
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
 	public function getUserLikeUsername(string $username): array
@@ -55,8 +47,7 @@ class Users
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		// TODO if ($result->num_rows > 0)
-		return $result->fetch_all(MYSQLI_ASSOC);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
 	public function updateUser(string $fileName, string $bio, string $username): void
@@ -74,8 +65,7 @@ class Users
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		// TODO if ($result->num_rows > 0)
-		return $result->fetch_row();
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
 	public function getAverageReactionByUsername(string $username): int
@@ -86,7 +76,6 @@ class Users
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		// TODO if ($result->num_rows > 0)
-		return $result->fetch_row();
+		return $result->fetch_row()[0] ?? 0;
 	}
 }

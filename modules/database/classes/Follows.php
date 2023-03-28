@@ -49,11 +49,7 @@ class Follows
 		$stmt->bind_param("s", $followerUsername);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_all(MYSQLI_ASSOC);
-		} else {
-			return false;
-		}
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
 	public function getAllFollowersByFollowedUsername(string $followedUsername): array
@@ -63,11 +59,7 @@ class Follows
 		$stmt->bind_param("s", $followedUsername);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_all(MYSQLI_ASSOC);
-		} else {
-			return false;
-		}
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
 	public function countFollowedByFollowerUsername(string $followerUsername): int
@@ -77,11 +69,7 @@ class Follows
 		$stmt->bind_param("s", $followerUsername);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_row();
-		} else {
-			return 0;
-		}
+		return $result->fetch_row()[0] ?? 0;
 	}
 
 	public function countFollowersByFollowedUsername(string $followedUsername): int
@@ -91,10 +79,6 @@ class Follows
 		$stmt->bind_param("s", $followedUsername);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_row();
-		} else {
-			return 0;
-		}
+		return $result->fetch_row()[0] ?? 0;
 	}
 }

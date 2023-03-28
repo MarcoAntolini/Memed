@@ -38,11 +38,7 @@ class Posts
 		$stmt->bind_param("i", $postId);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_row();
-		} else {
-			return array(0);
-		}
+		return $result->fetch_row() ?? array(0);
 	}
 
 	public function getPostsByUsername(string $username): array
@@ -52,11 +48,7 @@ class Posts
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_all(MYSQLI_ASSOC);
-		} else {
-			return array(0);
-		}
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
 	public function getPostsForHomeByUsername(string $username)
@@ -67,11 +59,7 @@ class Posts
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_all(MYSQLI_ASSOC);
-		} else {
-			return array(0);
-		}
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
 	public function getPostsByCategoryIdAndUsername(int $categoryId, string $username): array
@@ -83,11 +71,7 @@ class Posts
 		$stmt->bind_param("is", $categoryId, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_all(MYSQLI_ASSOC);
-		} else {
-			return array(0);
-		}
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
 	public function getPostsForExploreByUsername(string $username): array
@@ -98,11 +82,7 @@ class Posts
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_all(MYSQLI_ASSOC);
-		} else {
-			return array(0);
-		}
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
 	public function updatePost(string $textContent, int  $postId): void
@@ -133,10 +113,6 @@ class Posts
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_row();
-		} else {
-			return 0;
-		}
+		return $result->fetch_row()[0] ?? 0;
 	}
 }
