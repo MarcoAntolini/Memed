@@ -17,12 +17,13 @@
 
 - [x] sistemare db: nomi
 - [x] sistemare db: id utente
-- [ ] sistemare db: id auto_increment
+- [x] sistemare db: id auto_increment
 - [x] sistemare db: Read diventa boolean
 - [ ] riempire il database con dati veri (soprattutto le date, per controllare l'ordine dei post)
 
 ## Php
 
+- [ ] return $result->fetch_row() ?? 0;
 - [ ] namespace modules con dentro namespace database
 - [ ] aggiungere il return type alle funzioni getter
 - [ ] aggiungere il tipo ai parametri delle funzioni
