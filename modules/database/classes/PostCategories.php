@@ -9,7 +9,7 @@ class PostCategories
 		$this->db = $db;
 	}
 
-	public function insertPostCategory($postId, $categoryId): void
+	public function insertPostCategory(int $postId, int $categoryId): void
 	{
 		$sql = "INSERT INTO post_categories (PostID, CategoryID) VALUES (?, ?)";
 		$stmt = $this->db->prepare($sql);
@@ -17,7 +17,7 @@ class PostCategories
 		$stmt->execute();
 	}
 
-	public function getCategoriesByPostId($postId): array
+	public function getCategoriesByPostId(int $postId): array
 	{
 		$sql = "SELECT * FROM post_categories WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -31,7 +31,7 @@ class PostCategories
 		}
 	}
 
-	public function deleteCategoryFromPost($postId, $categoryId): void
+	public function deleteCategoryFromPost(int $postId, int $categoryId): void
 	{
 		$sql = "DELETE FROM post_categories WHERE PostID = ? AND CategoryID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -39,7 +39,7 @@ class PostCategories
 		$stmt->execute();
 	}
 
-	public function deleteAllCategoriesFromPost($postId): void
+	public function deleteAllCategoriesFromPost(int $postId): void
 	{
 		$sql = "DELETE FROM post_categories WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);

@@ -22,15 +22,16 @@ class Posts
 		$this->savedPosts = $savedPosts;
 	}
 
-	public function insertPost($fileName, $textContent, $dateAndTime, $username): void
+	public function insertPost(string $fileName, string $textContent, string $username): void
 	{
 		$sql = "INSERT INTO posts (FileName, TextContent, DateAndTime, Username) VALUES (?, ?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
+		$dateAndTime = date("Y-m-d H:i:s");
 		$stmt->bind_param("ssss", $fileName, $textContent, $dateAndTime, $username);
 		$stmt->execute();
 	}
 
-	public function getPostById($postId): array
+	public function getPostById(int $postId): array
 	{
 		$sql = "SELECT * FROM posts WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -44,7 +45,7 @@ class Posts
 		}
 	}
 
-	public function getPostsByUsername($username): array
+	public function getPostsByUsername(string $username): array
 	{
 		$sql = "SELECT * FROM posts WHERE Username = ? ORDER BY DateAndTime DESC";
 		$stmt = $this->db->prepare($sql);
@@ -58,7 +59,7 @@ class Posts
 		}
 	}
 
-	public function getPostsForHomeByUsername($username)
+	public function getPostsForHomeByUsername(string $username)
 	{
 		$sql = "SELECT * FROM posts WHERE Username IN (SELECT FollowedUsername FROM follows WHERE Username = ?)
 				ORDER BY DateAndTime DESC";
@@ -73,7 +74,7 @@ class Posts
 		}
 	}
 
-	public function getPostsByCategoryIdAndUsername($categoryId, $username): array
+	public function getPostsByCategoryIdAndUsername(int $categoryId, string $username): array
 	{
 		$sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.PostID
 				IN (SELECT PostID FROM post_categories WHERE CategoryID = ?) AND posts.Username != ? GROUP BY posts.PostID
@@ -89,7 +90,7 @@ class Posts
 		}
 	}
 
-	public function getPostsForExploreByUsername($username): array
+	public function getPostsForExploreByUsername(string $username): array
 	{
 		$sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.Username != ?
 				GROUP BY posts.PostID ORDER BY AVG(post_reactions.ReactionID) DESC";
@@ -104,7 +105,7 @@ class Posts
 		}
 	}
 
-	public function updatePost($textContent, $postId): void
+	public function updatePost(string $textContent, int  $postId): void
 	{
 		$query = "UPDATE posts SET TextContent = ? WHERE PostID = ?";
 		$stmt = $this->db->prepare($query);
@@ -112,7 +113,7 @@ class Posts
 		$stmt->execute();
 	}
 
-	public function deletePostById($postId): void
+	public function deletePostById(int $postId): void
 	{
 		$this->postCategories->deleteAllCategoriesFromPost($postId);
 		$this->postReactions->deleteAllReactionsFromPost($postId);
@@ -125,7 +126,7 @@ class Posts
 		$stmt->execute();
 	}
 
-	public function countPostsByUsername($username): int
+	public function countPostsByUsername(string $username): int
 	{
 		$sql = "SELECT COUNT(*) FROM posts WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);

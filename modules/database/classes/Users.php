@@ -9,7 +9,7 @@ class Users
 		$this->db = $db;
 	}
 
-	public function insertUser($username, $email, $password, $passwordSalt): void
+	public function insertUser(string $username, string $email, string $password, string $passwordSalt): void
 	{
 		$sql = "INSERT INTO users (Username, Email, Password, PasswordSalt, FileName, Bio) VALUES (?, ?, ?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
@@ -19,7 +19,7 @@ class Users
 		$stmt->execute();
 	}
 
-	public function getUserByUsername($username): array
+	public function getUserByUsername(string $username): array
 	{
 		$sql = "SELECT * FROM users WHERE Username = ? LIMIT 1";
 		$stmt = $this->db->prepare($sql);
@@ -33,7 +33,7 @@ class Users
 		}
 	}
 
-	public function getUserByEmail($email): array
+	public function getUserByEmail(string $email): array
 	{
 		$sql = "SELECT * FROM users WHERE Email = ? LIMIT 1";
 		$stmt = $this->db->prepare($sql);
@@ -47,7 +47,7 @@ class Users
 		}
 	}
 
-	public function getUserLikeUsername($username): array
+	public function getUserLikeUsername(string $username): array
 	{
 		$sql = "SELECT Username, Email, FileName, Bio FROM users WHERE Username LIKE ?";
 		$stmt = $this->db->prepare($sql);
@@ -59,7 +59,7 @@ class Users
 		return $result->fetch_all(MYSQLI_ASSOC);
 	}
 
-	public function updateUser($fileName, $bio, $username): void
+	public function updateUser(string $fileName, string $bio, string $username): void
 	{
 		$sql = "UPDATE users SET FileName = ? Bio = ? WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
@@ -67,7 +67,7 @@ class Users
 		$stmt->execute();
 	}
 
-	public function getFileNameByUsername($username): array
+	public function getFileNameByUsername(string $username): array
 	{
 		$sql = "SELECT FileName FROM users WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
@@ -78,7 +78,7 @@ class Users
 		return $result->fetch_row();
 	}
 
-	public function getAverageReactionByUsername($username): int
+	public function getAverageReactionByUsername(string $username): int
 	{
 		$sql = "SELECT AVG(post_reactions.ReactionID) FROM posts, post_reactions
 				WHERE posts.PostID=post_reactions.PostID AND posts.Username = ?";

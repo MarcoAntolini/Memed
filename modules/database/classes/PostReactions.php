@@ -9,7 +9,7 @@ class PostReactions
 		$this->db = $db;
 	}
 
-	public function insertReactionOfPost($reactionId, $username, $postId): void
+	public function insertReactionOfPost(int $reactionId, string $username, int $postId): void
 	{
 		// TODO spostare questo if nel file che chiama questa funzione
 		if ($this->checkReaction($reactionId, $username, $postId)) {
@@ -23,7 +23,7 @@ class PostReactions
 		$stmt->execute();
 	}
 
-	public function getPostReactionByPostIdAndUsername($postId, $username): int
+	public function getPostReactionByPostIdAndUsername(int $postId, string $username): int
 	{
 		$sql = "SELECT ReactionID FROM post_reactions WHERE PostID = ? AND Username = ?";
 		$stmt = $this->db->prepare($sql);
@@ -39,7 +39,7 @@ class PostReactions
 		}
 	}
 
-	public function checkReaction($reactionId, $username, $postId): bool
+	public function checkReaction(int $reactionId, string $username, int $postId): bool
 	{
 		$sql = "SELECT * FROM post_reactions WHERE ReactionID = ? AND Username = ? AND PostID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -49,7 +49,7 @@ class PostReactions
 		return $result->num_rows > 0;
 	}
 
-	public function deleteReactionOfUserFromPost($username, $postId): void
+	public function deleteReactionOfUserFromPost(string $username, int $postId): void
 	{
 		$sql = "DELETE FROM post_reactions WHERE Username = ? AND PostID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -57,7 +57,7 @@ class PostReactions
 		$stmt->execute();
 	}
 
-	public function deleteAllReactionsFromPost($postId): void
+	public function deleteAllReactionsFromPost(int $postId): void
 	{
 		$sql = "DELETE FROM post_reactions WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -65,7 +65,7 @@ class PostReactions
 		$stmt->execute();
 	}
 
-	public function countPostReactionsByReactionIdAndPostId($reactionId, $postId): int
+	public function countPostReactionsByReactionIdAndPostId(int $reactionId, int $postId): int
 	{
 		$sql = "SELECT COUNT(*) FROM post_reactions WHERE ReactionID = ? AND PostID = ?";
 		$stmt = $this->db->prepare($sql);

@@ -11,7 +11,7 @@ class Follows
 		$this->notifications = $notifications;
 	}
 
-	public function insertFollow($followedUsername, $followerUsername): void
+	public function insertFollow(string $followedUsername, string $followerUsername): void
 	{
 		$sql = "INSERT INTO follows (FollowedUsername, FollowerUsername) VALUES (?, ?)";
 		$stmt = $this->db->prepare($sql);
@@ -24,7 +24,7 @@ class Follows
 		);
 	}
 
-	public function checkFollow($followedUsername, $followerUsername): bool
+	public function checkFollow(string $followedUsername, string $followerUsername): bool
 	{
 		$sql = "SELECT * FROM follows WHERE FollowedUsername = ? AND FollowerUsername = ?";
 		$stmt = $this->db->prepare($sql);
@@ -34,7 +34,7 @@ class Follows
 		return $result->num_rows > 0;
 	}
 
-	public function deleteFollow($followedUsername, $followerUsername): void
+	public function deleteFollow(string $followedUsername, string $followerUsername): void
 	{
 		$sql = "DELETE FROM follows WHERE FollowedUsername = ? AND FollowerUsername = ?";
 		$stmt = $this->db->prepare($sql);
@@ -42,7 +42,7 @@ class Follows
 		$stmt->execute();
 	}
 
-	public function getAllFollowedByFollowerUsername($followerUsername): array
+	public function getAllFollowedByFollowerUsername(string $followerUsername): array
 	{
 		$sql = "SELECT FollowedUsername FROM follows WHERE FollowerUsername = ?";
 		$stmt = $this->db->prepare($sql);
@@ -56,7 +56,7 @@ class Follows
 		}
 	}
 
-	public function getAllFollowersByFollowedUsername($followedUsername): array
+	public function getAllFollowersByFollowedUsername(string $followedUsername): array
 	{
 		$sql = "SELECT FollowerUsername FROM follows WHERE FollowedUsername = ?";
 		$stmt = $this->db->prepare($sql);
@@ -70,7 +70,7 @@ class Follows
 		}
 	}
 
-	public function countFollowedByFollowerUsername($followerUsername): int
+	public function countFollowedByFollowerUsername(string $followerUsername): int
 	{
 		$sql = "SELECT COUNT(*) FROM follows WHERE FollowerUsername = ?";
 		$stmt = $this->db->prepare($sql);
@@ -84,7 +84,7 @@ class Follows
 		}
 	}
 
-	public function countFollowersByFollowedUsername($followedUsername): int
+	public function countFollowersByFollowedUsername(string $followedUsername): int
 	{
 		$sql = "SELECT COUNT(*) FROM follows WHERE FollowedUsername = ?";
 		$stmt = $this->db->prepare($sql);

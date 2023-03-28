@@ -13,10 +13,11 @@ class Comments
 		$this->posts = $posts;
 	}
 
-	public function insertComment($postId, $username, $textContent, $dateAndTime): void
+	public function insertComment(int $postId, string $username, string $textContent): void
 	{
 		$sql = "INSERT INTO comments (PostID, Username, TextContent, DateAndTime) VALUES (?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
+		$dateAndTime = date("Y-m-d H:i:s");
 		$stmt->bind_param("isss", $postId, $username, $textContent, $dateAndTime);
 		$stmt->execute();
 		$post = $this->posts->getPostById($postId);
@@ -27,7 +28,7 @@ class Comments
 		);
 	}
 
-	public function getCommentsByPostId($postId): array
+	public function getCommentsByPostId(int $postId): array
 	{
 		$sql = "SELECT * FROM comments WHERE PostID = ? ORDER BY DateAndTime ASC";
 		$stmt = $this->db->prepare($sql);
@@ -41,7 +42,7 @@ class Comments
 		}
 	}
 
-	public function deleteAllCommentsFromPost($postId): void
+	public function deleteAllCommentsFromPost(int $postId): void
 	{
 		$sql = "DELETE FROM comments WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);

@@ -9,16 +9,17 @@ class Notifications
 		$this->db = $db;
 	}
 
-	public function insertNotification($username, $message, $dateAndTime): void
+	public function insertNotification(string $username, string $message): void
 	{
 		$sql =  "INSERT INTO notifications (Username, Message, DateAndTime, `Read`) VALUES (?, ?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
+		$dateAndTime = date("Y-m-d H:i:s");
 		$read = 0;
 		$stmt->bind_param("sssi", $username, $message, $dateAndTime, $read);
 		$stmt->execute();
 	}
 
-	public function deleteNotificationById($notificationId): void
+	public function deleteNotificationById(int $notificationId): void
 	{
 		$sql = "DELETE FROM notifications WHERE NotificationID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -26,7 +27,7 @@ class Notifications
 		$stmt->execute();
 	}
 
-	public function readNotificationById($notificationId): void
+	public function readNotificationById(int $notificationId): void
 	{
 		$sql = "UPDATE notifications SET `Read` = '1' WHERE NotificationID = ?";
 		$stmt = $this->db->prepare($sql);
@@ -34,7 +35,7 @@ class Notifications
 		$stmt->execute();
 	}
 
-	public function deleteAllNotificationsByUsername($username): void
+	public function deleteAllNotificationsByUsername(string $username): void
 	{
 		$sql = "DELETE FROM notifications WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
@@ -42,7 +43,7 @@ class Notifications
 		$stmt->execute();
 	}
 
-	public function readAllNotificationsByUsername($username): void
+	public function readAllNotificationsByUsername(string $username): void
 	{
 		$sql = "UPDATE notifications SET `Read` = '1' WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
@@ -50,7 +51,7 @@ class Notifications
 		$stmt->execute();
 	}
 
-	public function getNotificationByUsername($username): array
+	public function getNotificationByUsername(string $username): array
 	{
 		$sql = "SELECT * FROM notifications WHERE Username = ? ORDER BY DateAndTime DESC";
 		$stmt = $this->db->prepare($sql);
@@ -64,7 +65,7 @@ class Notifications
 		}
 	}
 
-	public function countNotificationsByUsername($username): int
+	public function countNotificationsByUsername(string $username): int
 	{
 		$sql = "SELECT COUNT(*) FROM notifications WHERE Username = ? and `Read` = ?";
 		$stmt = $this->db->prepare($sql);
