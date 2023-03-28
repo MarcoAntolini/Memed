@@ -1,7 +1,7 @@
 <?php
 require_once 'bootstrap.php';
 
-if (login_check($mysqli) == true) {
+if (checkLogin($mysqli) == true) {
     $_SESSION["categoria"] = 0;
     $templateParams["titolo"] = "Memed - Esplora";
     $templateParams["nome"] = "explore-view.php";

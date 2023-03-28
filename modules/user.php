@@ -1,9 +1,9 @@
 <?php
 require_once "bootstrap.php";
 
-if (login_check($mysqli) == true) {
+if (checkLogin($mysqli) == true) {
     $templateParams["titolo"] = "Memed - Profilo";
-    $templateParams["Username"] = $_SESSION["Username"];
+    $templateParams["Username"] = $_SESSION["LoggedUsername"];
     if (isset($_GET["username"])) {
         $utente = $_GET["username"];
         $_SESSION["utente"] = $utente;
@@ -23,11 +23,11 @@ if (login_check($mysqli) == true) {
         }
     }
     if (isset($_POST["unfollowing"])) {
-        $mysqli->deleteFollow($_POST["unfollowing"], $_SESSION["Username"]);
+        $mysqli->deleteFollow($_POST["unfollowing"], $_SESSION["LoggedUsername"]);
         header("location: user.php?username=" . $templateParams["utente"]);
     }
     if (isset($_POST["following"])) {
-        $mysqli->insertFollow($_POST["following"], $_SESSION["Username"]);
+        $mysqli->insertFollow($_POST["following"], $_SESSION["LoggedUsername"]);
         header("location: user.php?username=" . $templateParams["utente"]);
     }
     $templateParams["nome"] = "user-view.php";
