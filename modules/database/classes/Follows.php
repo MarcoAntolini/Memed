@@ -2,11 +2,13 @@
 
 class Follows
 {
-	private $db;
+	private mysqli $db;
+	private Notifications $notifications;
 
-	public function __construct($db)
+	public function __construct($db, $notifications)
 	{
 		$this->db = $db;
+		$this->notifications = $notifications;
 	}
 
 	public function insertFollow($followedUsername, $followerUsername)
@@ -16,7 +18,7 @@ class Follows
 		$stmt->bind_param("ss", $followedUsername, $followerUsername);
 		$stmt->execute();
 		// if ($stmt->execute() === TRUE) {
-		$this->insertNotification(
+		$this->notifications->insertNotification(
 			"<a href=\"user.php?Username=$followerUsername\" class=\"fw-bold\">$followerUsername</a> ha iniziato a seguirti.",
 			(int)$this->getLastNotificationId()[0] + 1,
 			$followedUsername,

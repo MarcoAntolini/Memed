@@ -24,13 +24,13 @@ class DatabaseHelper
 		}
 		$this->categories = new Categories($this->db);
 		$this->postCategories = new PostCategories($this->db);
-		$this->comments = new Comments($this->db);
+		$this->comments = new Comments($this->db, $this->notifications, $this->posts);
 		$this->notifications = new Notifications($this->db);
-		$this->posts = new Posts($this->db);
+		$this->posts = new Posts($this->db, $this->postCategories, $this->postReactions, $this->comments, $this->savedPosts);
 		$this->reactions = new Reactions($this->db);
 		$this->postReactions = new PostReactions($this->db);
 		$this->savedPosts = new SavedPosts($this->db);
-		$this->follows = new Follows($this->db);
+		$this->follows = new Follows($this->db, $this->notifications);
 		$this->users = new Users($this->db);
 	}
 

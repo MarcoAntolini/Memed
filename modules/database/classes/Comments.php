@@ -2,11 +2,15 @@
 
 class Comments
 {
-	private $db;
+	private mysqli $db;
+	private Notifications $notifications;
+	private Posts $posts;
 
-	public function __construct($db)
+	public function __construct($db, $notifications, $posts)
 	{
 		$this->db = $db;
+		$this->notifications = $notifications;
+		$this->posts = $posts;
 	}
 
 	public function insertComment($commentId, $textContent, $dateAndTime, $username, $postId)
@@ -16,8 +20,8 @@ class Comments
 		$stmt->bind_param("isiss", $postId, $username, $commentId, $textContent, $dateAndTime);
 		$stmt->execute();
 		// if ($stmt->execute() === TRUE) {
-		$post = $this->getPostById($postId);
-		$this->insertNotification(
+		$post = $this->posts->getPostById($postId);
+		$this->notifications->insertNotification(
 			"<a href=\"user.php?Username=$username\" class=\"fw-bold\">$username</a> ha commentato un tuo post.",
 			(int)$this->getLastNotificationId()[0] + 1,
 			$post[4],
@@ -52,17 +56,17 @@ class Comments
 		$stmt->execute();
 	}
 
-	public function getLastCommentIdByPost($postId)
-	{
-		$sql = "SELECT CommentID FROM comments WHERE PostID = ? ORDER BY CommentID DESC LIMIT 1";
-		$stmt = $this->db->prepare($sql);
-		$stmt->bind_param("i", $postId);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_row();
-		} else {
-			return array(0);
-		}
-	}
+	// public function getLastCommentIdByPost($postId)
+	// {
+	// 	$sql = "SELECT CommentID FROM comments WHERE PostID = ? ORDER BY CommentID DESC LIMIT 1";
+	// 	$stmt = $this->db->prepare($sql);
+	// 	$stmt->bind_param("i", $postId);
+	// 	$stmt->execute();
+	// 	$result = $stmt->get_result();
+	// 	if ($result->num_rows > 0) {
+	// 		return $result->fetch_row();
+	// 	} else {
+	// 		return array(0);
+	// 	}
+	// }
 }

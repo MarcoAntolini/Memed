@@ -2,11 +2,19 @@
 
 class Posts
 {
-	private $db;
+	private mysqli $db;
+	private PostCategories $postCategories;
+	private PostReactions $postReactions;
+	private Comments $comments;
+	private SavedPosts $savedPosts;
 
-	public function __construct($db)
+	public function __construct($db, $postCategories, $postReactions, $comments, $savedPosts)
 	{
 		$this->db = $db;
+		$this->postCategories = $postCategories;
+		$this->postReactions = $postReactions;
+		$this->comments = $comments;
+		$this->savedPosts = $savedPosts;
 	}
 
 	public function insertPost($postId, $fileName, $textContent, $dateAndTime, $username)
@@ -102,28 +110,29 @@ class Posts
 
 	public function deletePostById($postId)
 	{
-		$this->deleteAllCategoriesFromPost($postId);
-		$this->deleteAllCommentsFromPost($postId);
-		$this->deleteAllReactionsFromPost($postId);
-		$this->deleteSavedPostById($postId);
+		$this->postCategories->deleteAllCategoriesFromPost($postId);
+		$this->postReactions->deleteAllReactionsFromPost($postId);
+		$this->comments->deleteAllCommentsFromPost($postId);
+		$this->savedPosts->deleteSavedPostById($postId);
+		// TODO delete post from notifications
 		$sql = "DELETE FROM posts WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);
 		$stmt->bind_param("i", $postId);
 		$stmt->execute();
 	}
 
-	public function getLastPostId()
-	{
-		$sql = "SELECT PostID FROM posts ORDER BY PostID DESC LIMIT 1";
-		$stmt = $this->db->prepare($sql);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_row();
-		} else {
-			return array(0);
-		}
-	}
+	// public function getLastPostId()
+	// {
+	// 	$sql = "SELECT PostID FROM posts ORDER BY PostID DESC LIMIT 1";
+	// 	$stmt = $this->db->prepare($sql);
+	// 	$stmt->execute();
+	// 	$result = $stmt->get_result();
+	// 	if ($result->num_rows > 0) {
+	// 		return $result->fetch_row();
+	// 	} else {
+	// 		return array(0);
+	// 	}
+	// }
 
 	public function countPostsByUsername($username)
 	{
