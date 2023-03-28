@@ -30,6 +30,7 @@ class PostReactions
 		$stmt->bind_param("is", $postId, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
+		// TODO serve il controllo?
 		if ($result == null) {
 			return 0;
 		} else {

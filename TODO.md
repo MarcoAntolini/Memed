@@ -35,6 +35,7 @@
 - [x] sistemare functions.php (dividere in login e upload)
 - [x] $templateParams["Username"] diventa $templateParams["LoggedUsername"]
 - [ ] sistemare file php (api, checkSession, etc)
+- [ ] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
 
 ## Javascript
 
