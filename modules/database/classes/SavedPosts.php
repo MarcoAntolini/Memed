@@ -2,7 +2,7 @@
 
 class SavedPosts
 {
-	private $db;
+	private mysqli $db;
 
 	public function __construct($db)
 	{

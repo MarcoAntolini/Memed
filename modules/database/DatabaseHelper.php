@@ -4,17 +4,17 @@ require_once "classes/*";
 
 class DatabaseHelper
 {
-	private $db;
-	private $categories;
-	private $postCategories;
-	private $comments;
-	private $notifications;
-	private $posts;
-	private $reactions;
-	private $postReactions;
-	private $savedPosts;
-	private $follows;
-	private $users;
+	private mysqli $db;
+	private Categories $categories;
+	private PostCategories $postCategories;
+	private Comments $comments;
+	private Notifications $notifications;
+	private Posts $posts;
+	private Reactions $reactions;
+	private PostReactions $postReactions;
+	private SavedPosts $savedPosts;
+	private Follows $follows;
+	private Users $users;
 
 	public function __construct($servername, $username, $password, $dbname, $port)
 	{
@@ -34,52 +34,52 @@ class DatabaseHelper
 		$this->users = new Users($this->db);
 	}
 
-	public function categories()
+	public function categories(): Categories
 	{
 		return $this->categories;
 	}
 
-	public function postCategories()
+	public function postCategories(): PostCategories
 	{
 		return $this->postCategories;
 	}
 
-	public function comments()
+	public function comments(): Comments
 	{
 		return $this->comments;
 	}
 
-	public function notifications()
+	public function notifications(): Notifications
 	{
 		return $this->notifications;
 	}
 
-	public function posts()
+	public function posts(): Posts
 	{
 		return $this->posts;
 	}
 
-	public function reactions()
+	public function reactions(): Reactions
 	{
 		return $this->reactions;
 	}
 
-	public function postReactions()
+	public function postReactions(): PostReactions
 	{
 		return $this->postReactions;
 	}
 
-	public function savedPosts()
+	public function savedPosts(): SavedPosts
 	{
 		return $this->savedPosts;
 	}
 
-	public function follows()
+	public function follows(): Follows
 	{
 		return $this->follows;
 	}
 
-	public function users()
+	public function users(): Users
 	{
 		return $this->users;
 	}

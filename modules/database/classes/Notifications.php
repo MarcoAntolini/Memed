@@ -2,19 +2,19 @@
 
 class Notifications
 {
-	private $db;
+	private mysqli $db;
 
 	public function __construct($db)
 	{
 		$this->db = $db;
 	}
 
-	public function insertNotification($messaggio, $notificationId, $username, $dateAndTime)
+	public function insertNotification($message, $notificationId, $username, $dateAndTime)
 	{
 		$sql =  "INSERT INTO notifications (Username, NotificationID, Message, DateAndTime, `Read`) VALUES (?, ?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
 		$read = 0;
-		$stmt->bind_param("sissi", $username, $notificationId, $messaggio, $dateAndTime, $read);
+		$stmt->bind_param("sissi", $username, $notificationId, $message, $dateAndTime, $read);
 		$stmt->execute();
 	}
 
@@ -64,18 +64,18 @@ class Notifications
 		$stmt->execute();
 	}
 
-	public function getLastNotificationId()
-	{
-		$sql = "SELECT NotificationID FROM notifications ORDER BY NotificationID DESC LIMIT 1";
-		$stmt = $this->db->prepare($sql);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			return $result->fetch_row();
-		} else {
-			return array(0);
-		}
-	}
+	// public function getLastNotificationId()
+	// {
+	// 	$sql = "SELECT NotificationID FROM notifications ORDER BY NotificationID DESC LIMIT 1";
+	// 	$stmt = $this->db->prepare($sql);
+	// 	$stmt->execute();
+	// 	$result = $stmt->get_result();
+	// 	if ($result->num_rows > 0) {
+	// 		return $result->fetch_row();
+	// 	} else {
+	// 		return array(0);
+	// 	}
+	// }
 
 	public function countNotificationsByUsername($username)
 	{
