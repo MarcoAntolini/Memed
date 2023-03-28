@@ -20,11 +20,12 @@
 - [ ] sistemare db: id auto_increment
 - [x] sistemare db: Read diventa boolean
 - [ ] riempire il database con dati veri (soprattutto le date, per controllare l'ordine dei post)
-- [ ] aggiungere il return type alle funzioni getter
-- [ ] aggiungere il tipo ai parametri delle funzioni
 
 ## Php
 
+- [ ] namespace modules con dentro namespace database
+- [ ] aggiungere il return type alle funzioni getter
+- [ ] aggiungere il tipo ai parametri delle funzioni
 - [ ] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
 - [ ] aggiustare i return di database.php
 - [ ] rimuovere commenti da database.php
