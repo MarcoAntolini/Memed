@@ -21,11 +21,13 @@ class Comments
 		$stmt->bind_param("isss", $postId, $username, $textContent, $dateAndTime);
 		$stmt->execute();
 		$post = $this->posts->getPostById($postId);
-		$this->notifications->insertNotification(
-			"<a href=\"user.php?Username=$username\" class=\"fw-bold\">$username</a> ha commentato un tuo post.",
-			$post[4],
-			$dateAndTime
-		);
+		if ($username != $_SESSION["LoggedUsername"]) {
+			$this->notifications->insertNotification(
+				"<a href=\"user.php?Username=$username\" class=\"fw-bold\">$username</a> ha commentato un tuo post.",
+				$post[4],
+				$dateAndTime
+			);
+		}
 	}
 
 	public function getCommentsByPostId(int $postId): array
