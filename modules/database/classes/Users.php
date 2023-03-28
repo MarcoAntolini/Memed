@@ -47,20 +47,6 @@ class Users
 		}
 	}
 
-	// public function ottieniUtenteLoggato($username, $password)
-	// {
-	//     $sql = "SELECT * FROM utente WHERE Username = ? AND Password = ?";
-	//     $stmt = $this->db->prepare($sql);
-	//     $stmt->bind_param("ss", $username, $password);
-	//     $stmt->execute();
-	//     $result = $stmt->get_result();
-	//     if ($result->num_rows > 0) {
-	//         return $result->fetch_all(MYSQLI_ASSOC);
-	//     } else {
-	//         return false;
-	//     }
-	// }
-
 	public function getUserLikeUsername($username): array
 	{
 		$sql = "SELECT Username, Email, FileName, Bio FROM users WHERE Username LIKE ?";
