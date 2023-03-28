@@ -1,3 +1,3 @@
 <?php if (isset($templateParams["js"])) : ?>
-    <div id="post-section"></div>
+	<div id="post-section"></div>
 <?php endif ?>
