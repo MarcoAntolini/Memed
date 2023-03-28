@@ -9,12 +9,12 @@ class Notifications
 		$this->db = $db;
 	}
 
-	public function insertNotification($message, $notificationId, $username, $dateAndTime)
+	public function insertNotification($message, $username, $dateAndTime)
 	{
-		$sql =  "INSERT INTO notifications (Username, NotificationID, Message, DateAndTime, `Read`) VALUES (?, ?, ?, ?, ?)";
+		$sql =  "INSERT INTO notifications (Username, Message, DateAndTime, `Read`) VALUES (?, ?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
 		$read = 0;
-		$stmt->bind_param("sissi", $username, $notificationId, $message, $dateAndTime, $read);
+		$stmt->bind_param("sssi", $username, $message, $dateAndTime, $read);
 		$stmt->execute();
 	}
 

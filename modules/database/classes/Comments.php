@@ -13,17 +13,16 @@ class Comments
 		$this->posts = $posts;
 	}
 
-	public function insertComment($commentId, $textContent, $dateAndTime, $username, $postId)
+	public function insertComment($textContent, $dateAndTime, $username, $postId)
 	{
-		$sql = "INSERT INTO comments (PostID, Username, CommentID, TextContent, DateAndTime) VALUES (?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO comments (PostID, Username, TextContent, DateAndTime) VALUES (?, ?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
-		$stmt->bind_param("isiss", $postId, $username, $commentId, $textContent, $dateAndTime);
+		$stmt->bind_param("isss", $postId, $username, $textContent, $dateAndTime);
 		$stmt->execute();
 		// if ($stmt->execute() === TRUE) {
 		$post = $this->posts->getPostById($postId);
 		$this->notifications->insertNotification(
 			"<a href=\"user.php?Username=$username\" class=\"fw-bold\">$username</a> ha commentato un tuo post.",
-			(int)$this->getLastNotificationId()[0] + 1,
 			$post[4],
 			$dateAndTime
 		);

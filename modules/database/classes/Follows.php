@@ -20,7 +20,6 @@ class Follows
 		// if ($stmt->execute() === TRUE) {
 		$this->notifications->insertNotification(
 			"<a href=\"user.php?Username=$followerUsername\" class=\"fw-bold\">$followerUsername</a> ha iniziato a seguirti.",
-			(int)$this->getLastNotificationId()[0] + 1,
 			$followedUsername,
 			date("Y-m-d H:i:s")
 		);

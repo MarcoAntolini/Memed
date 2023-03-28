@@ -22,11 +22,11 @@ class Posts
 		$this->savedPosts = $savedPosts;
 	}
 
-	public function insertPost($postId, $fileName, $textContent, $dateAndTime, $username)
+	public function insertPost($fileName, $textContent, $dateAndTime, $username)
 	{
-		$sql = "INSERT INTO posts (PostID, FileName, TextContent, DateAndTime, Username) VALUES (?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO posts (FileName, TextContent, DateAndTime, Username) VALUES (?, ?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
-		$stmt->bind_param("issss", $postId, $fileName, $textContent, $dateAndTime, $username);
+		$stmt->bind_param("ssss", $fileName, $textContent, $dateAndTime, $username);
 		$stmt->execute();
 	}
 
