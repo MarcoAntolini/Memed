@@ -26,6 +26,7 @@
 - [ ] namespace modules con dentro namespace database
 - [ ] aggiungere il return type alle funzioni getter
 - [ ] aggiungere il tipo ai parametri delle funzioni
+- [ ] sistemare ordine parametri nelle funzioni del database (e le rispettive call)
 - [ ] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
 - [ ] aggiustare i return di database.php
 - [ ] rimuovere commenti da database.php
