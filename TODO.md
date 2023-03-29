@@ -7,6 +7,7 @@
 - [ ] il nuovo post deve uscire per primo
 - [x] niente notifiche se ti commenti da solo
 - [ ] fixare preview dell'immagine profilo se è default
+- [ ] se submitti vuoto il controllo deve essere dal js e fare prevent default
 
 ## Refactor
 
@@ -29,7 +30,7 @@
 - [x] aggiungere il return type alle funzioni getter
 - [x] aggiungere il tipo ai parametri delle funzioni
 - [x] sistemare ordine parametri nelle funzioni del database
-- [ ] (e le rispettive call)
+- [x] (e le rispettive call)
 - [x] sistemare database.php (variabili, ordine funzioni e funzioni non usate)
 - [x] rimuovere commenti da database.php
 - [x] $ddd in functions.php ?
@@ -39,7 +40,7 @@
 - [ ] usare le funzioni nel modo giusto (es. se tornano array e non bool)
 - [ ] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
 - [ ] sistemare funzioni di login/register/logout
-- [ ] rimuovere i [0] dalle function call
+- [x] rimuovere i [0] dalle function call
 
 ## Javascript
 
