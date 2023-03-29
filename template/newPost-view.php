@@ -8,10 +8,10 @@
 			<textarea class="form-control" id="description-input" name="description-input" rows="5"></textarea>
 		</div>
 		<datalist class="form-outline mb-3 categories-container">
-			<?php foreach ($templateParams["categories"] as $categoria) : ?>
+			<?php foreach ($templateParams["categories"] as $category) : ?>
 				<div class="category">
-					<input type="checkbox" id="<?php echo $categoria["CategoryID"]; ?>" name="categoria_<?php echo $categoria["CategoryID"]; ?>" />
-					<label for="<?php echo $categoria["CategoryID"]; ?>"><?php echo $categoria["Name"]; ?></label>
+					<input type="checkbox" id="<?php echo $category["CategoryID"]; ?>" name="categoria_<?php echo $category["CategoryID"]; ?>" />
+					<label for="<?php echo $category["CategoryID"]; ?>"><?php echo $category["Name"]; ?></label>
 				</div>
 			<?php endforeach; ?>
 		</datalist>
