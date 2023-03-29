@@ -8,10 +8,10 @@ if (isset($_POST["edit-post"])) {
 	$mysqli->updatePost($_POST["post-id"], $_POST["description"]);
 }
 if (isset($_POST["save-post"])) {
-	$mysqli->insertSavedPost($_SESSION["LoggedUsername"], $_POST["post-id"]);
+	$mysqli->insertSavedPost($_SESSION["LoggedUser"], $_POST["post-id"]);
 }
 if (isset($_POST["unsave-post"])) {
-	$mysqli->deleteSavedPost($_SESSION["LoggedUsername"], $_POST["post-id"]);
+	$mysqli->deleteSavedPost($_SESSION["LoggedUser"], $_POST["post-id"]);
 }
 if (isset($_POST["submit-comment"])) {
 	if (empty($_POST["comment-text"]) || $_POST["comment-text"] == "" || preg_match("/^[\s]+$/", $_POST["comment-text"])) {
@@ -21,7 +21,7 @@ if (isset($_POST["submit-comment"])) {
 			$mysqli->getLastCommentIdByPost($_POST["post-id"])[0] + 1,
 			$_POST["comment-text"],
 			date("Y-m-d H:i:s"),
-			$_SESSION["LoggedUsername"],
+			$_SESSION["LoggedUser"],
 			$_POST["post-id"]
 		);
 	}

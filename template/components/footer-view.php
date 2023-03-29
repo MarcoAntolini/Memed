@@ -20,9 +20,9 @@
 		</div>
 		<div class="nav-col desktop-hidden">
 			<a href="notice.php">
-				<?php if ($templateParams["numNotifiche"] > 0) : ?>
+				<?php if ($templateParams["notificationsNumber"] > 0) : ?>
 					<span class="counter position-absolute top-10 start-75 translate-middle badge rounded-pill bg-danger">
-						<?php echo $templateParams["numNotifiche"]; ?>
+						<?php echo $templateParams["notificationsNumber"]; ?>
 						<span class="visually-hidden">Notifiche non lette</span>
 					</span>
 				<?php endif; ?>
@@ -30,7 +30,7 @@
 			</a>
 		</div>
 		<div class="nav-col">
-			<a href="user.php?username=<?php echo $_SESSION["LoggedUsername"] ?>">
+			<a href="user.php?username=<?php echo $_SESSION["LoggedUser"] ?>">
 				<img src="../public/assets/img/profile.png" alt="profile" class="nav-icon">
 				<span class="nav-text mobile-hidden tablet-hidden">Profilo</span>
 			</a>

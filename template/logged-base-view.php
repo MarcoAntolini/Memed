@@ -20,7 +20,7 @@
 			echo '<script src="' . $script . '"></script>';
 		}
 	}
-	switch ($templateParams["nome"]) {
+	switch ($templateParams["page"]) {
 		case "newPost-view.php":
 			echo '<script src="../public/assets/js/postPreview.js"></script>';
 			break;
@@ -34,19 +34,19 @@
 	<script src="../public/assets/js/search.js"></script>
 	<script src="../public/assets/js/redirect.js"></script>
 	<script src="../public/assets/js/notifications.js"></script>
-	<title><?php echo $templateParams["titolo"]; ?></title>
+	<title><?php echo $templateParams["title"]; ?></title>
 </head>
 
 <body>
 	<?php require 'components/header-view.php'; ?>
 	<main>
 		<?php
-		if (isset($templateParams["nome"])) {
-			require $templateParams["nome"];
+		if (isset($templateParams["page"])) {
+			require $templateParams["page"];
 		}
 		?>
 		<?php require_once '../modules/noticePage.php'; ?>
-		<?php if ($templateParams["nome"] == "user-view.php" || $templateParams["nome"] == "home-view.php") : ?>
+		<?php if ($templateParams["page"] == "user-view.php" || $templateParams["page"] == "home-view.php") : ?>
 			<?php if (isset($templateParams["notice"])) : ?>
 				<div class="mobile-hidden tablet-hidden">
 					<?php require $templateParams["notice"]; ?>

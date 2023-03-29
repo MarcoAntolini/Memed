@@ -8,7 +8,7 @@
 			<textarea class="form-control" id="description-input" name="description-input" rows="5"></textarea>
 		</div>
 		<datalist class="form-outline mb-3 categories-container">
-			<?php foreach ($templateParams["categorie"] as $categoria) : ?>
+			<?php foreach ($templateParams["categories"] as $categoria) : ?>
 				<div class="category">
 					<input type="checkbox" id="<?php echo $categoria["CategoryID"]; ?>" name="categoria_<?php echo $categoria["CategoryID"]; ?>" />
 					<label for="<?php echo $categoria["CategoryID"]; ?>"><?php echo $categoria["Name"]; ?></label>

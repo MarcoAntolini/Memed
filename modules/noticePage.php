@@ -1,23 +1,25 @@
 <?php
-require_once 'bootstrap.php';
 
-if ($mysqli->getNotificationByUsername($_SESSION["LoggedUsername"])) {
-	$templateParams["notifiche"] = true;
+require_once "bootstrap.php";
+require_once "sessionCheck.php";
+
+$templateParams["notice"] = "notice-view.php";
+
+if ($mysqli->notifications()->getNotificationByUsername($_SESSION["LoggedUser"])) {
+	$templateParams["notifications"] = true;
 } else {
-	$templateParams["notifiche"] = false;
+	$templateParams["notifications"] = false;
 }
 if (isset($_POST["Read"])) {
-	$mysqli->readNotificationById($_POST["Read"]);
+	$mysqli->notifications()->readNotificationById($_POST["Read"]);
 }
 if (isset($_POST["cancella"])) {
-	$mysqli->deleteNotificationById($_POST["cancella"]);
+	$mysqli->notifications()->deleteNotificationById($_POST["cancella"]);
 }
 if (isset($_POST["cancella-tutto"])) {
-	$mysqli->deleteAllNotificationsByUsername($_SESSION["LoggedUsername"]);
+	$mysqli->notifications()->deleteAllNotificationsByUsername($_SESSION["LoggedUser"]);
 }
 if (isset($_POST["leggi-tutto"])) {
-	$mysqli->readAllNotificationsByUsername($_SESSION["LoggedUsername"]);
+	$mysqli->notifications()->readAllNotificationsByUsername($_SESSION["LoggedUser"]);
 }
-$templateParams["notice"] = "notice-view.php";
-$templateParams["Username"] = $_SESSION["LoggedUsername"];
-$templateParams["numNotifiche"] = $mysqli->countNotificationsByUsername($_SESSION["LoggedUsername"])[0];
+$templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername($_SESSION["LoggedUser"])[0];

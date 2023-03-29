@@ -4,20 +4,20 @@ require("bootstrap.php");
 if (isset($_GET["url"])) {
 	switch ($_GET["url"]) {
 		case "index.php":
-			$post = $mysqli->getPostsForHomeByUsername($_SESSION["LoggedUsername"]);
+			$post = $mysqli->getPostsForHomeByUsername($_SESSION["LoggedUser"]);
 			break;
 		case "user.php":
 			$post = $mysqli->getPostsByUsername($_SESSION["utente"]);
 			break;
 		case "explore.php":
-			if (isset($_SESSION["categoria"]) && $_SESSION["categoria"] != 0) {
-				$post = $mysqli->getPostsByCategoryIdAndUsername($_SESSION["categoria"], $_SESSION["LoggedUsername"]);
+			if (isset($_SESSION["category"]) && $_SESSION["category"] != 0) {
+				$post = $mysqli->getPostsByCategoryIdAndUsername($_SESSION["category"], $_SESSION["LoggedUser"]);
 			} else {
-				$post = $mysqli->getPostsForExploreByUsername($_SESSION["LoggedUsername"]);
+				$post = $mysqli->getPostsForExploreByUsername($_SESSION["LoggedUser"]);
 			}
 			break;
 		case "saved.php":
-			$post = $mysqli->getSavedPostsByUsername($_SESSION["LoggedUsername"]);
+			$post = $mysqli->getSavedPostsByUsername($_SESSION["LoggedUser"]);
 			break;
 		default:
 			$post = NULL;
@@ -33,9 +33,9 @@ if (isset($_GET["url"])) {
 			$post[$i]["reazione3"] = $mysqli->countPostReactionsByReactionIdAndPostId(3, $post[$i]["PostID"]);
 			$post[$i]["reazione4"] = $mysqli->countPostReactionsByReactionIdAndPostId(4, $post[$i]["PostID"]);
 			$post[$i]["reazione5"] = $mysqli->countPostReactionsByReactionIdAndPostId(5, $post[$i]["PostID"]);
-			$post[$i]["session-username"] = $_SESSION["LoggedUsername"];
-			$post[$i]["checkSavedPost"] = $mysqli->checkSavedPost($_SESSION["LoggedUsername"], $post[$i]["PostID"]);
-			$post[$i]["reazione-attiva"] = $mysqli->getPostReactionByPostIdAndUsername($post[$i]["PostID"], $_SESSION["LoggedUsername"]);
+			$post[$i]["session-username"] = $_SESSION["LoggedUser"];
+			$post[$i]["checkSavedPost"] = $mysqli->checkSavedPost($_SESSION["LoggedUser"], $post[$i]["PostID"]);
+			$post[$i]["reazione-attiva"] = $mysqli->getPostReactionByPostIdAndUsername($post[$i]["PostID"], $_SESSION["LoggedUser"]);
 		}
 	}
 

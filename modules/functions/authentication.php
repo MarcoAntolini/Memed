@@ -2,7 +2,7 @@
 
 function registerLoggedUser(string $user): void
 {
-	$_SESSION["LoggedUsername"] = $user["Username"];
+	$_SESSION["LoggedUser"] = $user["Username"];
 }
 
 function login(string $email, string $password, DatabaseHelper $mysqli): bool

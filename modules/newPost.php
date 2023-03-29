@@ -1,13 +1,12 @@
 <?php
-require_once 'bootstrap.php';
 
-if (checkLogin($mysqli) == true) {
-	$templateParams["titolo"] = "Memed - Crea Post";
-	$templateParams["nome"] = "newPost-view.php";
-	$templateParams["Username"] = $_SESSION["LoggedUsername"];
-	$templateParams["categorie"] = $mysqli->getCategories();
-	$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/noticeSection.js");
-	require '../template/logged-base-view.php';
-} else {
-	header("location: login.php");
-}
+require_once "bootstrap.php";
+require_once "sessionCheck.php";
+
+$templateParams["title"] = "Memed - Crea Post";
+$templateParams["page"] = "newPost-view.php";
+$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/noticeSection.js");
+
+$templateParams["categories"] = $mysqli->categories()->getCategories();
+
+require "../template/logged-base-view.php";

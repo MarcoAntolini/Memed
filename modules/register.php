@@ -19,7 +19,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confi
 	}
 }
 
-$templateParams["titolo"] = "Memed - Registrati";
-$templateParams["nome"] = "../template/register-view.php";
+$templateParams["title"] = "Memed - Registrati";
+$templateParams["page"] = "../template/register-view.php";
 
 require "../template/unlogged-base-view.php";

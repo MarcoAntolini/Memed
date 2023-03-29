@@ -1,6 +1,6 @@
 <?php
 require_once "../modules/bootstrap.php";
-$currUser = $_SESSION["LoggedUsername"];
+$currUser = $_SESSION["LoggedUser"];
 $username = $_POST["Username"];
 if ($mysqli->checkFollow($username, $currUser)) {
 	$mysqli->deleteFollow($username, $currUser);
