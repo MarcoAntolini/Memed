@@ -6,5 +6,6 @@ window.onload = () => {
 	const readAllButton = document.getElementById("readall")
 	const clearAllButton = document.getElementById("clearall")
 	if (notificationsNumber == 0 && readAllButton) readAllButton.disabled = true
+	if (notificationsNumber == 0 && clearAllButton) clearAllButton.disabled = true
 	if (!notificationId && clearAllButton) clearAllButton.disabled = true
 }
