@@ -33,10 +33,12 @@
 - [x] rimuovere commenti da database.php
 - [x] $ddd in functions.php ?
 - [x] sistemare functions.php (dividere in login e upload)
-- [x] $templateParams["Username"] diventa $templateParams["LoggedUsername"]
+- [x] $templateParams["loggedUsername"] diventa $templateParams["LoggedUsername"]
 - [ ] sistemare file php (api, checkSession, etc)
+- [ ] usare le funzioni nel modo giusto (es. se tornano array e non bool)
 - [ ] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
 - [ ] sistemare funzioni di login/register/logout
+- [ ] rimuovere i [0] dalle function call
 
 ## Javascript
 
