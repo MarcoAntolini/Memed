@@ -8,14 +8,17 @@ class Posts
 	private Comments $comments;
 	private SavedPosts $savedPosts;
 
-	public function __construct(
-		mysqli $db,
+	public function __construct(mysqli $db)
+	{
+		$this->db = $db;
+	}
+
+	public function linkColumns(
 		PostCategories $postCategories,
 		PostReactions $postReactions,
 		Comments $comments,
 		SavedPosts $savedPosts
-	) {
-		$this->db = $db;
+	): void {
 		$this->postCategories = $postCategories;
 		$this->postReactions = $postReactions;
 		$this->comments = $comments;

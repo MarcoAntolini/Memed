@@ -16,14 +16,14 @@ class DatabaseHelper
 	private mysqli $db;
 	private Categories $categories;
 	private PostCategories $postCategories;
-	private Comments $comments;
 	private Notifications $notifications;
-	private Posts $posts;
 	private Reactions $reactions;
 	private PostReactions $postReactions;
 	private SavedPosts $savedPosts;
-	private Follows $follows;
 	private Users $users;
+	private Follows $follows;
+	private Posts $posts;
+	private Comments $comments;
 
 	public function __construct(string $servername, string $username, string $password, string $dbname, int $port)
 	{
@@ -33,14 +33,17 @@ class DatabaseHelper
 		}
 		$this->categories = new Categories($this->db);
 		$this->postCategories = new PostCategories($this->db);
-		$this->comments = new Comments($this->db, $this->notifications, $this->posts);
 		$this->notifications = new Notifications($this->db);
-		$this->posts = new Posts($this->db, $this->postCategories, $this->postReactions, $this->comments, $this->savedPosts);
 		$this->reactions = new Reactions($this->db);
 		$this->postReactions = new PostReactions($this->db);
 		$this->savedPosts = new SavedPosts($this->db);
-		$this->follows = new Follows($this->db, $this->notifications);
 		$this->users = new Users($this->db);
+		$this->follows = new Follows($this->db);
+		$this->posts = new Posts($this->db);
+		$this->comments = new Comments($this->db);
+		$this->follows->linkColumns($this->notifications);
+		$this->posts->linkColumns($this->postCategories, $this->postReactions, $this->comments, $this->savedPosts);
+		$this->comments->linkColumns($this->notifications, $this->posts);
 	}
 
 	public function categories(): Categories

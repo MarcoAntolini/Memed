@@ -6,9 +6,13 @@ class Comments
 	private Notifications $notifications;
 	private Posts $posts;
 
-	public function __construct(mysqli $db, Notifications $notifications, Posts $posts)
+	public function __construct(mysqli $db)
 	{
 		$this->db = $db;
+	}
+
+	public function linkColumns(Notifications $notifications, Posts $posts): void
+	{
 		$this->notifications = $notifications;
 		$this->posts = $posts;
 	}

@@ -5,9 +5,13 @@ class Follows
 	private mysqli $db;
 	private Notifications $notifications;
 
-	public function __construct(mysqli $db, Notifications $notifications)
+	public function __construct(mysqli $db)
 	{
 		$this->db = $db;
+	}
+
+	public function linkColumns(Notifications $notifications): void
+	{
 		$this->notifications = $notifications;
 	}
 
