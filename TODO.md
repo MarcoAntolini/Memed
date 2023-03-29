@@ -2,7 +2,7 @@
 
 ## Bug
 
-- [ ] elimina tutte si disabilita in mobile ma non in desktop
+- [x] elimina tutte si disabilita in mobile ma non in desktop
 - [ ] window.onload overrida se presente in altri file (provare con window.addEventListener("load", function() { ... }) oppure mettendo gli script in fondo al body)
 - [ ] il nuovo post deve uscire per primo
 - [x] niente notifiche se ti commenti da solo
@@ -37,7 +37,7 @@
 - [x] sistemare functions.php (dividere in login e upload)
 - [x] $templateParams["loggedUsername"] diventa $templateParams["LoggedUsername"]
 - [ ] sistemare file php (api, checkSession, etc)
-- [ ] usare le funzioni nel modo giusto (es. se tornano array e non bool)
+- [x] usare le funzioni nel modo giusto (es. se tornano array e non bool)
 - [ ] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
 - [ ] sistemare funzioni di login/register/logout
 - [x] rimuovere i [0] dalle function call
