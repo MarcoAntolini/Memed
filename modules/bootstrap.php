@@ -3,7 +3,8 @@
 session_start();
 define("UPLOAD_DIR", "./upload/");
 
-require_once "functions/*";
 require_once "database/DatabaseHelper.php";
+require_once "functions/authentication.php";
+require_once "functions/upload.php";
 
 $mysqli = new DatabaseHelper("localhost", "root", "", "memed", 3306);

@@ -1,6 +1,15 @@
 <?php
 
-require_once "classes/*";
+require_once "classes/Categories.php";
+require_once "classes/PostCategories.php";
+require_once "classes/Comments.php";
+require_once "classes/Notifications.php";
+require_once "classes/Posts.php";
+require_once "classes/Reactions.php";
+require_once "classes/PostReactions.php";
+require_once "classes/SavedPosts.php";
+require_once "classes/Follows.php";
+require_once "classes/Users.php";
 
 class DatabaseHelper
 {
