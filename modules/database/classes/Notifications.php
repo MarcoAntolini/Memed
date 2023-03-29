@@ -11,7 +11,7 @@ class Notifications
 
 	public function insertNotification(string $username, string $message): void
 	{
-		$sql =  "INSERT INTO notifications (Username, Message, DateAndTime, `Read`) VALUES (?, ?, ?, ?, ?)";
+		$sql =  "INSERT INTO notifications (Username, Message, DateAndTime, `Read`) VALUES (?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
 		$dateAndTime = date("Y-m-d H:i:s");
 		$read = 0;
@@ -35,36 +35,40 @@ class Notifications
 		$stmt->execute();
 	}
 
-	public function deleteAllNotificationsByUsername(string $username): void
+	public function deleteAllNotificationsByUsername(): void
 	{
 		$sql = "DELETE FROM notifications WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 	}
 
-	public function readAllNotificationsByUsername(string $username): void
+	public function readAllNotificationsByUsername(): void
 	{
 		$sql = "UPDATE notifications SET `Read` = '1' WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 	}
 
-	public function getNotificationByUsername(string $username): array
+	public function getNotificationByUsername(): array
 	{
 		$sql = "SELECT * FROM notifications WHERE Username = ? ORDER BY DateAndTime DESC";
 		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
-	public function countNotificationsByUsername(string $username): int
+	public function countNotificationsByUsername(): int
 	{
 		$sql = "SELECT COUNT(*) FROM notifications WHERE Username = ? and `Read` = ?";
 		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["LoggedUser"];
 		$read = 0;
 		$stmt->bind_param("si", $username, $read);
 		$stmt->execute();

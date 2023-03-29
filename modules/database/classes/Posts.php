@@ -25,11 +25,12 @@ class Posts
 		$this->savedPosts = $savedPosts;
 	}
 
-	public function insertPost(string $fileName, string $textContent, string $username): void
+	public function insertPost(string $fileName, string $textContent): void
 	{
-		$sql = "INSERT INTO posts (FileName, TextContent, DateAndTime, Username) VALUES (?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO posts (FileName, TextContent, DateAndTime, Username) VALUES (?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
 		$dateAndTime = date("Y-m-d H:i:s");
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("ssss", $fileName, $textContent, $dateAndTime, $username);
 		$stmt->execute();
 	}
@@ -54,34 +55,37 @@ class Posts
 		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
-	public function getPostsForHomeByUsername(string $username)
+	public function getPostsForHomeByUsername()
 	{
 		$sql = "SELECT * FROM posts WHERE Username IN (SELECT FollowedUsername FROM follows WHERE Username = ?)
 				ORDER BY DateAndTime DESC";
 		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
-	public function getPostsByCategoryIdAndUsername(int $categoryId, string $username): array
+	public function getPostsByCategoryIdAndUsername(int $categoryId): array
 	{
 		$sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.PostID
 				IN (SELECT PostID FROM post_categories WHERE CategoryID = ?) AND posts.Username != ? GROUP BY posts.PostID
 				ORDER BY AVG(post_reactions.ReactionID) DESC";
 		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("is", $categoryId, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
-	public function getPostsForExploreByUsername(string $username): array
+	public function getPostsForExploreByUsername(): array
 	{
 		$sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.Username != ?
 				GROUP BY posts.PostID ORDER BY AVG(post_reactions.ReactionID) DESC";
 		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -114,6 +118,15 @@ class Posts
 		$sql = "SELECT COUNT(*) FROM posts WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
 		$stmt->bind_param("s", $username);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		return $result->fetch_row()[0] ?? 0;
+	}
+
+	public function getLastPostId(): int
+	{
+		$sql = "SELECT PostID FROM posts ORDER BY PostID DESC LIMIT 1";
+		$stmt = $this->db->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		return $result->fetch_row()[0] ?? 0;

@@ -13,8 +13,8 @@ class Users
 	{
 		$sql = "INSERT INTO users (Username, Email, Password, PasswordSalt, FileName, Bio) VALUES (?, ?, ?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
-		$fileName = 'default-pic.png';
-		$bio = '';
+		$fileName = "default-pic.png";
+		$bio = "";
 		$stmt->bind_param("ssssss", $username, $email, $password, $passwordSalt, $fileName, $bio);
 		$stmt->execute();
 	}
@@ -50,10 +50,11 @@ class Users
 		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
 	}
 
-	public function updateUser(string $fileName, string $bio, string $username): void
+	public function updateUser(string $fileName, string $bio): void
 	{
 		$sql = "UPDATE users SET FileName = ? Bio = ? WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["username"];
 		$stmt->bind_param("sss", $fileName, $bio, $username);
 		$stmt->execute();
 	}

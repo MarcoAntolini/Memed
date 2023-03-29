@@ -17,11 +17,12 @@ class Comments
 		$this->posts = $posts;
 	}
 
-	public function insertComment(int $postId, string $username, string $textContent): void
+	public function insertComment(int $postId, string $textContent): void
 	{
 		$sql = "INSERT INTO comments (PostID, Username, TextContent, DateAndTime) VALUES (?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
 		$dateAndTime = date("Y-m-d H:i:s");
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("isss", $postId, $username, $textContent, $dateAndTime);
 		$stmt->execute();
 		$post = $this->posts->getPostById($postId);

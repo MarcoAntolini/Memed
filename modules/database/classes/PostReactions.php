@@ -19,14 +19,16 @@ class PostReactions
 		$this->deleteReactionOfUserFromPost($username, $postId);
 		$sql = "INSERT INTO post_reactions (ReactionID, Username, PostID) VALUES (?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
+		// username = session["LoggedUser"]
 		$stmt->bind_param("isi", $reactionId, $username, $postId);
 		$stmt->execute();
 	}
 
-	public function getPostReactionByPostIdAndUsername(int $postId, string $username): int
+	public function getPostReactionByPostIdAndUsername(int $postId): int
 	{
 		$sql = "SELECT ReactionID FROM post_reactions WHERE PostID = ? AND Username = ?";
 		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("is", $postId, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();

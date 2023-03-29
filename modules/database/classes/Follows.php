@@ -15,10 +15,11 @@ class Follows
 		$this->notifications = $notifications;
 	}
 
-	public function insertFollow(string $followedUsername, string $followerUsername): void
+	public function insertFollow(string $followedUsername): void
 	{
 		$sql = "INSERT INTO follows (FollowedUsername, FollowerUsername) VALUES (?, ?)";
 		$stmt = $this->db->prepare($sql);
+		$followerUsername = $_SESSION["LoggedUser"];
 		$stmt->bind_param("ss", $followedUsername, $followerUsername);
 		$stmt->execute();
 		$this->notifications->insertNotification(
@@ -28,20 +29,22 @@ class Follows
 		);
 	}
 
-	public function checkFollow(string $followedUsername, string $followerUsername): bool
+	public function checkFollow(string $followedUsername): bool
 	{
 		$sql = "SELECT * FROM follows WHERE FollowedUsername = ? AND FollowerUsername = ?";
 		$stmt = $this->db->prepare($sql);
+		$followerUsername = $_SESSION["LoggedUser"];
 		$stmt->bind_param("ss", $followedUsername, $followerUsername);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		return $result->num_rows > 0;
 	}
 
-	public function deleteFollow(string $followedUsername, string $followerUsername): void
+	public function deleteFollow(string $followedUsername): void
 	{
 		$sql = "DELETE FROM follows WHERE FollowedUsername = ? AND FollowerUsername = ?";
 		$stmt = $this->db->prepare($sql);
+		$followerUsername = $_SESSION["LoggedUser"];
 		$stmt->bind_param("ss", $followedUsername, $followerUsername);
 		$stmt->execute();
 	}
