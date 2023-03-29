@@ -35,25 +35,25 @@ CREATE TABLE post_categories (
 );
 
 CREATE TABLE comments (
-  CommentID int(11) NOT NULL AUTOINCREMENT,
+  CommentID int(11) NOT NULL AUTO_INCREMENT,
   PostID int(11) NOT NULL,
   Username varchar(30) NOT NULL,
   TextContent varchar(150) NOT NULL,
   DateAndTime datetime NOT NULL,
-  CONSTRAINT COMMENT_ID PRIMARY KEY (PostID, Username, CommentID)
+  CONSTRAINT COMMENT_ID PRIMARY KEY (CommentID)
 );
 
 CREATE TABLE notifications (
-  NotificationID int(11) NOT NULL AUTOINCREMENT,
+  NotificationID int(11) NOT NULL AUTO_INCREMENT,
   Username varchar(30) NOT NULL,
   Message varchar(150) NOT NULL,
   DateAndTime datetime NOT NULL,
   `Read` tinyint(1) NOT NULL,
-  CONSTRAINT NOTIFICATION_ID PRIMARY KEY (Username, NotificationID)
+  CONSTRAINT NOTIFICATION_ID PRIMARY KEY (NotificationID)
 );
 
 CREATE TABLE posts (
-  PostID int(11) NOT NULL AUTOINCREMENT,
+  PostID int(11) NOT NULL AUTO_INCREMENT,
   Username varchar(30) NOT NULL,
   FileName varchar(100) DEFAULT NULL,
   TextContent varchar(250) DEFAULT NULL,
