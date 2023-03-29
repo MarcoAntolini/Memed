@@ -20,6 +20,7 @@
 - [x] sistemare db: id auto_increment
 - [x] sistemare db: Read diventa boolean
 - [ ] riempire il database con dati veri (soprattutto le date, per controllare l'ordine dei post)
+- [ ] non passare l'id alle colonne autoincrementate
 
 ## Php
 
