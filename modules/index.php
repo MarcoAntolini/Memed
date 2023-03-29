@@ -11,8 +11,8 @@ $templateParams["js"] = array(
 	"../public/assets/js/noticeSection.js"
 );
 
-$templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername($_SESSION["LoggedUser"]);
-$templateParams["notifications"] = $mysqli->notifications()->getNotificationByUsername($_SESSION["LoggedUser"]);
+$templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername();
+$templateParams["notifications"] = $mysqli->notifications()->getNotificationByUsername();
 
 require "postSettings.php";
 require "../template/logged-base-view.php";

@@ -9,10 +9,10 @@
 		</p>
 		<div>
 			<button class="follower-count btn btn-info" type="button" data-bs-toggle="modal" data-bs-target=".follower-list">
-				Follower: <?php echo $templateParams["nFol"][0]; ?>
+				Follower: <?php echo $templateParams["nFol"]; ?>
 			</button>
 			<button class="followed-count btn btn-info" type="button" data-bs-toggle="modal" data-bs-target=".followed-list">
-				Seguiti: <?php echo $templateParams["nSeguiti"][0]; ?>
+				Seguiti: <?php echo $templateParams["nSeguiti"]; ?>
 			</button>
 			<?php if ($templateParams["utente"] != $_SESSION["LoggedUser"]) : ?>
 				<div class="follow-section">
@@ -41,7 +41,7 @@
 						<?php if ($templateParams["follower"]) : ?>
 							<?php foreach ($templateParams["follower"] as $follower) : ?>
 								<div class="follower mb-3">
-									<img src="<?php echo (UPLOAD_DIR . $mysqli->getFileNameByUsername($follower["FollowerUsername"])[0]); ?>" alt="follower-profile-pic">
+									<img src="<?php echo (UPLOAD_DIR . $mysqli->users()->getFileNameByUsername($follower["FollowerUsername"])[0]); ?>" alt="follower-profile-pic">
 									<a href="user.php?username=<?php echo $follower["FollowerUsername"]; ?>" class="fw-bold">
 										@<?php echo $follower["FollowerUsername"]; ?>
 									</a>
@@ -63,7 +63,7 @@
 						<?php if ($templateParams["seguiti"]) : ?>
 							<?php foreach ($templateParams["seguiti"] as $followed) : ?>
 								<div class="followed mb-3">
-									<img src="<?php echo (UPLOAD_DIR . $mysqli->getFileNameByUsername($followed["FollowedUsername"])[0]); ?>" alt="followed-profile-pic">
+									<img src="<?php echo (UPLOAD_DIR . $mysqli->users()->getFileNameByUsername($followed["FollowedUsername"])[0]); ?>" alt="followed-profile-pic">
 									<a href="user.php?username=<?php echo $followed["FollowedUsername"]; ?>" class="fw-bold">
 										@<?php echo $followed["FollowedUsername"]; ?>
 									</a>

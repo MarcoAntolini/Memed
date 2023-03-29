@@ -3,7 +3,7 @@
 		<h2 class="text-center">Nessun risultato</h2>
 	<?php else : ?>
 		<?php foreach ($usersList as $user) : ?>
-			<?php if ($user["Username"] !== $currUser) : ?>
+			<?php if ($user["Username"] !== $_SESSION["LoggedUser"]) : ?>
 				<div class="card p-2 mb-3">
 					<div class="">
 						<img src="<?php echo UPLOAD_DIR . $user["FileName"] ?>" alt="profile-picture" />
@@ -17,7 +17,7 @@
 							<p class="text-muted"><?php echo $user["Bio"] ?></p>
 						</div>
 					</div>
-					<?php if ($mysqli->checkFollow($user["Username"], $currUser)) : ?>
+					<?php if ($mysqli->follows()->checkFollow($user["Username"])) : ?>
 						<form action="#" method="post">
 							<input type="hidden" name="unfollowing" value="<?php echo $user["Username"] ?>">
 							<button type="submit" class="btn btn-primary">Smetti di seguire</button>

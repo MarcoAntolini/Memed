@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$mysqli->users()->updateUser($_SESSION["LoggedUser"], $data["profilePic"], $data["Bio"]);
+	$mysqli->users()->updateUser($data["profilePic"], $data["Bio"]);
 	header("location: user.php?username=" . $_SESSION["LoggedUser"]);
 } elseif ($_SERVER["REQUEST_METHOD"] == "PUT") {
 	$encodedImage = $data["encodedImage"];

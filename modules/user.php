@@ -23,18 +23,18 @@ if (isset($_GET["username"])) {
 	$templateParams["nPost"] = $mysqli->posts()->countPostsByUsername($utente);
 }
 if ($templateParams["utente"] != $templateParams["loggedUsername"]) {
-	if ($templateParams["follower"] && $mysqli->follows()->checkFollow($templateParams["utente"], $templateParams["loggedUsername"])) {
+	if ($templateParams["follower"] && $mysqli->follows()->checkFollow($templateParams["utente"])) {
 		$templateParams["isFollowing"] = true;
 	} else {
 		$templateParams["isFollowing"] = false;
 	}
 }
 if (isset($_POST["unfollowing"])) {
-	$mysqli->follows()->deleteFollow($_POST["unfollowing"], $_SESSION["LoggedUser"]);
+	$mysqli->follows()->deleteFollow($_POST["unfollowing"]);
 	header("location: user.php?username=" . $templateParams["utente"]);
 }
 if (isset($_POST["following"])) {
-	$mysqli->follows()->insertFollow($_POST["following"], $_SESSION["LoggedUser"]);
+	$mysqli->follows()->insertFollow($_POST["following"]);
 	header("location: user.php?username=" . $templateParams["utente"]);
 }
 

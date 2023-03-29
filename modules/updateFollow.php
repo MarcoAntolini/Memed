@@ -2,12 +2,11 @@
 
 require_once "bootstrap.php";
 
-$currUser = $_SESSION["LoggedUser"];
 $username = $_POST["Username"];
-if ($mysqli->follows()->checkFollow($username, $currUser)) {
-	$mysqli->follows()->deleteFollow($username, $currUser);
+if ($mysqli->follows()->checkFollow($username)) {
+	$mysqli->follows()->deleteFollow($username);
 	echo "unfollow";
 } else {
-	$mysqli->follows()->insertFollow($username, $currUser);
+	$mysqli->follows()->insertFollow($username);
 	echo "follow";
 }

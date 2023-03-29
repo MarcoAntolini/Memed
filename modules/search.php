@@ -8,12 +8,11 @@ $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../p
 
 $templateParams["risultati"] = $mysqli->users()->getUserLikeUsername($_GET['search']);
 $usersList = $templateParams["risultati"];
-$currUser = $_SESSION["LoggedUser"];
 if (isset($_POST["unfollowing"])) {
-	$mysqli->follows()->deleteFollow($_POST["unfollowing"], $_SESSION["LoggedUser"]);
+	$mysqli->follows()->deleteFollow($_POST["unfollowing"]);
 }
 if (isset($_POST["following"])) {
-	$mysqli->follows()->insertFollow($_POST["following"], $_SESSION["LoggedUser"]);
+	$mysqli->follows()->insertFollow($_POST["following"]);
 }
 
 require "../template/logged-base-view.php";

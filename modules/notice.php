@@ -14,14 +14,14 @@ if (isset($_POST["cancella"])) {
 	$mysqli->notifications()->deleteNotificationById($_POST["cancella"]);
 }
 if (isset($_POST["cancella-tutto"])) {
-	$mysqli->notifications()->deleteAllNotificationsByUsername($_SESSION["LoggedUser"]);
+	$mysqli->notifications()->deleteAllNotificationsByUsername();
 }
 if (isset($_POST["leggi-tutto"])) {
-	$mysqli->notifications()->readAllNotificationsByUsername($_SESSION["LoggedUser"]);
+	$mysqli->notifications()->readAllNotificationsByUsername();
 }
 
-$templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername($_SESSION["LoggedUser"])[0];
-if ($mysqli->notifications()->getNotificationByUsername($_SESSION["LoggedUser"])) {
+$templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername();
+if ($mysqli->notifications()->getNotificationByUsername() != null) {
 	$templateParams["notifications"] = true;
 } else {
 	$templateParams["notifications"] = false;

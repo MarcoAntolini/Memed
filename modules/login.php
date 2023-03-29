@@ -8,7 +8,7 @@ $templateParams["page"] = "../template/login-view.php";
 if (isset($_POST["email"], $_POST["password"])) {
 	$email = $_POST["email"];
 	$password = $_POST["password"];
-	if (login($email, $password, $mysqli) == true) {
+	if (login($email, $password, $mysqli)) {
 		header("Location: ../modules/index.php");
 	} else {
 		$templateParams["errorelogin"] = "email o password errati";
