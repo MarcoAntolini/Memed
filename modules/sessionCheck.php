@@ -3,7 +3,7 @@
 require_once "bootstrap.php";
 
 if (!checkLogin($mysqli)) {
-	header("location: login.php");
+	header(LOGIN);
 } else {
 	$templateParams["loggedUsername"] = $_SESSION["LoggedUser"];
 }

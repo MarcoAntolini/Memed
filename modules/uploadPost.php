@@ -26,7 +26,7 @@ if ((isset($_POST["description-input"]) && !empty($_POST["description-input"])) 
 					// TODO: non serve $ris
 					$ris = $mysqli->postCategories()->insertPostCategory((int) $categoria, (int) $mysqli->getLastPostId()[0]);
 				}
-				header("location: index.php");
+				header(INDEX);
 			}
 		} else {
 			$id = $mysqli->posts()->insertPost(null, $testopost, $datapost, $autore);
@@ -34,7 +34,7 @@ if ((isset($_POST["description-input"]) && !empty($_POST["description-input"])) 
 				foreach ($categorie_inserite as $categoria) {
 					$ris = $mysqli->postCategories()->insertPostCategory($categoria, $mysqli->getLastPostId()[0]);
 				}
-				header("location: index.php");
+				header(INDEX);
 			}
 		}
 	} else {
@@ -43,7 +43,7 @@ if ((isset($_POST["description-input"]) && !empty($_POST["description-input"])) 
 			foreach ($categorie_inserite as $categoria) {
 				$ris = $mysqli->postCategories()->insertPostCategory($categoria, $mysqli->getLastPostId()[0]);
 			}
-			header("location: index.php");
+			header(INDEX);
 		}
 	}
 } else {
