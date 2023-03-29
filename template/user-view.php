@@ -1,11 +1,11 @@
 <div class="my-profile">
 	<div class="user-data-section">
-		<img class="profile-pic" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"][0]["FileName"]); ?>" alt="profile-pic">
+		<img class="profile-pic" src="<?php echo (UPLOAD_DIR . $templateParams["profilo"]["FileName"]); ?>" alt="profile-pic">
 		<h2 class="username">
-			<?php echo $templateParams["profilo"][0]["Username"]; ?>
+			<?php echo $templateParams["profilo"]["Username"]; ?>
 		</h2>
 		<p class="bio">
-			<?php echo $templateParams["profilo"][0]["Bio"]; ?>
+			<?php echo $templateParams["profilo"]["Bio"]; ?>
 		</p>
 		<div>
 			<button class="follower-count btn btn-info" type="button" data-bs-toggle="modal" data-bs-target=".follower-list">
@@ -38,10 +38,10 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<?php if ($templateParams["follower"]) : ?>
+						<?php if ($templateParams["follower"] != null) : ?>
 							<?php foreach ($templateParams["follower"] as $follower) : ?>
 								<div class="follower mb-3">
-									<img src="<?php echo (UPLOAD_DIR . $mysqli->users()->getFileNameByUsername($follower["FollowerUsername"])[0]); ?>" alt="follower-profile-pic">
+									<img src="<?php echo (UPLOAD_DIR . $mysqli->users()->getFileNameByUsername($follower["FollowerUsername"])); ?>" alt="follower-profile-pic">
 									<a href="user.php?username=<?php echo $follower["FollowerUsername"]; ?>" class="fw-bold">
 										@<?php echo $follower["FollowerUsername"]; ?>
 									</a>
@@ -60,10 +60,10 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<?php if ($templateParams["seguiti"]) : ?>
+						<?php if ($templateParams["seguiti"] != null) : ?>
 							<?php foreach ($templateParams["seguiti"] as $followed) : ?>
 								<div class="followed mb-3">
-									<img src="<?php echo (UPLOAD_DIR . $mysqli->users()->getFileNameByUsername($followed["FollowedUsername"])[0]); ?>" alt="followed-profile-pic">
+									<img src="<?php echo (UPLOAD_DIR . $mysqli->users()->getFileNameByUsername($followed["FollowedUsername"])); ?>" alt="followed-profile-pic">
 									<a href="user.php?username=<?php echo $followed["FollowedUsername"]; ?>" class="fw-bold">
 										@<?php echo $followed["FollowedUsername"]; ?>
 									</a>

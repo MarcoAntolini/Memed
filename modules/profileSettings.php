@@ -21,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	imagedestroy($sourceImg);
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
 	$profilo = $mysqli->users()->getUserByUsername($_SESSION["LoggedUser"]);
-	$data["FileName"] = $profilo[0]["FileName"];
-	$data["Bio"] = $profilo[0]["Bio"];
+	$data["FileName"] = $profilo["FileName"];
+	$data["Bio"] = $profilo["Bio"];
 	header("Content-Type: application/json; charset=UTF-8");
 	echo json_encode($data);
 }

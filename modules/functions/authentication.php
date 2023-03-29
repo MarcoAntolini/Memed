@@ -10,9 +10,9 @@ function login(string $email, string $password, DatabaseHelper $mysqli): bool
 	if (!$user = $mysqli->users()->getUserByEmail($email)) {
 		return false;
 	}
-	$username = $user[0]["Username"];
-	$userPassword = $user[0]["Password"];
-	$userSalt = $user[0]["PasswordSalt"];
+	$username = $user["Username"];
+	$userPassword = $user["Password"];
+	$userSalt = $user["PasswordSalt"];
 	$password = hash("sha512", $password . $userSalt);
 	if ($userPassword != $password) {
 		return false;
@@ -34,7 +34,7 @@ function checkLogin(DatabaseHelper $mysqli): bool
 	if (!$user = $mysqli->users()->getUserByUsername($username)) {
 		return false;
 	}
-	$password = $user[0]["Password"];
+	$password = $user["Password"];
 	$checkLogin = hash("sha512", $password . $browser);
 	if ($checkLogin != $loginString) {
 		return false;

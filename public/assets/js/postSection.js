@@ -181,7 +181,7 @@ function checkReaction(data) {
 	for (const element of data) {
 		const postId = element["PostID"]
 		let reaction
-		switch (element["reazione-attiva"][0]) {
+		switch (element["reazione-attiva"]) {
 			case 1:
 				reaction = document.getElementById("reaction-1-" + postId)
 				break
