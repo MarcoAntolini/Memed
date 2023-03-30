@@ -25,12 +25,11 @@ class Comments
 		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("isss", $postId, $username, $textContent, $dateAndTime);
 		$stmt->execute();
-		$post = $this->posts->getPostById($postId);
-		if ($username != $_SESSION["LoggedUser"]) {
+		$postOwner = $this->posts->getPostById($postId)[1];
+		if ($postOwner != $_SESSION["LoggedUser"]) {
 			$this->notifications->insertNotification(
-				"<a href=\"user.php?Username=$username\" class=\"fw-bold\">$username</a> ha commentato un tuo post.",
-				$post[4],
-				$dateAndTime
+				$postOwner,
+				"<a href=\"user.php?Username=$username\" class=\"fw-bold\">$username</a> ha commentato un tuo post."
 			);
 		}
 	}

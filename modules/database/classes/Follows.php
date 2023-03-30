@@ -23,9 +23,8 @@ class Follows
 		$stmt->bind_param("ss", $followedUsername, $followerUsername);
 		$stmt->execute();
 		$this->notifications->insertNotification(
-			"<a href=\"user.php?Username=$followerUsername\" class=\"fw-bold\">$followerUsername</a> ha iniziato a seguirti.",
 			$followedUsername,
-			date("Y-m-d H:i:s")
+			"<a href=\"user.php?Username=$followerUsername\" class=\"fw-bold\">$followerUsername</a> ha iniziato a seguirti."
 		);
 	}
 
