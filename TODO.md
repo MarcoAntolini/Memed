@@ -69,7 +69,7 @@
 - [ ] le notifche si aggiornano in tempo reale senza refresh
 - [ ] bootstrap toast per le notifiche?
 - [ ] in esplora si vede il filtro attivo
-- [ ] aumentare dimensione massima immagine profilo uploadabile
+- [x] aumentare dimensione massima immagine profilo uploadabile
 - [ ] cropperjs per resizare l'immagine profilo a quadrato quando viene pubblicata (anche per i post?)
 - [ ] usare floating label e hamburger menu
 
