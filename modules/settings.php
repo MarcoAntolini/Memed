@@ -8,7 +8,7 @@ $templateParams["page"] = "settings-view.php";
 $templateParams["js"] = array(
 	"https://unpkg.com/axios/dist/axios.min.js",
 	"../public/assets/js/settings.js",
-	"../public/assets/js/noticeSection.js"
+	"../public/assets/js/notificationSection.js"
 );
 
 $templateParams["profilo"] = $mysqli->users()->getUserByUsername($_SESSION["LoggedUser"]);

@@ -8,14 +8,13 @@ $templateParams["page"] = "explore-view.php";
 $templateParams["js"] = array(
 	"https://unpkg.com/axios/dist/axios.min.js",
 	"../public/assets/js/postSection.js",
-	"../public/assets/js/noticeSection.js"
+	"../public/assets/js/notificationSection.js"
 );
 
-// TODO a che serve $_SESSION["category"]?
-$_SESSION["category"] = 0;
+$_SESSION["selectedCategory"] = 0;
 $templateParams["categories"] = $mysqli->categories()->getCategories();
-if (isset($_POST["categoria"])) {
-	$_SESSION["category"] = $_POST["categoria"];
+if (isset($_POST["category"])) {
+	$_SESSION["selectedCategory"] = $_POST["category"];
 }
 
 require "postSettings.php";

@@ -11,8 +11,8 @@ if (isset($_GET["url"])) {
 			$post = $mysqli->posts()->getPostsByUsername($_SESSION["utente"]);
 			break;
 		case "explore.php":
-			if (isset($_SESSION["category"]) && $_SESSION["category"] != 0) {
-				$post = $mysqli->posts()->getPostsByCategoryIdAndUsername($_SESSION["category"]);
+			if (isset($_SESSION["selectedCategory"]) && $_SESSION["selectedCategory"] != 0) {
+				$post = $mysqli->posts()->getPostsByCategoryIdAndUsername($_SESSION["selectedCategory"]);
 			} else {
 				$post = $mysqli->posts()->getPostsForExploreByUsername();
 			}

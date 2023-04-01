@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 
 $templateParams["title"] = "Memed - Cerca";
 $templateParams["page"] = "search-view.php";
-$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/noticeSection.js");
+$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/notificationSection.js");
 
 $templateParams["risultati"] = $mysqli->users()->getUserLikeUsername($_GET['search']);
 $usersList = $templateParams["risultati"];

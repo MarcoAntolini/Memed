@@ -19,14 +19,14 @@
 			</a>
 		</div>
 		<div class="nav-col desktop-hidden">
-			<a href="notice.php">
+			<a href="notification.php">
 				<?php if ($templateParams["notificationsNumber"] > 0) : ?>
 					<span class="counter position-absolute top-10 start-75 translate-middle badge rounded-pill bg-danger">
 						<?php echo $templateParams["notificationsNumber"]; ?>
 						<span class="visually-hidden">Notifiche non lette</span>
 					</span>
 				<?php endif; ?>
-				<img src="../public/assets/img/notices.png" alt="notices" class="nav-icon">
+				<img src="../public/assets/img/notifications.png" alt="notifications" class="nav-icon">
 			</a>
 		</div>
 		<div class="nav-col">
