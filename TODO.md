@@ -11,7 +11,7 @@
 
 ## Refactor
 
-- [ ] controllare variabili con iniziali maiuscole
+- [x] controllare variabili con iniziali maiuscole
 - [ ] controllare variabili, id, name, etc
 
 ## Database
@@ -37,7 +37,7 @@
 - [x] sistemare functions.php (dividere in login e upload)
 - [x] $templateParams["loggedUsername"] diventa $templateParams["LoggedUsername"]
 - [x] sistemare file php (api, checkSession, etc)
-- [ ] rinominare file php
+- [x] rinominare file php
 - [x] usare le funzioni nel modo giusto (es. se tornano array e non bool)
 - [x] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
 - [ ] aggiungere postId al link della notifica
