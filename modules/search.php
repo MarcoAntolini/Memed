@@ -14,4 +14,4 @@ if (isset($_POST["following"])) {
 	$mysqli->follows()->insertFollow($_POST["following"]);
 }
 
-require "../template/logged-base.php";
+require "../template/baseLogged.php";

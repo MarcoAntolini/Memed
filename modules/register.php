@@ -23,4 +23,4 @@ if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confi
 	}
 }
 
-require "../template/unlogged-base.php";
+require "../template/baseUnlogged.php";

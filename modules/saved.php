@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 require_once "sessionCheck.php";
 
 $templateParams["title"] = "Memed - Post Salvati";
-$templateParams["page"] = "saved.php";
+$templateParams["page"] = "savedPosts";
 $templateParams["js"] = array(
 	"https://unpkg.com/axios/dist/axios.min.js",
 	"../public/assets/js/postSection.js",
@@ -12,4 +12,4 @@ $templateParams["js"] = array(
 );
 
 require "postSettings.php";
-require "../template/logged-base.php";
+require "../template/baseLogged.php";

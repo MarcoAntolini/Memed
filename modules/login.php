@@ -15,4 +15,4 @@ if (isset($_POST["email"], $_POST["password"])) {
 	}
 }
 
-require "../template/unlogged-base.php";
+require "../template/baseUnlogged.php";

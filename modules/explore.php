@@ -18,4 +18,4 @@ if (isset($_POST["category"])) {
 }
 
 require "postSettings.php";
-require "../template/logged-base.php";
+require "../template/baseLogged.php";

@@ -9,4 +9,4 @@ $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../p
 
 $templateParams["categories"] = $mysqli->categories()->getCategories();
 
-require "../template/logged-base.php";
+require "../template/baseLogged.php";

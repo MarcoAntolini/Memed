@@ -27,4 +27,4 @@ if (isset($_POST["deleteAll"])) {
 	$mysqli->notifications()->deleteAllNotificationsByUsername();
 }
 
-require "../template/logged-base.php";
+require "../template/baseLogged.php";

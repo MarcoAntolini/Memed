@@ -38,4 +38,4 @@ if (isset($_POST["following"])) {
 }
 
 require "postSettings.php";
-require "../template/logged-base.php";
+require "../template/baseLogged.php";

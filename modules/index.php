@@ -15,4 +15,4 @@ $templateParams["notificationsNumber"] = $mysqli->notifications()->countNotifica
 $templateParams["notifications"] = $mysqli->notifications()->getNotificationByUsername();
 
 require "postSettings.php";
-require "../template/logged-base.php";
+require "../template/baseLogged.php";

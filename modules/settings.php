@@ -17,4 +17,4 @@ if (isset($_POST["logout"])) {
 	header(LOGIN);
 }
 
-require "../template/logged-base.php";
+require "../template/baseLogged.php";
