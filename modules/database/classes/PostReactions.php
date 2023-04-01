@@ -9,17 +9,11 @@ class PostReactions
 		$this->db = $db;
 	}
 
-	public function insertReactionOfPost(int $reactionId, string $username, int $postId): void
+	public function insertReactionOfPost(int $reactionId, int $postId): void
 	{
-		// TODO spostare questo if nel file che chiama questa funzione
-		if ($this->checkReaction($reactionId, $username, $postId)) {
-			$this->deleteReactionOfUserFromPost($username, $postId);
-			return;
-		}
-		$this->deleteReactionOfUserFromPost($username, $postId);
 		$sql = "INSERT INTO post_reactions (ReactionID, Username, PostID) VALUES (?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
-		// username = session["LoggedUser"]
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("isi", $reactionId, $username, $postId);
 		$stmt->execute();
 	}
@@ -32,7 +26,6 @@ class PostReactions
 		$stmt->bind_param("is", $postId, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		// TODO serve il controllo?
 		if ($result == null) {
 			return 0;
 		} else {
@@ -50,10 +43,11 @@ class PostReactions
 		return $result->num_rows > 0;
 	}
 
-	public function deleteReactionOfUserFromPost(string $username, int $postId): void
+	public function deleteReactionOfUserFromPost(int $postId): void
 	{
 		$sql = "DELETE FROM post_reactions WHERE Username = ? AND PostID = ?";
 		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("si", $username, $postId);
 		$stmt->execute();
 	}

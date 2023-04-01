@@ -255,8 +255,7 @@ function handleReactions() {
 
 function addReaction(reaction, reactionId) {
 	const postId = reaction.parentElement.parentElement.parentElement.querySelector("#post-id").value
-	const username = reaction.parentElement.parentElement.parentElement.querySelector("#username").value
-	axios.post("reactionSection.php", { ReactionID: reactionId, PostID: postId, Username: username })
+	axios.post("reactionSection.php", { ReactionID: reactionId, PostID: postId })
 	axios.get("reactionSection.php", { params: { PostID: postId } }).then(Response => {
 		const count = Response.data
 		reaction.parentElement.parentElement.querySelector("#reaction1").innerHTML = count[1]

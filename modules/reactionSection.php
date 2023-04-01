@@ -4,7 +4,12 @@ require_once "bootstrap.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$mysqli->postReactions()->insertReactionOfPost($data["ReactionID"], $data["Username"], $data["PostID"]);
+	if ($mysqli->postReactions()->checkReaction($data["ReactionID"], $_SESSION["LoggedUser"], $data["PostID"])) {
+		$mysqli->postReactions()->deleteReactionOfUserFromPost($data["PostID"]);
+	} else {
+		$mysqli->postReactions()->deleteReactionOfUserFromPost($data["PostID"]);
+		$mysqli->postReactions()->insertReactionOfPost($data["ReactionID"], $data["PostID"]);
+	}
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
 	$port[1] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(1, $_GET["PostID"]);
 	$port[2] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(2, $_GET["PostID"]);

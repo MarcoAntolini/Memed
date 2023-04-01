@@ -106,6 +106,7 @@ class Posts
 		$this->postReactions->deleteAllReactionsFromPost($postId);
 		$this->comments->deleteAllCommentsFromPost($postId);
 		$this->savedPosts->deleteAllSavedPostsById($postId);
+		
 		// TODO delete post from notifications
 		$sql = "DELETE FROM posts WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);

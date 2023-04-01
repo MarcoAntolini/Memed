@@ -75,4 +75,13 @@ class Notifications
 		$result = $stmt->get_result();
 		return $result->fetch_row()[0] ?? 0;
 	}
+
+	public function deleteNotificationsRegardingPost(string $postId): void
+	{
+		$sql = "DELETE FROM notifications WHERE Message LIKE ?";
+		$stmt = $this->db->prepare($sql);
+		$postId = "%" . $postId . "%";
+		$stmt->bind_param("s", $postId);
+		$stmt->execute();
+	}
 }
