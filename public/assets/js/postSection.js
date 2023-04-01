@@ -166,13 +166,13 @@ function checkPage() {
 		url = "explore.php"
 	} else if (windowPath.includes("user.php")) {
 		url = "user.php"
-	} else if (windowPath.includes("savedPosts")) {
-		url = "savedPosts"
+	} else if (windowPath.includes("savedPosts.php")) {
+		url = "savedPosts.php"
 	}
 	return url
 }
 
-axios.get("postSection.php", { params: { url: checkPage() } }).then(Response => {
+axios.get("postApi.php", { params: { url: checkPage() } }).then(Response => {
 	const post = generatePost(Response.data)
 	const main = document.getElementById("post-section")
 	main.innerHTML = post
@@ -255,8 +255,8 @@ function handleReactions() {
 
 function addReaction(reaction, reactionId) {
 	const postId = reaction.parentElement.parentElement.parentElement.querySelector("#post-id").value
-	axios.post("reactionSection.php", { ReactionID: reactionId, PostID: postId })
-	axios.get("reactionSection.php", { params: { PostID: postId } }).then(Response => {
+	axios.post("reactionApi.php", { ReactionID: reactionId, PostID: postId })
+	axios.get("reactionApi.php", { params: { PostID: postId } }).then(Response => {
 		const count = Response.data
 		reaction.parentElement.parentElement.querySelector("#reaction1").innerHTML = count[1]
 		reaction.parentElement.parentElement.querySelector("#reaction2").innerHTML = count[2]

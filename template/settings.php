@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<div class="settings-button" id="saved-posts">
-		<a href="savedPosts">
+		<a href="savedPosts.php">
 			<img src="../public/assets/img/saved-posts.png" alt="Post salvati">
 			<span>Post salvati</span>
 		</a>

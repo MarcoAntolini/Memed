@@ -17,7 +17,7 @@ if (isset($_GET["url"])) {
 				$post = $mysqli->posts()->getPostsForExploreByUsername();
 			}
 			break;
-		case "savedPosts":
+		case "savedPosts.php":
 			$post = $mysqli->savedPosts()->getSavedPostsByUsername();
 			break;
 		default:

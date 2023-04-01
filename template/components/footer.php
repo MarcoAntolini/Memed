@@ -19,7 +19,7 @@
 			</a>
 		</div>
 		<div class="nav-col desktop-hidden">
-			<a href="notification.php">
+			<a href="notificationPage.php">
 				<?php if ($templateParams["notificationsNumber"] > 0) : ?>
 					<span class="counter position-absolute top-10 start-75 translate-middle badge rounded-pill bg-danger">
 						<?php echo $templateParams["notificationsNumber"]; ?>

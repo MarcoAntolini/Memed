@@ -44,11 +44,11 @@
 			require $templateParams["page"];
 		}
 		?>
-		<?php require_once "../modules/notificationPage.php"; ?>
+		<?php require_once "../modules/notification.php"; ?>
 		<?php if ($templateParams["page"] == "user.php" || $templateParams["page"] == "home.php") : ?>
-			<?php if (isset($templateParams["notificationPage"])) : ?>
+			<?php if (isset($templateParams["notificationSection"])) : ?>
 				<div class="mobile-hidden tablet-hidden">
-					<?php require $templateParams["notificationPage"]; ?>
+					<?php require $templateParams["notificationSection"]; ?>
 				</div>
 		<?php
 			endif;

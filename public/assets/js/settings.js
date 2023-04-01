@@ -38,7 +38,7 @@ function handleSubmit() {
 	}
 }
 
-axios.get("profileSettings.php").then(Response => {
+axios.get("profileSettingsApi.php").then(Response => {
 	const data = Response.data
 	const profilePic = document.getElementById("profile-pic-preview")
 	if (profilePic) profilePic.setAttribute("src", data["FileName"])
