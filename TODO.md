@@ -36,16 +36,18 @@
 - [x] $ddd in functions.php ?
 - [x] sistemare functions.php (dividere in login e upload)
 - [x] $templateParams["loggedUsername"] diventa $templateParams["LoggedUsername"]
-- [ ] sistemare file php (api, checkSession, etc)
+- [x] sistemare file php (api, checkSession, etc)
+- [ ] rinominare file php
 - [x] usare le funzioni nel modo giusto (es. se tornano array e non bool)
-- [ ] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
+- [x] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
+- [ ] aggiungere postId al link della notifica
 - [ ] sistemare funzioni di login/register/logout
 - [x] rimuovere i [0] dalle function call
 
 ## Javascript
 
 - [ ] sistemare file js
-- [ ] rimuovere import jquery
+- [x] rimuovere import jquery
 
 ## Css
 
