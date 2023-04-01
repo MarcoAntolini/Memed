@@ -20,10 +20,10 @@
 		}
 	}
 	switch ($templateParams["page"]) {
-		case "newPost-view.php":
+		case "newPost.php":
 			echo '<script src="../public/assets/js/postPreview.js"></script>';
 			break;
-		case "settings-view.php":
+		case "settings.php":
 			echo '<script src="../public/assets/js/settings.js"></script>';
 			break;
 		default:
@@ -37,7 +37,7 @@
 </head>
 
 <body>
-	<?php require "components/header-view.php"; ?>
+	<?php require "components/header.php"; ?>
 	<main>
 		<?php
 		if (isset($templateParams["page"])) {
@@ -45,7 +45,7 @@
 		}
 		?>
 		<?php require_once "../modules/notificationPage.php"; ?>
-		<?php if ($templateParams["page"] == "user-view.php" || $templateParams["page"] == "home-view.php") : ?>
+		<?php if ($templateParams["page"] == "user.php" || $templateParams["page"] == "home.php") : ?>
 			<?php if (isset($templateParams["notificationPage"])) : ?>
 				<div class="mobile-hidden tablet-hidden">
 					<?php require $templateParams["notificationPage"]; ?>
@@ -55,7 +55,7 @@
 		endif;
 		?>
 	</main>
-	<?php require "components/footer-view.php"; ?>
+	<?php require "components/footer.php"; ?>
 </body>
 
 </html>

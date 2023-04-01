@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 require_once "sessionCheck.php";
 
 $templateParams["title"] = "Memed - Profilo";
-$templateParams["page"] = "user-view.php";
+$templateParams["page"] = "user.php";
 $templateParams["js"] = array(
 	"https://unpkg.com/axios/dist/axios.min.js",
 	"../public/assets/js/postSection.js",
@@ -38,4 +38,4 @@ if (isset($_POST["following"])) {
 }
 
 require "postSettings.php";
-require "../template/logged-base-view.php";
+require "../template/logged-base.php";

@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 require_once "sessionCheck.php";
 
 $templateParams["title"] = "Memed - Esplora";
-$templateParams["page"] = "explore-view.php";
+$templateParams["page"] = "explore.php";
 $templateParams["js"] = array(
 	"https://unpkg.com/axios/dist/axios.min.js",
 	"../public/assets/js/postSection.js",
@@ -18,4 +18,4 @@ if (isset($_POST["category"])) {
 }
 
 require "postSettings.php";
-require "../template/logged-base-view.php";
+require "../template/logged-base.php";

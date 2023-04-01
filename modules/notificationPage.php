@@ -3,7 +3,7 @@
 require_once "bootstrap.php";
 require_once "sessionCheck.php";
 
-$templateParams["notificationPage"] = "notification-view.php";
+$templateParams["notificationPage"] = "notification.php";
 
 $templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername();
 if ($mysqli->notifications()->getNotificationByUsername() != null) {

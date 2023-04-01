@@ -3,7 +3,7 @@
 require_once "bootstrap.php";
 
 $templateParams["title"] = "Memed - Registrati";
-$templateParams["page"] = "../template/register-view.php";
+$templateParams["page"] = "../template/register.php";
 
 if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confirm-password"])) {
 	if ($mysqli->users()->getUserByUsername($_POST["username"])) {
@@ -23,4 +23,4 @@ if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confi
 	}
 }
 
-require "../template/unlogged-base-view.php";
+require "../template/unlogged-base.php";

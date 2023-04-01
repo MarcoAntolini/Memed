@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 require_once "sessionCheck.php";
 
 $templateParams["title"] = "Memed - Notifiche";
-$templateParams["page"] = "notification-view.php";
+$templateParams["page"] = "notification.php";
 $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/notificationSection.js");
 
 $templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername();
@@ -27,4 +27,4 @@ if (isset($_POST["deleteAll"])) {
 	$mysqli->notifications()->deleteAllNotificationsByUsername();
 }
 
-require "../template/logged-base-view.php";
+require "../template/logged-base.php";

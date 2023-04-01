@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 require_once "sessionCheck.php";
 
 $templateParams["title"] = "Memed - Impostazioni";
-$templateParams["page"] = "settings-view.php";
+$templateParams["page"] = "settings.php";
 $templateParams["js"] = array(
 	"https://unpkg.com/axios/dist/axios.min.js",
 	"../public/assets/js/settings.js",
@@ -17,4 +17,4 @@ if (isset($_POST["logout"])) {
 	header(LOGIN);
 }
 
-require "../template/logged-base-view.php";
+require "../template/logged-base.php";

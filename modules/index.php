@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 require_once "sessionCheck.php";
 
 $templateParams["title"] = "Memed";
-$templateParams["page"] = "home-view.php";
+$templateParams["page"] = "home.php";
 $templateParams["js"] = array(
 	"https://unpkg.com/axios/dist/axios.min.js",
 	"../public/assets/js/postSection.js",
@@ -15,4 +15,4 @@ $templateParams["notificationsNumber"] = $mysqli->notifications()->countNotifica
 $templateParams["notifications"] = $mysqli->notifications()->getNotificationByUsername();
 
 require "postSettings.php";
-require "../template/logged-base-view.php";
+require "../template/logged-base.php";

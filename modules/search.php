@@ -3,7 +3,7 @@
 require_once "bootstrap.php";
 
 $templateParams["title"] = "Memed - Cerca";
-$templateParams["page"] = "search-view.php";
+$templateParams["page"] = "search.php";
 $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/notificationSection.js");
 
 $usersList = $mysqli->users()->getUserLikeUsername($_GET['search']);
@@ -14,4 +14,4 @@ if (isset($_POST["following"])) {
 	$mysqli->follows()->insertFollow($_POST["following"]);
 }
 
-require "../template/logged-base-view.php";
+require "../template/logged-base.php";

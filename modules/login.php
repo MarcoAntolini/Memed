@@ -3,7 +3,7 @@
 require_once "bootstrap.php";
 
 $templateParams["title"] = "Memed - Login";
-$templateParams["page"] = "../template/login-view.php";
+$templateParams["page"] = "../template/login.php";
 
 if (isset($_POST["email"], $_POST["password"])) {
 	$email = $_POST["email"];
@@ -15,4 +15,4 @@ if (isset($_POST["email"], $_POST["password"])) {
 	}
 }
 
-require "../template/unlogged-base-view.php";
+require "../template/unlogged-base.php";
