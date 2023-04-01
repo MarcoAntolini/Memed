@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$port[3] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(3, $_GET["PostID"]);
 	$port[4] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(4, $_GET["PostID"]);
 	$port[5] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(5, $_GET["PostID"]);
-	$port["reazione-attiva"] = $mysqli->postReactions()->getPostReactionByPostIdAndUsername($_GET["PostID"]);
+	$port["activeReaction"] = $mysqli->postReactions()->getPostReactionByPostIdAndUsername($_GET["PostID"]);
 	header("Content-Type: application/json; charset=UTF-8");
 	echo json_encode($port);
 }

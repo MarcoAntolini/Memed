@@ -15,7 +15,7 @@ function generatePost(post) {
                                 <div class="modal-body">
                                     <form class="action-post" action="#" method="post">
                                         <input type="hidden" name="post-id" value="${element["PostID"]}">`
-		if (element["Username"] == element["session-username"]) {
+		if (element["Username"] == element["loggedUser"]) {
 			content += `
                                         <button class="edit-post btn btn-primary mb-2 collapsed" type="button" id="edit-button"
                                                 data-bs-toggle="collapse" data-bs-target="#edit-post"
@@ -70,27 +70,27 @@ function generatePost(post) {
                     </div>
                     <form class="reaction-post" action="#" method="post">
                         <input type="hidden" id="post-id" name="post-id" value="${element["PostID"]}">
-                        <input type="hidden" id="username" name="username" value="${element["session-username"]}">
+                        <input type="hidden" id="username" name="username" value="${element["loggedUser"]}">
                         <div class="reactions">
                             <div class="reaction-5">
-                                <img src="../public/assets/img/reazione-5.png" alt="reazione-5" id="reaction-5-${element["PostID"]}" class="reaction-image">
-                                <span id="reazione5" class="reaction-count fw-bold">${element["reazione5"]}</span>
+                                <img src="../public/assets/img/reaction-5.png" alt="reaction-5" id="reaction-5-${element["PostID"]}" class="reaction-image">
+                                <span id="reaction5" class="reaction-count fw-bold">${element["reaction5"]}</span>
                             </div>
                             <div class="reaction-4">
-                                <img src="../public/assets/img/reazione-4.png" alt="reazione-4" id="reaction-4-${element["PostID"]}" class="reaction-image">
-                                <span id="reazione4" class="reaction-count fw-bold">${element["reazione4"]}</span>
+                                <img src="../public/assets/img/reaction-4.png" alt="reaction-4" id="reaction-4-${element["PostID"]}" class="reaction-image">
+                                <span id="reaction4" class="reaction-count fw-bold">${element["reaction4"]}</span>
                             </div>
                             <div class="reaction-3">
-                                <img src="../public/assets/img/reazione-3.png" alt="reazione-3" id="reaction-3-${element["PostID"]}" class="reaction-image">
-                                <span id="reazione3" class="reaction-count fw-bold">${element["reazione3"]}</span>
+                                <img src="../public/assets/img/reaction-3.png" alt="reaction-3" id="reaction-3-${element["PostID"]}" class="reaction-image">
+                                <span id="reaction3" class="reaction-count fw-bold">${element["reaction3"]}</span>
                             </div>
                             <div class="reaction-2">
-                                <img src="../public/assets/img/reazione-2.png" alt="reazione-2" id="reaction-2-${element["PostID"]}" class="reaction-image">
-                                <span id="reazione2" class="reaction-count fw-bold">${element["reazione2"]}</span>
+                                <img src="../public/assets/img/reaction-2.png" alt="reaction-2" id="reaction-2-${element["PostID"]}" class="reaction-image">
+                                <span id="reaction2" class="reaction-count fw-bold">${element["reaction2"]}</span>
                             </div>
                             <div class="reaction-1">
-                                <img src="../public/assets/img/reazione-1.png" alt="reazione-1" id="reaction-1-${element["PostID"]}" class="reaction-image">
-                                <span id="reazione1" class="reaction-count fw-bold">${element["reazione1"]}</span>
+                                <img src="../public/assets/img/reaction-1.png" alt="reaction-1" id="reaction-1-${element["PostID"]}" class="reaction-image">
+                                <span id="reaction1" class="reaction-count fw-bold">${element["reaction1"]}</span>
                             </div>
                         </div>
                     </form>
@@ -110,15 +110,19 @@ function generatePost(post) {
             `
 		}
 		content += `
-                </div >
+                </div>
                 <div class="right-col p-2">
                     <div class="comments-section">
         `
-		if (element["commenti"]) {
-			element["commenti"].forEach(commento => {
+		if (element["comments"]) {
+			element["comments"].forEach(commento => {
 				content += `
                         <div class="comment">
-                            <p class="comment-text"><a class="username-comment-owner fw-bold" href="user.php?username=${commento["Username"]}">@${commento["Username"]}</a>: ${commento["TextContent"]}</p>
+                            <p class="comment-text">
+                                <a class="username-comment-owner fw-bold" href="user.php?username=${commento["Username"]}">
+                                    @${commento["Username"]}
+                                </a>: ${commento["TextContent"]}
+                            </p>
                         </div>
             `
 			})
@@ -143,11 +147,11 @@ function generatePost(post) {
                     </div>
                 </div>
             </div>
-                    </div >
-                </div >
-            </div >
-        </div >
-            `
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
 		result += content
 	}
 	return result
@@ -181,7 +185,7 @@ function checkReaction(data) {
 	for (const element of data) {
 		const postId = element["PostID"]
 		let reaction
-		switch (element["reazione-attiva"]) {
+		switch (element["activeReaction"]) {
 			case 1:
 				reaction = document.getElementById("reaction-1-" + postId)
 				break
@@ -255,10 +259,10 @@ function addReaction(reaction, reactionId) {
 	axios.post("reactionSection.php", { ReactionID: reactionId, PostID: postId, Username: username })
 	axios.get("reactionSection.php", { params: { PostID: postId } }).then(Response => {
 		const count = Response.data
-		reaction.parentElement.parentElement.querySelector("#reazione1").innerHTML = count[1]
-		reaction.parentElement.parentElement.querySelector("#reazione2").innerHTML = count[2]
-		reaction.parentElement.parentElement.querySelector("#reazione3").innerHTML = count[3]
-		reaction.parentElement.parentElement.querySelector("#reazione4").innerHTML = count[4]
-		reaction.parentElement.parentElement.querySelector("#reazione5").innerHTML = count[5]
+		reaction.parentElement.parentElement.querySelector("#reaction1").innerHTML = count[1]
+		reaction.parentElement.parentElement.querySelector("#reaction2").innerHTML = count[2]
+		reaction.parentElement.parentElement.querySelector("#reaction3").innerHTML = count[3]
+		reaction.parentElement.parentElement.querySelector("#reaction4").innerHTML = count[4]
+		reaction.parentElement.parentElement.querySelector("#reaction5").innerHTML = count[5]
 	})
 }

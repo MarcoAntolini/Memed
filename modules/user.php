@@ -12,18 +12,17 @@ $templateParams["js"] = array(
 );
 
 if (isset($_GET["username"])) {
-	$utente = $_GET["username"];
-	$_SESSION["utente"] = $utente;
-	$templateParams["utente"] = $utente;
-	$templateParams["profilo"] = $mysqli->users()->getUserByUsername($utente);
-	$templateParams["nFol"] = $mysqli->follows()->countFollowersByFollowedUsername($utente);
-	$templateParams["nSeguiti"] = $mysqli->follows()->countFollowedByFollowerUsername($utente);
-	$templateParams["follower"] = $mysqli->follows()->getAllFollowersByFollowedUsername($utente);
-	$templateParams["seguiti"] = $mysqli->follows()->getAllFollowedByFollowerUsername($utente);
-	$templateParams["nPost"] = $mysqli->posts()->countPostsByUsername($utente);
+	$username = $_GET["username"];
+	$_SESSION["userProfile"] = $username;
+	$templateParams["username"] = $username;
+	$templateParams["profile"] = $mysqli->users()->getUserByUsername($username);
+	$templateParams["followersNumber"] = $mysqli->follows()->countFollowersByFollowedUsername($username);
+	$templateParams["followedNumber"] = $mysqli->follows()->countFollowedByFollowerUsername($username);
+	$templateParams["followerList"] = $mysqli->follows()->getAllFollowersByFollowedUsername($username);
+	$templateParams["followedList"] = $mysqli->follows()->getAllFollowedByFollowerUsername($username);
 }
-if ($templateParams["utente"] != $templateParams["loggedUsername"]) {
-	if ($templateParams["follower"] && $mysqli->follows()->checkFollow($templateParams["utente"])) {
+if ($templateParams["username"] != $templateParams["loggedUsername"]) {
+	if ($templateParams["followerList"] && $mysqli->follows()->checkFollow($templateParams["username"])) {
 		$templateParams["isFollowing"] = true;
 	} else {
 		$templateParams["isFollowing"] = false;
@@ -31,11 +30,11 @@ if ($templateParams["utente"] != $templateParams["loggedUsername"]) {
 }
 if (isset($_POST["unfollowing"])) {
 	$mysqli->follows()->deleteFollow($_POST["unfollowing"]);
-	header("location: user.php?username=" . $templateParams["utente"]);
+	header("location: user.php?username=" . $templateParams["username"]);
 }
 if (isset($_POST["following"])) {
 	$mysqli->follows()->insertFollow($_POST["following"]);
-	header("location: user.php?username=" . $templateParams["utente"]);
+	header("location: user.php?username=" . $templateParams["username"]);
 }
 
 require "postSettings.php";

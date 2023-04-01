@@ -1,8 +1,8 @@
 <form action="#" method="post">
 	<div class="error mb-3">
-		<?php if (isset($templateParams["erroreregistrazione"])) : ?>
+		<?php if (isset($templateParams["registrationErrorMessage"])) : ?>
 			<p id="error-message">
-				<?php echo $templateParams["erroreregistrazione"] ?>
+				<?php echo $templateParams["registrationErrorMessage"] ?>
 			</p>
 		<?php endif ?>
 	</div>

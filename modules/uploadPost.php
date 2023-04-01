@@ -9,7 +9,7 @@ if ((isset($_POST["description-input"]) && !empty($_POST["description-input"])) 
 	$categories = $mysqli->categories()->getCategories();
 	$selectedCategories = array();
 	foreach ($categories as $category) {
-		if (isset($_POST["categoria_" . $category["CategoryID"]])) {
+		if (isset($_POST["category_" . $category["CategoryID"]])) {
 			array_push($selectedCategories, $category["CategoryID"]);
 		}
 	}

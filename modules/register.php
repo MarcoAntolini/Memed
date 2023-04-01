@@ -7,11 +7,11 @@ $templateParams["page"] = "../template/register-view.php";
 
 if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confirm-password"])) {
 	if ($mysqli->users()->getUserByUsername($_POST["username"])) {
-		$templateParams["erroreregistrazione"] = "Username già esistente";
+		$templateParams["registrationErrorMessage"] = "Username già esistente";
 	} elseif ($mysqli->users()->getUserByEmail($_POST["email"])) {
-		$templateParams["erroreregistrazione"] = "Email già esistente";
+		$templateParams["registrationErrorMessage"] = "Email già esistente";
 	} elseif ($_POST["password"] != $_POST["confirm-password"]) {
-		$templateParams["erroreregistrazione"] = "Le password non coincidono";
+		$templateParams["registrationErrorMessage"] = "Le password non coincidono";
 	} else {
 		$username = $_POST["username"];
 		$email = $_POST["email"];

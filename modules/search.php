@@ -6,8 +6,7 @@ $templateParams["title"] = "Memed - Cerca";
 $templateParams["page"] = "search-view.php";
 $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/notificationSection.js");
 
-$templateParams["risultati"] = $mysqli->users()->getUserLikeUsername($_GET['search']);
-$usersList = $templateParams["risultati"];
+$usersList = $mysqli->users()->getUserLikeUsername($_GET['search']);
 if (isset($_POST["unfollowing"])) {
 	$mysqli->follows()->deleteFollow($_POST["unfollowing"]);
 }

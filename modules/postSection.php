@@ -8,7 +8,7 @@ if (isset($_GET["url"])) {
 			$post = $mysqli->posts()->getPostsForHomeByUsername();
 			break;
 		case "user.php":
-			$post = $mysqli->posts()->getPostsByUsername($_SESSION["utente"]);
+			$post = $mysqli->posts()->getPostsByUsername($_SESSION["userProfile"]);
 			break;
 		case "explore.php":
 			if (isset($_SESSION["selectedCategory"]) && $_SESSION["selectedCategory"] != 0) {
@@ -28,15 +28,15 @@ if (isset($_GET["url"])) {
 	if ($post != null) {
 		for ($i = 0; $i < count($post); $i++) {
 			$post[$i]["FileName"] = UPLOAD_DIR . $post[$i]["FileName"];
-			$post[$i]["commenti"]  = $mysqli->comments()->getCommentsByPostId($post[$i]["PostID"]);
-			$post[$i]["reazione1"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(1, $post[$i]["PostID"]);
-			$post[$i]["reazione2"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(2, $post[$i]["PostID"]);
-			$post[$i]["reazione3"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(3, $post[$i]["PostID"]);
-			$post[$i]["reazione4"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(4, $post[$i]["PostID"]);
-			$post[$i]["reazione5"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(5, $post[$i]["PostID"]);
-			$post[$i]["session-username"] = $_SESSION["LoggedUser"];
+			$post[$i]["comments"]  = $mysqli->comments()->getCommentsByPostId($post[$i]["PostID"]);
+			$post[$i]["reaction1"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(1, $post[$i]["PostID"]);
+			$post[$i]["reaction2"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(2, $post[$i]["PostID"]);
+			$post[$i]["reaction3"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(3, $post[$i]["PostID"]);
+			$post[$i]["reaction4"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(4, $post[$i]["PostID"]);
+			$post[$i]["reaction5"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(5, $post[$i]["PostID"]);
+			$post[$i]["loggedUser"] = $_SESSION["LoggedUser"];
 			$post[$i]["checkSavedPost"] = $mysqli->savedPosts()->checkSavedPost($post[$i]["PostID"]);
-			$post[$i]["reazione-attiva"] = $mysqli->postReactions()->getPostReactionByPostIdAndUsername($post[$i]["PostID"]);
+			$post[$i]["activeReaction"] = $mysqli->postReactions()->getPostReactionByPostIdAndUsername($post[$i]["PostID"]);
 		}
 	}
 

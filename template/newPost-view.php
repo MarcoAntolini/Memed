@@ -10,7 +10,7 @@
 		<datalist class="form-outline mb-3 categories-container">
 			<?php foreach ($templateParams["categories"] as $category) : ?>
 				<div class="category">
-					<input type="checkbox" id="<?php echo $category["CategoryID"]; ?>" name="categoria_<?php echo $category["CategoryID"]; ?>" />
+					<input type="checkbox" id="<?php echo $category["CategoryID"]; ?>" name="category_<?php echo $category["CategoryID"]; ?>" />
 					<label for="<?php echo $category["CategoryID"]; ?>"><?php echo $category["Name"]; ?></label>
 				</div>
 			<?php endforeach; ?>
