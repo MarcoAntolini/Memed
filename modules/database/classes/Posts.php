@@ -7,6 +7,7 @@ class Posts
 	private PostReactions $postReactions;
 	private Comments $comments;
 	private SavedPosts $savedPosts;
+	private Notifications $notifications;
 
 	public function __construct(mysqli $db)
 	{
@@ -17,12 +18,14 @@ class Posts
 		PostCategories $postCategories,
 		PostReactions $postReactions,
 		Comments $comments,
-		SavedPosts $savedPosts
+		SavedPosts $savedPosts,
+		Notifications $notifications
 	): void {
 		$this->postCategories = $postCategories;
 		$this->postReactions = $postReactions;
 		$this->comments = $comments;
 		$this->savedPosts = $savedPosts;
+		$this->notifications = $notifications;
 	}
 
 	public function insertPost(string $fileName, string $textContent): void
@@ -106,8 +109,7 @@ class Posts
 		$this->postReactions->deleteAllReactionsFromPost($postId);
 		$this->comments->deleteAllCommentsFromPost($postId);
 		$this->savedPosts->deleteAllSavedPostsById($postId);
-		
-		// TODO delete post from notifications
+		$this->notifications->deleteNotificationsRegardingPost($postId);
 		$sql = "DELETE FROM posts WHERE PostID = ?";
 		$stmt = $this->db->prepare($sql);
 		$stmt->bind_param("i", $postId);

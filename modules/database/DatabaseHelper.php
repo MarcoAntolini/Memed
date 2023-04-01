@@ -42,7 +42,13 @@ class DatabaseHelper
 		$this->posts = new Posts($this->db);
 		$this->comments = new Comments($this->db);
 		$this->follows->linkColumns($this->notifications);
-		$this->posts->linkColumns($this->postCategories, $this->postReactions, $this->comments, $this->savedPosts);
+		$this->posts->linkColumns(
+			$this->postCategories,
+			$this->postReactions,
+			$this->comments,
+			$this->savedPosts,
+			$this->notifications
+		);
 		$this->comments->linkColumns($this->notifications, $this->posts);
 	}
 
