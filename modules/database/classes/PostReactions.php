@@ -26,11 +26,7 @@ class PostReactions
 		$stmt->bind_param("is", $postId, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		if ($result == null) {
-			return 0;
-		} else {
-			return $result->fetch_row()[0] ?? 0;
-		}
+		return $result != null ? ($result->fetch_row()[0] ?? 0) : 0;
 	}
 
 	public function checkReaction(int $reactionId, string $username, int $postId): bool
