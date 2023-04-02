@@ -40,13 +40,13 @@
 - [x] rinominare file php
 - [x] usare le funzioni nel modo giusto (es. se tornano array e non bool)
 - [x] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
-- [ ] aggiungere postId al link della notifica
+- [x] aggiungere postId al link della notifica
 - [ ] sistemare funzioni di login/register/logout
 - [x] rimuovere i [0] dalle function call
 
 ## Javascript
 
-- [ ] sistemare file js
+- [x] sistemare file js
 - [x] rimuovere import jquery
 
 ## Css
