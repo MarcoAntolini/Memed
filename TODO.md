@@ -64,7 +64,7 @@
 - [ ] cancellazione commenti
 - [ ] reazione media nel profilo
 - [ ] categorie nell'anteprima e nel post
-- [ ] la notifica del commento ti porta al tuo post
+- [x] la notifica del commento ti porta al tuo post
 - [ ] le notifche si aggiornano in tempo reale senza refresh
 - [ ] bootstrap toast per le notifiche?
 - [ ] in esplora si vede il filtro attivo
