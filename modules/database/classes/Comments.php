@@ -29,7 +29,7 @@ class Comments
 		if ($postOwner != $_SESSION["LoggedUser"]) {
 			$this->notifications->insertNotification(
 				$postOwner,
-				"<a href=\"user.php?Username=$username\" class=\"fw-bold\">$username</a> ha commentato un tuo post."
+				"<a href=\"user.php?Username=$username#$postId\" class=\"fw-bold\">$username</a> ha commentato un tuo post."
 			);
 		}
 	}
