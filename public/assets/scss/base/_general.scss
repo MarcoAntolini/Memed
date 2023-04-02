@@ -1,10 +1,15 @@
 @use "../abstract" as *;
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: $light-shade-yellow !important;
     height: 100vh;
     text-align: center;
     align-items: center;
+
     &,
     main {
         display: flex;
@@ -14,10 +19,9 @@ body {
 
     main {
         margin-top: 15px;
-        padding-top: 90px;
+        padding: 90px 1rem 0;
         flex-direction: column;
         height: 84%;
-        padding: 0 1rem;
         @include mediaQuery("desktop-lower", "desktop-upper") {
             flex-direction: row;
         }
