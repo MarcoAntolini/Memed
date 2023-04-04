@@ -393,7 +393,8 @@ a *:not(.redirect) {
   text-decoration: none;
 }
 
-html {
+html,
+* {
   scroll-behavior: smooth;
 }
 

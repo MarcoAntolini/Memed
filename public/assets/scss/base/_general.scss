@@ -1,6 +1,7 @@
 @use "../abstract" as *;
 
-html {
+html,
+* {
     scroll-behavior: smooth;
 }
 
