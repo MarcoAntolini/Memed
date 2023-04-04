@@ -54,7 +54,7 @@ class Users
 	{
 		$sql = "UPDATE users SET FileName = ?, Bio = ? WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("sss", $fileName, $bio, $username);
 		$stmt->execute();
 	}

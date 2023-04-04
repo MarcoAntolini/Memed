@@ -13,7 +13,7 @@ class SavedPosts
 	{
 		$sql = "INSERT INTO saved_posts (PostID, Username) VALUES (?, ?)";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("is", $postId, $username);
 		$stmt->execute();
 	}
@@ -23,7 +23,7 @@ class SavedPosts
 		$sql = "SELECT * FROM posts WHERE PostID IN (SELECT PostID FROM saved_posts WHERE Username = ?)
 				ORDER BY DateAndTime DESC";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -34,7 +34,7 @@ class SavedPosts
 	{
 		$sql = "SELECT * FROM saved_posts WHERE Username = ? AND PostID = ?";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("si", $username, $postId);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -45,7 +45,7 @@ class SavedPosts
 	{
 		$sql = "DELETE FROM saved_posts WHERE Username = ? AND PostID = ?";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("si", $username, $postId);
 		$stmt->execute();
 	}

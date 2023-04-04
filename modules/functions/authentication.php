@@ -2,7 +2,7 @@
 
 function registerLoggedUser(string $user): void
 {
-	$_SESSION["LoggedUser"] = $user["Username"];
+	$_SESSION["loggedUser"] = $user["Username"];
 }
 
 function login(string $email, string $password, DatabaseHelper $mysqli): bool
@@ -18,18 +18,18 @@ function login(string $email, string $password, DatabaseHelper $mysqli): bool
 		return false;
 	}
 	$browser = $_SERVER["HTTP_USER_AGENT"];
-	$_SESSION["LoggedUser"] = $username;
+	$_SESSION["loggedUser"] = $username;
 	$_SESSION["login_string"] = hash("sha512", $password . $browser);
 	return true;
 }
 
 function checkLogin(DatabaseHelper $mysqli): bool
 {
-	if (!isset($_SESSION["LoggedUser"], $_SESSION["login_string"])) {
+	if (!isset($_SESSION["loggedUser"], $_SESSION["login_string"])) {
 		return false;
 	}
 	$loginString = $_SESSION["login_string"];
-	$username = $_SESSION["LoggedUser"];
+	$username = $_SESSION["loggedUser"];
 	$browser = $_SERVER["HTTP_USER_AGENT"];
 	if (!$user = $mysqli->users()->getUserByUsername($username)) {
 		return false;

@@ -14,7 +14,7 @@
 			<button class="followed-count btn btn-info" type="button" data-bs-toggle="modal" data-bs-target=".followed-list">
 				Seguiti: <?php echo $templateParams["followedNumber"]; ?>
 			</button>
-			<?php if ($templateParams["username"] != $_SESSION["LoggedUser"]) : ?>
+			<?php if ($templateParams["username"] != $_SESSION["loggedUser"]) : ?>
 				<div class="follow-section">
 					<?php if ($templateParams["isFollowing"]) : ?>
 						<form action="#" method="post">

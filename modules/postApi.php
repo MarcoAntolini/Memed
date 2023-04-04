@@ -34,7 +34,7 @@ if (isset($_GET["url"])) {
 			$post[$i]["reaction3"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(3, $post[$i]["PostID"]);
 			$post[$i]["reaction4"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(4, $post[$i]["PostID"]);
 			$post[$i]["reaction5"] = $mysqli->postReactions()->countPostReactionsByReactionIdAndPostId(5, $post[$i]["PostID"]);
-			$post[$i]["loggedUser"] = $_SESSION["LoggedUser"];
+			$post[$i]["loggedUser"] = $_SESSION["loggedUser"];
 			$post[$i]["checkSavedPost"] = $mysqli->savedPosts()->checkSavedPost($post[$i]["PostID"]);
 			$post[$i]["activeReaction"] = $mysqli->postReactions()->getPostReactionByPostIdAndUsername($post[$i]["PostID"]);
 		}

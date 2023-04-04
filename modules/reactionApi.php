@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if ($mysqli->postReactions()->checkReaction($data["ReactionID"], $_SESSION["LoggedUser"], $data["PostID"])) {
+	if ($mysqli->postReactions()->checkReaction($data["ReactionID"], $_SESSION["loggedUser"], $data["PostID"])) {
 		$mysqli->postReactions()->deleteReactionOfUserFromPost($data["PostID"]);
 	} else {
 		$mysqli->postReactions()->deleteReactionOfUserFromPost($data["PostID"]);

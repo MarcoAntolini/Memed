@@ -11,7 +11,7 @@ $templateParams["js"] = array(
 	"../public/assets/js/notificationSection.js"
 );
 
-$templateParams["profile"] = $mysqli->users()->getUserByUsername($_SESSION["LoggedUser"]);
+$templateParams["profile"] = $mysqli->users()->getUserByUsername($_SESSION["loggedUser"]);
 
 if (isset($_POST["logout"])) {
 	logout();

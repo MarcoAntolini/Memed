@@ -22,11 +22,11 @@ class Comments
 		$sql = "INSERT INTO comments (PostID, Username, TextContent, DateAndTime) VALUES (?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
 		$dateAndTime = date("Y-m-d H:i:s");
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("isss", $postId, $username, $textContent, $dateAndTime);
 		$stmt->execute();
 		$postOwner = $this->posts->getPostById($postId)[1];
-		if ($postOwner != $_SESSION["LoggedUser"]) {
+		if ($postOwner != $_SESSION["loggedUser"]) {
 			$this->notifications->insertNotification(
 				$postOwner,
 				"<a href=\"user.php?Username=$username#$postId\" class=\"fw-bold\">$username</a> ha commentato un tuo post."

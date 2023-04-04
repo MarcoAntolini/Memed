@@ -39,7 +39,7 @@ class Notifications
 	{
 		$sql = "DELETE FROM notifications WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 	}
@@ -48,7 +48,7 @@ class Notifications
 	{
 		$sql = "UPDATE notifications SET `Read` = '1' WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 	}
@@ -57,7 +57,7 @@ class Notifications
 	{
 		$sql = "SELECT * FROM notifications WHERE Username = ? ORDER BY DateAndTime DESC";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -68,7 +68,7 @@ class Notifications
 	{
 		$sql = "SELECT COUNT(*) FROM notifications WHERE Username = ? and `Read` = ?";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$read = 0;
 		$stmt->bind_param("si", $username, $read);
 		$stmt->execute();

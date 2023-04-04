@@ -13,7 +13,7 @@ class PostReactions
 	{
 		$sql = "INSERT INTO post_reactions (ReactionID, Username, PostID) VALUES (?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("isi", $reactionId, $username, $postId);
 		$stmt->execute();
 	}
@@ -22,7 +22,7 @@ class PostReactions
 	{
 		$sql = "SELECT ReactionID FROM post_reactions WHERE PostID = ? AND Username = ?";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("is", $postId, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -43,7 +43,7 @@ class PostReactions
 	{
 		$sql = "DELETE FROM post_reactions WHERE Username = ? AND PostID = ?";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("si", $username, $postId);
 		$stmt->execute();
 	}

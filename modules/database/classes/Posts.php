@@ -33,7 +33,7 @@ class Posts
 		$sql = "INSERT INTO posts (FileName, TextContent, DateAndTime, Username) VALUES (?, ?, ?, ?)";
 		$stmt = $this->db->prepare($sql);
 		$dateAndTime = date("Y-m-d H:i:s");
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("ssss", $fileName, $textContent, $dateAndTime, $username);
 		$stmt->execute();
 	}
@@ -63,7 +63,7 @@ class Posts
 		$sql = "SELECT * FROM posts WHERE Username IN (SELECT FollowedUsername FROM follows WHERE Username = ?)
 				ORDER BY DateAndTime DESC";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -76,7 +76,7 @@ class Posts
 				IN (SELECT PostID FROM post_categories WHERE CategoryID = ?) AND posts.Username != ? GROUP BY posts.PostID
 				ORDER BY AVG(post_reactions.ReactionID) DESC";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("is", $categoryId, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -88,7 +88,7 @@ class Posts
 		$sql = "SELECT posts.* FROM posts, post_reactions WHERE posts.PostID=post_reactions.PostID AND posts.Username != ?
 				GROUP BY posts.PostID ORDER BY AVG(post_reactions.ReactionID) DESC";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["LoggedUser"];
+		$username = $_SESSION["loggedUser"];
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();

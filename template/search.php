@@ -3,7 +3,7 @@
 		<h2 class="text-center">Nessun risultato</h2>
 	<?php else : ?>
 		<?php foreach ($usersList as $user) : ?>
-			<?php if ($user["Username"] !== $_SESSION["LoggedUser"]) : ?>
+			<?php if ($user["Username"] !== $_SESSION["loggedUser"]) : ?>
 				<div class="card p-2 mb-3">
 					<div class="">
 						<img src="<?php echo UPLOAD_DIR . $user["FileName"] ?>" alt="profile-picture" />

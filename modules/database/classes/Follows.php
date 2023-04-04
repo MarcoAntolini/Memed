@@ -19,7 +19,7 @@ class Follows
 	{
 		$sql = "INSERT INTO follows (FollowedUsername, FollowerUsername) VALUES (?, ?)";
 		$stmt = $this->db->prepare($sql);
-		$followerUsername = $_SESSION["LoggedUser"];
+		$followerUsername = $_SESSION["loggedUser"];
 		$stmt->bind_param("ss", $followedUsername, $followerUsername);
 		$stmt->execute();
 		$this->notifications->insertNotification(
@@ -32,7 +32,7 @@ class Follows
 	{
 		$sql = "SELECT * FROM follows WHERE FollowedUsername = ? AND FollowerUsername = ?";
 		$stmt = $this->db->prepare($sql);
-		$followerUsername = $_SESSION["LoggedUser"];
+		$followerUsername = $_SESSION["loggedUser"];
 		$stmt->bind_param("ss", $followedUsername, $followerUsername);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -43,7 +43,7 @@ class Follows
 	{
 		$sql = "DELETE FROM follows WHERE FollowedUsername = ? AND FollowerUsername = ?";
 		$stmt = $this->db->prepare($sql);
-		$followerUsername = $_SESSION["LoggedUser"];
+		$followerUsername = $_SESSION["loggedUser"];
 		$stmt->bind_param("ss", $followedUsername, $followerUsername);
 		$stmt->execute();
 	}

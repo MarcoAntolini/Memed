@@ -30,7 +30,7 @@
 			</a>
 		</div>
 		<div class="nav-col">
-			<a href="user.php?username=<?php echo $_SESSION["LoggedUser"] ?>">
+			<a href="user.php?username=<?php echo $_SESSION["loggedUser"] ?>">
 				<img src="../public/assets/img/profile.png" alt="profile" class="nav-icon">
 				<span class="nav-text mobile-hidden tablet-hidden">Profilo</span>
 			</a>
