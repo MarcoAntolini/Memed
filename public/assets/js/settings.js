@@ -1,17 +1,11 @@
 window.addEventListener("load", () => {
 	const profilePicInput = document.getElementById("profile-pic-input")
-	profilePicInput.addEventListener("change", () => previewProfilePic(this.files[0]))
+	profilePicInput.addEventListener("change", () => {
+		previewProfilePic(profilePicInput.files[0])
+	})
 
 	const submitButton = document.getElementById("submit-button")
 	submitButton.addEventListener("click", () => handleSubmit())
-
-	axios.get("profileSettingsApi.php").then(Response => {
-		const data = Response.data
-		const profilePic = document.getElementById("profile-pic-preview")
-		if (profilePic) profilePic.setAttribute("src", data["FileName"])
-		const bio = document.getElementById("bio")
-		if (bio) bio.innerText = data["Bio"]
-	})
 })
 
 function previewProfilePic(file) {
@@ -33,15 +27,26 @@ function handleSubmit() {
 	closeButton.click()
 	if (picInput === undefined) {
 		const profilePic = document.getElementById("profile-pic-preview").getAttribute("src")
-		axios.post("profileSettings.php", { Bio: bio, profilePic: profilePic })
+		axios.post("profileSettingsApi.php", { bio: bio, profilePic: profilePic }).then(() => {
+			window.location.href = getUserProfilePage()
+		})
 	} else {
 		const profilePic = picInput["name"]
 		const reader = new FileReader()
 		reader.readAsDataURL(picInput)
 		reader.onloadend = () => {
 			const encodedImage = reader.result
-			axios.put("profileSettings.php", { encodedImage: encodedImage, profilePic: profilePic })
+			axios.put("profileSettingsApi.php", { encodedImage: encodedImage, profilePic: profilePic })
 		}
-		axios.post("profileSettings.php", { Bio: bio, profilePic: profilePic })
+		axios.post("profileSettingsApi.php", { bio: bio, profilePic: profilePic }).then(() => {
+			window.location.href = getUserProfilePage()
+		})
 	}
+}
+
+function getUserProfilePage() {
+	const navBarElements = document.querySelectorAll("div.nav-col")
+	const userElement = navBarElements[navBarElements.length - 1].querySelector("a")
+	const userLink = userElement.getAttribute("href")
+	return userLink
 }

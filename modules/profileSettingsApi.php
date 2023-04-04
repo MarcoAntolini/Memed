@@ -4,8 +4,7 @@ require_once "bootstrap.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$mysqli->users()->updateUser($data["profilePic"], $data["Bio"]);
-	header("location: user.php?username=" . $_SESSION["LoggedUser"]);
+	$mysqli->users()->updateUser($data["profilePic"], $data["bio"]);
 } elseif ($_SERVER["REQUEST_METHOD"] == "PUT") {
 	$encodedImage = $data["encodedImage"];
 	$format = explode(";", explode("/", $encodedImage)[1])[0];
@@ -19,10 +18,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$pathFile = "./upload/" . $data["profilePic"];
 	$sourceImg = imagecreatefromstring($encodedImage);
 	imagedestroy($sourceImg);
-} elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
-	$profilo = $mysqli->users()->getUserByUsername($_SESSION["LoggedUser"]);
-	$data["FileName"] = $profilo["FileName"];
-	$data["Bio"] = $profilo["Bio"];
-	header("Content-Type: application/json; charset=UTF-8");
-	echo json_encode($data);
 }
