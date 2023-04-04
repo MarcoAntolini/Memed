@@ -13,7 +13,7 @@ function generatePost(post) {
 	let result = ""
 	for (const element of post) {
 		let content = `
-        <div class="post card mb-3">
+        <div class="post card mb-3" id="${element["PostID"]}">
             <div class="row g-0">
                 <div class="left-col p-2">
                     <a class="username-post-owner fw-bold" href="user.php?username=${element["Username"]}">@${element["Username"]}</a>
