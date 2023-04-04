@@ -38,7 +38,7 @@ CREATE TABLE comments (
   CommentID int(11) NOT NULL AUTO_INCREMENT,
   PostID int(11) NOT NULL,
   Username varchar(30) NOT NULL,
-  TextContent varchar(150) NOT NULL,
+  TextContent varchar(200) NOT NULL,
   DateAndTime datetime NOT NULL,
   CONSTRAINT COMMENT_ID PRIMARY KEY (CommentID)
 );
@@ -46,7 +46,7 @@ CREATE TABLE comments (
 CREATE TABLE notifications (
   NotificationID int(11) NOT NULL AUTO_INCREMENT,
   Username varchar(30) NOT NULL,
-  Message varchar(150) NOT NULL,
+  Message varchar(200) NOT NULL,
   DateAndTime datetime NOT NULL,
   `Read` tinyint(1) NOT NULL,
   CONSTRAINT NOTIFICATION_ID PRIMARY KEY (NotificationID)
@@ -56,7 +56,7 @@ CREATE TABLE posts (
   PostID int(11) NOT NULL AUTO_INCREMENT,
   Username varchar(30) NOT NULL,
   FileName varchar(100) DEFAULT NULL,
-  TextContent varchar(250) DEFAULT NULL,
+  TextContent varchar(300) DEFAULT NULL,
   DateAndTime datetime NOT NULL,
   CONSTRAINT POST_ID PRIMARY KEY (PostID)
 );
