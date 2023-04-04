@@ -19,8 +19,7 @@ body {
 
     main {
         margin-top: 15px;
-        padding: 90px 1rem 0;
-        flex-direction: column;
+        padding: 0 1rem 0;
         height: 84%;
         @include mediaQuery("desktop-lower", "desktop-upper") {
             flex-direction: row;
