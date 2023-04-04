@@ -24,7 +24,7 @@ class Follows
 		$stmt->execute();
 		$this->notifications->insertNotification(
 			$followedUsername,
-			"<a href=\"user.php?Username=$followerUsername\" class=\"fw-bold\">$followerUsername</a> ha iniziato a seguirti."
+			"<a href=\"user.php?username=$followerUsername\" class=\"fw-bold\">@$followerUsername</a> ha iniziato a seguirti."
 		);
 	}
 
