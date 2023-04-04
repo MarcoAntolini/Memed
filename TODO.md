@@ -6,7 +6,7 @@
 - [x] window.onload overrida se presente in altri file (provare con window.addEventListener("load", function() { ... }) e testare con dei console.log oppure mettendo gli script in fondo al body)
 - [ ] il nuovo post deve uscire per primo
 - [x] niente notifiche se ti commenti da solo
-- [ ] fixare preview dell'immagine profilo se è default
+- [x] fixare preview dell'immagine profilo se è default
 - [ ] se submitti vuoto il controllo deve essere dal js e fare prevent default
 
 ## Refactor
