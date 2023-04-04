@@ -12,6 +12,7 @@ $templateParams["js"] = array(
 );
 
 $templateParams["profile"] = $mysqli->users()->getUserByUsername($_SESSION["LoggedUser"]);
+
 if (isset($_POST["logout"])) {
 	logout();
 	header(LOGIN);

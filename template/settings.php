@@ -14,7 +14,7 @@
 					<div class="row">
 						<label for="bio">Bio:</label>
 						<textarea id="bio" class="bio col-8" name="bio" rows="5"><?php echo $templateParams["profile"]["Bio"]; ?></textarea>
-						<img id="profile-pic-preview" class="profile-pic-preview" src="<?php echo (UPLOAD_DIR . $templateParams["profile"]["FileName"]); ?>" alt="profile-pic">
+						<img id="profile-pic-preview" class="profile-pic-preview" src="<?php echo UPLOAD_DIR . $templateParams["profile"]["FileName"]; ?>" alt="profile-pic">
 					</div>
 				</div>
 				<div class="modal-footer">

@@ -1,6 +1,6 @@
 <div class="my-profile">
 	<div class="user-data-section">
-		<img class="profile-pic" src="<?php echo (UPLOAD_DIR . $templateParams["profile"]["FileName"]); ?>" alt="profile-pic">
+		<img class="profile-pic" src="<?php echo UPLOAD_DIR . $templateParams["profile"]["FileName"]; ?>" alt="profile-pic">
 		<h2 class="username">
 			<?php echo $templateParams["profile"]["Username"]; ?>
 		</h2>
@@ -41,7 +41,7 @@
 						<?php if ($templateParams["followerList"] != null) : ?>
 							<?php foreach ($templateParams["followerList"] as $follower) : ?>
 								<div class="follower mb-3">
-									<img src="<?php echo (UPLOAD_DIR . $mysqli->users()->getFileNameByUsername($follower["FollowerUsername"])); ?>" alt="follower-profile-pic">
+									<img src="<?php echo UPLOAD_DIR . $mysqli->users()->getFileNameByUsername($follower["FollowerUsername"]); ?>" alt="follower-profile-pic">
 									<a href="user.php?username=<?php echo $follower["FollowerUsername"]; ?>" class="fw-bold">
 										@<?php echo $follower["FollowerUsername"]; ?>
 									</a>
@@ -63,7 +63,7 @@
 						<?php if ($templateParams["followedList"] != null) : ?>
 							<?php foreach ($templateParams["followedList"] as $followed) : ?>
 								<div class="followed mb-3">
-									<img src="<?php echo (UPLOAD_DIR . $mysqli->users()->getFileNameByUsername($followed["FollowedUsername"])); ?>" alt="followed-profile-pic">
+									<img src="<?php echo UPLOAD_DIR . $mysqli->users()->getFileNameByUsername($followed["FollowedUsername"]); ?>" alt="followed-profile-pic">
 									<a href="user.php?username=<?php echo $followed["FollowedUsername"]; ?>" class="fw-bold">
 										@<?php echo $followed["FollowedUsername"]; ?>
 									</a>
