@@ -3,7 +3,7 @@
 ## Bug
 
 - [x] elimina tutte si disabilita in mobile ma non in desktop
-- [ ] window.onload overrida se presente in altri file (provare con window.addEventListener("load", function() { ... }) e testare con dei console.log oppure mettendo gli script in fondo al body)
+- [x] window.onload overrida se presente in altri file (provare con window.addEventListener("load", function() { ... }) e testare con dei console.log oppure mettendo gli script in fondo al body)
 - [ ] il nuovo post deve uscire per primo
 - [x] niente notifiche se ti commenti da solo
 - [ ] fixare preview dell'immagine profilo se è default
@@ -50,6 +50,7 @@
 
 ## Css
 
+- [ ] usare calc() per le altezze
 - [ ] bordo dell'immagine profilo (box-shadow?)
 - [ ] css dell'header del login
 - [ ] css dell'anteprima del post
