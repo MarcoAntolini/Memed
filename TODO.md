@@ -22,6 +22,7 @@
 - [x] sistemare db: id auto_increment
 - [ ] riempire il database con dati veri (soprattutto le date, per controllare l'ordine dei post)
 - [ ] non passare l'id alle colonne autoincrementate in database_populate
+- [ ] scrivere bene le notifiche dei commenti
 
 ## Php
 
