@@ -5,7 +5,7 @@ require_once "sessionCheck.php";
 
 $templateParams["title"] = "Memed - Notifiche";
 $templateParams["page"] = "notificationPage.php";
-$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/notificationSection.js");
+$templateParams["js"] = array("https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js", "../public/assets/js/notificationSection.js");
 
 $templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername();
 if ($mysqli->notifications()->getNotificationByUsername() != null) {

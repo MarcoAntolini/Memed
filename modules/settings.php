@@ -6,7 +6,7 @@ require_once "sessionCheck.php";
 $templateParams["title"] = "Memed - Impostazioni";
 $templateParams["page"] = "settings.php";
 $templateParams["js"] = array(
-	"https://unpkg.com/axios/dist/axios.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js",
 	"../public/assets/js/settings.js",
 	"../public/assets/js/notificationSection.js"
 );

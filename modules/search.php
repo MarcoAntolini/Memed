@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 
 $templateParams["title"] = "Memed - Cerca";
 $templateParams["page"] = "search.php";
-$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "../public/assets/js/notificationSection.js");
+$templateParams["js"] = array("https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js", "../public/assets/js/notificationSection.js");
 
 $usersList = $mysqli->users()->getUserLikeUsername($_GET['search']);
 if (isset($_POST["unfollowing"])) {
