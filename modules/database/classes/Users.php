@@ -52,9 +52,9 @@ class Users
 
 	public function updateUser(string $fileName, string $bio): void
 	{
-		$sql = "UPDATE users SET FileName = ? Bio = ? WHERE Username = ?";
+		$sql = "UPDATE users SET FileName = ?, Bio = ? WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
-		$username = $_SESSION["username"];
+		$username = $_SESSION["LoggedUser"];
 		$stmt->bind_param("sss", $fileName, $bio, $username);
 		$stmt->execute();
 	}
