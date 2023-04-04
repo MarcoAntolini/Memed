@@ -21,7 +21,7 @@ if (isset($_GET["username"])) {
 	$templateParams["followerList"] = $mysqli->follows()->getAllFollowersByFollowedUsername($username);
 	$templateParams["followedList"] = $mysqli->follows()->getAllFollowedByFollowerUsername($username);
 }
-if ($templateParams["username"] != $templateParams["loggedUsername"]) {
+if ($templateParams["username"] != $_SESSION["loggedUser"]) {
 	if ($templateParams["followerList"] && $mysqli->follows()->checkFollow($templateParams["username"])) {
 		$templateParams["isFollowing"] = true;
 	} else {
