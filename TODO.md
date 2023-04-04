@@ -9,6 +9,9 @@
 - [x] fixare preview dell'immagine profilo se è default
 - [ ] se submitti vuoto il controllo deve essere dal js e fare prevent default
 - [ ] i post nella home sono sbagliati
+- [ ] foto profilo follower e seguiti
+- [ ] il redirect al post funziona ma scrolla giù solo se sei già in quella pagina
+- [ ] mettere link al commento e non al post
 
 ## Refactor
 
