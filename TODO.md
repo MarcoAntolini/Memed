@@ -8,6 +8,7 @@
 - [x] niente notifiche se ti commenti da solo
 - [x] fixare preview dell'immagine profilo se è default
 - [ ] se submitti vuoto il controllo deve essere dal js e fare prevent default
+- [ ] i post nella home sono sbagliati
 
 ## Refactor
 
