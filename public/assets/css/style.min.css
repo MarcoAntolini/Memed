@@ -411,8 +411,7 @@ body main {
 }
 body main {
   margin-top: 15px;
-  padding: 90px 1rem 0;
-  flex-direction: column;
+  padding: 0 1rem 0;
   height: 84%;
 }
 @media screen and (721px <= width <= 7680px) {
