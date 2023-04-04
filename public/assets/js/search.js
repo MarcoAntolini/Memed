@@ -1,5 +1,4 @@
-window.onload = () => {
-	console.log("loaded")
+window.addEventListener("load", () => {
 	const followButtons = document.querySelectorAll(".followBtn")
 	followButtons.forEach(button => {
 		button.addEventListener("click", () => {
@@ -14,4 +13,4 @@ window.onload = () => {
 	document.querySelector("#search-form").addEventListener("submit", e => {
 		if (document.querySelector("#search").value === "") e.preventDefault()
 	})
-}
+})

@@ -1,3 +1,14 @@
+window.addEventListener("load", () => {
+	axios.get("postApi.php", { params: { url: checkPage() } }).then(Response => {
+		const post = generatePost(Response.data)
+		const main = document.getElementById("post-section")
+		main.innerHTML = post
+		checkReaction(Response.data)
+		handlePost()
+		handleReactions()
+	})
+})
+
 function generatePost(post) {
 	let result = ""
 	for (const element of post) {
@@ -171,15 +182,6 @@ function checkPage() {
 	}
 	return url
 }
-
-axios.get("postApi.php", { params: { url: checkPage() } }).then(Response => {
-	const post = generatePost(Response.data)
-	const main = document.getElementById("post-section")
-	main.innerHTML = post
-	checkReaction(Response.data)
-	handlePost()
-	handleReactions()
-})
 
 function checkReaction(data) {
 	for (const element of data) {

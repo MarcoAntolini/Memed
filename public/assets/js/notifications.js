@@ -1,4 +1,4 @@
-window.onload = () => {
+window.addEventListener("load", () => {
 	const notifications = document.getElementById("notifications-number")
 	const notificationsNumber = notifications ? notifications.value : 0
 	const notification = document.getElementById("notification-Id")
@@ -8,4 +8,4 @@ window.onload = () => {
 	if (notificationsNumber == 0 && readAllButton) readAllButton.disabled = true
 	if (notificationsNumber == 0 && clearAllButton) clearAllButton.disabled = true
 	if (!notificationId && clearAllButton) clearAllButton.disabled = true
-}
+})

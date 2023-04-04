@@ -1,4 +1,4 @@
-window.onload = () => {
+window.addEventListener("load", () => {
 	const showButtons = document.querySelectorAll(".show-pw-btn")
 	showButtons.forEach(button => button.addEventListener("click", () => showPassword(button)))
 
@@ -18,7 +18,7 @@ window.onload = () => {
 	} else if (loginForm.every(input => input !== null)) {
 		loginForm.forEach(input => input.addEventListener("keyup", () => checkLoginButton(...loginForm)))
 	}
-}
+})
 
 function showPassword(button) {
 	const buttonId = button.id

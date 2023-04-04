@@ -1,3 +1,11 @@
+window.addEventListener("load", () => {
+	axios.get("notificationApi.php").then(Response => {
+		const notification = generatenotification(Response.data)
+		const main = document.getElementById("notification-section")
+		if (main && notification) main.innerHTML = notification
+	})
+})
+
 function generatenotification(notification) {
 	let result = ""
 	if (!notification) return
@@ -25,9 +33,3 @@ function generatenotification(notification) {
 	}
 	return result
 }
-
-axios.get("notificationApi.php").then(Response => {
-	const notification = generatenotification(Response.data)
-	const main = document.getElementById("notification-section")
-	if (main && notification) main.innerHTML = notification
-})

@@ -1,10 +1,18 @@
-window.onload = () => {
+window.addEventListener("load", () => {
 	const profilePicInput = document.getElementById("profile-pic-input")
 	profilePicInput.addEventListener("change", () => previewProfilePic(this.files[0]))
 
 	const submitButton = document.getElementById("submit-button")
 	submitButton.addEventListener("click", () => handleSubmit())
-}
+
+	axios.get("profileSettingsApi.php").then(Response => {
+		const data = Response.data
+		const profilePic = document.getElementById("profile-pic-preview")
+		if (profilePic) profilePic.setAttribute("src", data["FileName"])
+		const bio = document.getElementById("bio")
+		if (bio) bio.innerText = data["Bio"]
+	})
+})
 
 function previewProfilePic(file) {
 	const validImageTypes = ["image/jpg", "image/jpeg", "image/png"]
@@ -37,11 +45,3 @@ function handleSubmit() {
 		axios.post("profileSettings.php", { Bio: bio, profilePic: profilePic })
 	}
 }
-
-axios.get("profileSettingsApi.php").then(Response => {
-	const data = Response.data
-	const profilePic = document.getElementById("profile-pic-preview")
-	if (profilePic) profilePic.setAttribute("src", data["FileName"])
-	const bio = document.getElementById("bio")
-	if (bio) bio.innerText = data["Bio"]
-})

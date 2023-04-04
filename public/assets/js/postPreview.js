@@ -1,9 +1,10 @@
-window.onload = () => {
+window.addEventListener("load", () => {
 	const imageInput = document.getElementById("image-input")
 	imageInput.addEventListener("change", () => previewImage(this.files[0]))
+
 	const descriptionInput = document.getElementById("description-input")
 	descriptionInput.addEventListener("keyup", () => previewDescription(this.value))
-}
+})
 
 function previewImage(file) {
 	const validImageTypes = ["image/gif", "image/jpg", "image/jpeg", "image/png"]
