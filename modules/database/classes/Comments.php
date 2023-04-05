@@ -29,7 +29,7 @@ class Comments
 		if ($postOwner != $_SESSION["loggedUser"]) {
 			$this->notifications->insertNotification(
 				$postOwner,
-				"<a href=\"user.php?username=$username\" class=\"fw-bold\">@$username</a> ha commentato un tuo <a href=\"user.php?username=$postOwner#$postId\" class=\"fw-bold fst-italic\">post</a>."
+				"<a href=\"user.php?username=$username\" class=\"fw-bold\">@$username</a> ha commentato un tuo <a href=\"user.php?username=$postOwner#post-$postId\" class=\"fw-bold fst-italic\">post</a>."
 			);
 		}
 	}
@@ -50,5 +50,14 @@ class Comments
 		$stmt = $this->db->prepare($sql);
 		$stmt->bind_param("i", $postId);
 		$stmt->execute();
+	}
+
+	public function getLastCommentId(): int
+	{
+		$sql = "SELECT CommentID FROM comments ORDER BY CommentID DESC LIMIT 1";
+		$stmt = $this->db->prepare($sql);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		return $result->fetch_row()[0] ?? 0;
 	}
 }
