@@ -9,7 +9,7 @@
 - [x] fixare preview dell'immagine profilo se è default
 - [ ] se submitti vuoto il controllo deve essere dal js e fare prevent default
 - [ ] i post nella home sono sbagliati (mostra i miei anzi che dei seguiti)
-- [ ] foto profilo follower e seguiti non si vede
+- [x] foto profilo follower e seguiti non si vede
 - [ ] il redirect al post funziona ma scrolla giù solo se sei già in quella pagina
 - [ ] mettere link al commento e non al post
 
@@ -68,7 +68,7 @@
 - [ ] alert se pubblico post, modifico profilo o post, cancello post o commento, e se mi registro o faccio login
 - [ ] popup in login e register per i requisiti
 - [ ] cancellazione commenti
-- [ ] reazione media nel profilo
+- [ ] reazione media nel profilo (deve essere castata a int e se non esiste non deve essere 0)
 - [ ] categorie nell'anteprima e nel post
 - [x] la notifica del commento ti porta al tuo post
 - [ ] le notifche si aggiornano in tempo reale senza refresh
