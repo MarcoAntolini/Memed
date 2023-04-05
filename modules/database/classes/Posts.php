@@ -60,7 +60,7 @@ class Posts
 
 	public function getPostsForHomeByUsername()
 	{
-		$sql = "SELECT * FROM posts WHERE Username IN (SELECT FollowedUsername FROM follows WHERE Username = ?)
+		$sql = "SELECT * FROM posts WHERE Username IN (SELECT FollowedUsername FROM follows WHERE FollowerUsername = ?)
 				ORDER BY DateAndTime DESC";
 		$stmt = $this->db->prepare($sql);
 		$username = $_SESSION["loggedUser"];
