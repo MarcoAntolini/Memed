@@ -11,7 +11,6 @@
 - [x] i post nella home sono sbagliati (mostra i miei anzi che dei seguiti)
 - [x] foto profilo follower e seguiti non si vede
 - [ ] il redirect al post funziona ma scrolla giù solo se sei già in quella pagina
-- [ ] mettere link al commento e non al post
 
 ## Refactor
 
