@@ -59,14 +59,15 @@ class Users
 		$stmt->execute();
 	}
 
-	public function getFileNameByUsername(string $username): array
+	public function getFileNameByUsername(string $username): string
 	{
 		$sql = "SELECT FileName FROM users WHERE Username = ?";
 		$stmt = $this->db->prepare($sql);
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		$defaultFileName = "default-pic.png";
+		return $result->fetch_row()[0] ?? $defaultFileName;
 	}
 
 	public function getAverageReactionByUsername(string $username): int
