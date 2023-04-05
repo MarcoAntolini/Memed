@@ -126,13 +126,13 @@ function generatePost(post) {
                     <div class="comments-section">
         `
 		if (element["comments"]) {
-			element["comments"].forEach(commento => {
+			element["comments"].forEach(comment => {
 				content += `
                         <div class="comment">
                             <p class="comment-text">
-                                <a class="username-comment-owner fw-bold" href="user.php?username=${commento["Username"]}">
-                                    @${commento["Username"]}
-                                </a>: ${commento["TextContent"]}
+                                <a class="username-comment-owner fw-bold" href="user.php?username=${comment["Username"]}">
+                                    @${comment["Username"]}
+                                </a>: ${comment["TextContent"]}
                             </p>
                         </div>
             `
