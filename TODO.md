@@ -4,13 +4,17 @@
 
 - [x] elimina tutte si disabilita in mobile ma non in desktop
 - [x] window.onload overrida se presente in altri file (provare con window.addEventListener("load", function() { ... }) e testare con dei console.log oppure mettendo gli script in fondo al body)
-- [ ] il nuovo post deve uscire per primo
 - [x] niente notifiche se ti commenti da solo
 - [x] fixare preview dell'immagine profilo se è default
-- [ ] se submitti vuoto il controllo deve essere dal js e fare prevent default
 - [x] i post nella home sono sbagliati (mostra i miei anzi che dei seguiti)
 - [x] foto profilo follower e seguiti non si vede
+- [ ] il nuovo post deve uscire per primo
+
+## Improvements
+
 - [ ] il redirect al post funziona ma scrolla giù solo se sei già in quella pagina
+- [ ] se submitti vuoto il controllo deve essere dal js e fare prevent default
+- [ ] se segui o smetti deve aggiornarsi il pezzo tramite js e non l'intera pagina tramite php (come fa già nella search)
 
 ## Refactor
 
@@ -44,8 +48,8 @@
 - [x] usare le funzioni nel modo giusto (es. se tornano array e non bool)
 - [x] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
 - [x] aggiungere postId al link della notifica
-- [ ] sistemare funzioni di login/register/logout
 - [x] rimuovere i [0] dalle function call
+- [ ] sistemare funzioni di login/register/logout
 
 ## Javascript
 
@@ -70,7 +74,16 @@
 - [ ] reazione media nel profilo (deve essere castata a int e se non esiste non deve essere 0)
 - [ ] categorie nell'anteprima e nel post
 - [x] la notifica del commento ti porta al tuo post
-- [ ] le notifche si aggiornano in tempo reale senza refresh
+- [ ] le notifche si aggiornano in tempo reale senza refresh (
+  setInterval(
+  axios.get("notificationApi.php").then(Response => {
+  const notification = generatenotification(Response.data)
+  const main = document.getElementById("notification-section")
+  if (main && notification) main.innerHTML = notification
+  }),
+  10000
+  )
+)
 - [ ] bootstrap toast per le notifiche?
 - [ ] in esplora si vede il filtro attivo
 - [x] aumentare dimensione massima immagine profilo uploadabile
