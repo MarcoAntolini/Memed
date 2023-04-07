@@ -1,8 +1,6 @@
 <?php
 
 require_once "database/DatabaseHelper.php";
-require_once "functions/authentication.php";
-require_once "functions/upload.php";
 
 session_start();
 define("UPLOAD_DIR", "./upload/");
