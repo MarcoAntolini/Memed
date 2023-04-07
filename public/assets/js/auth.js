@@ -18,6 +18,15 @@ window.addEventListener("load", () => {
 	} else if (loginForm.every(input => input !== null)) {
 		loginForm.forEach(input => input.addEventListener("keyup", () => checkLoginButton(...loginForm)))
 	}
+
+	const toastButton = document.getElementById("toastButton")
+	const registerSuccessToast = document.getElementById("registerSuccessToast")
+	if (toastButton) {
+		toastButton.addEventListener("click", () => {
+			const toast = new bootstrap.Toast(registerSuccessToast)
+			toast.show()
+		})
+	}
 })
 
 function showPassword(button) {

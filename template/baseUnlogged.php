@@ -30,12 +30,42 @@
 			require $templateParams["page"];
 		}
 		?>
+
+		<button type="button" class="btn btn-primary" id="toastButton" style="display:none">Show live toast</button>
+
+		<div class="toast-container position-fixed bottom-0 end-0 p-3">
+			<div id="registerSuccessToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+				<div class="toast-header">
+					<strong class="me-auto">Benvenuto!</strong>
+					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+				</div>
+				<div class="toast-body">
+					Sei stato registrato con successo! Effettua il login per accedere al sito.
+				</div>
+			</div>
+		</div>
+
 	</main>
 	<footer>
 		<div class="container-fluid d-flex justify-content-center color-main p-2 fixed-bottom">
 			<p>© 2023 Memed. Tutti i diritti riservati.</p>
 		</div>
 	</footer>
+	<?php
+	if ($templateParams["page"] == "../template/login.php") :
+		if (isset($_SESSION["registrationSuccess"]) && $_SESSION["registrationSuccess"]) :
+	?>
+			<script>
+				window.onload = () => {
+					document.getElementById("toastButton").click()
+				}
+			</script>
+	<?php
+			unset($_SESSION["registrationSuccess"]);
+		endif;
+	endif;
+	?>
 </body>
+
 
 </html>
