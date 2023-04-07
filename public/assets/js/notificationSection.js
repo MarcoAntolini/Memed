@@ -7,10 +7,10 @@ window.addEventListener("load", () => {
 })
 
 function generatenotification(notification) {
-	let result = ""
+	let content = ""
 	if (!notification) return
 	for (const element of notification) {
-		let content = `
+		content += `
         <article class="notification row mb-3 border-top">
             <form action="#" method="post">
                 <p class="notification-text">${element["Message"]}</p>
@@ -29,7 +29,6 @@ function generatenotification(notification) {
             </form>
         </article>
         `
-		result += content
 	}
-	return result
+	return content
 }
