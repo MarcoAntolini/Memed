@@ -8,8 +8,8 @@
 - [x] fixare preview dell'immagine profilo se è default
 - [x] i post nella home sono sbagliati (mostra i miei anzi che dei seguiti)
 - [x] foto profilo follower e seguiti non si vede
+- [x] username già esistente se ti registri con un username nuovo
 - [ ] il nuovo post deve uscire per primo
-- [ ] username già esistente se ti registri con un username nuovo
 
 ## Improvements
 
