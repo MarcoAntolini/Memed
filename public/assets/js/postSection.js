@@ -10,9 +10,9 @@ window.addEventListener("load", () => {
 })
 
 function generatePost(post) {
-	let result = ""
+	let content = ""
 	for (const element of post) {
-		let content = `
+		content += `
         <div class="post card mb-3" id="post-${element["PostID"]}">
             <div class="row g-0">
                 <div class="left-col p-2">
@@ -163,9 +163,8 @@ function generatePost(post) {
             </div>
         </div>
         `
-		result += content
 	}
-	return result
+	return content
 }
 
 function checkPage() {
