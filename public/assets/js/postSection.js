@@ -170,17 +170,15 @@ function generatePost(post) {
 
 function checkPage() {
 	const windowPath = window.location.pathname
-	let url = ""
 	if (windowPath.includes("index.php")) {
-		url = "index.php"
+		return "index.php"
 	} else if (windowPath.includes("explore.php")) {
-		url = "explore.php"
+		return "explore.php"
 	} else if (windowPath.includes("user.php")) {
-		url = "user.php"
+		return "user.php"
 	} else if (windowPath.includes("savedPosts.php")) {
-		url = "savedPosts.php"
+		return "savedPosts.php"
 	}
-	return url
 }
 
 function checkReaction(data) {
