@@ -11,7 +11,7 @@ if (isset($_POST["email"], $_POST["password"])) {
 	if (login($email, $password, $mysqli)) {
 		header(INDEX);
 	} else {
-		$templateParams["loginErrorMessage"] = "email o password errati";
+		$templateParams["loginErrorMessage"] = "Email o password errati";
 	}
 }
 
