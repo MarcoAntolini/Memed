@@ -10,6 +10,8 @@
 - [x] foto profilo follower e seguiti non si vede
 - [x] username già esistente se ti registri con un username nuovo
 - [ ] il nuovo post deve uscire per primo
+- [ ] la foto profilo non si aggiorna se la foto è fuori dalla cartella upload
+- [ ] i controlli quando pubblichi un post non funzionano bene
 
 ## Improvements
 
@@ -66,10 +68,14 @@
 - [ ] css del modifica post e modifica profilo
 - [ ] css di cerca
 - [ ] css generale
+- [ ] css dei toast
 
 ## New features
 
-- [ ] alert se pubblico post, modifico profilo o post, cancello post o commento, e se mi registro o faccio login
+- [ ] offcanvas per le notifiche desktop
+- [ ] alert se pubblico o modifico post, cancello post o commento
+- [x] alert se modifico profilo (redirect al profilo)
+- [x] alert se mi registro o faccio login
 - [ ] popup in login e register per i requisiti
 - [ ] cancellazione commenti
 - [ ] reazione media nel profilo (deve essere castata a int e se non esiste non deve essere 0)
