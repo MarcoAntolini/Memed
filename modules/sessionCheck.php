@@ -15,7 +15,8 @@ function checkLogin(DatabaseHelper $mysqli): bool
 	$loginString = $_SESSION["login_string"];
 	$username = $_SESSION["loggedUser"];
 	$browser = $_SERVER["HTTP_USER_AGENT"];
-	if ($user = $mysqli->users()->getUserByUsername($username) == null) {
+	$user = $mysqli->users()->getUserByUsername($username);
+	if (empty($user)) {
 		return false;
 	}
 	$password = $user["Password"];

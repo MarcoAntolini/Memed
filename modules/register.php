@@ -6,9 +6,9 @@ $templateParams["title"] = "Memed - Registrati";
 $templateParams["page"] = "../template/register.php";
 
 if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confirm-password"])) {
-	if ($mysqli->users()->getUserByUsername($_POST["username"]) != null) {
+	if (empty($mysqli->users()->getUserByUsername($_POST["username"]))) {
 		$templateParams["registrationErrorMessage"] = "Username già esistente";
-	} elseif ($mysqli->users()->getUserByEmail($_POST["email"]) != null) {
+	} elseif (empty($mysqli->users()->getUserByEmail($_POST["email"]))) {
 		$templateParams["registrationErrorMessage"] = "Email già esistente";
 	} elseif ($_POST["password"] != $_POST["confirm-password"]) {
 		$templateParams["registrationErrorMessage"] = "Le password non coincidono";
