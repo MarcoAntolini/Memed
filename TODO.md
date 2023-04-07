@@ -9,6 +9,7 @@
 - [x] i post nella home sono sbagliati (mostra i miei anzi che dei seguiti)
 - [x] foto profilo follower e seguiti non si vede
 - [ ] il nuovo post deve uscire per primo
+- [ ] username già esistente se ti registri con un username nuovo
 
 ## Improvements
 
