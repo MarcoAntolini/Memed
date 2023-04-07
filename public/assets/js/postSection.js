@@ -169,15 +169,10 @@ function generatePost(post) {
 
 function checkPage() {
 	const windowPath = window.location.pathname
-	if (windowPath.includes("index.php")) {
-		return "index.php"
-	} else if (windowPath.includes("explore.php")) {
-		return "explore.php"
-	} else if (windowPath.includes("user.php")) {
-		return "user.php"
-	} else if (windowPath.includes("savedPosts.php")) {
-		return "savedPosts.php"
-	}
+	if (windowPath.includes("index.php")) return "index.php"
+	else if (windowPath.includes("explore.php")) return "explore.php"
+	else if (windowPath.includes("user.php")) return "user.php"
+	else if (windowPath.includes("savedPosts.php")) return "savedPosts.php"
 }
 
 function checkReaction(data) {
