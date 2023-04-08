@@ -10,9 +10,9 @@
 - [x] foto profilo follower e seguiti non si vede
 - [x] username già esistente se ti registri con un username nuovo
 - [x] la foto profilo non si aggiorna se la foto è fuori dalla cartella upload
-- [ ] il nuovo post deve uscire per primo
+- [x] anteprima del post non funziona
 - [ ] i controlli quando pubblichi un post non funzionano bene
-- [ ] anteprima del post non funziona
+- [ ] il nuovo post deve uscire per primo
 
 ## Improvements
 
