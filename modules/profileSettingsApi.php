@@ -7,15 +7,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$mysqli->users()->updateUser($data["profilePic"], $data["bio"]);
 } elseif ($_SERVER["REQUEST_METHOD"] == "PUT") {
 	$encodedImage = $data["encodedImage"];
-	$format = explode(";", explode("/", $encodedImage)[1])[0];
 	$encodedImage = str_replace(
 		array("data:image/jpeg;base64,", "data:image/jpg;base64,", "data:image/png;base64,"),
 		"",
 		$encodedImage
 	);
 	$encodedImage = str_replace(" ", "+", $encodedImage);
-	$encodedImage = base64_decode($encodedImage);
-	$pathFile = "./upload/" . $data["profilePic"];
-	$sourceImg = imagecreatefromstring($encodedImage);
+	$decodedImage = base64_decode($encodedImage);
+	$pathFile = UPLOAD_DIR . $data["profilePic"];
+	$sourceImg = imagecreatefromstring($decodedImage);
+	imagejpeg($sourceImg, $pathFile, 100);
 	imagedestroy($sourceImg);
 }
