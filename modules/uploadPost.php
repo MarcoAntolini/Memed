@@ -3,7 +3,7 @@
 require_once "bootstrap.php";
 
 if ((isset($_POST["description-input"]) && !empty($_POST["description-input"])) ||
-	(isset($_POST["image-input"]) && !empty($_POST["image-input"]["name"]))
+	(isset($_FILES["image-input"]) && !empty($_FILES["image-input"]["name"]))
 ) {
 	$textContent = htmlspecialchars($_POST["description-input"]);
 	$categories = $mysqli->categories()->getCategories();

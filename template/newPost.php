@@ -1,7 +1,7 @@
 <div class="new-post-container container-fluid d-flex justify-content-center align-items-center">
 	<form action="uploadPost.php" method="post" enctype="multipart/form-data">
 		<div class="form-outline mb-3">
-			<input class="form-control" type="file" id="image-input" accept="image/png, image/jpg, image/jpeg, image/gif" name="image-input">
+			<input class="form-control" type="file" id="image-input" accept="image/png, image/jpg, image/jpeg, image/gif" name="image-input" />
 		</div>
 		<div class="form-outline mb-3">
 			<label for="description-input">Descrizione:</label>
