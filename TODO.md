@@ -9,9 +9,10 @@
 - [x] i post nella home sono sbagliati (mostra i miei anzi che dei seguiti)
 - [x] foto profilo follower e seguiti non si vede
 - [x] username già esistente se ti registri con un username nuovo
+- [x] la foto profilo non si aggiorna se la foto è fuori dalla cartella upload
 - [ ] il nuovo post deve uscire per primo
-- [ ] la foto profilo non si aggiorna se la foto è fuori dalla cartella upload
 - [ ] i controlli quando pubblichi un post non funzionano bene
+- [ ] anteprima del post non funziona
 
 ## Improvements
 
@@ -20,7 +21,7 @@
 - [ ] se segui o smetti deve aggiornarsi il pezzo tramite js e non l'intera pagina tramite php (come fa già nella search)
 - [ ] in esplora si vede il filtro attivo
 - [ ] alert se pubblico o modifico post, cancello post o commento
-- [ ] popup in login e register per i requisiti
+- [ ] bootstrap utility in login e register per i requisiti
 
 ## Refactor
 
