@@ -1,9 +1,9 @@
 window.addEventListener("load", () => {
 	const imageInput = document.getElementById("image-input")
-	imageInput.addEventListener("change", () => previewImage(this.files[0]))
+	imageInput.addEventListener("change", () => previewImage(imageInput.files[0]))
 
 	const descriptionInput = document.getElementById("description-input")
-	descriptionInput.addEventListener("keyup", () => previewDescription(this.value))
+	descriptionInput.addEventListener("keyup", () => previewDescription(descriptionInput.value))
 })
 
 function previewImage(file) {
