@@ -11,7 +11,7 @@
 - [x] username già esistente se ti registri con un username nuovo
 - [x] la foto profilo non si aggiorna se la foto è fuori dalla cartella upload
 - [x] anteprima del post non funziona
-- [ ] i controlli quando pubblichi un post non funzionano bene
+- [x] i controlli quando pubblichi un post non funzionano bene
 - [ ] il nuovo post deve uscire per primo
 
 ## Improvements
