@@ -18,6 +18,9 @@
 - [ ] il redirect al post funziona ma scrolla giù solo se sei già in quella pagina
 - [ ] se submitti vuoto il controllo deve essere dal js e fare prevent default
 - [ ] se segui o smetti deve aggiornarsi il pezzo tramite js e non l'intera pagina tramite php (come fa già nella search)
+- [ ] in esplora si vede il filtro attivo
+- [ ] alert se pubblico o modifico post, cancello post o commento
+- [ ] popup in login e register per i requisiti
 
 ## Refactor
 
@@ -63,39 +66,27 @@
 
 - [ ] usare calc() per le altezze
 - [ ] bordo dell'immagine profilo (box-shadow?)
+- [ ] css dei toast
 - [ ] css dell'header del login
 - [ ] css dell'anteprima del post
 - [ ] css del modifica post e modifica profilo
 - [ ] css di cerca
 - [ ] css generale
-- [ ] css dei toast
 
 ## New features
 
 - [ ] offcanvas per le notifiche desktop
-- [ ] alert se pubblico o modifico post, cancello post o commento
-- [x] alert se modifico profilo (redirect al profilo)
-- [x] alert se mi registro o faccio login
-- [ ] popup in login e register per i requisiti
 - [ ] cancellazione commenti
 - [ ] reazione media nel profilo (deve essere castata a int e se non esiste non deve essere 0)
 - [ ] categorie nell'anteprima e nel post
-- [x] la notifica del commento ti porta al tuo post
-- [ ] le notifche si aggiornano in tempo reale senza refresh (
-  setInterval(
-  axios.get("notificationApi.php").then(Response => {
-  const notification = generatenotification(Response.data)
-  const main = document.getElementById("notification-section")
-  if (main && notification) main.innerHTML = notification
-  }),
-  10000
-  )
-)
-- [x] bootstrap toast per le notifiche?
-- [ ] in esplora si vede il filtro attivo
-- [x] aumentare dimensione massima immagine profilo uploadabile
 - [ ] cropperjs per resizare l'immagine profilo a quadrato quando viene pubblicata (anche per i post?)
 - [ ] usare floating label e hamburger menu
+- [x] aumentare dimensione massima immagine profilo uploadabile
+- [x] la notifica del commento ti porta al tuo post
+- [x] le notifche si aggiornano in tempo reale senza refresh
+- [x] bootstrap toast per le notifiche?
+- [x] alert se modifico profilo (redirect al profilo)
+- [x] alert se mi registro o faccio login
 
 ## Tests
 
