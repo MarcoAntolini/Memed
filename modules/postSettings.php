@@ -15,9 +15,7 @@ if (isset($_POST["unsave-post"])) {
 	$mysqli->savedPosts()->deleteSavedPost($_POST["post-id"]);
 }
 if (isset($_POST["submit-comment"])) {
-	if (empty($_POST["comment-text"]) || $_POST["comment-text"] == "" || preg_match("/^[\s]+$/", $_POST["comment-text"])) {
-		return;
-	} else {
+	if (!(empty($_POST["comment-text"]) || $_POST["comment-text"] == "" || preg_match("/^[\s]+$/", $_POST["comment-text"]))) {
 		$mysqli->comments()->insertComment($_POST["post-id"], $_POST["comment-text"]);
 	}
 }
