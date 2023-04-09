@@ -3,7 +3,7 @@ window.addEventListener("load", () => {
 		const post = generatePost(Response.data)
 		const main = document.getElementById("post-section")
 		main.innerHTML = post
-		checkReaction(Response.data)
+		Response.data.forEach(element => checkReaction(element))
 		handlePost()
 		handleReactions()
 	})
@@ -175,31 +175,30 @@ function checkPage() {
 	else if (windowPath.includes("savedPosts.php")) return "savedPosts.php"
 }
 
-function checkReaction(data) {
-	for (const element of data) {
-		const postId = element["PostID"]
-		let reaction
-		switch (element["activeReaction"]) {
-			case 1:
-				reaction = document.getElementById("reaction-1-" + postId)
-				break
-			case 2:
-				reaction = document.getElementById("reaction-2-" + postId)
-				break
-			case 3:
-				reaction = document.getElementById("reaction-3-" + postId)
-				break
-			case 4:
-				reaction = document.getElementById("reaction-4-" + postId)
-				break
-			case 5:
-				reaction = document.getElementById("reaction-5-" + postId)
-				break
-			default:
-				break
-		}
-		if (reaction) switchActive(reaction)
+function checkReaction(element) {
+	const postId = element["PostID"]
+	let reaction
+	switch (element["activeReaction"]) {
+		case 1:
+			reaction = document.getElementById("reaction-1-" + postId)
+			break
+		case 2:
+			reaction = document.getElementById("reaction-2-" + postId)
+			break
+		case 3:
+			reaction = document.getElementById("reaction-3-" + postId)
+			break
+		case 4:
+			reaction = document.getElementById("reaction-4-" + postId)
+			break
+		case 5:
+			reaction = document.getElementById("reaction-5-" + postId)
+			break
+		default:
+			document.querySelector("post-" + postId + " .active")?.classList.remove("active")
+			break
 	}
+	if (reaction) switchActive(reaction)
 }
 
 function switchActive(reaction) {
@@ -249,13 +248,15 @@ function handleReactions() {
 
 function addReaction(reaction, reactionId) {
 	const postId = reaction.parentElement.parentElement.parentElement.querySelector("#post-id").value
-	axios.post("reactionApi.php", { ReactionID: reactionId, PostID: postId })
-	axios.get("reactionApi.php", { params: { PostID: postId } }).then(Response => {
-		const count = Response.data
-		reaction.parentElement.parentElement.querySelector("#reaction1").innerHTML = count[1]
-		reaction.parentElement.parentElement.querySelector("#reaction2").innerHTML = count[2]
-		reaction.parentElement.parentElement.querySelector("#reaction3").innerHTML = count[3]
-		reaction.parentElement.parentElement.querySelector("#reaction4").innerHTML = count[4]
-		reaction.parentElement.parentElement.querySelector("#reaction5").innerHTML = count[5]
+	axios.post("reactionApi.php", { ReactionID: reactionId, PostID: postId }).then(() => {
+		axios.get("reactionApi.php", { params: { PostID: postId } }).then(Response => {
+			const count = Response.data
+			reaction.parentElement.parentElement.querySelector("#reaction1").innerHTML = count[1]
+			reaction.parentElement.parentElement.querySelector("#reaction2").innerHTML = count[2]
+			reaction.parentElement.parentElement.querySelector("#reaction3").innerHTML = count[3]
+			reaction.parentElement.parentElement.querySelector("#reaction4").innerHTML = count[4]
+			reaction.parentElement.parentElement.querySelector("#reaction5").innerHTML = count[5]
+			checkReaction(Response.data)
+		})
 	})
 }
