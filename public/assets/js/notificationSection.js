@@ -1,19 +1,14 @@
-window.addEventListener("load", () => {
+window.addEventListener("load", () => getNotifications())
+
+setInterval(getNotifications, 1000)
+
+function getNotifications() {
 	axios.get("notificationApi.php").then(Response => {
 		const notification = generatenotification(Response.data)
 		const main = document.getElementById("notification-section")
 		if (main && notification) main.innerHTML = notification
 	})
-})
-
-setInterval(
-	axios.get("notificationApi.php").then(Response => {
-		const notification = generatenotification(Response.data)
-		const main = document.getElementById("notification-section")
-		if (main && notification) main.innerHTML = notification
-	}),
-	10000
-)
+}
 
 function generatenotification(notification) {
 	let content = ""
