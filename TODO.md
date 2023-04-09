@@ -12,6 +12,8 @@
 - [x] la foto profilo non si aggiorna se la foto è fuori dalla cartella upload
 - [x] anteprima del post non funziona
 - [x] i controlli quando pubblichi un post non funzionano bene
+- [x] le reazioni non si aggiornano bene
+- [x] errore da console per il setTimeout delle notifiche
 - [ ] il nuovo post deve uscire per primo
 
 ## Improvements
