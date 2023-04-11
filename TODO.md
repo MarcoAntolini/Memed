@@ -21,11 +21,11 @@
 ## Improvements
 
 - [x] in esplora si vede il filtro attivo
+- [x] bootstrap utility in login e register per i requisiti
 - [ ] il redirect al post funziona ma scrolla giù solo se sei già in quella pagina
 - [ ] se submitti vuoto il controllo deve essere dal js e fare prevent default
 - [ ] se segui o smetti deve aggiornarsi il pezzo tramite js e non l'intera pagina tramite php (come fa già nella search)
 - [ ] alert se pubblico o modifico post, cancello post o commento
-- [ ] bootstrap utility in login e register per i requisiti
 
 ## Refactor
 
