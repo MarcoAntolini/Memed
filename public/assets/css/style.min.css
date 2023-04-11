@@ -22,8 +22,7 @@
 }
 
 #post-section {
-  min-width: 73vw;
-  overflow: auto;
+  min-width: 100%;
   padding: 0 5px;
   height: 82vh;
 }
@@ -119,12 +118,9 @@
 }
 
 .notification-container {
-  margin-left: 1rem;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 5px;
-  width: 25vw;
-  height: 82vh !important;
+  margin: 0 16px 16px;
 }
 @media screen and (481px <= width <= 720px) {
   .notification-container {
@@ -137,9 +133,6 @@
     width: 95vw;
     margin: 0;
   }
-}
-.notification-container .row {
-  width: inherit;
 }
 .notification-container form {
   padding-bottom: 15px;
@@ -154,6 +147,10 @@
   display: flex;
 }
 
+.my-profile {
+  width: 100%;
+  height: auto;
+}
 .my-profile .follower img,
 .my-profile .followed img {
   max-width: 50px;
@@ -172,6 +169,7 @@
 .my-profile .follower img,
 .my-profile .followed img {
   border-radius: 50%;
+  box-shadow: 0 0 0 2px black;
 }
 .my-profile h2 {
   font-size: x-large !important;
@@ -187,11 +185,7 @@
   display: inline-block;
 }
 .my-profile .user-data-section {
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-}
-.my-profile #post-section {
-  max-height: 57vh;
+  margin-bottom: 1rem;
 }
 
 .auth {
@@ -201,6 +195,9 @@
   justify-content: center;
 }
 
+footer {
+  max-height: 3.5rem;
+}
 footer p {
   margin: 0;
 }
@@ -225,6 +222,7 @@ footer .nav-col {
   justify-content: center;
   flex: 1 0 0%;
   width: 25vw !important;
+  padding: 0;
 }
 footer .nav-col:hover {
   cursor: pointer;
@@ -239,6 +237,9 @@ footer .counter {
   filter: none !important;
 }
 
+header {
+  max-height: 4.5rem;
+}
 header form,
 header form * {
   max-height: 3rem;
@@ -253,6 +254,9 @@ header h1 {
   min-width: 126px;
   padding-left: 30px;
   padding-bottom: 30px;
+}
+header .counter {
+  transform: translate(-0.6rem, 0.7rem);
 }
 
 .new-post-container {
@@ -278,8 +282,8 @@ header h1 {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  overflow-y: auto;
   overflow-x: hidden;
+  width: 100%;
 }
 .explore-section > form {
   display: flex;
@@ -288,6 +292,9 @@ header h1 {
 }
 .explore-section .category {
   background-color: #dee2e6;
+}
+.explore-section .category-selected {
+  background-color: white !important;
 }
 @media screen and (481px <= width <= 720px) {
   .explore-section > form {
@@ -312,14 +319,9 @@ header h1 {
 }
 
 .search-container {
-  padding-top: 2rem;
-  padding-right: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
+  min-width: 100%;
+  display: grid;
+  gap: 1rem;
 }
 .search-container h2 {
   font-size: x-large !important;
@@ -328,11 +330,30 @@ header h1 {
   max-width: 50px;
   max-height: 50px;
   border-radius: 50%;
+  box-shadow: 0 0 0 2px black;
 }
-.search-container .card {
-  min-width: 280px;
+.search-container .card p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
+@media screen and (320px <= width <= 480px) {
+  .search-container {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (481px <= width <= 720px) {
+  .search-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (721px <= width <= 7680px) {
+  .search-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 img {
   max-width: inherit;
   max-height: inherit;
@@ -365,6 +386,7 @@ img {
 }
 
 .settings-icon,
+.notifications-icon,
 .nav-icon {
   max-width: 2.5rem;
   max-height: 2.5rem;
@@ -406,14 +428,16 @@ body {
 }
 body,
 body main {
+  position: relative;
   display: flex;
   justify-content: center;
-  overflow: hidden;
 }
 body main {
-  margin-top: 15px;
-  padding: 0 1rem 0;
-  height: 84%;
+  overflow-x: hidden;
+  padding: 1rem;
+  margin: 4.5rem 0 3.5rem;
+  height: calc(100% - 8rem);
+  width: 100%;
 }
 @media screen and (721px <= width <= 7680px) {
   body main {
