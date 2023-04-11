@@ -6,6 +6,7 @@ require_once "sessionCheck.php";
 $templateParams["notificationSection"] = "notification.php";
 
 $templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername();
+//var_dump($mysqli->notifications()->getNotificationByUsername());
 if ($mysqli->notifications()->getNotificationByUsername() != null) {
 	$templateParams["notifications"] = true;
 } else {
