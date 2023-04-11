@@ -1,5 +1,5 @@
 <header class="header container-fluid d-flex justify-content-center color-main p-2 fixed-top top-0">
-	<div class="col mobile-hidden">
+	<div class="col mobile-hidden tablet-hidden">
 		<a class="btn" data-bs-toggle="offcanvas" href="#notificationsOffcanvas" role="button" aria-controls="notificationsOffcanvas">
 			<?php if ($mysqli->notifications()->countUnreadNotificationsByUsername() > 0) : ?>
 				<span class="counter position-absolute badge rounded-pill bg-danger">
