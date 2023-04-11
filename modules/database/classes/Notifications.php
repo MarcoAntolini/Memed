@@ -61,7 +61,7 @@ class Notifications
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
 	public function countNotificationsByUsername(): int

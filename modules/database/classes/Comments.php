@@ -41,7 +41,7 @@ class Comments
 		$stmt->bind_param("i", $postId);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
 	public function deleteAllCommentsFromPost(int $postId): void

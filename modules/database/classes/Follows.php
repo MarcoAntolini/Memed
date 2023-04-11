@@ -55,7 +55,7 @@ class Follows
 		$stmt->bind_param("s", $followerUsername);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
 	public function getAllFollowersByFollowedUsername(string $followedUsername): array
@@ -65,7 +65,7 @@ class Follows
 		$stmt->bind_param("s", $followedUsername);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
 	public function countFollowedByFollowerUsername(string $followerUsername): int
