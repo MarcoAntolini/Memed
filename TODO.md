@@ -14,6 +14,8 @@
 - [x] i controlli quando pubblichi un post non funzionano bene
 - [x] le reazioni non si aggiornano bene
 - [x] errore da console per il setTimeout delle notifiche
+- [x] le notifiche da mobile non si vedono
+- [x] i bottoni delle notifiche non si aggiornano senza il refresh
 - [ ] il nuovo post deve uscire per primo
 
 ## Improvements
