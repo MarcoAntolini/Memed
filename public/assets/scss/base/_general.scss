@@ -13,15 +13,17 @@ body {
 
     &,
     main {
+        position: relative;
         display: flex;
         justify-content: center;
-        overflow: hidden;
     }
 
     main {
-        margin-top: 15px;
-        padding: 0 1rem 0;
-        height: 84%;
+        overflow-x: hidden;
+        padding: 1rem;
+        margin: 4.5rem 0 3.5rem;
+        height: calc(100% - 8rem);
+        width: 100%;
         @include mediaQuery("desktop-lower", "desktop-upper") {
             flex-direction: row;
         }

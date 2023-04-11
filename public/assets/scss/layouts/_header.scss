@@ -1,6 +1,8 @@
 @use "../abstract/" as *;
 
 header {
+    max-height: 4.5rem;
+
     form {
         &,
         * {

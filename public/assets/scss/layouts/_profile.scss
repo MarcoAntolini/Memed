@@ -1,4 +1,7 @@
 .my-profile {
+    width: auto;
+    height: auto;
+
     .follower,
     .followed {
         img {
@@ -21,6 +24,7 @@
     .follower img,
     .followed img {
         border-radius: 50%;
+        box-shadow: 0 0 0 2px black;
     }
 
     h2 {
@@ -38,14 +42,5 @@
     .follower-count,
     .followed-count {
         display: inline-block;
-    }
-
-    .user-data-section {
-        padding-bottom: 1rem;
-        padding-left: 1rem;
-    }
-
-    #post-section {
-        max-height: 57vh;
     }
 }
