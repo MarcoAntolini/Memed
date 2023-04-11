@@ -64,13 +64,24 @@ class Notifications
 		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
-	public function countNotificationsByUsername(): int
+	public function countUnreadNotificationsByUsername(): int
 	{
 		$sql = "SELECT COUNT(*) FROM notifications WHERE Username = ? and `Read` = ?";
 		$stmt = $this->db->prepare($sql);
 		$username = $_SESSION["loggedUser"];
 		$read = 0;
 		$stmt->bind_param("si", $username, $read);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		return $result->fetch_row()[0] ?? 0;
+	}
+
+	public function countNotificationsByUsername(): int
+	{
+		$sql = "SELECT COUNT(*) FROM notifications WHERE Username = ?";
+		$stmt = $this->db->prepare($sql);
+		$username = $_SESSION["loggedUser"];
+		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		return $result->fetch_row()[0] ?? 0;
