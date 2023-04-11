@@ -16,7 +16,7 @@
 - [x] errore da console per il setTimeout delle notifiche
 - [x] le notifiche da mobile non si vedono
 - [x] i bottoni delle notifiche non si aggiornano senza il refresh
-- [ ] il nuovo post deve uscire per primo
+- [x] il nuovo post deve uscire per primo
 
 ## Improvements
 
@@ -30,7 +30,7 @@
 ## Refactor
 
 - [x] controllare variabili con iniziali maiuscole
-- [ ] controllare variabili, id, name, etc
+- [x] controllare variabili, id, name, etc
 
 ## Database
 
@@ -60,7 +60,7 @@
 - [x] insertReactionOfPost(), deletePostById(), getPostReactionByPostIdAndUsername() todo
 - [x] aggiungere postId al link della notifica
 - [x] rimuovere i [0] dalle function call
-- [ ] sistemare funzioni di login/register/logout
+- [x] sistemare funzioni di login/register/logout
 
 ## Javascript
 
