@@ -305,7 +305,7 @@ header .counter {
   background-color: #dee2e6;
 }
 .explore-section .category-selected {
-  background-color: white !important;
+  background-color: #86a3c0 !important;
 }
 @media screen and (481px <= width <= 720px) {
   .explore-section > form {
