@@ -19,20 +19,20 @@ if ((isset($_POST["description-input"]) && !empty($_POST["description-input"])) 
 			$imgpost = $msg;
 			$mysqli->posts()->insertPost($imgpost, $textContent);
 			foreach ($selectedCategories as $category) {
-				$mysqli->postCategories()->insertPostCategory($category, $mysqli->posts()->getLastPostId());
+				$mysqli->postCategories()->insertPostCategory($mysqli->posts()->getLastPostId(), $category);
 			}
 			header(INDEX);
 		} else {
 			$mysqli->posts()->insertPost("", $textContent);
 			foreach ($selectedCategories as $category) {
-				$mysqli->postCategories()->insertPostCategory($category, $mysqli->posts()->getLastPostId());
+				$mysqli->postCategories()->insertPostCategory($mysqli->posts()->getLastPostId(), $category);
 			}
 			header(INDEX);
 		}
 	} else {
 		$mysqli->posts()->insertPost("", $textContent);
 		foreach ($selectedCategories as $category) {
-			$mysqli->postCategories()->insertPostCategory($category, $mysqli->posts()->getLastPostId());
+			$mysqli->postCategories()->insertPostCategory($mysqli->posts()->getLastPostId(), $category);
 		}
 		header(INDEX);
 	}
