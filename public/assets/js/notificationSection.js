@@ -1,6 +1,8 @@
+const requestInterval = 10000
+
 window.addEventListener("load", () => getNotifications())
 
-setInterval(getNotifications, 1000)
+setInterval(getNotifications, requestInterval)
 
 function getNotifications() {
 	axios.get("notificationApi.php").then(Response => {
