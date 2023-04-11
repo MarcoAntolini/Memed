@@ -20,9 +20,9 @@
 		</div>
 		<div class="nav-col desktop-hidden">
 			<a href="notificationPage.php">
-				<?php if ($templateParams["notificationsNumber"] > 0) : ?>
+				<?php if ($mysqli->notifications()->countUnreadNotificationsByUsername() > 0) : ?>
 					<span class="counter position-absolute top-10 start-75 translate-middle badge rounded-pill bg-danger">
-						<?php echo $templateParams["notificationsNumber"]; ?>
+						<?php echo $mysqli->notifications()->countUnreadNotificationsByUsername(); ?>
 						<span class="visually-hidden">Notifiche non lette</span>
 					</span>
 				<?php endif; ?>
