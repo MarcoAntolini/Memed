@@ -4,8 +4,11 @@ require_once "bootstrap.php";
 require_once "sessionCheck.php";
 
 $templateParams["title"] = "Memed - Notifiche";
-$templateParams["page"] = "notificationPage.php";
-$templateParams["js"] = array("https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js", "../public/assets/js/notificationSection.js");
+$templateParams["page"] = "notification.php";
+$templateParams["js"] = array(
+	"https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js",
+	"../public/assets/js/notificationSection.js"
+);
 
 $templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername();
 if ($mysqli->notifications()->getNotificationByUsername() != null) {
