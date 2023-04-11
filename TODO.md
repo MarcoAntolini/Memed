@@ -72,7 +72,7 @@
 - [x] usare calc() per le altezze
 - [x] bordo dell'immagine profilo (box-shadow?)
 - [x] css dei toast
-- [ ] css dell'header del login
+- [x] css dell'header del login
 - [ ] css dell'anteprima del post
 - [ ] css del modifica post e modifica profilo
 - [ ] css di cerca
