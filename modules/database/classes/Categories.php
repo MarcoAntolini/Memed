@@ -23,6 +23,6 @@ class Categories
 		$stmt = $this->db->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 }

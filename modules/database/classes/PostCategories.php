@@ -24,7 +24,7 @@ class PostCategories
 		$stmt->bind_param("i", $postId);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
 	public function deleteCategoryFromPost(int $postId, int $categoryId): void

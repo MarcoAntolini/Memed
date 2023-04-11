@@ -26,7 +26,7 @@ class Users
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC)[0] ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC)[0] ?? array();
 	}
 
 	public function getUserByEmail(string $email): array
@@ -36,7 +36,7 @@ class Users
 		$stmt->bind_param("s", $email);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC)[0] ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC)[0] ?? array();
 	}
 
 	public function getUserLikeUsername(string $username): array
@@ -47,7 +47,7 @@ class Users
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
 	public function updateUser(string $fileName, string $bio): void

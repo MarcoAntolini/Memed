@@ -45,7 +45,7 @@ class Posts
 		$stmt->bind_param("i", $postId);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_row() ?? array(0);
+		return $result->fetch_row() ?? array();
 	}
 
 	public function getPostsByUsername(string $username): array
@@ -55,7 +55,7 @@ class Posts
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
 	public function getPostsForHomeByUsername()
@@ -67,7 +67,7 @@ class Posts
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
 	public function getPostsByCategoryIdAndUsername(int $categoryId): array
@@ -80,7 +80,7 @@ class Posts
 		$stmt->bind_param("is", $categoryId, $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
 	public function getPostsForExploreByUsername(): array
@@ -92,7 +92,7 @@ class Posts
 		$stmt->bind_param("s", $username);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		return $result->fetch_all(MYSQLI_ASSOC) ?? array(0);
+		return $result->fetch_all(MYSQLI_ASSOC) ?? array();
 	}
 
 	public function updatePost(string $textContent, int  $postId): void
