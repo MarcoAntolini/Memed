@@ -18,7 +18,7 @@ if (isset($_POST["email"], $_POST["password"])) {
 function login(string $email, string $password, DatabaseHelper $mysqli): bool
 {
 	$user = $mysqli->users()->getUserByEmail($email);
-	if (array_key_exists(0, $user)) {
+	if (empty($user)) {
 		return false;
 	}
 	$username = $user["Username"];
