@@ -1,6 +1,4 @@
-window.addEventListener("load", () => {
-	getData()
-})
+window.addEventListener("load", () => getData())
 
 setInterval(getData, 10000)
 
