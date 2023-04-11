@@ -195,6 +195,11 @@
   justify-content: center;
 }
 
+.logo {
+  scale: 1.5;
+  transform: translate(0, -2rem);
+}
+
 footer {
   max-height: 3.5rem;
 }
@@ -247,7 +252,7 @@ header form * {
 header h1 {
   font-family: "Oswald", Helvetica, sans-serif;
   font-size: 40px !important;
-  transform: skewY(-7deg);
+  transform: skewY(-7deg) scale(1.6) translate(0, 1.2rem);
   letter-spacing: 2px;
   color: #0d6efd;
   text-shadow: -1px -1px 0 #33658a, -2px -2px 0 #33658a, -3px -3px 0 #33658a, -4px -4px 0 #33658a, -5px -5px 0 #33658a, -6px -6px 0 #33658a, -7px -7px 0 #33658a, -8px -8px 0 #33658a, -15px 5px 25px #696969;

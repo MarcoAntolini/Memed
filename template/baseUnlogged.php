@@ -20,17 +20,17 @@
 <body>
 	<header>
 		<div class="container-fluid d-flex justify-content-center color-main p-2 fixed-top">
-			<img src="../public/assets/img/logo.png" alt="logo" class="logo" />
 			<h1 class="title">Memed</h1>
 		</div>
 	</header>
 	<main class="auth vw-100">
+		<img src="../public/assets/img/logo.png" alt="logo" class="logo" />
+
 		<?php
 		if (isset($templateParams["page"])) {
 			require $templateParams["page"];
 		}
 		?>
-
 		<button type="button" class="btn btn-primary" id="toastButton" style="display:none">Show live toast</button>
 
 		<div class="toast-container position-fixed bottom-0 end-0 p-3">
