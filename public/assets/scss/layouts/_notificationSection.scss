@@ -3,7 +3,7 @@
 .notification-container {
     overflow-y: auto;
     overflow-x: hidden;
-    margin: 0 16px;
+    margin: 0 16px 16px;
 
     @include mediaQuery("tablet-lower", "tablet-upper") {
         width: 95vw;
