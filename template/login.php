@@ -13,7 +13,7 @@
 		<input id="password-input-login" type="password" name="password" placeholder="Password" class="form-control" required />
 		<button id="show-pw-btn-login" type="button" class="show-pw-btn btn btn-primary">Mostra</button>
 	</div>
-	<button id="login-button" type="submit" disabled class="btn btn-primary float-end mb-3">Accedi</button>
+	<button id="login-button" type="submit" class="btn btn-primary float-end mb-3">Accedi</button>
 </form>
 <div class="register-redirect mb-3">
 	<p class="fst-italic small">Non hai un account?

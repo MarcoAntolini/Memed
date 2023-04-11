@@ -2,21 +2,16 @@ window.addEventListener("load", () => {
 	const showButtons = document.querySelectorAll(".show-pw-btn")
 	showButtons.forEach(button => button.addEventListener("click", () => showPassword(button)))
 
-	const passwordLogin = document.getElementById("password-input-login")
 	const passwordRegister = document.getElementById("password-input-register")
 	const passwordConfirm = document.getElementById("password-input-confirm")
 	const emailInput = document.getElementById("email-input")
 	const usernameInput = document.getElementById("username-input")
 	const registerButton = document.getElementById("register-button")
-	const loginButton = document.getElementById("login-button")
 
 	const registerForm = [emailInput, usernameInput, passwordRegister, passwordConfirm, registerButton]
-	const loginForm = [emailInput, passwordLogin, loginButton]
 
 	if (registerForm.every(input => input !== null)) {
 		registerForm.forEach(input => input.addEventListener("keyup", () => checkRegisterButton(...registerForm)))
-	} else if (loginForm.every(input => input !== null)) {
-		loginForm.forEach(input => input.addEventListener("keyup", () => checkLoginButton(...loginForm)))
 	}
 
 	const toastButton = document.getElementById("toastButton")
@@ -57,10 +52,6 @@ function checkRegisterButton(emailInput, usernameInput, passwordRegister, passwo
 		validatePassword(passwordConfirm) &&
 		comparePasswords(passwordRegister, passwordConfirm)
 	)
-}
-
-function checkLoginButton(emailInput, passwordLogin, loginButton) {
-	loginButton.disabled = !(validateEmail(emailInput) && validatePassword(passwordLogin))
 }
 
 function comparePasswords(pwInput1, pwInput2) {
