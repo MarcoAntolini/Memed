@@ -45,15 +45,6 @@
 		}
 		?>
 		<?php require_once "../modules/notification.php"; ?>
-		<?php if ($templateParams["page"] == "user.php" || $templateParams["page"] == "home.php") : ?>
-			<?php if (isset($templateParams["notificationSection"])) : ?>
-				<div class="mobile-hidden tablet-hidden">
-					<?php require $templateParams["notificationSection"]; ?>
-				</div>
-		<?php
-			endif;
-		endif;
-		?>
 	</main>
 	<?php require "components/footer.php"; ?>
 </body>
