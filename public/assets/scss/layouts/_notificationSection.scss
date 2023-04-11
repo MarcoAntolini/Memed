@@ -1,12 +1,10 @@
 @use "../abstract/" as *;
 
 .notification-container {
-    margin-left: 1rem;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 5px;
-    width: 25vw;
-    height: 82vh !important;
+    margin: 0 16px;
+
     @include mediaQuery("tablet-lower", "tablet-upper") {
         width: 95vw;
         margin: 0;
@@ -14,10 +12,6 @@
     @include mediaQuery("mobile-lower", "mobile-upper") {
         width: 95vw;
         margin: 0;
-    }
-
-    .row {
-        width: inherit;
     }
 
     form {

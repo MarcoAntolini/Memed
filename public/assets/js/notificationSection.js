@@ -17,7 +17,7 @@ function generatenotification(notification) {
 	if (!notification) return
 	for (const element of notification) {
 		content += `
-        <article class="notification row mb-3 border-top">
+        <article class="notification row mb-3 border-bottom">
             <form action="#" method="post">
                 <p class="notification-text">${element["Message"]}</p>
         `
