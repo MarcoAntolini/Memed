@@ -17,22 +17,11 @@
     }
 
     .card {
-        height: fit-content;
-
         p {
             display: -webkit-box;
             overflow: hidden;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
-        }
-
-        p::before {
-            content: "";
-            position: relative;
-            width: 100%;
-            height: 1em;
-            pointer-events: none;
-            background: (to bottom, transparent, white);
         }
     }
 }
