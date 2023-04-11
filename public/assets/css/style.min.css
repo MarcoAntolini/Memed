@@ -287,6 +287,9 @@ header .counter {
 .new-post-container #description-input {
   margin-bottom: 10px;
 }
+.new-post-container #image-preview {
+  max-height: 13rem;
+}
 
 .explore-section {
   display: flex;
