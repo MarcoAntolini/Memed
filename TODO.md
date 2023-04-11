@@ -20,10 +20,10 @@
 
 ## Improvements
 
+- [x] in esplora si vede il filtro attivo
 - [ ] il redirect al post funziona ma scrolla giù solo se sei già in quella pagina
 - [ ] se submitti vuoto il controllo deve essere dal js e fare prevent default
 - [ ] se segui o smetti deve aggiornarsi il pezzo tramite js e non l'intera pagina tramite php (come fa già nella search)
-- [ ] in esplora si vede il filtro attivo
 - [ ] alert se pubblico o modifico post, cancello post o commento
 - [ ] bootstrap utility in login e register per i requisiti
 
@@ -69,23 +69,23 @@
 
 ## Css
 
-- [ ] usare calc() per le altezze
-- [ ] bordo dell'immagine profilo (box-shadow?)
-- [ ] css dei toast
+- [x] usare calc() per le altezze
+- [x] bordo dell'immagine profilo (box-shadow?)
+- [x] css dei toast
 - [ ] css dell'header del login
 - [ ] css dell'anteprima del post
 - [ ] css del modifica post e modifica profilo
 - [ ] css di cerca
 - [ ] css generale
+- [ ] usare floating label e hamburger menu
 
 ## New features
 
-- [ ] offcanvas per le notifiche desktop
 - [ ] cancellazione commenti
 - [ ] reazione media nel profilo (deve essere castata a int e se non esiste non deve essere 0)
 - [ ] categorie nell'anteprima e nel post
 - [ ] cropperjs per resizare l'immagine profilo a quadrato quando viene pubblicata (anche per i post?)
-- [ ] usare floating label e hamburger menu
+- [x] offcanvas per le notifiche desktop
 - [x] aumentare dimensione massima immagine profilo uploadabile
 - [x] la notifica del commento ti porta al tuo post
 - [x] le notifche si aggiornano in tempo reale senza refresh
