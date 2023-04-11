@@ -1,5 +1,5 @@
 .my-profile {
-    width: auto;
+    width: 100%;
     height: auto;
 
     .follower,
@@ -42,5 +42,9 @@
     .follower-count,
     .followed-count {
         display: inline-block;
+    }
+
+    .user-data-section {
+        margin-bottom: 1rem;
     }
 }
