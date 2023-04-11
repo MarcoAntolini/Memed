@@ -11,8 +11,11 @@ $templateParams["js"] = array(
 	"../public/assets/js/notificationSection.js"
 );
 
-$_SESSION["selectedCategory"] = 0;
 $templateParams["categories"] = $mysqli->categories()->getCategories();
+
+if (!isset($_SESSION["selectedCategory"])) {
+	$_SESSION["selectedCategory"] = 0;
+}
 if (isset($_POST["category"])) {
 	$_SESSION["selectedCategory"] = $_POST["category"];
 }
