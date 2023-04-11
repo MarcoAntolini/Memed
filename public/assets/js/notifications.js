@@ -9,12 +9,12 @@ function getData() {
 		const notifications = Response.data.notifications
 
 		const unreadNotificationCountSpan = document.getElementById("unread-notification-number")
-		unreadNotificationCountSpan.innerHTML = unreadNotificationsNumber
+		if (unreadNotificationCountSpan) unreadNotificationCountSpan.innerHTML = unreadNotificationsNumber
 
 		const readAllButton = document.getElementById("readall")
-		readAllButton.disabled = unreadNotificationsNumber == 0 || !notifications
+		if (readAllButton) readAllButton.disabled = unreadNotificationsNumber == 0 || !notifications
 
 		const clearAllButton = document.getElementById("clearall")
-		clearAllButton.disabled = notificationsNumber == 0 || !notifications
+		if (clearAllButton) clearAllButton.disabled = notificationsNumber == 0 || !notifications
 	})
 }
