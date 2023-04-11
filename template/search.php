@@ -4,9 +4,9 @@
 	<?php else : ?>
 		<?php foreach ($usersList as $user) : ?>
 			<?php if ($user["Username"] !== $_SESSION["loggedUser"]) : ?>
-				<div class="card p-2 mb-3">
+				<div class="card p-2">
 					<div class="">
-						<img src="<?php echo UPLOAD_DIR . $user["FileName"] ?>" alt="profile-picture" />
+						<img src="<?php echo UPLOAD_DIR . $user["FileName"] ?>" alt="profile-picture" class="profile-pic" />
 						<div class="">
 							<h2 class="fw-bold">
 								<a href="user.php?username=<?php echo $user["Username"] ?>">
