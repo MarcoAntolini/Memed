@@ -20,6 +20,9 @@
 		<input id="password-input-confirm" class="form-control" type="password" name="confirm-password" placeholder="Conferma password" required />
 		<button id="show-pw-btn-confirm" class="show-pw-btn btn btn-primary" type="button">Mostra</button>
 	</div>
+	<button type="button" class="btn btn-secondary info-button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="- L'email deve essere valida.</br>- L'username può contenere numeri e lettere maiuscole o minuscole.</br>- Le password devono coincidere e essere lunghe almeno 8 caratteri, contenere una lettera maiuscola, una minuscola, un numero e un carattere speciale." data-bs-html="true">
+		i
+	</button>
 	<button id="register-button" class="btn btn-primary float-end mb-3" type="submit" disabled>Iscriviti</button>
 </form>
 <div class="login-redirect mb-3">
