@@ -1,11 +1,22 @@
 window.addEventListener("load", () => {
-	const notifications = document.getElementById("notifications-number")
-	const notificationsNumber = notifications ? notifications.value : 0
-	const notification = document.getElementById("notification-Id")
-	const notificationId = notification ? notification.value : false
-	const readAllButton = document.getElementById("readall")
-	const clearAllButton = document.getElementById("clearall")
-	if (notificationsNumber == 0 && readAllButton) readAllButton.disabled = true
-	//if (notificationsNumber == 0 && clearAllButton) clearAllButton.disabled = true
-	if (!notificationId && clearAllButton) clearAllButton.disabled = true
+	getData()
 })
+
+setInterval(getData, 10000)
+
+function getData() {
+	axios.get("notificationApi.php", { params: { type: "buttons" } }).then(Response => {
+		const unreadNotificationsNumber = Response.data.unreadNotificationsNumber
+		const notificationsNumber = Response.data.notificationsNumber
+		const notifications = Response.data.notifications
+
+		const unreadNotificationCountSpan = document.getElementById("unread-notification-number")
+		unreadNotificationCountSpan.innerHTML = unreadNotificationsNumber
+
+		const readAllButton = document.getElementById("readall")
+		readAllButton.disabled = unreadNotificationsNumber == 0 || !notifications
+
+		const clearAllButton = document.getElementById("clearall")
+		clearAllButton.disabled = notificationsNumber == 0 || !notifications
+	})
+}

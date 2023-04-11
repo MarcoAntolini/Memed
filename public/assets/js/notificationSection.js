@@ -5,7 +5,7 @@ window.addEventListener("load", () => getNotifications())
 setInterval(getNotifications, requestInterval)
 
 function getNotifications() {
-	axios.get("notificationApi.php").then(Response => {
+	axios.get("notificationApi.php", { params: { type: "section" } }).then(Response => {
 		const notification = generatenotification(Response.data)
 		const main = document.getElementById("notification-section")
 		if (main && notification) main.innerHTML = notification
