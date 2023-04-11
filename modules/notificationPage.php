@@ -10,13 +10,6 @@ $templateParams["js"] = array(
 	"../public/assets/js/notificationSection.js"
 );
 
-$templateParams["notificationsNumber"] = $mysqli->notifications()->countNotificationsByUsername();
-if ($mysqli->notifications()->getNotificationByUsername() != null) {
-	$templateParams["notifications"] = true;
-} else {
-	$templateParams["notifications"] = false;
-}
-
 if (isset($_POST["read"])) {
 	$mysqli->notifications()->readNotificationById($_POST["read"]);
 }
