@@ -11,6 +11,10 @@ function getData() {
 		const unreadNotificationCountSpan = document.getElementById("unread-notification-number")
 		if (unreadNotificationCountSpan) unreadNotificationCountSpan.innerHTML = unreadNotificationsNumber
 
+		const unreadBadge = document.getElementById("unread-badge-counter")
+		if (unreadBadge) unreadBadge.style.display = unreadNotificationsNumber == 0 ? "none" : "block"
+		if (unreadBadge) unreadBadge.innerText = unreadNotificationsNumber
+
 		const readAllButton = document.getElementById("readall")
 		if (readAllButton) readAllButton.disabled = unreadNotificationsNumber == 0 || !notifications
 

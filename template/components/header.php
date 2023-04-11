@@ -1,12 +1,9 @@
 <header class="header container-fluid d-flex justify-content-center color-main p-2 fixed-top top-0">
 	<div class="col mobile-hidden tablet-hidden">
 		<a class="btn" data-bs-toggle="offcanvas" href="#notificationsOffcanvas" role="button" aria-controls="notificationsOffcanvas">
-			<?php if ($mysqli->notifications()->countUnreadNotificationsByUsername() > 0) : ?>
-				<span class="counter position-absolute badge rounded-pill bg-danger">
-					<?php echo $mysqli->notifications()->countUnreadNotificationsByUsername(); ?>
-					<span class="visually-hidden">Notifiche non lette</span>
-				</span>
-			<?php endif; ?>
+			<span class="counter position-absolute badge rounded-pill bg-danger" id="unread-badge-counter">
+				<span class="visually-hidden">Notifiche non lette</span>
+			</span>
 			<img src="../public/assets/img/notifications.png" alt="notifications" class="notifications-icon">
 		</a>
 	</div>
