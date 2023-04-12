@@ -73,18 +73,18 @@
 - [x] bordo dell'immagine profilo (box-shadow?)
 - [x] css dei toast
 - [x] css dell'header del login
-- [ ] css dell'anteprima del post
-- [ ] css del modifica post e modifica profilo
-- [ ] css di cerca
-- [ ] css generale
+- [x] css dell'anteprima del post
+- [x] css del modifica post e modifica profilo
+- [x] css di cerca
+- [x] css generale
 - [ ] usare floating label e hamburger menu
 
 ## New features
 
 - [ ] cancellazione commenti
-- [ ] reazione media nel profilo (deve essere castata a int e se non esiste non deve essere 0)
 - [ ] categorie nell'anteprima e nel post
-- [ ] cropperjs per resizare l'immagine profilo a quadrato quando viene pubblicata (anche per i post?)
+- [x] reazione media nel profilo (deve essere castata a int e se non esiste non deve essere 0)
+- [x] cropperjs per resizare l'immagine profilo a quadrato quando viene pubblicata (anche per i post?)
 - [x] offcanvas per le notifiche desktop
 - [x] aumentare dimensione massima immagine profilo uploadabile
 - [x] la notifica del commento ti porta al tuo post
