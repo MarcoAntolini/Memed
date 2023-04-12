@@ -1,13 +1,41 @@
 <div class="my-profile">
 	<div class="user-data-section">
 		<img class="profile-pic" src="<?php echo UPLOAD_DIR . $templateParams["profile"]["FileName"]; ?>" alt="profile-pic">
-		<h2 class="username">
-			<?php echo $templateParams["profile"]["Username"]; ?>
-		</h2>
+		<div class="user">
+			<h2 class="username">
+				<?php echo $templateParams["profile"]["Username"]; ?>
+			</h2>
+			<?php
+			switch ($templateParams["averageReaction"]) {
+				case 1:
+					$reaction = "../public/assets/img/reaction-1.png";
+					break;
+				case 2:
+					$reaction = "../public/assets/img/reaction-2.png";
+					break;
+				case 3:
+					$reaction = "../public/assets/img/reaction-3.png";
+					break;
+				case 4:
+					$reaction = "../public/assets/img/reaction-4.png";
+					break;
+				case 5:
+					$reaction = "../public/assets/img/reaction-5.png";
+					break;
+				default:
+					$reaction = "";
+					break;
+			}
+			if ($reaction != "") : ?>
+				<img src="<?php echo $reaction; ?>" alt="average reaction" class="average-reaction">
+			<?php endif;
+			?>
+		</div>
+
 		<p class="bio">
 			<?php echo $templateParams["profile"]["Bio"]; ?>
 		</p>
-		<div>
+		<div class="follow-buttons">
 			<button class="follower-count btn btn-info" type="button" data-bs-toggle="modal" data-bs-target=".follower-list">
 				Follower: <?php echo $templateParams["followersNumber"]; ?>
 			</button>

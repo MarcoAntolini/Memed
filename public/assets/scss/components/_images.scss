@@ -43,3 +43,15 @@ img {
 .post-settings-icon {
     cursor: pointer;
 }
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .average-reaction {
+        margin-top: -0.3rem;
+        max-width: 2rem;
+        max-height: 2rem;
+    }
+}

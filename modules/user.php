@@ -20,6 +20,7 @@ if (isset($_GET["username"])) {
 	$templateParams["followedNumber"] = $mysqli->follows()->countFollowedByFollowerUsername($username);
 	$templateParams["followerList"] = $mysqli->follows()->getAllFollowersByFollowedUsername($username);
 	$templateParams["followedList"] = $mysqli->follows()->getAllFollowedByFollowerUsername($username);
+	$templateParams["averageReaction"] = $mysqli->users()->getAverageReactionByUsername($username);
 }
 if ($templateParams["username"] != $_SESSION["loggedUser"]) {
 	if ($templateParams["followerList"] && $mysqli->follows()->checkFollow($templateParams["username"])) {
