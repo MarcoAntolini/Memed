@@ -14,8 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	);
 	$encodedImage = str_replace(" ", "+", $encodedImage);
 	$decodedImage = base64_decode($encodedImage);
-	$pathFile = UPLOAD_DIR . $data["profilePic"];
 	$sourceImg = imagecreatefromstring($decodedImage);
+	if (imagesavealpha($sourceImg, true)) {
+		$background = imagecolorallocatealpha($sourceImg, 255, 255, 255, 127);
+		imagefill($sourceImg, 0, 0, $background);
+	}
+	$pathFile = UPLOAD_DIR . $data["profilePic"];
 	imagejpeg($sourceImg, $pathFile, 100);
 	imagedestroy($sourceImg);
 }
