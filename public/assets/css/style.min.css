@@ -429,6 +429,43 @@ a *:not(.redirect) {
   text-decoration: none;
 }
 
+.cropper-crop-box,
+.cropper-crop-box .cropper-view-box {
+  border-radius: 50%;
+}
+.cropper-crop-box .cropper-view-box {
+  box-shadow: 0 0 0 1px #39f;
+  outline: 0;
+  outline: inherit !important;
+}
+.cropper-crop-box .cropper-face {
+  background-color: inherit !important;
+}
+.cropper-crop-box .cropper-dashed,
+.cropper-crop-box .cropper-line {
+  display: none !important;
+}
+.cropper-crop-box .cropper-point.point-se {
+  top: 82%;
+  right: 11%;
+}
+.cropper-crop-box .cropper-point.point-sw {
+  top: 82%;
+  left: 11%;
+}
+.cropper-crop-box .cropper-point.point-nw {
+  top: calc(18% - 5px);
+  left: 11%;
+}
+.cropper-crop-box .cropper-point.point-ne {
+  top: calc(18% - 5px);
+  right: 11%;
+}
+.cropper-crop-box .point-se {
+  width: 5px !important;
+  height: 5px !important;
+}
+
 html,
 * {
   scroll-behavior: smooth;
