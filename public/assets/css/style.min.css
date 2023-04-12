@@ -14,11 +14,20 @@
   cursor: pointer;
 }
 .settings-container .profile-pic-preview {
-  max-width: 150px !important;
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 150px;
+  max-height: 150px;
   width: 150px;
   height: 150px;
-  margin-left: 10px;
   border-radius: 50%;
+  padding: 0;
+  margin: auto;
+  box-shadow: 0 0 0 2px black;
+}
+.settings-container .bio {
+  margin: auto;
+  height: 150px;
 }
 
 #post-section {
@@ -164,15 +173,13 @@
   max-height: 100px;
   width: 100px;
   height: 100px;
+  margin-bottom: 1rem;
 }
 .my-profile .profile-pic,
 .my-profile .follower img,
 .my-profile .followed img {
   border-radius: 50%;
   box-shadow: 0 0 0 2px black;
-}
-.my-profile h2 {
-  font-size: x-large !important;
 }
 .my-profile .follow-section,
 .my-profile .follow-section form {
@@ -184,7 +191,8 @@
 .my-profile .followed-count {
   display: inline-block;
 }
-.my-profile .user-data-section {
+.my-profile .follow-buttons > button,
+.my-profile .follow-buttons > div > form > button {
   margin-bottom: 1rem;
 }
 
@@ -305,10 +313,10 @@ header .counter {
   margin: 0 auto;
 }
 .explore-section .category {
-  background-color: #dee2e6;
+  background-color: #86a3c0;
 }
 .explore-section .category-selected {
-  background-color: #86a3c0 !important;
+  background-color: #dee2e6 !important;
 }
 @media screen and (481px <= width <= 720px) {
   .explore-section > form {
@@ -317,10 +325,10 @@ header .counter {
 }
 @media screen and (320px <= width <= 480px) {
   .explore-section > form {
-    gap: 0rem !important;
+    gap: 0.2rem !important;
   }
   .explore-section > form .category {
-    transform: scale(0.8);
+    font-size: smaller;
   }
 }
 @media screen and (width <= 433px) {
@@ -337,20 +345,36 @@ header .counter {
   display: grid;
   gap: 1rem;
 }
-.search-container h2 {
-  font-size: x-large !important;
+.search-container .card .user-info {
+  margin-bottom: 2.5rem;
 }
-.search-container img {
-  max-width: 50px;
-  max-height: 50px;
+.search-container .card .user-info .profile-pic {
+  max-width: 75px;
+  max-height: 75px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   box-shadow: 0 0 0 2px black;
+  margin-bottom: 1rem;
 }
-.search-container .card p {
+.search-container .card .user-info .average-reaction {
+  margin-top: -0.3rem;
+  max-width: 1.7rem;
+  max-height: 1.7rem;
+}
+.search-container .card .user-info h2 {
+  font-size: x-large !important;
+}
+.search-container .card .user-info p {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
+}
+.search-container .card form {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
 }
 
 @media screen and (320px <= width <= 480px) {
@@ -416,6 +440,17 @@ img {
   cursor: pointer;
 }
 
+.user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.user .average-reaction {
+  margin-top: -0.3rem;
+  max-width: 2rem;
+  max-height: 2rem;
+}
+
 .btn:hover {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.1);
 }
@@ -429,39 +464,50 @@ a *:not(.redirect) {
   text-decoration: none;
 }
 
-.cropper-crop-box,
-.cropper-crop-box .cropper-view-box {
+#cropper-container {
+  padding: 0;
+}
+#cropper-container,
+#cropper-container .cropper-container {
+  overflow: hidden;
+}
+#cropper-container .cropper-container {
+  margin: 1rem 0;
+  max-width: 490px;
+}
+#cropper-container .cropper-container .cropper-crop-box,
+#cropper-container .cropper-container .cropper-crop-box .cropper-view-box {
   border-radius: 50%;
 }
-.cropper-crop-box .cropper-view-box {
+#cropper-container .cropper-container .cropper-crop-box .cropper-view-box {
   box-shadow: 0 0 0 1px #39f;
   outline: 0;
   outline: inherit !important;
 }
-.cropper-crop-box .cropper-face {
+#cropper-container .cropper-container .cropper-crop-box .cropper-face {
   background-color: inherit !important;
 }
-.cropper-crop-box .cropper-dashed,
-.cropper-crop-box .cropper-line {
+#cropper-container .cropper-container .cropper-crop-box .cropper-dashed,
+#cropper-container .cropper-container .cropper-crop-box .cropper-line {
   display: none !important;
 }
-.cropper-crop-box .cropper-point.point-se {
+#cropper-container .cropper-container .cropper-crop-box .cropper-point.point-se {
   top: 82%;
   right: 11%;
 }
-.cropper-crop-box .cropper-point.point-sw {
+#cropper-container .cropper-container .cropper-crop-box .cropper-point.point-sw {
   top: 82%;
   left: 11%;
 }
-.cropper-crop-box .cropper-point.point-nw {
+#cropper-container .cropper-container .cropper-crop-box .cropper-point.point-nw {
   top: calc(18% - 5px);
   left: 11%;
 }
-.cropper-crop-box .cropper-point.point-ne {
+#cropper-container .cropper-container .cropper-crop-box .cropper-point.point-ne {
   top: calc(18% - 5px);
   right: 11%;
 }
-.cropper-crop-box .point-se {
+#cropper-container .cropper-container .cropper-crop-box .point-se {
   width: 5px !important;
   height: 5px !important;
 }
