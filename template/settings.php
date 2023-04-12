@@ -10,11 +10,14 @@
 					<button type="button" id="close-button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<input type="file" id="profile-pic-input" accept="image/png, image/jpg, image/jpeg" name="profile-pic-input" class="mb-2">
+					<div class="row mb-2">
+						<input type="file" id="profile-pic-input" accept="image/png, image/jpg, image/jpeg" name="profile-pic-input">
+						<div id="cropper-container"></div>
+					</div>
 					<div class="row">
 						<label for="bio">Bio:</label>
 						<textarea id="bio" class="bio col-8" name="bio" rows="5"><?php echo $templateParams["profile"]["Bio"]; ?></textarea>
-						<img id="profile-pic-preview" class="profile-pic-preview" src="<?php echo UPLOAD_DIR . $templateParams["profile"]["FileName"]; ?>" alt="profile-pic">
+						<img src="<?php echo UPLOAD_DIR . $templateParams["profile"]["FileName"]; ?>" alt="profile-pic" id="profile-pic-preview" class="profile-pic-preview col-4">
 					</div>
 				</div>
 				<div class="modal-footer">
