@@ -15,11 +15,11 @@
     }
 
     .category {
-        background-color: $border;
+        background-color: #86a3c0;
     }
 
     .category-selected {
-        background-color: #86a3c0 !important;
+        background-color: $border !important;
     }
 
     @include mediaQuery("tablet-lower", "tablet-upper") {
@@ -29,10 +29,10 @@
     }
     @include mediaQuery("mobile-lower", "mobile-upper") {
         > form {
-            gap: 0rem !important;
+            gap: 0.2rem !important;
 
             .category {
-                transform: scale(0.8);
+                font-size: smaller;
             }
         }
     }
