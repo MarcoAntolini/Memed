@@ -27,7 +27,7 @@
 	</div>
 </header>
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="notificationsOffcanvas" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start mobile-hidden tablet-hidden" tabindex="-1" id="notificationsOffcanvas" aria-labelledby="offcanvasExampleLabel">
 	<div class="offcanvas-header">
 		<form action="#" method="post">
 			<div>
