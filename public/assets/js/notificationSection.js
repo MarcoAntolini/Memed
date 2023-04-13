@@ -1,13 +1,17 @@
-const requestInterval = 10000
+const requestInterval = 1000
+let idx
 
 window.addEventListener("load", () => getNotifications())
 
 setInterval(getNotifications, requestInterval)
 
 function getNotifications() {
-	axios.get("notificationApi.php", { params: { type: "section" } }).then(Response => {
+	const isMobile = window.getComputedStyle(document.querySelector(".offcanvas")).display === "none"
+	idx = isMobile ? 1 : 0
+	if (window.location.pathname.includes("notificationPage.php") && idx == 0) window.location.href = "index.php"
+	axios.get("notificationApi.php", { params: { type: "section" } }).then((Response) => {
 		const notification = generatenotification(Response.data)
-		const main = document.getElementById("notification-section")
+		const main = document.querySelectorAll("#notification-section")[idx]
 		if (main && notification) main.innerHTML = notification
 	})
 }
